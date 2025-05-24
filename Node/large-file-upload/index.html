@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="file" name="file" id="file" />
+    <button id="upload">Upload</button>
+
+    <script>
+      const file = document.querySelector("#file");
+      const chunkFn = (file, chunkSize = 1024 * 1024 * 8) => {
+        const chunks = [];
+        let start = 0;
+        let end = chunkSize;
+
+        while (start < file.size) {
+          chunks.push(file.slice(start, end));
+          start = end;
+          end = start + chunkSize;
+        }
+
+        return chunks;
+      };
+      const uploadChunks = (chunks) => {
+        // 1. 批量上传 promise.all
+        // 2. 上传标识 index hash
+        const list = [];
+        for (let i = 0; i < chunks.length; i++) {
+          const formData = new FormData();
+          formData.append("index", i);
+          formData.append("filename", "movie.mp4");
+          formData.append("movieFile", chunks[i]);
+          list.push(
+            fetch("http://localhost:3000/upload", {
+              method: "POST",
+              body: formData,
+            })
+          );
+        }
+        Promise.all(list)
+          .then((res) => {
+            // 3. 合并文件
+            fetch("http://localhost:3000/merge", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                filename: "movie.mp4",
+              }),
+            })
+              .then((res) => res.text())
+              .then((data) => {
+                console.log(data);
+              });
+            console.log("all done");
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      };
+
+      file.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        const chunks = chunkFn(file);
+        uploadChunks(chunks);
+      });
+    </script>
+  </body>
+</html>
