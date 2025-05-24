@@ -35,7 +35,7 @@ app.post("/merge", (req, res) => {
     fs.unlinkSync(path.join(uploadDir, file)); // 删除切片
   });
 
-  res.send("File merged successfully");
+  res.json({ message: "File merged successfully" });
 });
 
 app.listen(PORT, () => {

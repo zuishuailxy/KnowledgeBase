@@ -10,7 +10,7 @@
     <button id="upload">Upload</button>
 
     <script>
-      const file = document.querySelector("#file");
+      const fileDom = document.querySelector("#file");
       const chunkFn = (file, chunkSize = 1024 * 1024 * 8) => {
         const chunks = [];
         let start = 0;
@@ -63,8 +63,11 @@
           });
       };
 
-      file.addEventListener("change", (e) => {
-        const file = e.target.files[0];
+      const upBtn = document.querySelector("#upload");
+      upBtn.addEventListener("click", () => {
+        const file = fileDom.files[0];
+        console.log("file", fileDom);
+
         const chunks = chunkFn(file);
         uploadChunks(chunks);
       });
