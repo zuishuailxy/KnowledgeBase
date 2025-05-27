@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SDL</title>
+  </head>
+  <body>
+    <h1>Welcome to SDL</h1>
+    <p>This is a simple WebSocket server implementation.</p>
+
+    <script>
+      const createBrowserFingerprint = () => {
+        // Simulate browser fingerprint creation
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        ctx.fillRect(0, 0, 100, 100);
+        // 利用md5或其他哈希函数生成指纹
+        return canvas.toDataURL().slice(-20); // 简化的指纹示例
+      };
+      const ws = new WebSocket("ws://localhost:3000");
+      ws.onopen = () => {
+        const data = {
+          id: 1,
+          fingerprint: createBrowserFingerprint(),
+          action: "login",
+        };
+        console.log("Sending data:", data);
+
+        ws.send(JSON.stringify(data));
+      };
+
+      ws.addEventListener("message", (event) => {
+        const message = JSON.parse(event.data);
+        console.log("Received message:", message);
+
+        if (message.action === "logout") {
+          alert(message.message);
+        }
+      });
+    </script>
+  </body>
+</html>
