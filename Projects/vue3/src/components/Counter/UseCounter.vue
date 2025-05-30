@@ -1,19 +1,47 @@
 <!-- ParentComponent.vue -->
 <script setup lang="ts">
-import { ref } from 'vue'
-import Counter from './Counter.vue'
+import { ref, defineAsyncComponent, shallowRef } from 'vue'
+// import Counter from './Counter.vue'
 
 const count = ref(5)
+const asyncCounter = shallowRef(null)
+
+
+const loadFn = () => {
+  asyncCounter.value = defineAsyncComponent({
+    loader: () => import('./Counter.vue'),
+    loadingComponent: {
+      template: '<div>Loading Counter...</div>'
+    },
+    delay: 2000,
+    timeout: 100,
+    suspensible: true,
+  })
+}
+
+const handleClick = () => {
+  if (!asyncCounter.value) {
+    loadFn()
+  }
+}
 </script>
 
 <template>
   <div class="parent-container">
     <h1>Vue 3 defineModel 双向绑定示例</h1>
-    
-    <div class="counter-wrapper">
-      <Counter v-model="count" />
+
+    <div class="counter-wrapper" v-if="asyncCounter">
+      <asyncCounter v-model="count" />
     </div>
-    
+    <!-- <Suspense>
+      <template #default class="counter-wrapper">
+        <asyncCounter v-model="count" />
+      </template>
+      <template #fallback>
+        <div>Loading...</div>
+      </template>
+    </Suspense> -->
+    <button @click="handleClick">加载计数器</button>
     <div class="info-panel">
       <p>当前值: <strong>{{ count }}</strong></p>
       <p>值的平方: <strong>{{ count * count }}</strong></p>
