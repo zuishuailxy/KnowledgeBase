@@ -5,11 +5,7 @@
  *     this.next = (next===undefined ? null : next)
  * }
  */
-/**
- * @param {ListNode} l1
- * @param {ListNode} l2
- * @return {ListNode}
- */
+
 // 如果是数组，可以这样做
 // var addTwoNumbers = function(l1, l2) {
 //   // define a swap helper function
@@ -54,7 +50,13 @@ function ListNode(val = 0, next = null) {
   this.next = next;
 }
 
-// 模拟
+
+/**
+ * @solution 创建一个新的dummy 节点, 然后利用模拟把l1和l2对应位置的值相加, 如果有进位则加上进位值, 最后返回dummy.next
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
 function addTwoNumbers(l1, l2) {
   const dummy = new ListNode()// 创建哑节点作为结果链表的头
   let current = dummy       // 当前节点指针
