@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <button id="confirm">同意授权</button>
+      <button id="reject">拒绝授权</button>
+    </div>
+
+    <script>
+      const confirmBtn = document.querySelector("#confirm");
+      confirmBtn.addEventListener("click", async () => {
+        const url = new URL(
+          `http://192.168.3.229:3000/login/${
+            window.location.search.split("=")[1]
+          }`
+        );
+        const res = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await res.json();
+        if (data) {
+          alert("授权成功");
+        }
+      });
+    </script>
+  </body>
+</html>

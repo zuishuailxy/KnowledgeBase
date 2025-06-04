@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Welcome to the Node/SCL Application</h1>
+    <img id="qrcode" src="" alt="" />
+    <div id="status-box"></div>
+
+    <script>
+      const status = {
+        0: "未授权",
+        1: "已授权",
+        2: "授权失败",
+      };
+      const qrcode = document.getElementById("qrcode");
+      const statusBox = document.getElementById("status-box");
+      let userId = null;
+      statusBox.innerText = status[0];
+
+      fetch("http://localhost:3000/qrcode")
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.code) {
+            qrcode.src = data.code;
+            userId = data.userId;
+            // statusBox.innerText = status[0];
+            let timer = setInterval(() => {
+              fetch(`http://localhost:3000/check/${userId}`)
+                .then((res) => res.json())
+                .then((data) => {
+                  statusBox.innerText = status[data.status];
+                  if (data.status !== 0) {
+                    // 如果状态是 过期或者已授权
+                    clearInterval(timer);
+                  }
+                });
+            }, 1000);
+          } else {
+            console.error("获取二维码失败");
+          }
+        });
+    </script>
+  </body>
+</html>
