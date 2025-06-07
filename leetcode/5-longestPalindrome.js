@@ -20,8 +20,8 @@ var longestPalindrome = function(s) {
         start = left
       }
 
-      left--;
-      right++
+      left--; // 向左
+      right++; // 向右 两边扩展
 
     }
   }
