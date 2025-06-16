@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Web Component Example</h1>
+    <p>This is a paragraph.</p>
+    <template id="wujie-app">
+      <style>
+        p {
+          color: blue;
+          font-size: 20px;
+        }
+      </style>
+      <p>Hello from the template!</p>
+      <p slot="additional">This is another paragraph in the template.</p>
+    </template>
+
+    <wujie-app name="wujie"></wujie-app>
+    <script src="./index.js"></script>
+  </body>
+</html>
