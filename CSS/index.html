@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .iframe-container {
+        position: relative;
+        width: 784px;
+        height: 281px;
+        border: 1px solid #ddd;
+      }
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        pointer-events: none;
+      }
+      .click-detector {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        cursor: pointer;
+        pointer-events: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <strong>123</strong>
+      <a
+        target="_parent"
+        href="https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Core/Styling_basics/Backgrounds_and_borders#css_%E7%9A%84%E8%83%8C%E6%99%AF%E6%A0%B7%E5%BC%8F"
+        >123</a
+      >
+
+      <div class="iframe-container">
+        <!-- 透明覆盖层 -->
+        <div class="overlay">
+          <div class="click-detector" id="iframeOverlay"></div>
+        </div>
+        <iframe id="frame"
+          src="https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Core/Styling_basics/Backgrounds_and_borders#css_%E7%9A%84%E8%83%8C%E6%99%AF%E6%A0%B7%E5%BC%8F"
+          frameborder="0"
+          >test</iframe
+        >
+      </div>
+    </div>
+
+    <script>
+      function handleIframeClick(x, y) {
+        console.log(`在位置(${x}, ${y})检测到点击`);
+        // 这里添加您的处理逻辑
+      }
+      document
+        .getElementById("iframeOverlay")
+        .addEventListener("click", function (e) {
+          console.log("Iframe区域被点击", e);
+
+          // 获取点击位置相对iframe的位置
+          const rect = this.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          try {
+            const iframe = document.getElementById("frame");
+            iframe.contentWindow.postMessage(
+              {
+                type: "detectedClick",
+                position: { x, y },
+              },
+              "https://ovp-row-uat.lenovo.com"
+            );
+          } catch (err) {
+            console.warn("跨域消息发送失败", err);
+          }
+
+          // 3. 执行父页面的操作
+          // handleIframeClick(x, y);
+        });
+
+      // 4. 监听iframe返回的消息
+      window.addEventListener("message", (event) => {
+        console.log("收到iframe消息", event);
+        
+        // 验证消息来源
+        if (event.origin !== "https://ovp-row-uat.lenovo.com") return;
+
+        if (event.data.type === "clickResponse") {
+          // console.log("收到iframe点击确认", event.data);
+        }
+      });
+
+      const iframe = document.getElementById("frame");
+      iframe.addEventListener("message", (event) => {
+        console.log("收到iframe消息", event);
+        
+        // 验证消息来源
+        if (event.origin !== "https://ovp-row-uat.lenovo.com") return;
+
+        if (event.data.type === "clickResponse") {
+          // console.log("收到iframe点击确认", event.data);
+        }
+      });
+
+    </script>
+  </body>
+</html>
