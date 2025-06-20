@@ -117,7 +117,7 @@ background:
 - background-img
 - background-repeat
 - background-size: cover / contain
-- background-position : x y 
+- background-position : x y
 - background-attachment: 内容滚动时的滚动方式
 
 border:
@@ -126,3 +126,69 @@ border:
 - border-style: solid;
 - border-color: black;
 - border-radius
+
+### 字体
+
+- font-family: 字体系列
+- font-size: 字体大小
+- font-weight: 字体粗细
+- font-style: 字体样式
+- line-height: 行高
+- text-transform: 大小写转换
+- text-shadow: 4px 4px 5px red (阴影与原始文本的水平偏移, 垂直偏移, 模糊半径, 颜色)
+
+### 列表中
+
+- start
+- value
+- reverse
+
+```html
+<ol start="4" reversed>
+  <li>Toast pita, leave to cool, then slice down the edge.</li>
+  <li value="2">
+    Fry the halloumi in a shallow, non-stick pan, until browned on both sides.
+  </li>
+  <li>Wash and chop the salad.</li>
+  <li>Fill pita with salad, hummus, and fried halloumi.</li>
+</ol>
+```
+
+## 布局
+
+### 浮动 float
+
+- 浮动元素会脱离正常的文档布局流
+- 吸附到父容器内的左边，或者右边
+- 浮动元素之下的内容，会环绕在浮动元素的周围
+
+清除浮动
+
+- clear: both; 清除左右浮动
+
+"clearfix 小技巧"：先向包含浮动内容及其本身的盒子后方插入一些生成的内容，并将生成的内容清除浮动
+
+```css
+.wrapper::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.wrapper {
+  overflow: auto; /* 另一种清除浮动的方法 */ 只要值不为visible 就可以
+}
+
+.wrapper {
+  display: flow-root; /* 现代的方案 */
+}
+```
+
+### 定位
+
+正常的布局流:
+
+- 块级元素在视口中垂直布局，外边距将他们分开
+- 内联元素不会出现在新行，而是水平布局，外边距不会影响其他内联元素
+
+注意 区块的上下外边距会合并为单个边距，其大小为两个边距中的最大值。(外边距折叠)
