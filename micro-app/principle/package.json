@@ -1,0 +1,27 @@
+{
+  "name": "principle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js",
+    "esm": "swc src/index.ts -d esm"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "wujie": "^1.0.28"
+  },
+  "devDependencies": {
+    "@swc/cli": "^0.7.7",
+    "@swc/core": "^1.12.3",
+    "swc-loader": "^0.2.6",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.3",
+    "vue": "^3.5.16",
+    "webpack": "^5.99.9",
+    "webpack-cli": "^6.0.1"
+  }
+}
