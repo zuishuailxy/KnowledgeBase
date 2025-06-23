@@ -226,4 +226,11 @@ border:
 
 重要的属性：
 
-- grid-template-columns: 设置元素在列上的分布。1fr 对应网格容器中可用空间的一份
+- grid-template-columns / rows: 设置元素在列上的分布。1fr 对应网格容器中可用空间的一份;可以使用 repeat 重复构建
+- gap: column-gap:列间隙；row-gap:行间歇
+- grid-auto-columns / rows: 自动生成的列或行的大小,一般是 auto, 可以手动指定
+- minmax 函数：minmax(100px, auto)：至少为 100px，最大为自动计算的大小
+- grid-columns/rows: 据这些分隔线来放置元素; 是 grid-columns-start 和 grid-columns-end 的缩写; 可以通过 -1 定位到最后一条显式网络的分割线
+- grid-template-areas: 用来定义网格区域的名称; 可以通过 grid-area 来引用
+
+注意： 网格排版框架一般由 12 到 16 列的网格构成

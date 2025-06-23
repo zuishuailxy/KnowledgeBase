@@ -23,7 +23,7 @@ function merge(intervals: number[][]): number[][] {
     // 5. 关键判断：当前区间是否与最后区间重叠
     if (current[0] <= last[1]) {
       // 有重叠：合并区间（取最大结束位置)
-      last[i] = Math.max(last[1], current[1]);
+      last[1] = Math.max(last[1], current[1]);
 
     } else {
       // 无重叠：直接添加新区间
