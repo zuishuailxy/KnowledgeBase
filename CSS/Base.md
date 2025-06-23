@@ -200,3 +200,30 @@ border:
 - absolute：最近的非 static 定位祖先；脱离文档流；不保留位置；常用于弹出层；创建层叠上下文
 - fixed: 浏览器的视口；脱离文档流；不保留位置；固定导航栏；创建层叠上下文
 - sticky: relative 和 fixed 的结合；最近滚动容器 & 视口；动态脱离；表头；创建层叠上下文
+
+### Flex
+
+两个轴：
+
+- 主轴：flex 元素放置的的方向延伸的轴，开始和结束 main start 和 main end
+- 交叉轴 垂直于主轴方向的轴，开始和结束称为 cross start 和 cross end
+
+常见属性：
+
+- flex-direction：指定主轴的方向
+- flex-wrap: 换行
+- flex-flow: flex-direction 和 flex-wrap 的缩写 row wrap
+- flex：1。 每个元素占用的空间都是相等，占用的空间是设置 padding 和 margin 之后的剩余空间
+- flex: flex-grow :增长系数，flex-shrink: 缩小
+- flex-shrink：在默认宽度之和大于容器的时候才会发生收缩，其收缩的大小是依据 flex-shrink 的值。从每个 flex 项中取出多少溢出量，以阻止它们溢出它们的容器。
+- flex-basis：最小值
+- justify-content: 控制 flex 项在主轴方向的位置；space-between：让所有的 flex 项在主轴均匀地分布，它不会在两端留下任何空间；space-around：均匀分布，但是两端会留下空间。space-evenly: 子项与子项之间以及子项与容器边界之间的距离完全相等
+- order：排序
+
+### grid
+
+由一系列水平和垂直的线构成的一种布局模式。一个网格通常有很多列或者行构成，行与行，列与列之间的间距称为沟槽。
+
+重要的属性：
+
+- grid-template-columns: 设置元素在列上的分布。1fr 对应网格容器中可用空间的一份
