@@ -234,3 +234,83 @@ border:
 - grid-template-areas: 用来定义网格区域的名称; 可以通过 grid-area 来引用
 
 注意： 网格排版框架一般由 12 到 16 列的网格构成
+
+### 响应式设计
+
+- 媒体查询
+- 现代布局：flex / grid
+- 响应式图片
+- 响应式排版：利用视口单位 vw vh 等
+
+### 媒体查询
+
+```css
+@media media-type and (media-feature-rule) {
+  /* CSS rules go here */
+}
+```
+
+- 媒体类型：all / print / screen / speech
+- 媒体特征规则： 高 宽 方向 orientation hover
+- 或 逻辑： 用 ， 链接
+- 非逻辑：用 not
+
+### CSS 动画
+
+分为 transition 和 animation：
+
+transition：可以为一个元素在不同状态间切换的时候定义不同的过渡效果
+
+- transition-property：属性值
+- \*-delay：延迟时间
+- \*-timing-function：时间函数
+- \*-duration：持续时间
+
+```css
+/* property name | duration | timing function | delay */
+transition: margin-right 4s ease-in-out 1s;
+```
+
+注意：
+
+- 可以使用 will-change 优化性能
+- 尽量在设置 property 的时候不要使用 all
+- 使用 transform: translateZ(0)开启 GPU 加速
+
+animation：可以定义一个复杂动画
+
+- \*-name： 通过 @keyframes 来定义动画名字
+- animation-duration：持续时间
+- animation-timing-function：时间函数
+- animation-delay：延迟时间
+- animation-iteration-count：动画运行的次数
+- animation-direction：动画的方向 normal / reverse / alternate / alternate-reverse
+- animation-fill-mode：动画运行之后如何将样式应用于目标 none / forward / backward / both
+- animation-play-state：动画是否暂定 pause / running
+
+## 浏览器渲染原理
+
+- html 文件会被解析成 html DOM 树
+- CSS 文件会被解析成 CSSOM 树
+- 两者合并生成 render tree
+- render tree 确定布局
+- 根据布局的结果，拆分为多个图层，渲染像素
+- 合成多个图层，生成图像
+
+渲染的时候从父节点再到子节点，而且渲染的时候每个元素的所有的 CSS 属性值必须有值
+
+如何确定 css 属性值
+
+1. 样式声明：样式表-包括自己的写的 css 样式以及浏览器的默认样式
+2. 计算层叠（权重问题）
+   - 比较重要性：自己写的样式 > 浏览器默认样式
+   - 比较特殊性：计算选择器权重值
+   - 比较源次性：权重一致的时候，后来者居上
+3. 如果可以从父元素那里继承，则继承
+4. 赋予默认值
+
+那些属性可以继承：
+
+- 文本相关的属性： 字体属性 / 文本属性
+- 表格相关的属性： 例如：border-collapse: collapse;
+- 其他可继承属性: color, visibility, cursor, quotes
