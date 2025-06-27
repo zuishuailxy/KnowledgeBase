@@ -288,6 +288,17 @@ animation：可以定义一个复杂动画
 - animation-fill-mode：动画运行之后如何将样式应用于目标 none / forward / backward / both
 - animation-play-state：动画是否暂定 pause / running
 
+时间函数：
+
+- 线性：使用的是三次贝塞尔函数，预设值 linear ease ease-in ease-out ease-in-out
+- 非线性： steps(1, start|end)
+
+js 实现动画：
+
+- animationstart
+- animationend，transitionend
+- animationiteration
+
 ## 浏览器渲染原理
 
 - html 文件会被解析成 html DOM 树
