@@ -325,3 +325,119 @@ js 实现动画：
 - 文本相关的属性： 字体属性 / 文本属性
 - 表格相关的属性： 例如：border-collapse: collapse;
 - 其他可继承属性: color, visibility, cursor, quotes
+
+## 核心概念
+
+### BFC
+
+black format context 块级格式化上下文：就是一个独立的布局环境，会影响布局，并隔绝元素。
+
+如何创建：
+
+```css
+/* 1. 根元素（<html>） */
+html {
+}
+
+/* 2. 浮动元素（float 不为 none） */
+.float-element {
+  float: left; /* 或 right */
+}
+
+/* 3. 绝对定位元素（position 为 absolute/fixed） */
+.abs-element {
+  position: absolute;
+}
+
+/* 4. display 为特定值 */
+.inline-block {
+  display: inline-block;
+}
+.table-cell {
+  display: table-cell;
+}
+.table-caption {
+  display: table-caption;
+}
+.flex-container {
+  display: flex;
+}
+.grid-container {
+  display: grid;
+}
+.inline-flex {
+  display: inline-flex;
+}
+.inline-grid {
+  display: inline-grid;
+}
+
+/* 5. overflow 不为 visible */
+.overflow-hidden {
+  overflow: hidden;
+}
+.overflow-auto {
+  overflow: auto;
+}
+.overflow-scroll {
+  overflow: scroll;
+}
+
+/* 6. 新增的现代方法 */
+.flow-root {
+  display: flow-root; /* 专门创建 BFC 的属性 */
+}
+
+/* 7. contain 属性 */
+.contain-layout {
+  contain: layout; /* 或 content/strict */
+}
+```
+
+特性：
+
+1. 解决 margin 塌陷问题：1.垂直方向外边距不会合并 2. 父元素和第一个/最后一个子元素之间 3. 空块元素本身
+2. 高度塌陷
+3. 阻止元素被浮动元素覆盖
+
+适用场景：
+
+1. 解决 margin 塌陷
+2. 清除浮动
+3. 创建 自适应双栏布局，左边浮动，右边清除浮动
+
+```html
+<div class="container">
+  <div class="sidebar">侧边栏</div>
+  <div class="main-content">主内容</div>
+</div>
+```
+
+```css
+.sidebar {
+  float: left;
+  width: 200px;
+}
+
+.main-content {
+  overflow: hidden; /* 创建 BFC */
+  /* 自动填满剩余空间 */
+}
+```
+
+4. 阻止文字环绕
+
+```html
+<!-- 图片左浮动 -->
+<div class="float-img">
+  <img src="photo.jpg" alt="示例图片" />
+</div>
+<p class="text-content">这里是文本内容...</p>
+```
+
+```css
+.text-content {
+  overflow: hidden; /* 创建 BFC */
+  /* 文本不再环绕图片 */
+}
+```

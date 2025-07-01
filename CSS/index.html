@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      h1 {
+        color: red;
+        font-size: 2em;
+        text-align: center;
+        & .child {
+          color: blue;
+        }
+      }
+
+      .card {
+        margin-top: 30px;
+
+        & .title {
+          margin-top: 20px;
+        }
+      }
+
+      .container {
+        border: 2px solid black;
+        height: 300px;
+      }
+      .float-left {
+        float: left;
+        width: 200px;
+        height: 100px;
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>hello <span class="child">world</span></h1>
+
+      <div class="card">
+        <h2 class="title">卡片标题</h2>
+      </div>
+
+      <div class="container">
+        1213
+        <div class="float-left">浮动元素</div>
+      </div>
+    </main>
+  </body>
+</html>
