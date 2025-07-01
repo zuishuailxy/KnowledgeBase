@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Float</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .header,
+      .footer {
+        background: #3498db;
+        color: white;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .container {
+        padding: 0 200px;
+
+        .center {
+          width: 100%;
+          float: left;
+          background: #ecf0f1;
+          padding: 20px;
+          min-height: 300px;
+        }
+        .left,
+        .right {
+          position: relative;
+          float: left;
+          width: 200px;
+          min-height: 300px;
+          padding: 20px;
+        }
+        .left {
+          background: #2ecc71;
+          margin-left: -100%; /* 移动到最左侧 */
+          left: -200px; /* 定位到预留空间 */
+        }
+        .right {
+          background: #e74c3c;
+          margin-left: -200px; /* 移动到最右侧 */
+          left: 200px; /* 定位到预留空间 */
+        }
+      }
+
+      .footer {
+        clear: both; /* 清除浮动 */
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">页眉</header>
+
+    <main class="container">
+      <div class="center">
+        <h2>主内容区</h2>
+        <p>这是页面主要内容区域，在HTML结构中优先出现。</p>
+      </div>
+
+      <div class="left">
+        <h3>左侧边栏</h3>
+        <p>固定宽度200px</p>
+      </div>
+
+      <div class="right">
+        <h3>右侧边栏</h3>
+        <p>固定宽度200px</p>
+      </div>
+    </main>
+
+    <footer class="footer">页脚</footer>
+  </body>
+</html>
