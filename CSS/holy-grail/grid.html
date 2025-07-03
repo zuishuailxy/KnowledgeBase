@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>grid</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: grid;
+        height: 100dvh;
+        grid-template-rows: auto 1fr auto;
+      }
+
+      .header,
+      .footer {
+        background: #3498db;
+        color: white;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: 200px 1fr 200px;
+      }
+
+      .left {
+        background: #2ecc71;
+        padding: 20px;
+        order: 1;
+      }
+
+      .center {
+        padding: 20px;
+        order: 2;
+      }
+
+      .right {
+        background: #e74c3c;
+        padding: 20px;
+        order: 3;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          grid-template-columns: 1fr;
+          grid-template-rows: auto 1fr auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">页眉</header>
+
+    <div class="container">
+      <div class="center">
+        <h2>主内容区</h2>
+        <p>这是页面主要内容区域，在HTML结构中优先出现。</p>
+      </div>
+
+      <div class="left">
+        <h3>左侧边栏</h3>
+        <p>固定宽度200px</p>
+      </div>
+
+      <div class="right">
+        <h3>右侧边栏</h3>
+        <p>固定宽度200px</p>
+      </div>
+    </div>
+
+    <footer class="footer">页脚</footer>
+  </body>
+</html>
