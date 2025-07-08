@@ -666,24 +666,24 @@ html {
 
 ```html
 <!-- 预加载关键图片 -->
-<link rel="preload" href="hero-image.jpg" as="image">
+<link rel="preload" href="hero-image.jpg" as="image" />
 
 <!-- 使用低质量图片占位符 (LQIP) -->
-<img 
-  src="image-lqip.jpg" 
-  data-src="image.jpg" 
+<img
+  src="image-lqip.jpg"
+  data-src="image.jpg"
   data-srcset="image.jpg 800w, image@2x.jpg 1600w"
   class="lazyload blur-up"
->
+/>
 
 <style>
-.blur-up {
-  filter: blur(5px);
-  transition: filter 0.4s ease;
-}
+  .blur-up {
+    filter: blur(5px);
+    transition: filter 0.4s ease;
+  }
 
-.blur-up.lazyloaded {
-  filter: blur(0);
-}
+  .blur-up.lazyloaded {
+    filter: blur(0);
+  }
 </style>
 ```
