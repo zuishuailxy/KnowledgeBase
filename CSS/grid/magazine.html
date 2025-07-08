@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Magazine grid</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #f5f5f5;
+        color: #333;
+        line-height: 1.6;
+      }
+      .magazine {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: minmax(150px, auto);
+        gap: 20px;
+        grid-auto-flow: dense;
+      }
+      /* 通用文章样式 */
+      .article {
+        background: white;
+        border-radius: 8px;
+        padding: 25px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .article:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      }
+      .article-header {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        color: #1a1a1a;
+        font-weight: bold;
+        border-bottom: 3px solid #e67e22;
+        padding-bottom: 10px;
+      }
+      .article-content {
+        font-size: 1.1rem;
+        color: #444;
+      }
+      .meta {
+        margin-top: 15px;
+        font-size: 0.9rem;
+        color: #777;
+      }
+      .author {
+        font-weight: bold;
+        color: #e74c3c;
+      }
+      /* 特色布局 - 跨越两列两行 */
+      .featured {
+        grid-column: span 2;
+        grid-row: span 2;
+        background: linear-gradient(135deg, #2c3e50, #3498db);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .featured .article-header {
+        font-size: 2.5rem;
+        border-bottom: 3px solid #e67e22;
+        color: white;
+      }
+
+      .featured .article-content {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .featured .meta {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      /* 长篇文章 - 跨越多列 */
+      .long-article {
+        grid-column: span 2;
+        background: linear-gradient(to right, #fff, #f9f9f9);
+      }
+      /* 带图片的文章 */
+      .image-article {
+        position: relative;
+        overflow: hidden;
+        padding: 0;
+      }
+      .image-article img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+      }
+      .image-content {
+        padding: 20px;
+      }
+      /* 广告占位 */
+      .ad {
+        grid-column: span 4;
+        background: #ecf0f1;
+        border: 2px dashed #95a5a6;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #7f8c8d;
+        min-height: 120px;
+        font-style: italic;
+      }
+
+      /* 引用块 */
+      .quote {
+        grid-column: span 2;
+        background: #1abc9c;
+        color: white;
+        font-size: 1.5rem;
+        font-style: italic;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 30px;
+        position: relative;
+      }
+      .quote::before,
+      .quote::after {
+        content: '"';
+        font-size: 3rem;
+        position: absolute;
+        opacity: 0.3;
+      }
+
+      .quote::before {
+        top: 10px;
+        left: 20px;
+      }
+
+      .quote::after {
+        bottom: 10px;
+        right: 20px;
+      }
+
+      /* 多列文本 */
+      .multi-column {
+        grid-column: span 4;
+        background: white;
+        column-count: 3;
+        column-gap: 30px;
+        column-rule: 1px solid #eee;
+      }
+
+      .multi-column .article-header {
+        column-span: all;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      /* 侧面专栏 */
+      .sidebar {
+        grid-column: span 1;
+        background: #f9f9f9;
+        border-left: 3px solid #3498db;
+      }
+      /* 响应式设计 */
+      @media (max-width: 900px) {
+        .layout {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .featured,
+        .ad,
+        .quote,
+        .multi-column {
+          grid-column: span 2;
+        }
+
+        .multi-column {
+          column-count: 2;
+        }
+      }
+      @media (max-width: 600px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+
+        .featured,
+        .long-article,
+        .ad,
+        .quote,
+        .multi-column {
+          grid-column: 1;
+        }
+
+        .multi-column {
+          column-count: 1;
+        }
+      }
+
+      /* 页眉样式 */
+      .header {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 40px 0;
+        margin-bottom: 20px;
+      }
+
+      .header h1 {
+        font-size: 4rem;
+        color: #2c3e50;
+        font-weight: bold;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        font-family: "Palatino", "Georgia", serif;
+      }
+      /* 页脚样式 */
+      .footer {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 30px 0;
+        margin-top: 40px;
+        border-top: 1px solid #eee;
+        color: #7f8c8d;
+      }
+      /* 排版增强 */
+      .article-content p {
+        margin-bottom: 15px;
+      }
+
+      .dropcap::first-letter {
+        font-size: 4rem;
+        float: left;
+        line-height: 0.8;
+        padding-right: 10px;
+        color: #e67e22;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="magazine">
+      <div class="layout">
+        <header class="header article">
+          <h1>The Grid Times</h1>
+          <p>Modern Magazine Layout with CSS Grid</p>
+        </header>
+
+        <article class="article featured">
+          <div class="article-header">The Future of Web Layouts</div>
+          <div class="article-content dropcap">
+            <p>
+              CSS Grid has revolutionized how we design web interfaces,
+              providing unprecedented control over complex layouts. This article
+              explores how Grid solves layout problems that were previously
+              difficult or impossible.
+            </p>
+            <p>
+              With its two-dimensional capabilities, CSS Grid enables intricate
+              magazine-style designs that were once exclusive to print media.
+            </p>
+          </div>
+          <div class="meta">
+            By <span class="author">Sarah Johnson</span> | October 15, 2023
+          </div>
+        </article>
+
+        <article class="article">
+          <div class="article-header">Designing with Grid</div>
+          <div class="article-content">
+            <p>
+              Learn how to create responsive layouts without media queries using
+              minmax(), auto-fit and auto-fill functions.
+            </p>
+            <p>
+              Grid provides control over both rows and columns simultaneously,
+              making it ideal for complex interfaces.
+            </p>
+          </div>
+          <div class="meta">
+            By <span class="author">Michael Chen</span> | October 14, 2023
+          </div>
+        </article>
+
+        <article class="article sidebar">
+          <div class="article-header">Quick Tips</div>
+          <div class="article-content">
+            <p>• Use gap instead of margins between grid items</p>
+            <p>• Name grid lines for better maintainability</p>
+            <p>• Combine with Flexbox for component layouts</p>
+          </div>
+        </article>
+
+        <article class="article image-article">
+          <img
+            src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=600&h=400"
+            alt="Design workspace"
+          />
+          <div class="image-content">
+            <div class="article-header">Design Tools 2023</div>
+            <div class="article-content">
+              <p>
+                The ultimate guide to the most effective tools for web
+                designers.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <div class="ad article">
+          Advertisement Placement<br /><small>(300x250)</small>
+        </div>
+
+        <article class="article long-article">
+          <div class="article-header">Creating Asymmetric Layouts</div>
+          <div class="article-content">
+            <p>
+              Modern web design embraces asymmetrical layouts for visual
+              interest. CSS Grid makes creating these layouts straightforward
+              without complicated positioning or floats.
+            </p>
+            <p>
+              By defining areas rather than rows/columns, designers can create
+              organic layouts that guide the eye through content. This article
+              demonstrates techniques for implementing asymmetric designs in
+              production sites.
+            </p>
+          </div>
+          <div class="meta">
+            By <span class="author">Robert Williams</span> | October 13, 2023
+          </div>
+        </article>
+
+        <article class="article">
+          <div class="article-header">Case Study: Tech Magazine</div>
+          <div class="article-content">
+            <p>
+              See how we implemented this complex layout using purely CSS Grid,
+              without any framework dependencies.
+            </p>
+          </div>
+          <div class="meta">
+            By <span class="author">Emma Davis</span> | October 12, 2023
+          </div>
+        </article>
+
+        <article class="article quote">
+          "CSS Grid is the most powerful layout system available in CSS. It
+          transforms how we think about and create web layouts." - Jen Simmons
+        </article>
+
+        <article class="article multi-column">
+          <div class="article-header">The Evolution of Web Layouts</div>
+          <div class="article-content">
+            <p>
+              In the early days of web design, layout was constrained by the
+              limitations of HTML tables. The introduction of CSS brought more
+              flexibility with floats and positioning, but true layout control
+              remained elusive.
+            </p>
+
+            <p>
+              The development of CSS Grid Layout began with the first W3C drafts
+              in 2011, culminating in widespread browser support by 2017. This
+              represented a major leap forward, offering two-dimensional layout
+              capabilities.
+            </p>
+
+            <p>
+              Today, CSS Grid allows designers to create complex, responsive
+              layouts with fewer lines of code. Combined with Flexbox for
+              component-level layouts, modern CSS provides complete layout
+              solutions without the need for frameworks.
+            </p>
+
+            <p>
+              The impact of CSS Grid extends beyond technical capabilities—it
+              changes how designers approach layout problems. By thinking in
+              terms of grid systems from the start, designers can create more
+              intentional, structured layouts that adapt seamlessly across
+              devices.
+            </p>
+
+            <p>
+              As browser support becomes nearly universal, CSS Grid is rapidly
+              becoming the standard for complex web layouts, replacing older
+              methods that required fragile hacks and complicated workarounds.
+            </p>
+          </div>
+          <div class="meta">
+            By <span class="author">Thomas Anderson</span> | October 11, 2023
+          </div>
+        </article>
+
+        <footer class="footer article">
+          <p>© 2023 The Grid Times Magazine</p>
+          <p>
+            Created entirely with CSS Grid Layout | No JavaScript used in layout
+            design
+          </p>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>
