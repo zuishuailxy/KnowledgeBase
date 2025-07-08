@@ -462,3 +462,228 @@ html {
 - 使用 flex / grid
 - 添加内联元素间隔
 - 绝对定位间隔
+
+# 响应式设计
+
+响应式设计是指通过使用灵活的布局、图像和 CSS 媒体查询来创建能够适应不同屏幕尺寸和设备的网页设计。
+
+### 关键技术
+
+1. **流式布局**：使用百分比而不是固定单位（如 px）来定义元素的宽度和高度，使其能够根据视口大小自动调整。
+
+2. **媒体查询**：使用 CSS 媒体查询来应用不同的样式规则，以适应不同的设备特性（如屏幕宽度、高度、方向等）。
+
+   ```css
+   @media (max-width: 600px) {
+     /* 针对小屏幕的样式 */
+   }
+   ```
+
+3. **弹性盒子（Flexbox）**：使用 Flexbox 布局来创建灵活的响应式布局，能够轻松地在不同屏幕尺寸下调整元素的排列和大小。
+
+   ```css
+   .container {
+     display: flex;
+     flex-wrap: wrap;
+   }
+   ```
+
+4. **CSS 网格（Grid）**：使用 CSS Grid 布局来创建复杂的响应式网格布局，能够在不同屏幕尺寸下灵活地调整行和列。
+
+   ```css
+   .grid-container {
+     display: grid;
+     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+   }
+   ```
+
+5. **响应式图片**：
+
+- 使用 `srcset` 和 `sizes` 属性来提供不同分辨率的图像，以适应不同设备的屏幕尺寸和分辨率。
+
+```html
+<img
+  src="image.jpg"
+  srcset="image-600.jpg 600w, image-1200.jpg 1200w"
+  sizes="(max-width: 600px) 100vw, 50vw"
+  alt="示例图片"
+/>
+```
+
+- 利用 `picture` 元素和 `source` 元素来提供不同的图像格式和分辨率，以适应不同设备的屏幕尺寸和分辨率。
+
+```html
+<picture>
+  <!-- 小屏幕：方形裁剪 -->
+  <source
+    media="(max-width: 600px)"
+    srcset="square-small.jpg 1x, square-large.jpg 2x"
+  />
+
+  <!-- 中等屏幕：横向裁剪 -->
+  <source
+    media="(max-width: 1200px)"
+    srcset="landscape-medium.jpg 800w, landscape-large.jpg 1600w"
+    sizes="(max-width: 900px) 100vw, 
+           75vw"
+  />
+
+  <!-- 默认：完整图片 -->
+  <img
+    src="full-image.jpg"
+    srcset="full-image.jpg 1200w, full-image-hd.jpg 2400w"
+    alt="艺术指导响应式图片"
+    loading="lazy"
+  />
+</picture>
+```
+
+- 使用 CSS 的响应式背景图片。
+
+```css
+.hero-banner {
+  width: 100%;
+  height: 0;
+  padding-top: 56.25%; /* 16:9 宽高比 */
+  background-size: cover;
+  background-position: center;
+
+  /* 移动设备 */
+  background-image: url("mobile-bg.jpg");
+
+  /* 平板设备 */
+  @media (min-width: 768px) {
+    background-image: url("tablet-bg.jpg");
+  }
+
+  /* 桌面设备 */
+  @media (min-width: 1200px) {
+    background-image: url("desktop-bg.jpg");
+  }
+
+  /* 高分辨率设备 */
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    background-image: url("desktop-bg@2x.jpg");
+  }
+}
+```
+
+- 现代图片格式优化 webP + AVIF + JPEG 回退方案
+
+```html
+<picture>
+  <!-- AVIF格式 (最高效) -->
+  <source type="image/avif" srcset="image.avif 1x, image@2x.avif 2x" />
+
+  <!-- WebP格式 (广泛支持) -->
+  <source type="image/webp" srcset="image.webp 1x, image@2x.webp 2x" />
+
+  <!-- 传统JPEG回退 -->
+  <img
+    src="image.jpg"
+    srcset="image.jpg 1x, image@2x.jpg 2x"
+    alt="现代图片格式示例"
+    loading="lazy"
+  />
+</picture>
+```
+
+### 实践建议
+
+- **移动优先**：从小屏幕开始设计，然后逐步添加样式以适应更大的屏幕。
+- **测试**：在不同设备和屏幕尺寸上测试设计，以确保良好的用户体验。
+- **性能优化**：使用适当的图像格式和压缩技术，以提高加载速度和性能。
+
+## 响应式图片的最佳实践
+
+### 1. 懒加载技术
+
+```html
+<img
+  src="placeholder.jpg"
+  data-src="image.jpg"
+  data-srcset="image.jpg 400w, 
+              image@2x.jpg 800w"
+  alt="懒加载图片"
+  loading="lazy"
+  class="lazyload"
+/>
+
+<script>
+  // 使用Intersection Observer实现懒加载
+  document.addEventListener("DOMContentLoaded", () => {
+    const lazyImages = document.querySelectorAll(".lazyload");
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src;
+          if (img.dataset.srcset) {
+            img.srcset = img.dataset.srcset;
+          }
+          observer.unobserve(img);
+        }
+      });
+    });
+
+    lazyImages.forEach((img) => observer.observe(img));
+  });
+</script>
+```
+
+### 2. 自适应宽高比容器
+
+```html
+<div class="aspect-ratio-box">
+  <img src="image.jpg" alt="示例图片" />
+</div>
+```
+
+```css
+.aspect-ratio-box {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 宽高比 */
+  overflow: hidden;
+}
+
+.aspect-ratio-box img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 或 contain */
+}
+```
+
+### 3. CDN 图片优化服务
+
+使用专业 CDN 服务自动优化图片：
+
+### 4. 性能优化技巧
+
+```html
+<!-- 预加载关键图片 -->
+<link rel="preload" href="hero-image.jpg" as="image">
+
+<!-- 使用低质量图片占位符 (LQIP) -->
+<img 
+  src="image-lqip.jpg" 
+  data-src="image.jpg" 
+  data-srcset="image.jpg 800w, image@2x.jpg 1600w"
+  class="lazyload blur-up"
+>
+
+<style>
+.blur-up {
+  filter: blur(5px);
+  transition: filter 0.4s ease;
+}
+
+.blur-up.lazyloaded {
+  filter: blur(0);
+}
+</style>
+```
