@@ -687,3 +687,70 @@ html {
   }
 </style>
 ```
+
+## 容器查询
+
+允许组件根据 ​​ 父容器尺寸 ​​ 而非全局视口自适应样式，实现真正的组件级响应式设计。
+
+### 语法
+
+```css
+@container (min-width: 500px) {
+  .card {
+    display: grid; /* 宽容器中切换为网格布局 */
+    grid-template-columns: 1fr 2fr;
+  }
+}
+```
+
+如果要指定特殊的容器
+
+```css
+.sidebar {
+  container-name: sidebar;
+  container-type: inline-size; // inline-size：基于容器宽度响应（最常用）, size：同时响应宽高
+  /* 简写：container: <name> / <type> */
+}
+@container sidebar (min-width: 300px) {
+  ...;
+} /* 仅作用于.sidebar容器 */
+```
+
+### 核心运用
+
+1. 组件库开发
+2. 嵌套布局优化
+3. 动态主题优化
+
+### 进阶技巧
+
+1. ​​ 容器单位 ​​
+
+   使用相对单位实现精细控制：
+
+   - cqi：容器宽度的 1%（水平方向）
+   - cqb：容器高度的 1%（垂直方向）
+
+2. 性能优化 ​​
+
+   对频繁变化的容器添加 contain: layout inline-size，限制浏览器重排/重绘范围
+
+3. 嵌套容器查询
+
+多层容器独立响应
+
+```css
+.dashboard {
+  container: dashboard / inline-size;
+}
+.widget {
+  container: widget / inline-size;
+}
+
+@container dashboard (min-width: 1000px) {
+  ...;
+}
+@container widget (min-width: 300px) {
+  ...;
+}
+```

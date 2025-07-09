@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>简单容器查询示例</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background: #f0f2f5;
+        padding: 20px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        color: #2d3748;
+        margin: 20px 0;
+        text-align: center;
+      }
+
+      /* 容器样式 - 可调整大小 */
+      .container {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        margin: 20px 0;
+        width: 100%;
+        max-width: 800px;
+        resize: horizontal;
+        overflow: auto;
+        min-height: 300px;
+        border: 2px dashed #cbd5e0;
+      }
+
+      /* 容器查询核心设置 */
+      .card-container {
+        container-type: inline-size;
+        container-name: card-box;
+      }
+
+      /* 卡片基础样式 */
+      .card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-image {
+        background: linear-gradient(135deg, #4361ee, #3a0ca3);
+        height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 3rem;
+      }
+
+      .card-content {
+        padding: 20px;
+      }
+
+      .card-title {
+        font-size: 1.5rem;
+        color: #2d3748;
+        margin-bottom: 10px;
+      }
+
+      .card-text {
+        color: #4a5568;
+        line-height: 1.6;
+      }
+
+      /* 容器查询规则 */
+      /* 窄容器：垂直布局 */
+      @container card-box (max-width: 400px) {
+        .card {
+          display: block;
+        }
+
+        .card-image {
+          height: 120px;
+        }
+
+        .card-title {
+          font-size: 1.3rem;
+        }
+      }
+
+      /* 中等容器：水平布局 */
+      @container card-box (min-width: 401px) {
+        .card {
+          display: flex;
+        }
+
+        .card-image {
+          width: 40%;
+          height: auto;
+        }
+
+        .card-content {
+          width: 60%;
+        }
+      }
+
+      /* 宽容器：完整展示 */
+      @container card-box (min-width: 600px) {
+        .card {
+          display: flex;
+        }
+
+        .card-image {
+          width: 30%;
+        }
+
+        .card-content {
+          width: 70%;
+          padding: 30px;
+        }
+
+        .card-title {
+          font-size: 1.8rem;
+        }
+      }
+
+      /* 操作按钮 */
+      .controls {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      button {
+        background: #4361ee;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background 0.3s;
+      }
+
+      button:hover {
+        background: #3a0ca3;
+      }
+
+      .info {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        margin-top: 30px;
+        max-width: 800px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .info h2 {
+        color: #2d3748;
+        margin-bottom: 15px;
+      }
+
+      .info p {
+        color: #4a5568;
+        line-height: 1.6;
+        margin-bottom: 10px;
+      }
+
+      .code {
+        background: #f7fafc;
+        padding: 15px;
+        border-radius: 8px;
+        font-family: monospace;
+        margin: 15px 0;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>简单容器查询示例</h1>
+    <p>调整下方容器宽度，查看卡片布局变化</p>
+
+    <div class="container">
+      <div class="card-container">
+        <div class="card">
+          <div class="card-image">📱</div>
+          <div class="card-content">
+            <h2 class="card-title">响应式卡片</h2>
+            <p class="card-text">
+              这个卡片使用容器查询技术，根据父容器宽度自动调整布局，而不是根据屏幕尺寸。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button onclick="resizeContainer(300)">窄容器 (300px)</button>
+      <button onclick="resizeContainer(500)">中等容器 (500px)</button>
+      <button onclick="resizeContainer(700)">宽容器 (700px)</button>
+    </div>
+
+    <div class="info">
+      <h2>容器查询原理</h2>
+      <p>容器查询允许元素根据其父容器（而非整个视口）的尺寸调整样式。</p>
+
+      <div class="code">
+        /* 1. 定义容器 */ .card-container { container-type: inline-size;
+        container-name: card-box; } /* 2. 窄容器样式 */ @container card-box
+        (max-width: 400px) { .card { /* 垂直布局样式 */ } } /* 3. 宽容器样式 */
+        @container card-box (min-width: 600px) { .card { /* 水平布局样式 */ } }
+      </div>
+
+      <p>
+        与传统媒体查询不同，容器查询使组件能够在任何布局环境中自适应，特别适合可复用组件。
+      </p>
+    </div>
+
+    <script>
+      function resizeContainer(width) {
+        const container = document.querySelector(".container");
+        container.style.width = width + "px";
+      }
+    </script>
+  </body>
+</html>
