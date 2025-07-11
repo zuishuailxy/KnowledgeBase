@@ -754,3 +754,62 @@ html {
   ...;
 }
 ```
+
+## CSS 模块化方案：BEM/OOCSS/SMACSS 比较
+
+### BEM（块、元素、修饰符）
+
+- 块独立存在（.block）
+- 元素依赖于块（.block\_\_element）
+- 修饰符描述块或元素的状态（.block--modifier 或 .block\_\_element--modifier）
+- 禁止嵌套选择器，避免层级依赖
+
+### OOCSS （Object-Oriented CSS）
+
+- 分离容器与内容 ​​：样式不依赖位置
+- 分离结构与皮肤 ​​：基础结构（如布局）与视觉样式（如颜色）解耦
+- 强调类复用（如.button 和.button-primary）
+
+例如：
+
+```css
+/* 基础结构 */
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* 样式变体 */
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+/* 尺寸变体 */
+.btn-sm {
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+.btn-lg {
+  padding: 15px 30px;
+  font-size: 18px;
+}
+```
