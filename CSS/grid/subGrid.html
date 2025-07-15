@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sub Grid</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", system-ui, sans-serif;
+      }
+      body {
+        background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        color: #333;
+      }
+      .container {
+        /* max-width: 1200px;
+        width: 100%; */
+        width: min(100%, 1200px);
+        margin: 0 auto;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #2c3e50;
+        font-size: 2.5rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .description {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 3rem;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #555;
+      }
+      /* 父网格容器 */
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+
+        /* 定义行轨道 - 将被子网格继承 */
+        grid-template-rows: auto 1fr auto;
+      }
+
+      .card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        display: grid;
+
+        /* 关键：继承父网格的行轨道 */
+        grid-template-rows: subgrid;
+        grid-row: span 3; /* 卡片跨越父网格的3行 */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        will-change: transform, box-shadow;
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+      /* 卡片各部分样式 */
+      .card-header {
+        background: linear-gradient(135deg, #4361ee, #3a0ca3);
+        color: white;
+        padding: 1.5rem;
+      }
+
+      .card-header h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .card-header p {
+        opacity: 0.9;
+      }
+
+      .card-content {
+        padding: 1.5rem;
+        line-height: 1.6;
+      }
+
+      .card-footer {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid #eee;
+      }
+
+      .btn {
+        background: #4361ee;
+        color: white;
+        border: none;
+        padding: 0.7rem 1.5rem;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background 0.3s;
+      }
+
+      .btn:hover {
+        background: #3a0ca3;
+      }
+
+      .meta {
+        font-size: 0.9rem;
+        color: #6c757d;
+      }
+
+      /* 响应式调整 */
+      @media (max-width: 768px) {
+        .card-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>CSS Subgrid 示例</h1>
+      <p class="description">
+        使用 Subgrid 实现卡片内容垂直对齐，无论内容高度如何变化
+      </p>
+
+      <div class="card-grid">
+        <!-- 卡片 1 -->
+        <article class="card">
+          <header class="card-header">
+            <h2>卡片标题 1</h2>
+            <p>使用 Subgrid 保持布局一致</p>
+          </header>
+          <div class="card-content">
+            <p>
+              这是卡片的内容区域。Subgrid
+              确保所有卡片的页脚在底部对齐，无论内容高度如何变化。
+            </p>
+            <p>
+              传统网格布局中，每个卡片需要单独管理内部布局，而 Subgrid
+              允许卡片继承父网格的行轨道。
+            </p>
+          </div>
+          <footer class="card-footer">
+            <span class="meta">2023年10月15日</span>
+            <button class="btn">了解更多</button>
+          </footer>
+        </article>
+
+        <!-- 卡片 2 -->
+        <article class="card">
+          <header class="card-header">
+            <h2>卡片标题 2</h2>
+            <p>内容较少</p>
+          </header>
+          <div class="card-content">
+            <p>这个卡片的内容较少，但页脚仍然与其他卡片底部对齐。</p>
+          </div>
+          <footer class="card-footer">
+            <span class="meta">2023年10月16日</span>
+            <button class="btn">了解更多</button>
+          </footer>
+        </article>
+
+        <!-- 卡片 3 -->
+        <article class="card">
+          <header class="card-header">
+            <h2>卡片标题 3</h2>
+            <p>内容较多的卡片</p>
+          </header>
+          <div class="card-content">
+            <p>这个卡片有更多的内容，展示了 Subgrid 如何处理不同高度的卡片。</p>
+            <p>
+              Subgrid
+              的强大之处在于它允许嵌套网格继承父网格的轨道定义，无需重复设置。
+            </p>
+            <p>这意味着无论内容如何变化，所有卡片的页脚都会完美对齐。</p>
+            <p>在响应式布局中，这种一致性尤其重要。</p>
+          </div>
+          <footer class="card-footer">
+            <span class="meta">2023年10月17日</span>
+            <button class="btn">了解更多</button>
+          </footer>
+        </article>
+      </div>
+    </div>
+  </body>
+</html>

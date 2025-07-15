@@ -764,6 +764,13 @@ html {
 - 修饰符描述块或元素的状态（.block--modifier 或 .block\_\_element--modifier）
 - 禁止嵌套选择器，避免层级依赖
 
+```css
+<div class="search-form search-form--dark">
+  <input class="search-form__input">
+  <button class="search-form__button search-form__button--disabled">Search</button>
+</div>
+```
+
 ### OOCSS （Object-Oriented CSS）
 
 - 分离容器与内容 ​​：样式不依赖位置
@@ -813,3 +820,68 @@ html {
   font-size: 18px;
 }
 ```
+
+### SMACC 按照功能分类管理 css
+
+分为 5 类
+
+- Base（基础） - 元素的默认样式
+- Layout（布局） - 页面的主要结构框架
+- Module（模块） - 可重用的组件
+- State（状态） - 描述模块或布局的状态变化
+- Theme（主题） - 定义颜色、字体等视觉变化
+
+## CSS 模块化方案在现代前端框架（如 React/Vue）中的最佳实践是什么
+
+### React
+
+1. css modules
+
+- 核心机制 ​​：通过构建工具（Webpack/Vite）将类名哈希化，实现局部作用域
+- 最佳实践：
+  - ​​ 文件命名 ​​：使用 .module.css 后缀（如 Button.module.css）
+  - ​​ 类名规范 ​​：结合 BEM 命名（如 .button\_\_submit--disabled）提升可读性
+  - ​​ 动态样式 ​​：通过 classnames 库管理条件类名：
+  - ​​ 全局样式 ​​：用 :global() 包裹需全局生效的样式（如重置样式）
+
+2. CSS-in-JS
+
+- 核心机制 ​​：将样式定义为 JavaScript 对象，动态生成类名
+- 使用库： styled-components、Emotion
+- 最佳实践：
+  - 组件级样式：每个组件独立定义样式，避免全局污染
+  - 动态样式：支持 props 动态修改样式
+  - 主题支持：通过 ThemeProvider 实现全局主题切换
+
+3. 组合方案
+
+- 基础组件 ​​：用 CSS Modules 保证隔离性。
+- ​ 高频动态组件 ​​（如动画按钮）：用 CSS-in-JS 简化逻辑。
+
+### Vue
+
+1. Scoped CSS
+
+- 机制 ​​：在 `<style scoped>` 中自动添加属性选择器（如 `[data-v-123]`）实现局部作用域
+- 最佳实践：
+  - 深度选择器：用::v-deep 覆盖子组件样式
+  - 主题支持：通过 ThemeProvider 实现全局主题切换
+
+2. css Modules
+
+- 机制 ​​：与 React 类似，通过 Webpack/Vite 配置启用
+
+### 跨框架通用最佳实践 ​
+
+1. ​​ 命名规范与结构 ​：
+   - 采用 BEM、OOCSS 或 SMACSS 等命名规范，提高可读性和可维护性。
+   - 组件样式文件与组件逻辑文件保持同级目录结构，便于管理。
+2. 样式复用与变量管理 ​
+   - 使用 CSS 预处理器（如 Sass、Less）管理变量和混合宏。
+   - 提取公共样式到基础样式文件，避免重复代码。
+   - 通过 composes（CSS Modules）或 @extend（Sass）组合基础样式
+3. 性能优化
+   - 压缩未使用样式：用 PurgeCSS 删除冗余代码
+   - 避免深层嵌套​​：限制选择器层级（建议 ≤ 3 层）
+   - 首屏关键 CSS​​：内联核心样式，异步加载其余
+
