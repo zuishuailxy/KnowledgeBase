@@ -1,0 +1,241 @@
+# 变量与数据类型
+
+## 1.变量声明方式
+
+- var 可重复声明
+- let 不可重复声明
+- const 不可重复声明 不可重新赋值 且必须要有初始值
+
+## 2. 作用域
+
+- var 函数作用域
+- let / const 块级作用域
+
+```js
+// var - 函数作用域
+function varExample() {
+  if (true) {
+    var x = 10;
+  }
+  console.log(x); // 10 (变量提升)
+}
+
+// let/const - 块级作用域
+function letExample() {
+  if (true) {
+    let y = 20;
+    const z = 30;
+  }
+  // console.log(y); // 报错：y is not defined
+  // console.log(z); // 报错：z is not defined
+}
+```
+
+## 3. 变量提升
+
+```js
+// 变量提升示例
+console.log(a); // undefined
+var a = 5;
+console.log(a); // 5
+
+// let/const 不会提升
+console.log(b); // 报错：Cannot access 'b' before initialization
+let b = 10;
+console.log(b);
+```
+
+## 数据类型
+
+### 1. 原始类型
+
+| 类型      | 描述                 | 示例            | typeof 返回值 |
+| --------- | -------------------- | --------------- | ------------- |
+| Number    | 数字类型             | 42，NaN         | "number"      |
+| String    | 字符串类型           | "Hello, world!" | "string"      |
+| Boolean   | 布尔值类型           | true            | "boolean"     |
+| Undefined | 未定义类型           | undefined       | "undefined"   |
+| Null      | 空值类型             | null            | "object"      |
+| Symbol    | ES6 引入的唯一值类型 | Symbol("id")    | "symbol"      |
+| BigInt    | ES11 引入的整数类型  | 123n            | "bigint"      |
+
+### 2. 引用类型
+
+| 类型     | 描述           | 示例                       | typeof 返回值 |
+| -------- | -------------- | -------------------------- | ------------- |
+| Object   | 对象类型       | { name: "Alice", age: 25 } | "object"      |
+| Array    | 数组类型       | [1, 2, 3]                  | "object"      |
+| Function | 函数类型       | function() {}              | "function"    |
+| Date     | 日期类型       | new Date()                 | "object"      |
+| RegExp   | 正则表达式类型 | /ab+c/                     | "object"      |
+| Map/Set  | 集合类型       | new Map(), new Set()       | "object"      |
+
+## 类型检测与转换
+
+### 1. 类型检测方法
+
+- typeof
+- instanceof : object instanceof constructor 检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上。其返回值是一个布尔值。
+- Array.isArray()
+- Object.prototype.toString.call()
+
+```js
+// typeof 操作符
+console.log(typeof 42); // "number"
+console.log(typeof "hello"); // "string"
+console.log(typeof true); // "boolean"
+console.log(typeof undefined); // "undefined"
+console.log(typeof null); // "object" (历史遗留问题)
+console.log(typeof {}); // "object"
+console.log(typeof []); // "object"
+console.log(typeof function () {}); // "function"
+
+// instanceof 操作符
+console.log([] instanceof Array); // true
+console.log({} instanceof Object); // true
+console.log(new Date() instanceof Date); // true
+
+// Array.isArray()
+console.log(Array.isArray([])); // true
+console.log(Array.isArray({})); // false
+
+// Object.prototype.toString.call()
+console.log(Object.prototype.toString.call([])); // "[object Array]"
+console.log(Object.prototype.toString.call(null)); // "[object Null]"
+```
+
+### 2. 类型转换
+
+#### 显示转换
+
+- parseInt(string, radix)
+- parseFloat
+- Number / String / Boolean
+- (xx).toString()
+
+```js
+// 转数字
+Number("123"); // 123
+parseInt("10px", 10); // 10
+parseFloat("3.14.15"); // 3.14
+
+// 转字符串
+String(123); // "123"
+(123).toString(); // "123"
+
+// 转布尔值
+Boolean(1); // true
+Boolean(0); // false
+Boolean(""); // false
+Boolean("hello"); // true
+```
+
+### 隐式转换
+
+1. 转为字符串 + 串联字符串
+
+```js
+console.log(1 + ""); // "1"
+console.log(true + ""); // "true"
+console.log(null + ""); // "null"
+console.log(undefined + ""); // "undefined"
+```
+
+2. 转为数字 -, \*, /, %, 比较运算等需要数值时
+
+- null 转为 0
+- true 转为 1，false 转为 0
+- undefined 转为 NaN
+- 字符串按内容转数字，无法转换结果为 NaN
+
+```js
+console.log("1" - 0); // 1
+console.log(true - 1); // 0
+console.log(null - 1); // -1
+console.log(undefined - 1); // NaN
+```
+
+3. 转为布尔值 条件判断（if, while, 三元运算符）
+
+Falsy 值：
+
+- false
+- 0
+- "" (空字符串)
+- null
+- undefined
+- NaN
+
+其余均为真值（truthy values）：
+
+- 非空字符串
+- 非零数字
+- 对象
+- 数组
+
+```js
+Boolean(0); // false
+Boolean(""); // false
+Boolean([]); // true
+Boolean({}); // true
+Boolean("false"); // true
+```
+
+### 隐式转换规则
+
+1. 如果有 null 或 undefined，只与自身或彼此相等
+
+```js
+null == undefined; // true
+null == 0; // false
+```
+
+2. 比较对象与原始类型： 对象会先转为 原始值（valueOf / toString）
+
+- ToPrimitive 转换过程
+  - valueOf()，若返回原始值则使用
+  - 否则调用 toString()，若返回原始值则使用
+
+```js
+const obj = {
+  valueOf() {
+    return 42;
+  },
+};
+obj + 1; // 43
+
+const obj2 = {
+  toString() {
+    return "7";
+  },
+};
+obj2 * 2; // 14
+```
+
+3. 若有 string 与 number 比较：字符串转为数字
+
+```js
+'5' == 5 // true
+false == 0 // true
+false == '' // true
+0 == '' // true
+[] == false // true
+[] == '' // true
+[null] == 0 // true
+```
+
+### 栈内存 vs 堆内存
+
+```js
+// 原始类型 - 栈内存
+let a = 10;
+let b = a; // 值拷贝
+b = 20;
+console.log(a); // 10 (不变)
+
+// 引用类型 - 堆内存
+let obj1 = { value: 10 };
+let obj2 = obj1; // 引用拷贝
+obj2.value = 20;
+console.log(obj1.value); // 20 (改变)
+```
