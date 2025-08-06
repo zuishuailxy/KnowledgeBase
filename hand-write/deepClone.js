@@ -3,7 +3,7 @@
 // 根据 是不是数组来 创建 不同的结果
 
 const myDeepClone = (obj, map = new WeakMap()) => {
-	if (typeof obj !== 'Object' || obj === null) return obj
+	if (typeof obj !== 'object' || obj === null) return obj
 	if (map.has(obj)) return map.get(obj)
 
 	const result = Array.isArray(obj) ? [] : {}
