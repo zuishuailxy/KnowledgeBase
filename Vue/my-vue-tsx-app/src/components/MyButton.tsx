@@ -4,7 +4,6 @@ import type { PropType } from 'vue'
 interface ButtonProps {
   type?: 'primary' | 'default'
   disabled?: boolean
-  onClick?: (e: MouseEvent) => void
 }
 
 export default defineComponent({
@@ -14,15 +13,14 @@ export default defineComponent({
       default: 'default',
     },
     disabled: Boolean,
-    onClick: Function as PropType<ButtonProps['onClick']>,
   },
+  emits: ['click'],
 
   setup(props, { emit }) {
     const handleClick = (e: MouseEvent) => {
-      if (!props.disabled && props.onClick) {
-        props.onClick(e)
+      if (!props.disabled) {
+        emit('click', e)
       }
-      emit('click', e)
     }
 
     return () => (

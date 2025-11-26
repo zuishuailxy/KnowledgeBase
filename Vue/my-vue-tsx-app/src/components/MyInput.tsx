@@ -1,4 +1,4 @@
-import { defineComponent, computed } from 'vue'
+import { defineComponent, Fragment } from 'vue'
 
 export default defineComponent({
   props: {
@@ -7,21 +7,21 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
-    const handleInput = (e: InputEvent) => {
+    const handleInput = (e: Event) => {
       const value = (e.target as HTMLInputElement).value
       emit('update:modelValue', value)
     }
 
     return () => (
-      <>
+      <Fragment>
         <p>{props.modelValue}</p>
         <input
           name="input"
-          value={props.modelValue}
+          value={props.modelValue || ''}
           placeholder={props.placeholder}
           onInput={handleInput}
         />
-      </>
+      </Fragment>
     )
   },
 })
