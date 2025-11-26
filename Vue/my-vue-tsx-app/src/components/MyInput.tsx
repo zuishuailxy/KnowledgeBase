@@ -15,7 +15,12 @@ export default defineComponent({
     return () => (
       <>
         <p>{props.modelValue}</p>
-        <input value={props.modelValue} placeholder={props.placeholder} onInput={handleInput} />
+        <input
+          name="input"
+          value={props.modelValue}
+          placeholder={props.placeholder}
+          onInput={handleInput}
+        />
       </>
     )
   },

@@ -26,7 +26,11 @@ export default defineComponent({
     const filteredUsers = computed(() => (props.users || mockUsers).filter((u) => u.active))
 
     const renderUser = (user: User) => (
-      <div key={user.id} class={{ 'user-item': true, selected: selectedId.value === user.id }}>
+      <div
+        key={user.id}
+        class={{ 'user-item': true, selected: selectedId.value === user.id }}
+        onClick={() => {selectedId.value = user.id; emit('select', user)}}
+      >
         {user.name} - {user.age}
       </div>
     )
