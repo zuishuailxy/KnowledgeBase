@@ -6,7 +6,44 @@
   <title>Document</title>
 </head>
 <body>
-  <div id="app"></div>
-  <script src="./react.js"></script>
+  <div id="root"></div>
+  <!-- <script src="./react.js"></script> -->
+  <script src="./requestIdleCallback.js"></script>
+  <script>
+    // requestIdleCallback
+    // const total = 500;
+    // const arr = []
+
+    // function generateArr() {
+    //   for (let i = 0; i < total; i++) {
+    //     arr.push(function() {
+    //       document.body.innerHTML += `<p>${i+1}</p>`;
+    //     });
+    //   }
+    // }
+
+    // generateArr()
+
+    // function workLoop(deadline) {
+    //   while ((deadline.timeRemaining() > 1 || deadline.didTimeout) && arr.length > 0) {
+    //     const fn = arr.shift();
+    //     fn();
+    //   }
+    //   requestIdleCallback(workLoop)
+    // };
+
+    // requestIdleCallback(workLoop)
+
+
+    // MessageChannel
+    // const channel = new MessageChannel();
+    // channel.port2.onmessage = (event) => {
+    //   // 执行任务
+    //   console.log(event.data);  // 接收port2发送的消息 
+      
+    // };
+    // // port2发送消息
+    // channel.port1.postMessage('hello 1');
+  </script>
 </body>
 </html>
