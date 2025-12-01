@@ -9,6 +9,7 @@ import Layout from "./components/Layout";
 import RefC from "./components/RefC";
 import ImperativeHandle from "./components/ImperativeHandle";
 import Context from "./components/Context";
+import MemoC from "./components/MemoC";
 function App() {
   return (
     <>
@@ -21,7 +22,8 @@ function App() {
       {/* <Layout /> */}
       {/* <RefC /> */}
       {/* <ImperativeHandle /> */}
-      <Context />
+      {/* <Context /> */}
+      <MemoC />
     </>
   );
 }
