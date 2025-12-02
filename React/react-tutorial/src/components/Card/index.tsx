@@ -1,0 +1,33 @@
+import "./index.css";
+import React from "react";
+
+interface CardProps {
+  title?: string; 
+  children?: React.ReactNode;
+  cb: (d: string) => void;
+}
+
+const defaultProps = {
+  title: "leo",
+  
+}
+
+const Card:React.FC<CardProps> = ({title = "leo", children, cb}) => {
+  
+  return (
+    <div className="card">
+      <header>
+        <div>{title}</div>
+        <div>副标题</div>
+      </header>
+      <main>{children}</main>
+      <footer>
+        <button onClick={() => cb("按钮点击了")}>点击</button>
+        <button onClick={() => window.onShow()}>确认</button>
+        <button>取消</button>
+      </footer>
+    </div>
+  );
+};
+
+export default Card;

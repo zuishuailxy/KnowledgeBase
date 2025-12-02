@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useMemo } from "react";
 import { useImmerReducer } from "use-immer";
 
 const initData = [
@@ -101,6 +101,9 @@ function CartItem({
 
 function Cart() {
   const [data, dispatch] = useImmerReducer(reducer, initData);
+  const totalPrice = useMemo(() => {
+    return data.reduce((total, item) => total + item.price * item.count, 0);
+  }, [data]);
   return (
     <>
       <h1>购物车</h1>
@@ -123,8 +126,7 @@ function Cart() {
           <tr>
             <td colSpan={4}></td>
             <td align="right">
-              总价:{" "}
-              {data.reduce((total, item) => total + item.price * item.count, 0)}
+              总价:{totalPrice}
             </td>
           </tr>
         </tfoot>
