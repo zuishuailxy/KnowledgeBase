@@ -1,4 +1,6 @@
 import "./App.css";
+import { Suspense } from "react";
+
 import Cart from "./components/Cart";
 import PersonImmer from "./components/PersonImmer";
 import SyncExternal from "./components/SyncExternal";
@@ -12,16 +14,23 @@ import Context from "./components/Context";
 import MemoC from "./components/MemoC";
 import Callback from "./components/Callback";
 import WaterMark from "./components/WaterMark";
-import Card from "./components/Card";
+// import Card from "./components/Card";
+// import Card2 from "./components/Card2";
+import ControledC from "./components/Controlled";
 import { useState } from "react";
-
-const [val, setVal] = useState("");
-
-const update = (d: string) => {
-  setVal(d);
-};
+import Modal from "./components/Modal";
+import { Skeleton } from "./components/Skeleton";
+import Card3 from "./components/Card3";
+import { AdminPage, UserPage } from "./components/HOC";
+import { TrackButton } from "./components/HOC/track";
 
 function App() {
+  const [val, setVal] = useState("");
+  const update = (d: string) => {
+    console.log(d);
+    setVal(d);
+  };
+  const [showModal, setShowModal] = useState(false);
   return (
     <>
       {/* <Cart /> */}
@@ -37,13 +46,23 @@ function App() {
       {/* <MemoC /> */}
       {/* <Callback /> */}
       {/* <WaterMark /> */}
-      {val}
-      <Card title={"标题1"} cb={() => update}>
+      {/* {val}
+      <Card title={"标题1"} cb={update}>
         <div>
           <i>我是内容</i>
           <p>我也是内容</p>
         </div>
-      </Card>
+      </Card> */}
+      {/* <Card2 title={"标题2"}/> */}
+      {/* <ControledC /> */}
+      {/* <button onClick={() => setShowModal(true)}>123</button>
+      {showModal && <Modal />} */}
+      {/* <Suspense fallback={<Skeleton />}>
+        <Card3 />
+      </Suspense> */}
+      {/* <AdminPage />
+      <UserPage /> */}
+      <TrackButton />
     </>
   );
 }

@@ -1,0 +1,9 @@
+{
+    "data":{
+        "id":2,
+        "address":"北京市房山区住岗子村10086",
+        "name":"leo",
+        "age":26,
+        "avatar":"https://api.dicebear.com/7.x/avataaars/svg?seed=leo"
+    }
+}

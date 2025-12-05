@@ -4,7 +4,7 @@ import React from "react";
 interface CardProps {
   title?: string; 
   children?: React.ReactNode;
-  cb?: (d: string) => void;
+  cb: (d: string) => void;
 }
 
 const defaultProps = {
@@ -14,11 +14,11 @@ const defaultProps = {
 
 const Card:React.FC<CardProps> = ({title = "leo", children, cb}) => {
   // --------------------
-  // 兄弟之间通讯 发布订阅模式， 这边发送
-  const patchEvent = (data: any) => {
-    const event = new CustomEvent("on-Card", { detail: data });
-    window.dispatchEvent(event);
-  }
+  // 兄弟之间通讯， 这边订阅
+  window.addEventListener("on-Card", (e: any) => {
+    console.log("Card2 接收到事件：", e.detail);
+  });
+
   // --------------------
   
   return (
@@ -31,7 +31,7 @@ const Card:React.FC<CardProps> = ({title = "leo", children, cb}) => {
       <footer>
         <button onClick={() => cb("按钮点击了")}>点击</button>
         <button onClick={() => window.onShow()}>确认</button>
-        <button onClick={() => patchEvent("派发事件")}>派发事件</button>
+        <button>取消</button>
       </footer>
     </div>
   );
