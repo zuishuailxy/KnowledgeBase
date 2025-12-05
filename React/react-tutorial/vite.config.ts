@@ -29,4 +29,10 @@ const viteMockServer = (): Plugin => {
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), viteMockServer()],
+  css: {
+    modules: {
+      localsConvention: "camelCaseOnly",
+      generateScopedName: '[local]_[hash:base64:5]' 
+    }
+  }
 });

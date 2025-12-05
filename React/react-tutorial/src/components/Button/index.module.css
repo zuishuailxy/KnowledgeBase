@@ -1,0 +1,18 @@
+.btn {
+  color: #000;
+  background-color: azure;
+  border-radius: 4px;
+  cursor: pointer;
+
+}
+
+
+
+.btn:hover {
+  background-color: lightblue;
+}
+
+/* 样式文件中的某些样式，不希望被编译成css modules，可以设置为global */
+:global(.w-20) {
+  width: calc(20 * 0.5rem);
+}

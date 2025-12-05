@@ -23,6 +23,7 @@ import { Skeleton } from "./components/Skeleton";
 import Card3 from "./components/Card3";
 import { AdminPage, UserPage } from "./components/HOC";
 import { TrackButton } from "./components/HOC/track";
+import CButton from "./components/Button";
 
 function App() {
   const [val, setVal] = useState("");
@@ -62,7 +63,8 @@ function App() {
       </Suspense> */}
       {/* <AdminPage />
       <UserPage /> */}
-      <TrackButton />
+      {/* <TrackButton /> */}
+      <CButton />
     </>
   );
 }
