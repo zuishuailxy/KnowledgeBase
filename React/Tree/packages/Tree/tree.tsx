@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import type { TreeNode, TreeProps } from "./type";
+import "./styles.css";
 
 const Tree: React.FC<TreeProps> = ({ data, onChecked }) => {
   const [treeData, setTreeData] = useState<TreeNode[]>(data);

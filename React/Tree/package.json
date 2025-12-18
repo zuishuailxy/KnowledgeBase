@@ -1,7 +1,11 @@
 {
   "name": "tree",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/ui.cjs.js",
+  "module": "dist/ui.es.js",
+  "types": "dist/types/ui.es.d.ts",
+  "type": "module",
+  "files": ["dist"],
   "scripts": {
     "dev": "vite",
     "build": "vite build"

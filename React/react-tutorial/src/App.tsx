@@ -23,7 +23,11 @@ import { Skeleton } from "./components/Skeleton";
 import Card3 from "./components/Card3";
 import { AdminPage, UserPage } from "./components/HOC";
 import { TrackButton } from "./components/HOC/track";
-import CButton from "./components/Button";
+// import CButton from "./components/Button";
+
+// router
+import { RouterProvider } from "react-router";
+import router from "./router";
 
 function App() {
   const [val, setVal] = useState("");
@@ -64,7 +68,9 @@ function App() {
       {/* <AdminPage />
       <UserPage /> */}
       {/* <TrackButton /> */}
-      <CButton />
+      {/* <CButton /> */}
+
+      <RouterProvider router={router} />
     </>
   );
 }
