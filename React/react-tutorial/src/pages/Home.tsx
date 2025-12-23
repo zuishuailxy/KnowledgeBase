@@ -1,22 +1,56 @@
 import { NavLink } from "react-router";
-import { useParams, useNavigate } from "react-router";
-
+import { Card, Form, Input, Button } from "antd";
+import {
+  useLoaderData,
+  useSubmit,
+  useNavigation,
+  useActionData,
+} from "react-router";
 
 const Home = () => {
-  const params = useParams();
-  console.log(params);
-  const navigate = useNavigate();
-  // query 参数跳转
-  // return <div><NavLink to="/about?id=123">About</NavLink></div>;
+  const data = useLoaderData() as {
+    data: { name: string; age: number }[];
+    success: boolean;
+  };
+  const submit = useSubmit();
+  const onFinish = (values: any) => {
+    console.log("Form values:", values);
+    submit(values, { method: "post", encType: "application/json" });
+  };
 
+  const navigation = useNavigation();
+  const actionData = useActionData() as { success: boolean } | undefined;
+  console.log("actionData", actionData);
 
-  // params 参数跳转
-  return <div><NavLink to="/about/123">About</NavLink></div>;
-
-  // return <div>
-  //   Home Page
-  //   <button onClick={() => navigate('/about/1')}>Go to About</button>
-  // </div>;
+  return (
+    <Card>
+      <h1>Welcome to the Home Page</h1>
+      <Form onFinish={onFinish}>
+        <Form.Item label="Username" name="username">
+          <Input placeholder="Enter your username" />
+        </Form.Item>
+        <Form.Item label="Age" name="age">
+          <Input placeholder="Enter your age" />
+        </Form.Item>
+        <Form.Item>
+          <Button
+            loading={navigation.state === "submitting"}
+            type="primary"
+            htmlType="submit"
+          >
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+      <ul>
+        {data.data.map((item) => (
+          <li key={item.name}>
+            {item.name}: {item.age}
+          </li>
+        ))}
+      </ul>
+    </Card>
+  );
 };
 
 export default Home;
