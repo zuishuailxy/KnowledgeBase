@@ -25,6 +25,12 @@ import { AdminPage, UserPage } from "./components/HOC";
 import { TrackButton } from "./components/HOC/track";
 // import CButton from "./components/Button";
 
+// state
+import usePriceStore from "./store/price";
+import Left from './pages/Left'
+import Right from './pages/Right';
+import useUserStore from "./store/user";
+
 // router
 import { RouterProvider } from "react-router";
 import router from "./router";
@@ -36,6 +42,8 @@ function App() {
     setVal(d);
   };
   const [showModal, setShowModal] = useState(false);
+  const price = usePriceStore((state) => state.price);
+  // const {gourds} = useUserStore();
   return (
     <>
       {/* <Cart /> */}
@@ -69,8 +77,19 @@ function App() {
       <UserPage /> */}
       {/* <TrackButton /> */}
       {/* <CButton /> */}
+      
+      {/* router */}
+      {/* <RouterProvider router={router} /> */}
 
-      <RouterProvider router={router} />
+      {/* zustand */}
+      <div className="container">
+        <h1>Zustand Demo</h1>
+        <div className="wraps">
+          <Left />
+          <Right />
+        </div>
+
+      </div>
     </>
   );
 }

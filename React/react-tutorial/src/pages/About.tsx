@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import { useSearchParams, useLocation, useParams } from "react-router";
+import { useSearchParams, useLocation, useParams, useNavigate } from "react-router";
 
 const About = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -10,11 +10,17 @@ const About = () => {
 
   const { id } = useParams();
   console.log(id); //获取params参数
+
+  const navigate = useNavigate();
+  const goHome = () => {
+    navigate("/home", { replace: true, state: { from: "about" } });
+  };
   
 
   return (
     <div>
-      <NavLink to="/">Home</NavLink>
+      <NavLink to="/home">Home</NavLink>
+      <button onClick={goHome} style={{marginLeft:"1rem"}}>go home</button>
     </div>
   );
 };

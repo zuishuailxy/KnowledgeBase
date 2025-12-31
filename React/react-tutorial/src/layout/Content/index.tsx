@@ -10,7 +10,7 @@ const Content = () => {
     <div>
       {isLoading ? (
         <Spin size="large" tip="loading...">
-          <Alert description="please wait..." message="加载中" type="info" />
+          <Alert description="please wait..." title="加载中" type="info" />
         </Spin>
       ) : (
         <Outlet />

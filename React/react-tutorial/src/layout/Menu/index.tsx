@@ -10,12 +10,12 @@ const Menu = () => {
   }
   const menuItems = [
         {
-            key: '/home',
+            key: 'home',
             label: 'Home',
             icon: <AppstoreOutlined />,
         },
         {
-            key: '/about',
+            key: 'about',
             label: 'About',
             icon: <AppstoreOutlined />,
         },
