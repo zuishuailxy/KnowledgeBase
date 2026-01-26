@@ -13,7 +13,7 @@ export default function Left() {
     // const setHobbyBasketball = useUserStore(state => state.setHobbyBasketball);
 
     // 直接从 store 取 action，不订阅！
-    const { setHobbyRap, setHobbyBasketball } = useUserStore();
+    const { setHobbyRap, setHobbyBasketball, addAge } = useUserStore();
 
 
     return (
@@ -21,13 +21,14 @@ export default function Left() {
             <h1>A组件</h1>
             <div>
                 <h3>{name}</h3>
-                <div>年龄：<span>{age}</span></div>
+                <div>年龄：<span style={{color: "red"}}>{age}</span></div>
                 <div>爱好1：<span>{sing}</span></div>
                 <div>爱好2：<span>{dance}</span></div>
                 <div>爱好3：<span>{rap}</span></div>
                 <div>爱好4：<span>{basketball}</span></div>
                 <button onClick={() => setHobbyRap('只因你太美')}>改变爱好rap</button>
                 <button onClick={() => setHobbyBasketball('篮球')}>改变爱好basketball</button>
+                <button onClick={() => addAge()}>增加年龄</button>
             </div>
         </div>
     )

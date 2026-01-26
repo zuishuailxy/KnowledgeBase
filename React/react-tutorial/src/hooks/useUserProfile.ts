@@ -5,6 +5,7 @@ export const useUserProfile = () => {
   const name = useUserStore(state => state.name);
   const rap = useUserStore(state => state.hobby.rap);
   // 如果还需要其他字段，继续加
+  // const age = useUserStore(state => state.age);
 
   return { name, rap };
 };
