@@ -19,9 +19,9 @@ export default function RootLayout({
       <body
       >
         {children}
-        {team}
-        {analytics}
-        <Link href="/setting">Setting</Link>
+        {/* {team}
+        {analytics} */}
+        {/* <Link href="/setting">Setting</Link> */}
       </body>
     </html>
   );
