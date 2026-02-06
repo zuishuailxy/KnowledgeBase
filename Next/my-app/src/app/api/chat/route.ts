@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { streamText, convertToModelMessages } from 'ai';
 import { createDeepSeek, deepseek } from "@ai-sdk/deepseek";
-import { DEEPSEEK_API_KEY } from './key.ts';
+import { DEEPSEEK_API_KEY } from '@/app/api/chat/key';
 
 const deepSeek = createDeepSeek({
   apiKey: DEEPSEEK_API_KEY, //设置API密钥

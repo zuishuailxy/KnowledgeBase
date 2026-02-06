@@ -1,12 +1,12 @@
 import { Suspense } from "react";
 import { cookies } from "next/headers";
 import { connection } from "next/server";
-import { cacheLife } from "next/cache";
+// import { cacheLife } from "next/cache";
 
 const DynamicContent = async () => {
-  'use cache';
+  // 'use cache';
   // cacheLife("hours"); 
-  cacheLife({stale: 30, revalidate: 5, expire: 10}) //使用自定义参数
+  // cacheLife({stale: 30, revalidate: 5, expire: 10}) //使用自定义参数
   const data = await fetch("https://www.mocklib.com/mock/random/name");
   const jsonData = await data.json();
   console.log("Fetched Suspense Data:", jsonData);

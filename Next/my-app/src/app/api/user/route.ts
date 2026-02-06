@@ -1,13 +1,13 @@
 import { NextResponse, NextRequest } from "next/server";
 
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   console.log(searchParams);
   return NextResponse.json({ message: "Get request success" });
 }
 
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   // const body = await req.formData(); //接受formData数据
   // const body = await req.text(); //接受text数据
   //const body = await request.arrayBuffer(); //接受arrayBuffer数据
