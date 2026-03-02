@@ -17,18 +17,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <Script
+        {/* <Script
           id="leo1"
           strategy="beforeInteractive"
           src="https://unpkg.com/vue@3/dist/vue.global.js"
-        ></Script>
+        ></Script> */}
       </head>
       <body>
         {children}
         {/* {team}
         {analytics} */}
         {/* <Link href="/setting">Setting</Link> */}
-        <div id="app"></div>
+        {/* <div id="app"></div>
         <Script id="leo2" strategy="afterInteractive">
           {`
             const {createApp} = Vue;
@@ -44,7 +44,7 @@ export default function RootLayout({
             }).mount('#app');
             
             `}
-        </Script>
+        </Script> */}
       </body>
     </html>
   );

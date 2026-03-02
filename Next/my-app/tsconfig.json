@@ -20,7 +20,10 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@/public/*": ["./public/*"] // 新增这一行代码，配置图片路径。
+      "@/public/*": ["./public/*"], // 新增这一行代码，配置图片路径。
+      "@dict/*": [
+        "./src/dictionaries/*"
+      ]
     }
   },
   "include": [

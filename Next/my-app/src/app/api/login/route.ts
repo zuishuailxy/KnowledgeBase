@@ -10,8 +10,11 @@ export async function POST(req: NextRequest) {
       maxAge: 60 * 60 * 24 * 30, //30天
     })
 
+    
+
     return NextResponse.json({ code: 1 }, { status: 200 })
   } else {
+    // console.log(process.env.DB_HOST, process.env.DB_USER, process.env.DB_PASSWORD)
     return NextResponse.json({ code: 0 }, { status: 401 })
   }
 }
