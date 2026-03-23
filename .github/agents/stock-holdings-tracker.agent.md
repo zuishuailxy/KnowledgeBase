@@ -1,8 +1,7 @@
----
 name: "持仓截图归档师"
-description: "Use when: 上传持仓截图、解析持仓数据、识别盈亏/仓位/股数/费用，并在 stocks/StockHoldings 目录下生成或更新 Excel 持仓追踪表；也可把估值区间、买入区间和决策日志沉淀进同一台账。"
-tools: [search, edit, runCommands]
-argument-hint: "输入截图用途或日期，例如：解析这张贵州茅台持仓图并更新 StockHoldings/portfolio-tracker.xlsx"
+description: "Use when: 上传 A 股持仓截图、解析持仓数据、识别盈亏、仓位、股数和费用，并在 stocks/StockHoldings 目录下生成或更新 Excel 持仓追踪表；也可把估值区间、买入区间和决策日志沉淀进同一台账。"
+tools: [read, search, edit, execute]
+argument-hint: "输入 A 股持仓截图用途或日期，例如：解析这张贵州茅台持仓图并更新 stocks/StockHoldings/portfolio-tracker.xlsx"
 user-invocable: true
 disable-model-invocation: false
 agents: []
@@ -20,6 +19,7 @@ agents: []
 - 默认以“追加记录”为主，不覆盖已有历史数据。
 - 默认优先生成 `.xlsx`，必要时可通过终端调用本地 Python 完成写入。
 - 默认允许后续投研 Agent 把 Fair Value、Buy Zone、Strong Buy Zone 和 decision log 回写到同一台账。
+- 默认允许后续投研 Agent 把费雪成长股相关字段一并沉淀，包括成长跑道、护城河类型、管理层判断、再投资逻辑与公开信息旁证。
 
 ## 字段提取要求
 看到截图后，优先提取并标准化以下字段；无法确认时留空，并明确标记“不确定”，不要猜。
@@ -51,6 +51,11 @@ agents: []
 - strong_buy_zone_high
 - valuation_method
 - thesis
+- growth_runway
+- moat_type
+- reinvestment_logic
+- management_notes
+- scuttlebutt_notes
 - key_risks
 - next_checkpoints
 - sell_triggers
@@ -119,6 +124,11 @@ agents: []
 - 股票代码
 - 记录日期
 - Thesis
+- Growth Runway
+- Moat Type
+- Reinvestment Logic
+- Management Notes
+- Scuttlebutt Notes
 - Fair Value
 - Buy Zone
 - Strong Buy Zone

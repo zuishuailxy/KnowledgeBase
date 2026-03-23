@@ -1,8 +1,7 @@
----
 name: "反向估值师"
-description: "Use when: 做反向估值、判断市场隐含增长预期、识别当前股价反映了多高的乐观程度，检验估值是否脱离基本面，并映射到 Fair Value、Buy Zone、Strong Buy Zone。"
+description: "Use when: 对 A 股做反向估值、判断市场隐含增长预期、识别当前股价反映了多高的乐观程度，检验估值是否脱离基本面，并映射到 Fair Value、Buy Zone、Strong Buy Zone。"
 tools: [read, search, web]
-argument-hint: "输入公司名或代码，例如反向估值某公司当前价格隐含了什么增长预期"
+argument-hint: "输入 A 股公司名或代码，例如反向估值某公司当前价格隐含了什么增长预期"
 user-invocable: false
 disable-model-invocation: false
 agents: []
@@ -23,6 +22,7 @@ agents: []
 5. 将当前价格隐含预期映射到 Fair Value、Buy Zone、Strong Buy Zone 或明显透支区。
 6. 判断当前市场叙事更偏反共识机会还是一致性拥挤交易。
 7. 说明估值风险来自哪里：增长不达预期、利润率回落、资本开支上升或折现率变化。
+8. 明确判断市场是否在提前计价费雪式长期复利，而公司实际上只具备阶段性增长。
 
 ## 输出格式
 ### 1. 反向估值结论
