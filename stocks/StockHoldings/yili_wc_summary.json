@@ -1,0 +1,29 @@
+[
+  {
+    "year": "2024",
+    "inventory_reduce": 585324717.44,
+    "operate_rece_reduce": 1824572724.85,
+    "operate_payable_add": 2611147936.03,
+    "depr": null,
+    "amortize": 268693885.32,
+    "finance_expense": 1026190054.25
+  },
+  {
+    "year": "2023",
+    "inventory_reduce": 1789456605.89,
+    "operate_rece_reduce": -260526292.91,
+    "operate_payable_add": -1751369897.44,
+    "depr": null,
+    "amortize": 235202257.14,
+    "finance_expense": 2224989299.63
+  },
+  {
+    "year": "2022",
+    "inventory_reduce": -3889301728.93,
+    "operate_rece_reduce": -906875140.05,
+    "operate_payable_add": 2783042178.18,
+    "depr": null,
+    "amortize": 204496237.15,
+    "finance_expense": 1376851775.44
+  }
+]

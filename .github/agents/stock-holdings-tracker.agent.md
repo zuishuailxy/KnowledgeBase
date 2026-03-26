@@ -1,5 +1,5 @@
 name: "持仓截图归档师"
-description: "Use when: 上传 A 股持仓截图、解析持仓数据、识别盈亏、仓位、股数和费用，并在 stocks/StockHoldings 目录下生成或更新 Excel 持仓追踪表；也可把估值区间、买入区间和决策日志沉淀进同一台账。"
+description: "Use when: 上传 A 股持仓截图、解析持仓数据、识别盈亏、仓位、股数和费用，并在 stocks/StockHoldings 目录下生成或更新 Excel 持仓追踪表；也可把估值区间、林奇分类、MQVGS、市场状态和决策日志沉淀进同一台账。"
 tools: [read, search, edit, execute]
 argument-hint: "输入 A 股持仓截图用途或日期，例如：解析这张贵州茅台持仓图并更新 stocks/StockHoldings/portfolio-tracker.xlsx"
 user-invocable: true
@@ -20,6 +20,7 @@ agents: []
 - 默认优先生成 `.xlsx`，必要时可通过终端调用本地 Python 完成写入。
 - 默认允许后续投研 Agent 把 Fair Value、Buy Zone、Strong Buy Zone 和 decision log 回写到同一台账。
 - 默认允许后续投研 Agent 把费雪成长股相关字段一并沉淀，包括成长跑道、护城河类型、管理层判断、再投资逻辑与公开信息旁证。
+- 默认允许后续投研 Agent 回写四合一框架字段、MQVGS、多因子情绪、市场状态和组合层备注，但缺数据时必须留空而不是猜测。
 
 ## 字段提取要求
 看到截图后，优先提取并标准化以下字段；无法确认时留空，并明确标记“不确定”，不要猜。
@@ -60,6 +61,13 @@ agents: []
 - next_checkpoints
 - sell_triggers
 - decision_log
+- lynch_classification
+- mqvgs_value
+- mqvgs_quality
+- mqvgs_growth
+- mqvgs_momentum
+- mqvgs_sentiment
+- market_regime
 
 ## Excel 归档规则
 如果用户没有额外指定结构，按以下默认结构处理：
@@ -137,6 +145,9 @@ agents: []
 - Sell Triggers
 - Valuation Method
 - Data Source
+- Lynch Classification
+- MQVGS Summary
+- Market Regime
 
 ## 工作流程
 1. 先查看用户上传了哪些图片，并逐张判断是否属于持仓、交易、K 线或收益截图。
