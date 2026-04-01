@@ -2,7 +2,7 @@
 name: "持仓成本补录"
 description: "Use when: 把买入均价、买入日期、持仓股数、逐笔交易明细补录进 stocks/StockHoldings/portfolio-tracker.xlsx，完善总台账。"
 argument-hint: "输入补录对象，例如：补录贵州茅台买入价 1395.34、买入日期 2026-01-29、100 股"
-agent: "持仓截图归档师"
+agent: "stock-holdings-tracker"
 ---
 把用户提供的买入成本、买入日期、股数和交易明细补录到单一总台账 stocks/StockHoldings/portfolio-tracker.xlsx。
 
@@ -36,6 +36,11 @@ agent: "持仓截图归档师"
 - 是否匹配到已有持仓：是 / 否
 - 是否存在冲突数据：是 / 否
 - 冲突或缺口说明：
+
+# 决策日志补录检查
+- 是否同步补充 Fair Value / Buy Zone / Strong Buy Zone：
+- 是否需要补录 thesis、key risks、next checkpoints、sell triggers：
+- 是否存在需要记录的行为偏差或等待条件：
 
 # 后续动作
 - 是否还需要补录卖出记录：是 / 否

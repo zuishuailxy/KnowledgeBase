@@ -2,7 +2,7 @@
 name: "持仓截图批量导入"
 description: "Use when: 批量解析多张持仓截图，统一落到 stocks/StockHoldings/portfolio-tracker.xlsx，并输出本次导入摘要与待确认项。"
 argument-hint: "输入批量导入范围，例如：把我这次上传的全部持仓截图批量写入总台账"
-agent: "持仓截图归档师"
+agent: "stock-holdings-tracker"
 ---
 把本次请求里用户上传的持仓相关图片做一次批量导入，统一写入单一总台账 stocks/StockHoldings/portfolio-tracker.xlsx。
 
@@ -33,6 +33,11 @@ agent: "持仓截图归档师"
 - 图片 1：股票 / 类型 / 关键字段
 - 图片 2：股票 / 类型 / 关键字段
 - 其余图片：按同样格式列出
+
+# 行为偏差与失效触发记录
+- 本次是否补充了 thesis、key risks、next checkpoints、sell triggers：
+- 是否记录了沉没成本、从众、追高或补仓冲动等行为偏差：
+- 是否记录了等待条件和更优替代线索：
 
 # 数据质量
 - 低置信度字段：

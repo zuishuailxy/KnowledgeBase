@@ -59,13 +59,21 @@
 
 ## System Version 共性能力
 
-当前这套 Agent 已统一升级为更完整的 v8 System Version：
+当前这套 Agent 已统一升级为更完整的“巴菲特 + 费雪 + 林奇 + 格雷厄姆 + 芒格 + 价值投资 3.0” System Version：
 
 - 四合一投资框架
   - 巴菲特：护城河、资本回报、现金流质量与管理层资本配置。
   - 费雪：增长跑道、Scuttlebutt、再投资能力与长期扩张力。
   - 林奇：公司分类、PEG / GARP、故事可理解性与验证。
   - 格雷厄姆：内在价值、安全边际、历史估值分位与下行保护。
+
+- 芒格升级
+  - 默认先做反向思考：先问什么会让结论失效，再问为什么成立。
+  - 默认加入多元思维模型：会计、激励、竞争、心理、资本配置与系统反馈至少做交叉验证。
+  - 默认强制做激励分析：管理层、渠道、客户、监管与资本市场激励若错位，必须下调结论。
+  - 默认检查误判心理学：确认偏误、从众、沉没成本、叙事成瘾、权威崇拜与剥夺超级反应。
+  - 默认把机会成本、等待纪律和少犯错优先写入动作与排序逻辑。
+  - 默认在多因素同向共振时显式提示 Lollapalooza 效应，而不是孤立描述单项利好或利空。
 
 - 费雪成长股升级
   - 默认把未来 5 到 10 年持续成长能力纳入核心判断，而不是只看静态便宜与否。
@@ -100,6 +108,33 @@
 - 情绪与市场状态边界
   - 可基于公告、新闻、财报措辞和公开市场叙事做新闻情绪与拥挤度判断。
   - 不默认声称拥有完整社交媒体全量数据、实时 VIX 或专业因子数据库；缺数据时只输出定性或半定量判断。
+
+## Agent -> Prompt -> 输出偏置栏目 对照表
+
+| Agent | Agent 文件 | 对应 Prompt | Prompt 文件 | 关键输出偏置栏目 |
+| --- | --- | --- | --- | --- |
+| A股硬阈值总控台 | [a-share-quant-gate.agent.md](./a-share-quant-gate.agent.md) | A股硬阈值筛选报告 | [../prompts/a-share-threshold-report.prompt.md](../prompts/a-share-threshold-report.prompt.md) | 假通过检查、错误放行风险、待补证重点 |
+| A股投研总控台 | [a-share-moat.agent.md](./a-share-moat.agent.md) | A股基本面研究报告 | [../prompts/a-share-fundamental-report.prompt.md](../prompts/a-share-fundamental-report.prompt.md) | 反方整合、结论降级触发、激励错配风险 |
+| A股估值总控台 | [a-share-valuation.agent.md](./a-share-valuation.agent.md) | A股估值决策报告 | [../prompts/a-share-valuation-report.prompt.md](../prompts/a-share-valuation-report.prompt.md) | 预期透支检查、最脆弱假设、等待条件 |
+| A股估值总控台 | [a-share-valuation.agent.md](./a-share-valuation.agent.md) | A股机会成本比较报告 | [../prompts/a-share-opportunity-cost-report.prompt.md](../prompts/a-share-opportunity-cost-report.prompt.md) | 淘汰赛视角、等待优先、替代项压力 |
+| A股投研总控台 | [a-share-moat.agent.md](./a-share-moat.agent.md) | A股财报事件变化报告 | [../prompts/a-share-earnings-event-report.prompt.md](../prompts/a-share-earnings-event-report.prompt.md) | Thesis 破坏检查、措辞危险信号、不能直接升格的变化 |
+| agent 编排入口 | 无单独 agent 文件 | A股完整投资决策总报告 | [../prompts/a-share-full-investment-report.prompt.md](../prompts/a-share-full-investment-report.prompt.md) | 假通过风险、最强反方、预期透支、等待条件、激励/行为误判风险 |
+| agent 编排入口 | 无单独 agent 文件 | A股边界案例例外复核报告 | [../prompts/a-share-edge-case-report.prompt.md](../prompts/a-share-edge-case-report.prompt.md) | 错误放行风险、谁在被奖励、为什么便宜不能翻案 |
+| 持仓截图归档师 | [stock-holdings-tracker.agent.md](./stock-holdings-tracker.agent.md) | 持仓截图批量导入 | [../prompts/stock-holdings-batch-import.prompt.md](../prompts/stock-holdings-batch-import.prompt.md) | 行为偏差与失效触发记录、等待条件、更优替代线索 |
+| 持仓截图归档师 | [stock-holdings-tracker.agent.md](./stock-holdings-tracker.agent.md) | 持仓成本补录 | [../prompts/stock-holdings-cost-backfill.prompt.md](../prompts/stock-holdings-cost-backfill.prompt.md) | 决策日志补录检查、估值区间回填、行为偏差补录 |
+| agent 编排入口 | 无单独 agent 文件 | 持仓月报复盘 | [../prompts/stock-holdings-monthly-review.prompt.md](../prompts/stock-holdings-monthly-review.prompt.md) | 行为偏差与资本占用检查、决策日志完整度 |
+| agent 编排入口 | 无单独 agent 文件 | 持仓周报复盘 | [../prompts/stock-holdings-weekly-review.prompt.md](../prompts/stock-holdings-weekly-review.prompt.md) | 坏动作预警、如果今天没有持仓是否会重买、sell trigger 检查 |
+
+维护规则：
+- 改 agent 的角色偏置时，要同步检查对应 prompt 是否已经要求输出相同栏目。
+- 改 prompt 栏目时，要反向检查对应 agent 的输出格式是否已有同名或同义必答段。
+- 对没有独立 prompt 的叶子 agent，优先在上游总控 agent 或报告 prompt 中维护其偏置反映，而不是单独新增模板。
+
+推荐维护顺序：
+1. 先看 [.github/a-share-growth-system-design.md](../a-share-growth-system-design.md) 确认原则是否要变。
+2. 再看 [.github/charlie-munger-agent-upgrade.md](../charlie-munger-agent-upgrade.md) 确认偏置逻辑是否要变。
+3. 再改具体 agent 与 prompt。
+4. 最后回到这张表确认映射没有漂移。
 
 ## 能力分工
 
