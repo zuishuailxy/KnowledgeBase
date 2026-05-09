@@ -44,3 +44,13 @@ There is no root-level build or test command. You must operate within specific s
     *   **Adhere to local style**: Mimic the coding style of the specific project you are working in.
     *   If no style is obvious, use standard/modern conventions for the language (e.g., functional components for React, ES6+ for JS).
 *   **Educational Nature**: Much of the code is for demonstration ("demos"). Prioritize **clarity and readability** over complex optimizations, unless the specific project (like `micro-app`) appears to be an advanced implementation.
+
+## Data Authenticity Checks
+
+For any answer, report, or agent output that relies on data, especially stock, portfolio, financial, market, valuation, news, sentiment, or macro data:
+
+*   First reflect on whether the data source is real and suitable for the conclusion.
+*   State the source channel, retrieval or citation time, reporting period or trading day, metric definition, and whether the source is primary or a third-party aggregator.
+*   Prefer primary sources such as company announcements, exchange filings, annual reports, and quarterly reports for decisive claims; use public quote or data APIs as supporting sources.
+*   If sources conflict, freshness is unclear, or cross-checking is not possible, lower confidence, mark the data as needing verification, and list the missing source needed before making a stronger conclusion.
+*   Never fabricate real-time prices, financial periods, dividend plans, news sentiment, market state, or quantitative scores to make an answer look complete.

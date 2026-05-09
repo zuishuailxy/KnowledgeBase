@@ -11,6 +11,7 @@
 - 优先从入口层总控 Agent 进入，不要从叶子能力开始手动拼装流程。
 - 内部子 Agent 保持单一职责，默认由总控 Agent 自动调用。
 - 组合动作判断遵循顺序：质量先于估值，估值先于时机，时机先于动作。
+- 凡涉及财务、行情、估值、持仓、新闻、情绪或市场状态数据，必须先做数据来源真实性校验，再输出结论。
 - 具体的系统边界、字段契约、升级规则和维护原则，以系统设计说明为准。
 
 ## 入口层 Agent 总表
@@ -20,10 +21,10 @@
 | A股硬阈值总控台 | [a-share-quant-gate.agent.md](./a-share-quant-gate.agent.md) | 筛选入口 | 用统一门槛完成 5 年 ROE、3 年 FCF、分红率、负债率资格筛选，并做标准化数据清洗 | 先判断一家公司或一批公司值不值得进入深度研究 |
 | A股投研总控台 | [a-share-moat.agent.md](./a-share-moat.agent.md) | 基本面入口 | 统筹财报阅读、ROE 拆解、现金流、护城河、风险反证与成长质量分析 | 想判断公司是否属于高质量成长企业 |
 | A股估值总控台 | [a-share-valuation.agent.md](./a-share-valuation.agent.md) | 估值入口 | 统筹 DCF、相对估值、反向估值、机会成本和安全边际判断 | 想知道当前价格是否值得买、等还是放弃 |
-| 持仓截图归档师 | [stock-holdings-tracker.agent.md](./stock-holdings-tracker.agent.md) | 持仓沉淀入口 | 解析持仓截图并生成或更新持仓 Excel，同时可沉淀 thesis 和决策日志 | 还没有标准化持仓台账，想把截图变成可追踪数据 |
+| 持仓截图归档师 | [stock-holdings-tracker.agent.md](./stock-holdings-tracker.agent.md) | 持仓沉淀入口 | 解析持仓截图并生成或更新 `stocks/my/holder.json`，同时可沉淀 thesis 和决策日志 | 还没有标准化持仓 JSON，想把截图变成可追踪数据 |
 | 持仓长期持有审判官 | [portfolio-keeper.agent.md](./portfolio-keeper.agent.md) | 组合治理入口 | 对现有持仓逐股做长期持有审判，判断保留、观察、卖出与组合重构方向 | 想体检整个组合，清理不配占用资本的持仓 |
 | A股持仓比例审计官 | [portfolio-allocation-guard.agent.md](./portfolio-allocation-guard.agent.md) | 仓位治理入口 | 审计核心仓、次核心仓、观察仓、现金比例、行业集中度与重复逻辑持仓 | 想看当前组合仓位结构是否失衡、是否需要调仓 |
-| A股持仓操作总控台 | [portfolio-action.agent.md](./portfolio-action.agent.md) | 动作决策入口 | 将质量、估值、仓位、成本和 thesis 收敛为继续持有、加仓、减仓、退出或等待 | 已经持有一只股票，想得到下一步可执行操作建议 |
+| A股持仓操作总控台 | [portfolio-action.agent.md](./portfolio-action.agent.md) | 动作决策入口 | 将质量、估值、仓位、成本和 thesis 收敛为继续持有、加仓、减仓、退出或等待，并强制给出盈利/亏损两套动作预案 | 已经持有一只股票，想得到下一步可执行操作建议 |
 
 ## 内部子 Agent 总表
 
@@ -55,7 +56,21 @@
 4. 已经持有某只股票，想知道下一步怎么操作：用 A股持仓操作总控台。
 5. 想审判整个持仓是否配得上长期持有：用 持仓长期持有审判官。
 6. 想检查仓位比例是否失衡：用 A股持仓比例审计官。
-7. 还没有 Excel 持仓表：先用 持仓截图归档师。
+7. 还没有持仓 JSON：先用 持仓截图归档师，默认写入 `stocks/my/holder.json`。
+
+## 持仓数据源
+
+- 默认持仓事实源：`stocks/my/holder.json`
+- 基础字段：`股票名称`、`股票代码`、`持仓数量`、`买入成本`
+- 匹配规则：股票代码优先，股票名称次之；股票代码必须按字符串处理，保留前导零。
+- 查询优先级：用户本次明确提供的持仓 > `stocks/my/holder.json` 中匹配持仓 > 无持仓。
+
+## 持仓盈利/亏损分场景规则
+
+- 只要问题处于“我已经持有”语境，持仓层 agents 默认必须把盈利场景和亏损场景分开回答。
+- 盈利场景重点检查：是否高估、是否仓位过重、是否只是情绪驱动的估值扩张、是否已有更优替代项。
+- 亏损场景重点检查：thesis 是否破坏、是否仍在 Buy Zone / Strong Buy Zone、是否只是价格波动、是否存在沉没成本驱动的错误补仓。
+- 任何持仓动作建议都不能只给一句“继续持有/补仓/卖出”，必须至少附带一个相反盈亏状态下的预案。
 
 ## System Version 共性能力
 
@@ -91,6 +106,12 @@
   - 在筛选、财务和估值相关 Agent 中，优先提取 Revenue、FCF、Net Income、Shares Outstanding、Debt 等关键数据。
   - 默认识别异常值、一次性事项、并购并表和极端周期年份，并说明标准化口径。
 
+- 数据来源真实性校验
+  - 默认先核验来源渠道、抓取或引用时间、报告期或交易日、指标口径、是否一手来源。
+  - 优先使用公司公告、交易所、年报季报等一手来源；第三方聚合数据和行情接口必须标注可能滞后或口径偏差。
+  - 若口径冲突、期次不明、实时性不足或无法交叉核验，必须降低置信度并标记“数据待核实”或“可信度不足”。
+  - 不得编造实时价格、财报期次、分红方案、新闻情绪、市场状态或量化分数。
+
 - DCF 三情景与买入区间
   - 估值层统一支持 Conservative、Base、Optimistic 三情景 DCF。
   - 统一使用 Fair Value、Buy Zone、Strong Buy Zone 作为价格判断语言。
@@ -122,12 +143,13 @@
 | agent 编排入口 | 无单独 agent 文件 | A股边界案例例外复核报告 | [../prompts/a-share-edge-case-report.prompt.md](../prompts/a-share-edge-case-report.prompt.md) | 错误放行风险、谁在被奖励、为什么便宜不能翻案 |
 | 持仓截图归档师 | [stock-holdings-tracker.agent.md](./stock-holdings-tracker.agent.md) | 持仓截图批量导入 | [../prompts/stock-holdings-batch-import.prompt.md](../prompts/stock-holdings-batch-import.prompt.md) | 行为偏差与失效触发记录、等待条件、更优替代线索 |
 | 持仓截图归档师 | [stock-holdings-tracker.agent.md](./stock-holdings-tracker.agent.md) | 持仓成本补录 | [../prompts/stock-holdings-cost-backfill.prompt.md](../prompts/stock-holdings-cost-backfill.prompt.md) | 决策日志补录检查、估值区间回填、行为偏差补录 |
-| agent 编排入口 | 无单独 agent 文件 | 持仓月报复盘 | [../prompts/stock-holdings-monthly-review.prompt.md](../prompts/stock-holdings-monthly-review.prompt.md) | 行为偏差与资本占用检查、决策日志完整度 |
-| agent 编排入口 | 无单独 agent 文件 | 持仓周报复盘 | [../prompts/stock-holdings-weekly-review.prompt.md](../prompts/stock-holdings-weekly-review.prompt.md) | 坏动作预警、如果今天没有持仓是否会重买、sell trigger 检查 |
+| agent 编排入口 | 无单独 agent 文件 | 持仓月报复盘 | [../prompts/stock-holdings-monthly-review.prompt.md](../prompts/stock-holdings-monthly-review.prompt.md) | 行为偏差与资本占用检查、决策日志完整度、盈利/亏损预案 |
+| agent 编排入口 | 无单独 agent 文件 | 持仓周报复盘 | [../prompts/stock-holdings-weekly-review.prompt.md](../prompts/stock-holdings-weekly-review.prompt.md) | 坏动作预警、如果今天没有持仓是否会重买、sell trigger 检查、盈利/亏损预案 |
 
 维护规则：
 - 改 agent 的角色偏置时，要同步检查对应 prompt 是否已经要求输出相同栏目。
 - 改 prompt 栏目时，要反向检查对应 agent 的输出格式是否已有同名或同义必答段。
+- 改数据口径、行情来源或真实性校验规则时，要同步检查所有 `.agent.md` 是否仍包含“数据来源真实性校验”。
 - 对没有独立 prompt 的叶子 agent，优先在上游总控 agent 或报告 prompt 中维护其偏置反映，而不是单独新增模板。
 
 推荐维护顺序：

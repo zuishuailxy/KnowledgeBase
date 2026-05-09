@@ -1,30 +1,30 @@
 ---
 name: "持仓成本补录"
-description: "Use when: 把买入均价、买入日期、持仓股数、逐笔交易明细补录进 stocks/StockHoldings/portfolio-tracker.xlsx，完善总台账。"
+description: "Use when: 把买入均价、买入日期、持仓股数、逐笔交易明细补录进 stocks/my/holder.json，完善持仓 JSON。"
 argument-hint: "输入补录对象，例如：补录贵州茅台买入价 1395.34、买入日期 2026-01-29、100 股"
 agent: "stock-holdings-tracker"
 ---
-把用户提供的买入成本、买入日期、股数和交易明细补录到单一总台账 stocks/StockHoldings/portfolio-tracker.xlsx。
+把用户提供的买入成本、买入日期、股数和交易明细补录到单一持仓 JSON：`stocks/my/holder.json`。
 
 ## 固定规则
-1. 总台账使用同一个文件：stocks/StockHoldings/portfolio-tracker.xlsx。
-2. 成本信息优先写入 `position_costs`，逐笔交易优先写入 `transaction_ledger`。
-3. 如果能准确映射到已有持仓快照，可同步补充 `holdings_snapshots` 中的“买入均价”；否则只写成本表与交易表，不乱改历史快照。
+1. 持仓事实源使用同一个文件：`stocks/my/holder.json`。
+2. 汇总成本信息写入或更新对应对象的 `买入成本`，持股数写入或更新 `持仓数量`。
+3. 如果用户提供逐笔交易，可在对应对象追加可选字段 `交易明细`；如果只提供汇总成本，不虚构逐笔交易。
 4. 若用户未提供完整信息，不猜测缺失字段，保留空值并写明待补项。
 
 ## 执行要求
-1. 先检查总台账是否存在；若不存在，先创建符合当前 schema 的工作簿。
+1. 先检查 `stocks/my/holder.json` 是否存在；若不存在，先创建 JSON 数组。
 2. 按股票代码和名称优先匹配已有记录；其中“股票名称”默认按图片文件名理解，例如 `贵州茅台.jpg`。若无法唯一匹配，提示用户确认但不要写错行。
-3. 同一股票多次补录时，保留历史交易流水，成本表以最新确认值更新，并记录更新时间。
-4. 如果用户提供的是逐笔成交，必须逐条写入 `transaction_ledger`，不要只保留汇总值。
-5. 如果用户只提供汇总成本，没有逐笔成交，则更新 `position_costs`，并在 `note` 中标明“人工汇总补录”。
+3. 同一股票多次补录时，保留已有可选字段，基础字段以最新确认值更新，并记录 `最后更新时间`。
+4. 如果用户提供的是逐笔成交，必须逐条写入该股票对象的 `交易明细`，不要只保留汇总值。
+5. 如果用户只提供汇总成本，没有逐笔成交，则更新 `买入成本`，并在 `note` 中标明“人工汇总补录”。
 
 ## 强制输出格式
 
 # 补录结果
 - 股票：
-- 更新文件：stocks/StockHoldings/portfolio-tracker.xlsx
-- 更新工作表：position_costs / transaction_ledger / holdings_snapshots
+- 更新文件：stocks/my/holder.json
+- 更新字段：买入成本 / 持仓数量 / 交易明细 / note
 
 # 本次补录内容
 - 买入均价：

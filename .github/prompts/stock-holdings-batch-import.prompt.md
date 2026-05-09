@@ -1,33 +1,33 @@
 ---
 name: "持仓截图批量导入"
-description: "Use when: 批量解析多张持仓截图，统一落到 stocks/StockHoldings/portfolio-tracker.xlsx，并输出本次导入摘要与待确认项。"
+description: "Use when: 批量解析多张持仓截图，统一落到 stocks/my/holder.json，并输出本次导入摘要与待确认项。"
 argument-hint: "输入批量导入范围，例如：把我这次上传的全部持仓截图批量写入总台账"
 agent: "stock-holdings-tracker"
 ---
-把本次请求里用户上传的持仓相关图片做一次批量导入，统一写入单一总台账 stocks/StockHoldings/portfolio-tracker.xlsx。
+把本次请求里用户上传的持仓相关图片做一次批量导入，统一写入单一持仓 JSON：`stocks/my/holder.json`。
 
 ## 固定规则
 1. 默认处理本次请求里全部附件图片；如果用户指定子集，只处理用户点名的图片。
-2. 默认写入单一总台账，不为单只股票拆分多个 Excel。
+2. 默认写入单一持仓 JSON，不为单只股票拆分多个文件。
 3. 如果截图没有明确日期，使用导入当天日期，并标记“截图日期未知，已按导入日记账”。
-4. 不覆盖旧记录；对同一股票的新截图按时间追加为新快照。
+4. 按股票代码或股票名称匹配已有持仓；同一股票更新同一对象，新增股票追加新对象，不覆盖无关字段。
 5. 对不清晰字段留空并写入 `parse_issues`，不要猜测。
-6. `holdings_snapshots` 中的“股票名称”默认直接使用图片文件名，例如 `贵州茅台.jpg`。
+6. 如果截图没有明确股票名称，“股票名称”默认直接使用图片文件名，例如 `贵州茅台.jpg`。
+7. JSON 基础字段固定为 `股票名称`、`股票代码`、`持仓数量`、`买入成本`；股票代码必须保存为字符串。
 
 ## 执行要求
 1. 逐张识别图片类型，区分持仓快照、交易记录线索、K 线辅助信息。
-2. 将持仓主信息写入 `holdings_snapshots`。
-3. 将截图中可见但不完整的交易动作或 BS 点写入 `trade_clues`。
-4. 将低置信度、缺失字段、人工待核项写入 `parse_issues`。
-5. 如果总台账不存在，则创建 `portfolio-tracker.xlsx`；若已存在，则保留原表并追加。
-6. 若写入 Excel 需要本地脚本支持，可使用工作区现成 Python 环境和最小必要依赖完成。
+2. 将持仓主信息写入 `stocks/my/holder.json`。
+3. 将截图中可见但不完整的交易动作、BS 点、低置信度字段或人工待核项写入导入摘要；除非用户要求，不另建其他台账。
+4. 如果 `stocks/my/holder.json` 不存在，则创建 JSON 数组；若已存在，则保留原持仓并按股票匹配更新。
+5. 若写入 JSON 需要本地脚本支持，可使用工作区现成 Python 环境和最小必要依赖完成。
 
 ## 强制输出格式
 
 # 批量导入结果
 - 处理图片数量：
 - 成功写入记录数：
-- 更新文件：stocks/StockHoldings/portfolio-tracker.xlsx
+- 更新文件：stocks/my/holder.json
 
 # 图片解析摘要
 - 图片 1：股票 / 类型 / 关键字段
@@ -45,9 +45,9 @@ agent: "stock-holdings-tracker"
 - 人工待确认项：
 
 # 本次新增内容
-- holdings_snapshots 新增：
-- trade_clues 新增：
-- parse_issues 新增：
+- holder.json 新增或更新：
+- 交易线索摘要：
+- 解析问题摘要：
 
 # 后续动作
 - 是否建议补传更清晰截图：是 / 否
