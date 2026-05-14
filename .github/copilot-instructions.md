@@ -54,3 +54,7 @@ For any answer, report, or agent output that relies on data, especially stock, p
 *   Prefer primary sources such as company announcements, exchange filings, annual reports, and quarterly reports for decisive claims; use public quote or data APIs as supporting sources.
 *   If sources conflict, freshness is unclear, or cross-checking is not possible, lower confidence, mark the data as needing verification, and list the missing source needed before making a stronger conclusion.
 *   Never fabricate real-time prices, financial periods, dividend plans, news sentiment, market state, or quantitative scores to make an answer look complete.
+
+## A-Share Market and Trading Unit Rules
+
+For stock analysis, reports, portfolio reviews, or holding actions, default to the A-share market unless the user explicitly names another market. Any buy, add, reduce, take-profit, or exit recommendation must be expressed in 100-share board lots. Do not recommend 10, 20, 50, or other odd-lot share amounts as standalone trades; if available cash is below one lot, say to wait or take no action.
