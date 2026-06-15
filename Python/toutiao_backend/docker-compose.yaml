@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql8fortoutiao
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: your_password
+      MYSQL_DATABASE: toutiao
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: 380521
+    ports:
+      - "3308:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mysql_data_toutiao:/var/lib/mysql
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis_fortoutiao
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data_toutiao:/data
+    # 开启 AOF 持久化，并限制最大内存为 256MB，超出后按 LRU 策略淘汰键
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+
+volumes:
+  mysql_data_toutiao:
+  redis_data_toutiao:
