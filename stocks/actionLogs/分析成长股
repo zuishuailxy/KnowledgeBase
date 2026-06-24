@@ -1,0 +1,117 @@
+我会把这 10 只拆成两张表：先用硬阈值卡掉财务质量不够稳定的，再用当前 PE/PB/前瞻预期判断是否已经把高景气透支。先复用仓库已有报告和最新行情，再补缺口数据。
+
+Searched for files matching `**/stocks/reports/*德业股份*`, 1 match
+
+Searched for files matching `**/stocks/reports/*三花智控*`, 1 match
+
+Searched for files matching `**/stocks/reports/*工业富联*`, 1 match
+
+Searched for files matching `**/stocks/reports/*瑞芯微*`, 1 match
+
+Searched for files matching `**/stocks/reports/*中际旭创*`, no matches
+
+Searched for files matching `**/stocks/reports/*新易盛*`, no matches
+
+Searched for files matching `**/stocks/reports/*北方华创*`, no matches
+
+Searched for files matching `**/stocks/reports/*中微公司*`, no matches
+
+Searched for files matching `**/stocks/reports/*沪电股份*`, no matches
+
+Searched for files matching `**/stocks/reports/*胜宏科技*`, no matches
+
+已有报告只覆盖了前四只，后六只需要用公开行情和财务摘要补一轮粗筛。现在我读取前四只已验证口径，同时抓后六只的同花顺 F10 和财务摘要，先把数据缺口补齐。
+
+
+
+Read [](file:///d%3A/github/KnowledgeBase/stocks/reports/2026-06-05-%E7%91%9E%E8%8A%AF%E5%BE%AE-%E5%AE%8C%E6%95%B4%E6%8A%95%E8%B5%84%E5%86%B3%E7%AD%96%E6%8A%A5%E5%91%8A.md#1-1), lines 1 to 220
+
+Fetched 12 resources
+
+Read [](file:///d%3A/github/KnowledgeBase/stocks/reports/2026-04-29-%E5%BE%B7%E4%B8%9A%E8%82%A1%E4%BB%BD-%E5%AE%8C%E6%95%B4%E6%8A%95%E8%B5%84%E5%86%B3%E7%AD%96%E6%8A%A5%E5%91%8A.md)
+
+Read [](file:///d%3A/github/KnowledgeBase/stocks/reports/2026-04-29-%E4%B8%89%E8%8A%B1%E6%99%BA%E6%8E%A7-%E5%AE%8C%E6%95%B4%E6%8A%95%E8%B5%84%E5%86%B3%E7%AD%96%E6%8A%A5%E5%91%8A.md)
+
+Read [](file:///d%3A/github/KnowledgeBase/stocks/reports/2026-04-29-%E5%B7%A5%E4%B8%9A%E5%AF%8C%E8%81%94-%E5%AE%8C%E6%95%B4%E6%8A%95%E8%B5%84%E5%86%B3%E7%AD%96%E6%8A%A5%E5%91%8A.md)
+
+Compacted conversation前四只报告里结论很清楚：德业硬阈值最干净；三花过线但价格偏贵；工业富联卡在负债率；瑞芯微卡在 ROE 稳定性且估值偏贵。后六只同花顺已经给了“当前估值 + 2026 一致预期”，我再用结构化财务摘要补历史 ROE、负债率和现金流，避免只靠热度判断。
+
+Ran terminal command: $code = @'
+import sys
+try:
+    import akshare as ak
+except Exception as e:
+    print('AKSHARE_IMPORT_ERROR', repr(e))
+    sys.exit(0)
+
+symbols = {
+    '300308':'中际旭创',
+    '300502':'新易盛',
+    '002371':'北方华创',
+    '688012':'中微公司',
+    '002463':'沪电股份',
+    '300476':'胜宏科技',
+}
+for code, name in symbols.items():
+    print(f'===== {code} {name} =====')
+    try:
+        df = ak.stock_financial_abstract_ths(symbol=code, indicator='按年度')
+        # print columns to inspect compactly
+        print('COLUMNS:', list(df.columns)[:30])
+        print(df.head(8).to_string(index=False))
+    except Exception as e:
+        print('ABSTRACT_ERROR', repr(e))
+'@; $code | python -
+
+Optimized tool selection本地 Python 环境没有装 AkShare，所以我改用同花顺财务页补历史指标。这里我会把结论标成“二次粗筛”，数据源可信度按第三方聚合处理，不把它包装成审计级复核。
+
+
+
+Fetched 6 resources
+
+硬阈值里最容易被忽略的是分红率，尤其是光模块和 PCB 这种高速成长股可能现金流很好但股东回报不足。我补一下近三年分红口径，再收口成筛选表。
+
+
+
+Fetched 6 resources
+
+已完成 10 只高景气候选的“硬阈值 + 估值透支”二次筛选：复用了 4 份本地报告，并用同花顺 F10 补充了其余 6 只的财务、估值、盈利预测和分红数据。
+
+
+
+先说结论：这 10 只里，按“硬阈值 + 估值透支”同时卡，**真正还能进入优先深挖的只有德业股份、沪电股份**。但沪电也不是“立刻买”，而是“质量过线、景气强、估值偏高但还没到最离谱”的观察型深挖。
+
+数据口径说明：前 4 只复用本地完整报告；后 6 只来自同花顺 F10 个股页、财务页、盈利预测页、分红页，抓取时间为本次会话，数据为第三方聚合，适合二次粗筛，不等同于年报原文逐项审计复核。当前价格、PE、PB、机构一致预期会随市场变化，结论需要交易日前再核。
+
+| 股票 | 硬阈值 | 估值透支 | 二筛结论 | 核心原因 |
+| --- | --- | --- | --- | --- |
+| 德业股份 | 通过 | 中等 | **优先深挖/等待买点** | ROE、FCF、分红、负债率全过；110 元附近高于 Buy Zone，但不算极端泡沫 |
+| 沪电股份 | 通过 | 中高 | **优先深挖/只等回调** | 2021-2025 ROE 大体过线，分红率强，负债率约 46%；AI PCB 景气真，但 PE 已不便宜 |
+| 三花智控 | 通过 | 中高 | 观察等待 | 财务质量好，但 40 倍以上 PE 已提前计入机器人/热管理预期 |
+| 北方华创 | 观察/分红失败 | 高 | 高景气观察 | ROE近年改善，但 2021、2022 不稳，近三年分红率约 10%，硬阈值不过；估值 60 倍左右前瞻 PE |
+| 工业富联 | 观察/负债率失败 | 中高 | 高景气观察 | AI服务器景气强，但负债率仍在 60% 以上，低毛利制造平台不宜给太乐观估值 |
+| 中际旭创 | 分红率失败 | 中高 | 高景气观察 | 增长极强，ROE 已爆发，但近三年分红率约 10%-16%，不符合股东回报硬阈值；估值押注 2026-2027 持续爆发 |
+| 新易盛 | 分红率失败 | 中高 | 高景气观察 | ROE 和增长极强，但分红率约 10%-16%，不符合硬阈值；光模块景气很热，估值对预期敏感 |
+| 胜宏科技 | 边界/分红偏弱 | 高 | 只观察 | 2025 ROE 爆发，但 2023、2024 ROE 不够稳定，三年分红率约 24%、22%、40%，均值勉强但前两年偏低；融资余额和扩产预期都很热 |
+| 瑞芯微 | ROE失败 | 高 | 剔除/等待大跌复核 | 2023 ROE 低于 10%，主流程硬淘汰；当前估值明显透支端侧 AI |
+| 中微公司 | ROE + 分红失败 | 高 | 剔除/只做产业观察 | ROE 长期低于 15% 主线门槛，分红率约 10%，当前估值又很贵 |
+
+我的排序是：
+
+**第一梯队：可进入完整深挖**
+德业股份、沪电股份。  
+德业更符合长期财务硬标准；沪电的景气更贴 AI 主线，但价格更容易受 AI PCB 预期回撤影响。
+
+**第二梯队：好公司但等价格或等财报**
+三花智控、工业富联、北方华创。  
+三花是“质量过、价格贵”；工业富联是“增长强、负债率和商业模式质量要打折”；北方华创是“产业地位强，但股东回报和估值都不符合硬纪律”。
+
+**第三梯队：高景气强，但不符合你的硬标准**
+中际旭创、新易盛、胜宏科技。  
+它们可能继续涨，甚至业绩继续超预期，但按你的框架，低分红率、预期高度拥挤、估值对 2026-2027 外推依赖太强，不能直接放进“符合投资标准”的篮子。
+
+**剔除：**
+瑞芯微、中微公司。  
+不是说公司差，而是硬阈值和估值同时不舒服。瑞芯微卡 ROE 稳定性，中微公司卡 ROE 与分红率，且两者估值都已经在买未来很多年的故事。
+
+一句话收口：**高景气里最容易犯的错，是把“行业景气真实”误当成“买入赔率真实”。这一轮筛完，德业偏质量，沪电偏景气，两只值得继续做完整报告；其余多数是观察池，不是买入池。**
