@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  postgres:
+    # 使用官方pgvector镜像，标签pg16对应PostgreSQL 16
+    image: pgvector/pgvector:pg16
+    container_name: my-postgres
+    restart: always
+    # 增加共享内存配置，提升向量操作性能
+    shm_size: 1g
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: mydatabase
+      TZ: Asia/Shanghai
+    ports:
+      - "5432:5432"
+    volumes:
+      # 持久化数据到当前目录的 postgres-data 文件夹
+      - ./postgres-data:/var/lib/postgresql/data
+      # 挂载初始化脚本目录
+      - ./init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "admin", "-d", "mydatabase"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
