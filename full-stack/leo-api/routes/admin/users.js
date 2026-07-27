@@ -1,30 +1,30 @@
 const express = require("express");
 const router = express.Router();
-const { Article } = require("../../models");
+const { User } = require("../../models");
 const { Op } = require("sequelize");
 const { success, failure } = require("../../utils/responses");
 const { NotFoundError } = require("../../utils/errors");
 
-// Get title and content
 const getAttr = (source) => {
-  const { title, content } = source;
+  const { email, username, nickname, role, password, sex, company, introduce } =
+    source;
 
-  return { title, content };
+  return { email, username, nickname, role, password, sex, company, introduce };
 };
 
-// define a common function to query article
-async function getArticle(req) {
+// define a common function to query user
+async function getUser(req) {
   const { id } = req.params;
 
   // 1.判断id 是否存在
-  const article = await Article.findOne({
+  const user = await User.findOne({
     where: { id },
   });
-  if (!article) {
-    throw new NotFoundError(`ID: ${id}的文章未找到`);
+  if (!user) {
+    throw new NotFoundError(`ID: ${id}的用户未找到`);
   }
 
-  return article;
+  return user;
 }
 
 /* GET home page. */
@@ -32,7 +32,7 @@ router.get("/", async function (req, res, next) {
   // 把我的代码放到 try catch
   try {
     // currentPage 当前页，pageSize 每页条数；默认值分别为 1 和 10 都是数字类型
-    const { title, content } = getAttr(req.query);
+    const { email, username, nickname, role } = req.query;
     const currentPage = Math.abs(Number(req.query.currentPage)) || 1;
     const pageSize = Math.abs(Number(req.query.pageSize)) || 10;
     // 计算 offset
@@ -44,21 +44,30 @@ router.get("/", async function (req, res, next) {
       limit: pageSize,
       offset: offset,
     };
-    if (title) {
-      condition.where.title = {
-        [Op.like]: `%${title}%`,
+    if (email) {
+      condition.where.email = {
+        [Op.eq]: email,
       };
     }
-    // 添加 content 的模糊搜索条件
-    if (content) {
-      condition.where.content = {
-        [Op.like]: `%${content}%`,
+    if (username) {
+      condition.where.username = {
+        [Op.eq]: username,
+      };
+    }
+    if (nickname) {
+      condition.where.nickname = {
+        [Op.like]: `%${nickname}%`,
+      };
+    }
+    if (role) {
+      condition.where.role = {
+        [Op.eq]: role,
       };
     }
 
-    const { count, rows } = await Article.findAndCountAll(condition);
-    success(res, "查询文章列表成功", {
-      articles: rows,
+    const { count, rows } = await User.findAndCountAll(condition);
+    success(res, "查询用户列表成功", {
+      users: rows,
       pagination: {
         total: count,
         currentPage,
@@ -67,58 +76,45 @@ router.get("/", async function (req, res, next) {
     });
   } catch (error) {
     res.status(500).json({
-      message: "查询文章列表失败",
+      message: "查询用户列表失败",
       status: false,
       errors: [error.message],
     });
   }
 });
 
-// 根据 id 查询文章详情
+// 根据 id 查询用户详情
 router.get("/:id", async function (req, res, next) {
   try {
-    const article = await getArticle(req);
+    const user = await getUser(req);
 
-    success(res, "查询文章详情成功", { article });
+    success(res, "查询用户详情成功", { user });
   } catch (error) {
     failure(res, error);
   }
 });
 
-// 新增文章
+// 新增用户
 router.post("/", async function (req, res, next) {
   try {
     // 白名单过滤
     const body = getAttr(req.body);
 
-    const article = await Article.create(body);
-    success(res, "新增文章成功", { article }, 201);
+    const user = await User.create(body);
+    success(res, "新增用户成功", { user }, 201);
   } catch (error) {
     failure(res, error);
   }
 });
 
-// 删除文章
-router.delete("/:id", async function (req, res, next) {
-  try {
-    const article = await getArticle(req);
-    // 2.删除文章
-    await article.destroy();
-    success(res, "删除文章成功");
-  } catch (error) {
-    failure(res, error);
-  }
-});
-
-// 更新文章，先找到对应的文章，再更新
+// 更新用户，先找到对应的用户，再更新
 router.put("/:id", async function (req, res, next) {
   try {
-    const article = await getArticle(req);
+    const user = await getUser(req);
     // 白名单过滤
     const body = getAttr(req.body);
-    await article.update(body);
-
-    success(res, "更新文章成功", { article });
+    await user.update(body);
+    success(res, "更新用户成功", { user });
   } catch (error) {
     failure(res, error);
   }

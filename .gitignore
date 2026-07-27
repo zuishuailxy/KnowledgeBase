@@ -28,3 +28,4 @@ dist-ssr
 PostgreSQL/init
 PostgreSQL/postgres-data
 *.pyc
+*.env

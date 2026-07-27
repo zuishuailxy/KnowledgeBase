@@ -1,38 +1,48 @@
 const express = require("express");
 const router = express.Router();
-const { Article } = require("../../models");
+const { Chapter } = require("../../models");
 const { Op } = require("sequelize");
 const { success, failure } = require("../../utils/responses");
 const { NotFoundError } = require("../../utils/errors");
 
-// Get title and content
+// 白名单过滤
 const getAttr = (source) => {
-  const { title, content } = source;
+  const { courseId, title, content, video, rank } = source;
 
-  return { title, content };
+  return { courseId, title, content, video, rank };
 };
 
-// define a common function to query article
-async function getArticle(req) {
+const getConditions = () => {
+  return {
+    attributes: { exclude: ["CourseId"] },
+    include: [{ model: Course, as: "course", attributes: ["id", "name"] }],
+  };
+};
+
+// define a common function to query chapter
+async function getChapter(req) {
   const { id } = req.params;
 
   // 1.判断id 是否存在
-  const article = await Article.findOne({
+  const chapter = await Chapter.findOne({
     where: { id },
   });
-  if (!article) {
-    throw new NotFoundError(`ID: ${id}的文章未找到`);
+  if (!chapter) {
+    throw new NotFoundError(`ID: ${id}的章节未找到`);
   }
 
-  return article;
+  return chapter;
 }
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {
-  // 把我的代码放到 try catch
   try {
     // currentPage 当前页，pageSize 每页条数；默认值分别为 1 和 10 都是数字类型
-    const { title, content } = getAttr(req.query);
+    const { courseId, title } = req.query;
+    if (!courseId) {
+      throw new Error("获取章节列表失败，课程ID不能为空。");
+    }
+
     const currentPage = Math.abs(Number(req.query.currentPage)) || 1;
     const pageSize = Math.abs(Number(req.query.pageSize)) || 10;
     // 计算 offset
@@ -40,25 +50,27 @@ router.get("/", async function (req, res, next) {
     // 如果 title 有值，则添加根据 title 的模糊搜索
     const condition = {
       where: {},
-      order: [["id", "DESC"]],
+      order: [
+        ["rank", "ASC"],
+        ["id", "ASC"],
+      ],
       limit: pageSize,
       offset: offset,
     };
+    if (courseId) {
+      condition.where.courseId = {
+        [Op.eq]: courseId,
+      };
+    }
     if (title) {
       condition.where.title = {
         [Op.like]: `%${title}%`,
       };
     }
-    // 添加 content 的模糊搜索条件
-    if (content) {
-      condition.where.content = {
-        [Op.like]: `%${content}%`,
-      };
-    }
 
-    const { count, rows } = await Article.findAndCountAll(condition);
-    success(res, "查询文章列表成功", {
-      articles: rows,
+    const { count, rows } = await Chapter.findAndCountAll(condition);
+    success(res, "查询章节列表成功", {
+      chapters: rows,
       pagination: {
         total: count,
         currentPage,
@@ -67,58 +79,58 @@ router.get("/", async function (req, res, next) {
     });
   } catch (error) {
     res.status(500).json({
-      message: "查询文章列表失败",
+      message: "查询章节列表失败",
       status: false,
       errors: [error.message],
     });
   }
 });
 
-// 根据 id 查询文章详情
+// 根据 id 查询章节详情
 router.get("/:id", async function (req, res, next) {
   try {
-    const article = await getArticle(req);
+    const chapter = await getChapter(req);
 
-    success(res, "查询文章详情成功", { article });
+    success(res, "查询章节详情成功", { chapter });
   } catch (error) {
     failure(res, error);
   }
 });
 
-// 新增文章
+// 新增章节
 router.post("/", async function (req, res, next) {
   try {
     // 白名单过滤
     const body = getAttr(req.body);
 
-    const article = await Article.create(body);
-    success(res, "新增文章成功", { article }, 201);
+    const chapter = await Chapter.create(body);
+    success(res, "新增章节成功", { chapter }, 201);
   } catch (error) {
     failure(res, error);
   }
 });
 
-// 删除文章
+// 删除章节
 router.delete("/:id", async function (req, res, next) {
   try {
-    const article = await getArticle(req);
-    // 2.删除文章
-    await article.destroy();
-    success(res, "删除文章成功");
+    const chapter = await getChapter(req);
+    // 2.删除章节
+    await chapter.destroy();
+    success(res, "删除章节成功");
   } catch (error) {
     failure(res, error);
   }
 });
 
-// 更新文章，先找到对应的文章，再更新
+// 更新章节，先找到对应的章节，再更新
 router.put("/:id", async function (req, res, next) {
   try {
-    const article = await getArticle(req);
+    const chapter = await getChapter(req);
     // 白名单过滤
     const body = getAttr(req.body);
-    await article.update(body);
+    await chapter.update(body);
 
-    success(res, "更新文章成功", { article });
+    success(res, "更新章节成功", { chapter });
   } catch (error) {
     failure(res, error);
   }

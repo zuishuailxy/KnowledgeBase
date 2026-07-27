@@ -2,7 +2,7 @@
 const { Model } = require("sequelize");
 const { formatDate } = require("../utils/date");
 module.exports = (sequelize, DataTypes) => {
-  class Article extends Model {
+  class Setting extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -12,25 +12,11 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Article.init(
+  Setting.init(
     {
-      title: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: "标题必须存在",
-          },
-          notEmpty: {
-            msg: "标题不能为空",
-          },
-          len: {
-            args: [2, 45],
-            msg: "标题长度必须在 2 ~ 45 之间",
-          },
-        },
-      },
-      content: DataTypes.TEXT,
+      name: DataTypes.STRING,
+      copyright: DataTypes.STRING,
+      icp: DataTypes.STRING,
       createdAt: {
         type: DataTypes.DATE,
         get() {
@@ -46,8 +32,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "Article",
+      modelName: "Setting",
     },
   );
-  return Article;
+  return Setting;
 };
