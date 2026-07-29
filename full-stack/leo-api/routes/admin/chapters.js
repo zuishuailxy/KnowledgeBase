@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { Chapter } = require("../../models");
-const { Op } = require("sequelize");
+const { Chapter, Course } = require("../../models");
+const { Op, where } = require("sequelize");
 const { success, failure } = require("../../utils/responses");
-const { NotFoundError } = require("../../utils/errors");
+const { NotFound, BadRequest } = require("http-errors");
+const { delKey } = require("../../utils/redis");
 
 // 白名单过滤
 const getAttr = (source) => {
@@ -28,7 +29,7 @@ async function getChapter(req) {
     where: { id },
   });
   if (!chapter) {
-    throw new NotFoundError(`ID: ${id}的章节未找到`);
+    throw new NotFound(`ID: ${id}的章节未找到`);
   }
 
   return chapter;
@@ -40,7 +41,7 @@ router.get("/", async function (req, res, next) {
     // currentPage 当前页，pageSize 每页条数；默认值分别为 1 和 10 都是数字类型
     const { courseId, title } = req.query;
     if (!courseId) {
-      throw new Error("获取章节列表失败，课程ID不能为空。");
+      throw new BadRequest("获取章节列表失败，课程ID不能为空。");
     }
 
     const currentPage = Math.abs(Number(req.query.currentPage)) || 1;
@@ -104,6 +105,10 @@ router.post("/", async function (req, res, next) {
     const body = getAttr(req.body);
 
     const chapter = await Chapter.create(body);
+    await Course.increment("chaptersCount", {
+      where: { id: chapter.courseId },
+    });
+    await delKey(`chapters:${chapter.courseId}`);
     success(res, "新增章节成功", { chapter }, 201);
   } catch (error) {
     failure(res, error);
@@ -116,6 +121,11 @@ router.delete("/:id", async function (req, res, next) {
     const chapter = await getChapter(req);
     // 2.删除章节
     await chapter.destroy();
+    await Course.decrement("chaptersCount", {
+      where: { id: chapter.courseId },
+    });
+    await delKey(`chapters:${chapter.courseId}`);
+    await delKey(`chapter:${req.params.id}`);
     success(res, "删除章节成功");
   } catch (error) {
     failure(res, error);
@@ -129,6 +139,8 @@ router.put("/:id", async function (req, res, next) {
     // 白名单过滤
     const body = getAttr(req.body);
     await chapter.update(body);
+    await delKey(`chapters:${chapter.courseId}`);
+    await delKey(`chapter:${req.params.id}`);
 
     success(res, "更新章节成功", { chapter });
   } catch (error) {

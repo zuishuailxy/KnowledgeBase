@@ -3,7 +3,8 @@ const router = express.Router();
 const { Article } = require("../../models");
 const { Op } = require("sequelize");
 const { success, failure } = require("../../utils/responses");
-const { NotFoundError } = require("../../utils/errors");
+const { NotFound, BadRequest } = require("http-errors");
+const { delByPattern } = require("../../utils/redis");
 
 // Get title and content
 const getAttr = (source) => {
@@ -21,7 +22,7 @@ async function getArticle(req) {
     where: { id },
   });
   if (!article) {
-    throw new NotFoundError(`ID: ${id}的文章未找到`);
+    throw new NotFound(`ID: ${id}的文章未找到`);
   }
 
   return article;
@@ -44,6 +45,13 @@ router.get("/", async function (req, res, next) {
       limit: pageSize,
       offset: offset,
     };
+
+    if (req.query.deleted === "true") {
+      condition.paranoid = false;
+      condition.where.deletedAt = {
+        [Op.not]: null,
+      };
+    }
     if (title) {
       condition.where.title = {
         [Op.like]: `%${title}%`,
@@ -92,19 +100,51 @@ router.post("/", async function (req, res, next) {
     const body = getAttr(req.body);
 
     const article = await Article.create(body);
+    await delByPattern("articles:*");
     success(res, "新增文章成功", { article }, 201);
+  } catch (error) {
+    console.log(error);
+    failure(res, error);
+  }
+});
+
+// 删除文章（支持单条/批量）
+router.post("/delete", async function (req, res, next) {
+  try {
+    const { id } = req.body || {};
+
+    if (!id) {
+      throw new BadRequest("文章 ID 不能为空");
+    }
+
+    const ids = Array.isArray(id) ? id : [id];
+    await Article.destroy({
+      where: {
+        id: ids,
+        // force: true 强制删除，变为硬删除
+        // force: true,
+      },
+    });
+    await delByPattern("articles:*");
+    success(res, `成功删除 ${ids.length} 篇文章`);
   } catch (error) {
     failure(res, error);
   }
 });
 
-// 删除文章
-router.delete("/:id", async function (req, res, next) {
+// 恢复文章（支持单条/批量）
+router.post("/restore", async function (req, res, next) {
   try {
-    const article = await getArticle(req);
-    // 2.删除文章
-    await article.destroy();
-    success(res, "删除文章成功");
+    const { id } = req.body || {};
+
+    if (!id) {
+      throw new BadRequest("文章 ID 不能为空");
+    }
+
+    const ids = Array.isArray(id) ? id : [id];
+    await Article.restore({ where: { id: ids } });
+    await delByPattern("articles:*");
+    success(res, `成功恢复 ${ids.length} 篇文章`);
   } catch (error) {
     failure(res, error);
   }
@@ -117,6 +157,7 @@ router.put("/:id", async function (req, res, next) {
     // 白名单过滤
     const body = getAttr(req.body);
     await article.update(body);
+    await delByPattern("articles:*");
 
     success(res, "更新文章成功", { article });
   } catch (error) {

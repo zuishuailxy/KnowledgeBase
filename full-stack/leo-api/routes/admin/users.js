@@ -3,7 +3,7 @@ const router = express.Router();
 const { User } = require("../../models");
 const { Op } = require("sequelize");
 const { success, failure } = require("../../utils/responses");
-const { NotFoundError } = require("../../utils/errors");
+const { NotFound } = require("http-errors");
 
 const getAttr = (source) => {
   const { email, username, nickname, role, password, sex, company, introduce } =
@@ -21,7 +21,7 @@ async function getUser(req) {
     where: { id },
   });
   if (!user) {
-    throw new NotFoundError(`ID: ${id}的用户未找到`);
+    throw new NotFound(`ID: ${id}的用户未找到`);
   }
 
   return user;

@@ -4,11 +4,7 @@ const { User } = require("../../models");
 const { Op } = require("sequelize");
 const jwt = require("jsonwebtoken");
 const { success, failure } = require("../../utils/responses");
-const {
-  NotFoundError,
-  BadRequestError,
-  UnauthorizedError,
-} = require("../../utils/errors");
+const { NotFound, BadRequest, Unauthorized } = require("http-errors");
 const bcrypt = require("bcryptjs");
 require("dotenv").config();
 
@@ -21,10 +17,10 @@ router.post("/login", async (req, res) => {
     const { login, password } = req.body || {};
 
     if (!login) {
-      throw new BadRequestError("用户名/邮箱不能为空");
+      throw new BadRequest("用户名/邮箱不能为空");
     }
     if (!password) {
-      throw new BadRequestError("密码不能为空");
+      throw new BadRequest("密码不能为空");
     }
 
     const condition = {
@@ -35,17 +31,17 @@ router.post("/login", async (req, res) => {
 
     const user = await User.findOne(condition);
     if (!user) {
-      throw new NotFoundError("用户不存在");
+      throw new NotFound("用户不存在");
     }
 
     const isPasswordValid = bcrypt.compareSync(password, user.password);
     if (!isPasswordValid) {
-      throw new UnauthorizedError("密码错误");
+      throw new Unauthorized("密码错误");
     }
 
     // check if it is super admin
     if (user.role !== 100) {
-      throw new UnauthorizedError("你没有权限登陆管理员平台");
+      throw new Unauthorized("你没有权限登陆管理员平台");
     }
 
     // 生成 JWT token

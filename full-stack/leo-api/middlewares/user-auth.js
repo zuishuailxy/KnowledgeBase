@@ -1,7 +1,7 @@
 const { User } = require("../models");
 const jwt = require("jsonwebtoken");
 const { failure } = require("../utils/responses");
-const { UnauthorizedError } = require("../utils/errors");
+const { Unauthorized } = require("http-errors");
 require("dotenv").config();
 
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -14,7 +14,7 @@ module.exports = async (req, res, next) => {
       : "";
 
     if (!token) {
-      throw new UnauthorizedError("当前接口需要登录才能访问");
+      throw new Unauthorized("当前接口需要登录才能访问");
     }
 
     const decoded = jwt.verify(token, JWT_SECRET);
@@ -22,7 +22,7 @@ module.exports = async (req, res, next) => {
 
     const user = await User.findByPk(userId);
     if (!user) {
-      throw new UnauthorizedError("用户不存在");
+      throw new Unauthorized("用户不存在");
     }
 
     req.user = user;

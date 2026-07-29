@@ -1,10 +1,4 @@
-const {
-  BadRequestError,
-  UnauthorizedError,
-  ForbiddenError,
-  NotFoundError,
-  ConflictError,
-} = require("./errors");
+const createError = require("http-errors");
 
 function success(res, message, data = {}, code = 200) {
   return res.status(code).json({
@@ -15,67 +9,31 @@ function success(res, message, data = {}, code = 200) {
 }
 
 function failure(res, error) {
+  let statusCode = 500;
+  let errors = ["服务器错误"];
+
   if (error.name === "SequelizeValidationError") {
-    const errors = error.errors.map((e) => e.message);
-    return res.status(400).json({
-      message: "参数校验失败",
-      status: false,
-      errors,
-    });
+    statusCode = 400;
+    errors = error.errors.map((e) => e.message);
   }
 
-  if (error.name === "BadRequestError") {
-    return res.status(400).json({
-      message: "请求参数异常",
-      status: false,
-      errors: [error.message],
-    });
+  if (
+    error.name === "JsonWebTokenError" ||
+    error.name === "TokenExpiredError"
+  ) {
+    statusCode = 401;
+    errors = ["token 错误"];
   }
 
-  if (error.name === "JsonWebTokenError") {
-    return res.status(401).json({
-      message: "认证失败",
-      status: false,
-      errors: ["token 错误"],
-    });
+  if (error.status && error.expose) {
+    statusCode = error.status;
+    errors = [error.message];
   }
 
-  if (error.name === "TokenExpiredError") {
-    return res.status(401).json({
-      message: "认证失败",
-      status: false,
-      errors: ["token 过期了"],
-    });
-  }
-
-  if (error.name === "UnauthorizedError") {
-    return res.status(401).json({
-      message: "未授权",
-      status: false,
-      errors: [error.message],
-    });
-  }
-
-  if (error.name === "ForbiddenError") {
-    return res.status(403).json({
-      message: "禁止访问",
-      status: false,
-      errors: [error.message],
-    });
-  }
-
-  if (error.name === "NotFoundError") {
-    return res.status(404).json({
-      message: "资源不存在",
-      status: false,
-      errors: [error.message],
-    });
-  }
-
-  return res.status(500).json({
-    message: "服务器错误",
+  return res.status(statusCode).json({
+    message: `请求失败：${error.message}`,
     status: false,
-    errors: [error.message],
+    errors,
   });
 }
 

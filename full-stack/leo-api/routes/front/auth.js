@@ -4,33 +4,31 @@ const { User } = require("../../models");
 const { Op } = require("sequelize");
 const jwt = require("jsonwebtoken");
 const { success, failure } = require("../../utils/responses");
-const {
-  NotFoundError,
-  BadRequestError,
-  UnauthorizedError,
-} = require("../../utils/errors");
+const { NotFound, BadRequest, Unauthorized } = require("http-errors");
 const bcrypt = require("bcryptjs");
 require("dotenv").config();
+const validateCaptcha = require("../../middlewares/validate-captcha");
+const { sendMail } = require("../../utils/mail");
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRES_IN = "8h";
 
 // 用户注册
-router.post("/register", async (req, res) => {
+router.post("/register", validateCaptcha, async (req, res) => {
   try {
     const { username, email, nickname, password } = req.body || {};
 
     if (!username) {
-      throw new BadRequestError("用户名不能为空");
+      throw new BadRequest("用户名不能为空");
     }
     if (!email) {
-      throw new BadRequestError("邮箱不能为空");
+      throw new BadRequest("邮箱不能为空");
     }
     if (!nickname) {
-      throw new BadRequestError("昵称不能为空");
+      throw new BadRequest("昵称不能为空");
     }
     if (!password) {
-      throw new BadRequestError("密码不能为空");
+      throw new BadRequest("密码不能为空");
     }
 
     // 白名单过滤，默认 role=0, sex=2
@@ -58,8 +56,17 @@ router.post("/register", async (req, res) => {
     const userData = user.toJSON();
     delete userData.password;
 
+    // 发送欢迎邮件（异步，不阻塞响应）
+    sendMail({
+      to: email,
+      subject: "欢迎加入 Leo 教育",
+      template: "welcome",
+      context: { nickname, username, email },
+    }).catch((err) => console.error("发送欢迎邮件失败:", err.message));
+
     success(res, "注册成功", { user: userData, token }, 201);
   } catch (error) {
+    console.error(error);
     failure(res, error);
   }
 });
@@ -70,10 +77,10 @@ router.post("/login", async (req, res) => {
     const { login, password } = req.body || {};
 
     if (!login) {
-      throw new BadRequestError("用户名/邮箱不能为空");
+      throw new BadRequest("用户名/邮箱不能为空");
     }
     if (!password) {
-      throw new BadRequestError("密码不能为空");
+      throw new BadRequest("密码不能为空");
     }
 
     const user = await User.findOne({
@@ -83,12 +90,12 @@ router.post("/login", async (req, res) => {
     });
 
     if (!user) {
-      throw new NotFoundError("用户不存在");
+      throw new NotFound("用户不存在");
     }
 
     const isPasswordValid = bcrypt.compareSync(password, user.password);
     if (!isPasswordValid) {
-      throw new UnauthorizedError("密码错误");
+      throw new Unauthorized("密码错误");
     }
 
     // 生成 token

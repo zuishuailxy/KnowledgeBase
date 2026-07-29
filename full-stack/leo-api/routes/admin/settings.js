@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 const { Setting } = require("../../models");
 const { success, failure } = require("../../utils/responses");
-const { NotFoundError } = require("../../utils/errors");
+const { NotFound } = require("http-errors");
+const { delKey, flushAll } = require("../../utils/redis");
+const { CACHE_SETTING } = require("../../utils/constants");
 
 // Get name and rank
 const getAttr = (source) => {
@@ -15,7 +17,7 @@ const getAttr = (source) => {
 async function getSetting() {
   const setting = await Setting.findOne();
   if (!setting) {
-    throw new NotFoundError(`系统设置未找到`);
+    throw new NotFound(`系统设置未找到`);
   }
 
   return setting;
@@ -39,8 +41,20 @@ router.put("/", async function (req, res, next) {
     // 白名单过滤
     const body = getAttr(req.body);
     await setting.update(body);
+    // 清除缓存
+    await delKey(CACHE_SETTING);
 
     success(res, "更新系统设置成功", { setting });
+  } catch (error) {
+    failure(res, error);
+  }
+});
+
+// 清空所有缓存
+router.post("/flush-cache", async function (req, res, next) {
+  try {
+    await flushAll();
+    success(res, "所有缓存已清空");
   } catch (error) {
     failure(res, error);
   }

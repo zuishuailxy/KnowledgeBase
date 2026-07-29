@@ -1,63 +1,30 @@
 const express = require("express");
 const router = express.Router();
 const { success, failure } = require("../../utils/responses");
-const { NotFoundError } = require("../../utils/errors");
-const { Chapter, Course, Category, User } = require("../../models");
-const course = require("../../models/course");
+const { NotFound } = require("http-errors");
+const {
+  getChapterById,
+  getCourseById,
+  getUserById,
+  getChaptersByCourseId,
+} = require("../../utils/cache");
 
 // 根据 id 查询章节详情（包含课程、其余章节、用户信息）
 router.get("/:id", async function (req, res) {
   try {
     const { id } = req.params;
-    // condition = {
-    //   where: { id },
-    //   attributes: {
-    //     exclude: ["CourseId"],
-    //   },
-    //   include: [
-    //     {
-    //       model: Course,
-    //       as: "course",
-    //       attributes: ["id", "name"],
-    //       include: [
-    //         {
-    //           model: User,
-    //           as: "user",
-    //           attributes: ["id", "username", "nickname", "avatar", "company"],
-    //         },
-    //       ],
-    //     },
-    //   ],
-    // };
 
-    const chapter = await Chapter.findOne({
-      attributes: {
-        exclude: ["CourseId"],
-      },
-    });
+    // 1. 查章节
+    const chapter = await getChapterById(id);
+    if (!chapter) throw new NotFound(`ID: ${id} 的章节未找到`);
 
-    if (!chapter) {
-      throw new NotFoundError(`ID: ${id} 的章节未找到`);
-    }
-    // 1.查询章节关联的课程
-    const course = await chapter.getCourse({
-      attributes: ["id", "name", "userId"],
-    });
-    // 2. 根据课程查询关联的用户
-    const user = await course.getUser({
-      attributes: ["id", "username", "nickname", "avatar", "company"],
-    });
+    // 2. 并行查关联数据
+    const [course, chapters] = await Promise.all([
+      getCourseById(chapter.courseId),
+      getChaptersByCourseId(chapter.courseId),
+    ]);
 
-    const chapters = await Chapter.findAll({
-      attributes: {
-        exclude: ["CourseId", "content"],
-        where: { courseId: chapter.courseId },
-        order: [
-          ["rank", "ASC"],
-          ["id", "DESC"],
-        ],
-      },
-    });
+    const user = course ? await getUserById(course.userId) : null;
 
     success(res, "查询章节详情成功", { chapter, course, user, chapters });
   } catch (error) {

@@ -3,7 +3,9 @@ const router = express.Router();
 const { Category, Course } = require("../../models");
 const { Op, where } = require("sequelize");
 const { success, failure } = require("../../utils/responses");
-const { NotFoundError } = require("../../utils/errors");
+const { NotFound, Conflict } = require("http-errors");
+const { delKey } = require("../../utils/redis");
+const { CACHE_CATEGORIES } = require("../../utils/constants");
 
 // Get name and rank
 const getAttr = (source) => {
@@ -28,7 +30,7 @@ async function getCategory(req) {
     where: { id },
   });
   if (!category) {
-    throw new NotFoundError(`ID: ${id}的分类未找到`);
+    throw new NotFound(`ID: ${id}的分类未找到`);
   }
 
   return category;
@@ -102,6 +104,7 @@ router.post("/", async function (req, res, next) {
     const body = getAttr(req.body);
 
     const category = await Category.create(body);
+    await delKey(CACHE_CATEGORIES);
     success(res, "新增分类成功", { category }, 201);
   } catch (error) {
     failure(res, error);
@@ -115,11 +118,13 @@ router.delete("/:id", async function (req, res, next) {
       where: { categoryId: req.params.id },
     });
     if (count > 0) {
-      throw new Error("当前分类有关联课程，无法删除");
+      throw new Conflict("当前分类有关联课程，无法删除");
     }
     const category = await getCategory(req);
     // 2.删除分类
     await category.destroy();
+    await delKey(CACHE_CATEGORIES);
+    await delKey(`category:${req.params.id}`);
     success(res, "删除分类成功");
   } catch (error) {
     failure(res, error);
@@ -133,6 +138,8 @@ router.put("/:id", async function (req, res, next) {
     // 白名单过滤
     const body = getAttr(req.body);
     await category.update(body);
+    await delKey(CACHE_CATEGORIES);
+    await delKey(`category:${req.params.id}`);
 
     success(res, "更新分类成功", { category });
   } catch (error) {

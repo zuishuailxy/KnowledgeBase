@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const { success, failure } = require("../../utils/responses");
-const { NotFoundError } = require("../../utils/errors");
 const { Course, Category, User } = require("../../models");
+const { getKey, setKey } = require("../../utils/redis");
+const { CACHE_HOMEPAGE, HOMEPAGE_TTL } = require("../../utils/constants");
 
 const getOption = () => {
   return {
@@ -24,9 +25,15 @@ const getOption = () => {
   };
 };
 
-/* 查询推荐的课程 */
+/* 首页课程 */
 router.get("/", async function (req, res) {
   try {
+    // 读缓存
+    const cached = await getKey(CACHE_HOMEPAGE);
+    if (cached) {
+      return success(res, "查询推荐课程成功", cached);
+    }
+
     const recommendedCourses = await Course.findAll({
       ...getOption(),
       where: { recommended: true },
@@ -52,11 +59,16 @@ router.get("/", async function (req, res) {
       limit: 10,
     });
 
-    success(res, "查询推荐课程成功", {
+    const data = {
       recommendedCourses,
       likeCountedCourses,
       introductoryCourses,
-    });
+    };
+
+    // 写缓存
+    await setKey(CACHE_HOMEPAGE, data, HOMEPAGE_TTL);
+
+    success(res, "查询推荐课程成功", data);
   } catch (error) {
     failure(res, error);
   }

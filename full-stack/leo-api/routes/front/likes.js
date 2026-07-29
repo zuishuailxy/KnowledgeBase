@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 const { Like, Course, Category, User } = require("../../models");
 const { success, failure } = require("../../utils/responses");
-const { BadRequestError, NotFoundError } = require("../../utils/errors");
+const { BadRequest, NotFound } = require("http-errors");
+const { delKey } = require("../../utils/redis");
+const { CACHE_HOMEPAGE } = require("../../utils/constants");
 
 // 点赞/取消点赞（切换）
 router.post("/", async (req, res) => {
@@ -10,13 +12,13 @@ router.post("/", async (req, res) => {
     const { courseId } = req.body || {};
 
     if (!courseId) {
-      throw new BadRequestError("课程 ID 不能为空");
+      throw new BadRequest("课程 ID 不能为空");
     }
 
     // 检查课程是否存在
     const course = await Course.findByPk(courseId);
     if (!course) {
-      throw new NotFoundError("课程不存在");
+      throw new NotFound("课程不存在");
     }
 
     const userId = req.user.id;
@@ -30,6 +32,7 @@ router.post("/", async (req, res) => {
       // 已点赞 → 取消点赞
       await like.destroy();
       await course.decrement("likesCount");
+      await delKey(CACHE_HOMEPAGE);
       success(res, "取消点赞成功", {
         liked: false,
         likesCount: course.likesCount - 1,
@@ -38,6 +41,7 @@ router.post("/", async (req, res) => {
       // 未点赞 → 点赞
       await Like.create({ courseId, userId });
       await course.increment("likesCount");
+      await delKey(CACHE_HOMEPAGE);
       success(res, "点赞成功", {
         liked: true,
         likesCount: course.likesCount + 1,

@@ -15,6 +15,7 @@ const settingsRouter = require("./routes/front/settings");
 const searchRouter = require("./routes/front/search");
 const authRouter = require("./routes/front/auth");
 const likesRouter = require("./routes/front/likes");
+const captchaRouter = require("./routes/front/captcha");
 
 // 后台
 const adminArticlesRouter = require("./routes/admin/articles");
@@ -48,6 +49,7 @@ app.use("/settings", settingsRouter);
 app.use("/search", searchRouter);
 app.use("/auth", authRouter);
 app.use("/likes", userAuthMiddleware, likesRouter);
+app.use("/captcha", captchaRouter);
 
 // 后台接口
 app.use("/admin/articles", adminAuthMiddleware, adminArticlesRouter);

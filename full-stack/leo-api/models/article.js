@@ -43,10 +43,17 @@ module.exports = (sequelize, DataTypes) => {
           return formatDate(this.getDataValue("updatedAt"));
         },
       },
+      deletedAt: {
+        type: DataTypes.DATE,
+        get() {
+          return formatDate(this.getDataValue("deletedAt"));
+        },
+      },
     },
     {
       sequelize,
       modelName: "Article",
+      paranoid: true,
     },
   );
   return Article;

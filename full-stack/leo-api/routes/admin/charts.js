@@ -3,7 +3,7 @@ const router = express.Router();
 const { User } = require("../../models");
 const { Op, fn, col, where } = require("sequelize");
 const { success, failure } = require("../../utils/responses");
-const { NotFoundError } = require("../../utils/errors");
+const { NotFound } = require("http-errors");
 
 // 查询用户性别
 router.get("/sex", async (req, res) => {

@@ -16,5 +16,16 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
+  redis:
+    image: redis:7-alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    # 开启 AOF 持久化，并限制最大内存为 256MB，超出后按 LRU 策略淘汰键
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+
 volumes:
   mysql_data:
+  redis_data:

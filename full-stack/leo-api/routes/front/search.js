@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Op } = require("sequelize");
 const { success, failure } = require("../../utils/responses");
-const { BadRequestError } = require("../../utils/errors");
+const { BadRequest } = require("http-errors");
 const { Course, Category, User } = require("../../models");
 
 // 根据 name 模糊搜索课程
@@ -11,7 +11,7 @@ router.get("/", async function (req, res) {
     const { name } = req.query;
 
     if (!name) {
-      throw new BadRequestError("搜索关键词不能为空");
+      throw new BadRequest("搜索关键词不能为空");
     }
 
     const currentPage = Math.abs(Number(req.query.currentPage)) || 1;
