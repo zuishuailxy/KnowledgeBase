@@ -8,7 +8,7 @@ const { NotFound, BadRequest, Unauthorized } = require("http-errors");
 const bcrypt = require("bcryptjs");
 require("dotenv").config();
 const validateCaptcha = require("../../middlewares/validate-captcha");
-const { sendMail } = require("../../utils/mail");
+const { sendMailViaQueue } = require("../../utils/mail");
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRES_IN = "8h";
@@ -56,13 +56,13 @@ router.post("/register", validateCaptcha, async (req, res) => {
     const userData = user.toJSON();
     delete userData.password;
 
-    // 发送欢迎邮件（异步，不阻塞响应）
-    sendMail({
+    // 通过消息队列异步发送欢迎邮件
+    sendMailViaQueue({
       to: email,
       subject: "欢迎加入 Leo 教育",
       template: "welcome",
       context: { nickname, username, email },
-    }).catch((err) => console.error("发送欢迎邮件失败:", err.message));
+    }).catch((err) => console.error("邮件入队失败:", err.message));
 
     success(res, "注册成功", { user: userData, token }, 201);
   } catch (error) {

@@ -26,6 +26,21 @@ services:
     # 开启 AOF 持久化，并限制最大内存为 256MB，超出后按 LRU 策略淘汰键
     command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
 
+  rabbitmq:
+    image: rabbitmq:4-management-alpine
+    container_name: rabbitmq
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin123
+    ports:
+      - "5672:5672" # AMQP 协议
+      - "15672:15672" # Web 管理界面
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+      - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+
 volumes:
   mysql_data:
   redis_data:
+  rabbitmq_data:

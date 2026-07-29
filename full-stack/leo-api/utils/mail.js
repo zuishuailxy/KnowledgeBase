@@ -1,6 +1,7 @@
 const nodemailer = require("nodemailer");
 const hbs = require("nodemailer-express-handlebars");
 const path = require("path");
+const { QUEUES, publish } = require("./rabbitmq");
 require("dotenv").config();
 
 const transporter = nodemailer.createTransport({
@@ -53,4 +54,17 @@ async function sendMail({ to, subject, template, context = {} }) {
   return info;
 }
 
-module.exports = { sendMail };
+/**
+ * 通过消息队列发送邮件（异步，不阻塞）
+ */
+async function sendMailViaQueue({ to, subject, template, context = {} }) {
+  await publish(QUEUES.MAIL, {
+    to,
+    subject,
+    template,
+    context,
+  });
+  console.log(`[邮件已入队] ${to}`);
+}
+
+module.exports = { sendMail, sendMailViaQueue };
