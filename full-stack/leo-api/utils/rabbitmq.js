@@ -1,4 +1,5 @@
 const amqp = require("amqplib");
+const logger = require("./logger");
 require("dotenv").config();
 
 const RABBITMQ_URL = process.env.RABBITMQ_URL;
@@ -50,14 +51,14 @@ async function consume(queue, handler) {
         await handler(data, msg);
         ch.ack(msg);
       } catch (err) {
-        console.error(`[MQ] ${queue} 处理失败:`, err.message);
+        logger.error(`[MQ] ${queue} 处理失败:`, err.message);
         ch.nack(msg, false, true); // 重新入队
       }
     },
     { noAck: false },
   );
 
-  console.log(`[MQ] 开始消费: ${queue}`);
+  logger.info(`[MQ] 开始消费: ${queue}`);
 }
 
 /**

@@ -8,6 +8,7 @@ const { QUEUES, consume } = require("../utils/rabbitmq");
 const nodemailer = require("nodemailer");
 const hbs = require("nodemailer-express-handlebars");
 const path = require("path");
+const logger = require("../utils/logger");
 require("dotenv").config();
 
 // 创建独立的 transporter（Worker 专用）
@@ -52,13 +53,13 @@ async function main() {
       },
     });
 
-    console.log(`[邮件已发送] ${info.messageId} → ${to}`);
+    logger.info(`[邮件已发送] ${info.messageId} → ${to}`);
   });
 
-  console.log("[Mail Worker] 已启动");
+  logger.info("[Mail Worker] 已启动");
 }
 
 main().catch((err) => {
-  console.error("[Mail Worker] 启动失败:", err);
+  logger.error("[Mail Worker] 启动失败:", err);
   process.exit(1);
 });

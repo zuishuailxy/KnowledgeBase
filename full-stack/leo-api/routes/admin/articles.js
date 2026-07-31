@@ -5,6 +5,7 @@ const { Op } = require("sequelize");
 const { success, failure } = require("../../utils/responses");
 const { NotFound, BadRequest } = require("http-errors");
 const { delByPattern } = require("../../utils/redis");
+const logger = require("../../utils/logger");
 
 // Get title and content
 const getAttr = (source) => {
@@ -103,7 +104,7 @@ router.post("/", async function (req, res, next) {
     await delByPattern("articles:*");
     success(res, "新增文章成功", { article }, 201);
   } catch (error) {
-    console.log(error);
+    logger.error(error);
     failure(res, error);
   }
 });

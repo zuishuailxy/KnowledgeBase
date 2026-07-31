@@ -39,6 +39,17 @@ const salt = bcrypt.genSaltSync(10);
             createdAt: new Date(),
             updatedAt: new Date(),
           },
+          {
+            email: "vip@leo.cn",
+            username: "vip",
+            password: bcrypt.hashSync("123124", salt),
+            nickname: "大会员",
+            sex: 0,
+            role: 1,
+            membershipExpiresAt: new Date("2027-12-31"),
+            createdAt: new Date(),
+            updatedAt: new Date(),
+          },
         ],
         {},
       );

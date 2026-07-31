@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+
 const cors = require("cors");
 
 // 前台
@@ -16,6 +17,9 @@ const searchRouter = require("./routes/front/search");
 const authRouter = require("./routes/front/auth");
 const likesRouter = require("./routes/front/likes");
 const captchaRouter = require("./routes/front/captcha");
+const membershipsRouter = require("./routes/front/memberships");
+const ordersRouter = require("./routes/front/orders");
+const alipayRouter = require("./routes/front/alipay");
 
 // 后台
 const adminArticlesRouter = require("./routes/admin/articles");
@@ -26,6 +30,9 @@ const adminCourseRouter = require("./routes/admin/courses");
 const adminChapterRouter = require("./routes/admin/chapters");
 const adminChartRouter = require("./routes/admin/charts");
 const adminAuthRouter = require("./routes/admin/auth");
+const adminLogsRouter = require("./routes/admin/logs");
+const adminMembershipsRouter = require("./routes/admin/memberships");
+const adminOrdersRouter = require("./routes/admin/orders");
 // 中间件
 const adminAuthMiddleware = require("./middlewares/admin-auth");
 const userAuthMiddleware = require("./middlewares/user-auth");
@@ -43,13 +50,16 @@ app.use("/", indexRouter);
 app.use("/users", userAuthMiddleware, usersRouter);
 app.use("/categories", categoriesRouter);
 app.use("/courses", coursesRouter);
-app.use("/chapters", chaptersRouter);
+app.use("/chapters", userAuthMiddleware, chaptersRouter);
 app.use("/articles", articlesRouter);
 app.use("/settings", settingsRouter);
 app.use("/search", searchRouter);
 app.use("/auth", authRouter);
 app.use("/likes", userAuthMiddleware, likesRouter);
 app.use("/captcha", captchaRouter);
+app.use("/memberships", membershipsRouter);
+app.use("/orders", userAuthMiddleware, ordersRouter);
+app.use("/alipay", userAuthMiddleware, alipayRouter);
 
 // 后台接口
 app.use("/admin/articles", adminAuthMiddleware, adminArticlesRouter);
@@ -60,5 +70,8 @@ app.use("/admin/courses", adminAuthMiddleware, adminCourseRouter);
 app.use("/admin/chapters", adminAuthMiddleware, adminChapterRouter);
 app.use("/admin/charts", adminAuthMiddleware, adminChartRouter);
 app.use("/admin/auth", adminAuthRouter);
+app.use("/admin/logs", adminAuthMiddleware, adminLogsRouter);
+app.use("/admin/memberships", adminAuthMiddleware, adminMembershipsRouter);
+app.use("/admin/orders", adminAuthMiddleware, adminOrdersRouter);
 
 module.exports = app;

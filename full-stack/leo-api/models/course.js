@@ -85,6 +85,18 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
+      free: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+        validate: {
+          notNull: { msg: "是否免费必须选择。" },
+          isIn: {
+            args: [[true, false]],
+            msg: "是否免费只能是 true 或 false。",
+          },
+        },
+      },
       content: {
         type: DataTypes.TEXT,
       },

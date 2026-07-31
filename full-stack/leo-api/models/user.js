@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "userId",
         as: "likedCourses",
       });
+      models.User.hasMany(models.Order, { as: "orders" });
     }
   }
   User.init(
@@ -98,10 +99,13 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notNull: { msg: "角色必须选择。" },
           isIn: {
-            args: [[0, 100]],
-            msg: "角色只能是 0（普通用户）、或 100（超级管理员）。",
+            args: [[0, 1, 100]],
+            msg: "角色只能是 0（普通用户）、1（会员）或 100（超级管理员）。",
           },
         },
+      },
+      membershipExpiresAt: {
+        type: DataTypes.DATE,
       },
       avatar: {
         type: DataTypes.STRING,

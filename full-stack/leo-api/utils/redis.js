@@ -1,6 +1,7 @@
 // 总结：读多写少 + 不要求实时 → 缓存。写多 + 要求强一致 → 不缓存。
 
 const redis = require("redis");
+const logger = require("./logger");
 
 let client;
 
@@ -11,10 +12,10 @@ async function getClient() {
     url: process.env.REDIS_URL || "redis://127.0.0.1:6379",
   });
 
-  client.on("error", (err) => console.error("Redis 错误:", err));
+  client.on("error", (err) => logger.error("Redis 错误:", err));
 
   await client.connect();
-  console.log("Redis 连接成功");
+  logger.info("Redis 连接成功");
   return client;
 }
 

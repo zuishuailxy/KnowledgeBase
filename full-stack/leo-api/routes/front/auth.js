@@ -9,6 +9,7 @@ const bcrypt = require("bcryptjs");
 require("dotenv").config();
 const validateCaptcha = require("../../middlewares/validate-captcha");
 const { sendMailViaQueue } = require("../../utils/mail");
+const logger = require("../../utils/logger");
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRES_IN = "8h";
@@ -62,11 +63,11 @@ router.post("/register", validateCaptcha, async (req, res) => {
       subject: "欢迎加入 Leo 教育",
       template: "welcome",
       context: { nickname, username, email },
-    }).catch((err) => console.error("邮件入队失败:", err.message));
+    }).catch((err) => logger.error("邮件入队失败:", err.message));
 
     success(res, "注册成功", { user: userData, token }, 201);
   } catch (error) {
-    console.error(error);
+    logger.error(error);
     failure(res, error);
   }
 });

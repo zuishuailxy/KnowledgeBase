@@ -2,6 +2,7 @@ const nodemailer = require("nodemailer");
 const hbs = require("nodemailer-express-handlebars");
 const path = require("path");
 const { QUEUES, publish } = require("./rabbitmq");
+const logger = require("./logger");
 require("dotenv").config();
 
 const transporter = nodemailer.createTransport({
@@ -50,7 +51,7 @@ async function sendMail({ to, subject, template, context = {} }) {
       year: new Date().getFullYear(),
     },
   });
-  console.log(`[邮件已发送] ${info.messageId}`);
+  logger.info(`[邮件已发送] ${info.messageId}`);
   return info;
 }
 
@@ -64,7 +65,7 @@ async function sendMailViaQueue({ to, subject, template, context = {} }) {
     template,
     context,
   });
-  console.log(`[邮件已入队] ${to}`);
+  logger.info(`[邮件已入队] ${to}`);
 }
 
 module.exports = { sendMail, sendMailViaQueue };

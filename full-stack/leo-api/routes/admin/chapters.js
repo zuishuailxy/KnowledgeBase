@@ -3,14 +3,14 @@ const router = express.Router();
 const { Chapter, Course } = require("../../models");
 const { Op, where } = require("sequelize");
 const { success, failure } = require("../../utils/responses");
-const { NotFound, BadRequest } = require("http-errors");
+const { NotFound, BadRequest, Forbidden } = require("http-errors");
 const { delKey } = require("../../utils/redis");
 
 // 白名单过滤
 const getAttr = (source) => {
-  const { courseId, title, content, video, rank } = source;
+  const { courseId, title, content, video, rank, free } = source;
 
-  return { courseId, title, content, video, rank };
+  return { courseId, title, content, video, rank, free };
 };
 
 const getConditions = () => {

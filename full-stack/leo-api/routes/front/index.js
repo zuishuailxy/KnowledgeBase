@@ -4,7 +4,7 @@ const { success, failure } = require("../../utils/responses");
 const { Course, Category, User } = require("../../models");
 const { getKey, setKey } = require("../../utils/redis");
 const { CACHE_HOMEPAGE, HOMEPAGE_TTL } = require("../../utils/constants");
-
+const newLogger = require("../../utils/logger");
 const getOption = () => {
   return {
     attributes: {
@@ -70,6 +70,7 @@ router.get("/", async function (req, res) {
 
     success(res, "查询推荐课程成功", data);
   } catch (error) {
+    newLogger.error(error);
     failure(res, error);
   }
 });

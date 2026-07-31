@@ -9,7 +9,7 @@ const { CACHE_HOMEPAGE } = require("../../utils/constants");
 
 // 白名单过滤
 const getAttr = (source) => {
-  const { categoryId, name, image, recommended, introductory, content } =
+  const { categoryId, name, image, recommended, introductory, content, free } =
     source;
 
   return {
@@ -19,6 +19,7 @@ const getAttr = (source) => {
     recommended,
     introductory,
     content,
+    free,
   };
 };
 

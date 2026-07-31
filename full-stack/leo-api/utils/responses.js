@@ -1,4 +1,5 @@
 const createError = require("http-errors");
+const logger = require("../utils/logger");
 
 function success(res, message, data = {}, code = 200) {
   return res.status(code).json({
@@ -9,25 +10,21 @@ function success(res, message, data = {}, code = 200) {
 }
 
 function failure(res, error) {
-  let statusCode = 500;
-  let errors = ["服务器错误"];
+  let statusCode;
+  let errors;
 
   if (error.name === "SequelizeValidationError") {
     statusCode = 400;
     errors = error.errors.map((e) => e.message);
-  }
-
-  if (
+  } else if (
     error.name === "JsonWebTokenError" ||
     error.name === "TokenExpiredError"
   ) {
     statusCode = 401;
     errors = ["token 错误"];
-  }
-
-  if (error.status && error.expose) {
-    statusCode = error.status;
-    errors = [error.message];
+  } else {
+    statusCode = 500;
+    logger.error(error);
   }
 
   return res.status(statusCode).json({

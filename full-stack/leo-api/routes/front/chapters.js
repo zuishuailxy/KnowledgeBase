@@ -8,6 +8,7 @@ const {
   getUserById,
   getChaptersByCourseId,
 } = require("../../utils/cache");
+const checkUserRole = require("../../middlewares/check-user-role");
 
 // 根据 id 查询章节详情（包含课程、其余章节、用户信息）
 router.get("/:id", async function (req, res) {
@@ -17,6 +18,9 @@ router.get("/:id", async function (req, res) {
     // 1. 查章节
     const chapter = await getChapterById(id);
     if (!chapter) throw new NotFound(`ID: ${id} 的章节未找到`);
+
+    // 检查权限：免费章节可直接访问，非免费需要会员/管理员
+    checkUserRole(req.user, chapter);
 
     // 2. 并行查关联数据
     const [course, chapters] = await Promise.all([
