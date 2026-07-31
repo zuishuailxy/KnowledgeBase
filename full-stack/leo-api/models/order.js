@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
         as: "user",
         foreignKey: "userId",
       });
+      models.Order.belongsTo(models.Membership, {
+        as: "membership",
+        foreignKey: "membershipId",
+      });
     }
   }
   Order.init(
@@ -33,12 +37,30 @@ module.exports = (sequelize, DataTypes) => {
           isInt: { msg: "用户 ID 必须是整数。" },
         },
       },
+      membershipId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Memberships",
+          key: "id",
+        },
+        validate: {
+          notNull: { msg: "会员方案必须选择。" },
+          isInt: { msg: "会员方案 ID 必须是整数。" },
+        },
+      },
       subject: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notNull: { msg: "订单标题必须填写。" },
           notEmpty: { msg: "订单标题不能为空。" },
+        },
+      },
+      membershipMonths: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          return this.getDataValue("membership")?.durationMonths ?? null;
         },
       },
       totalAmount: {
@@ -96,6 +118,9 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Order",
+      // 乐观锁：version 字段由 Sequelize 自动维护，
+      // 并发更新冲突时抛出 OptimisticLockError，防止重复支付更新覆盖数据
+      // version: true,
     },
   );
   return Order;

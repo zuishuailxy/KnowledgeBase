@@ -4,7 +4,10 @@ const { formatDate } = require('../utils/date');
 module.exports = (sequelize, DataTypes) => {
   class Membership extends Model {
     static associate(models) {
-      // define association here
+      models.Membership.hasMany(models.Order, {
+        as: "orders",
+        foreignKey: "membershipId",
+      });
     }
   }
   Membership.init(

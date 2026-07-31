@@ -59,7 +59,10 @@ app.use("/likes", userAuthMiddleware, likesRouter);
 app.use("/captcha", captchaRouter);
 app.use("/memberships", membershipsRouter);
 app.use("/orders", userAuthMiddleware, ordersRouter);
-app.use("/alipay", userAuthMiddleware, alipayRouter);
+// 注意：alipay 路由不再整体挂用户鉴权，
+// 需要登录的接口（/query、/pay）在路由内单独挂 userAuthMiddleware，
+// 而 /return、/notify 是支付宝回调，必须靠验签而非登录态。
+app.use("/alipay", alipayRouter);
 
 // 后台接口
 app.use("/admin/articles", adminAuthMiddleware, adminArticlesRouter);

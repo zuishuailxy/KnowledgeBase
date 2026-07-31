@@ -1,9 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const { Order, User } = require("../../models");
-const { Op } = require("sequelize");
 const { success, failure } = require("../../utils/responses");
-const { NotFound } = require("http-errors");
+const orderService = require("../../services/orderService");
 
 /**
  * 查询所有订单（支持搜索）
@@ -14,27 +12,14 @@ router.get("/", async (req, res) => {
     const { outTradeNo, tradeNo, status, userId } = req.query;
     const currentPage = Math.abs(Number(req.query.currentPage)) || 1;
     const pageSize = Math.abs(Number(req.query.pageSize)) || 10;
-    const offset = (currentPage - 1) * pageSize;
 
-    const where = {};
-    if (outTradeNo) where.outTradeNo = { [Op.like]: `%${outTradeNo}%` };
-    if (tradeNo) where.tradeNo = { [Op.like]: `%${tradeNo}%` };
-    if (status !== undefined && status !== "") where.status = Number(status);
-    if (userId) where.userId = Number(userId);
-
-    const { count, rows } = await Order.findAndCountAll({
-      where,
-      order: [["id", "DESC"]],
-      limit: pageSize,
-      offset,
-      attributes: { exclude: ["UserId"] },
-      include: [
-        {
-          model: User,
-          as: "user",
-          attributes: ["id", "username", "avatar", "nickname"],
-        },
-      ],
+    const { count, rows } = await orderService.listOrders({
+      outTradeNo,
+      tradeNo,
+      status,
+      userId,
+      currentPage,
+      pageSize,
     });
 
     success(res, "查询订单列表成功", {
@@ -52,21 +37,7 @@ router.get("/", async (req, res) => {
 router.get("/:outTradeNo", async (req, res) => {
   try {
     const { outTradeNo } = req.params;
-    const order = await Order.findOne({
-      where: { outTradeNo },
-      attributes: { exclude: ["id", "UserId"] },
-      include: [
-        {
-          model: User,
-          as: "user",
-          attributes: ["id", "username", "avatar", "nickname", "email"],
-        },
-      ],
-    });
-
-    if (!order) {
-      throw new NotFound(`订单号 ${outTradeNo} 的订单未找到`);
-    }
+    const order = await orderService.getOrder(outTradeNo);
 
     success(res, "查询订单详情成功", { order });
   } catch (error) {
