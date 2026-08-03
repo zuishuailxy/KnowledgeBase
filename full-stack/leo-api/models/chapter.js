@@ -1,6 +1,12 @@
 "use strict";
 const { Model } = require("sequelize");
 const { formatDate } = require("../utils/date");
+const logger = require("../utils/logger");
+const {
+  upsertChapter,
+  deleteChapter,
+  upsertCourse,
+} = require("../utils/meilisearch");
 module.exports = (sequelize, DataTypes) => {
   class Chapter extends Model {
     static associate(models) {
@@ -100,6 +106,40 @@ module.exports = (sequelize, DataTypes) => {
             if (!course) {
               throw new Error("所选课程不存在。");
             }
+          }
+        },
+        // 同步 Meilisearch 索引（logger/meilisearch 已在顶部引用，失败只记日志不影响主流程）
+        afterCreate: async (chapter) => {
+          // Course 懒加载：chapter 在 course 之前被加载
+          const { Course } = require("./index");
+          upsertChapter(chapter).catch((err) =>
+            logger.error(`[meilisearch] 章节索引创建同步失败: ${err.message}`),
+          );
+          // chaptersCount 变化 → 同步所属课程
+          const course = await Course.findByPk(chapter.courseId);
+          if (course) {
+            upsertCourse(course).catch((err) =>
+              logger.error(`[meilisearch] 课程索引同步失败: ${err.message}`),
+            );
+          }
+        },
+        afterUpdate: async (chapter) => {
+          upsertChapter(chapter).catch((err) =>
+            logger.error(`[meilisearch] 章节索引更新同步失败: ${err.message}`),
+          );
+        },
+        afterDestroy: async (chapter) => {
+          // Course 懒加载：chapter 在 course 之前被加载
+          const { Course } = require("./index");
+          deleteChapter(chapter.id).catch((err) =>
+            logger.error(`[meilisearch] 章节索引删除同步失败: ${err.message}`),
+          );
+          // chaptersCount 变化 → 同步所属课程
+          const course = await Course.findByPk(chapter.courseId);
+          if (course) {
+            upsertCourse(course).catch((err) =>
+              logger.error(`[meilisearch] 课程索引同步失败: ${err.message}`),
+            );
           }
         },
       },

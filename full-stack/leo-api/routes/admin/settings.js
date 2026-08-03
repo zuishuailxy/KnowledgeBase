@@ -5,6 +5,11 @@ const { success, failure } = require("../../utils/responses");
 const { NotFound } = require("http-errors");
 const { delKey, flushAll } = require("../../utils/redis");
 const { CACHE_SETTING } = require("../../utils/constants");
+const {
+  initIndexes,
+  syncAllCourses,
+  syncAllChapters,
+} = require("../../utils/meilisearch");
 
 // Get name and rank
 const getAttr = (source) => {
@@ -59,4 +64,23 @@ router.post("/flush-cache", async function (req, res, next) {
     failure(res, error);
   }
 });
+
+// 初始化/全量重建 Meilisearch 搜索索引（课程 + 章节）
+router.post("/sync-search-indexes", async function (req, res, next) {
+  try {
+    // 1. 初始化索引配置（可搜索/可排序字段）
+    await initIndexes();
+
+    // 2. 从数据库全量同步课程和章节
+    const [courses, chapters] = await Promise.all([
+      syncAllCourses(),
+      syncAllChapters(),
+    ]);
+
+    success(res, "搜索索引初始化成功", { courses, chapters });
+  } catch (error) {
+    failure(res, error);
+  }
+});
+
 module.exports = router;

@@ -33,6 +33,10 @@ const adminOrdersRouter = require("./admin/orders");
 // 中间件
 const adminAuthMiddleware = require("../middlewares/admin-auth");
 const userAuthMiddleware = require("../middlewares/user-auth");
+const sseAuthMiddleware = require("../middlewares/sse-auth");
+
+// 微信路由
+const wechatRouter = require("./wechat/wechat");
 
 // 前端接口
 router.use("/", indexRouter);
@@ -60,10 +64,14 @@ router.use("/admin/settings", adminAuthMiddleware, adminSettingRouter);
 router.use("/admin/users", adminAuthMiddleware, adminUserRouter);
 router.use("/admin/courses", adminAuthMiddleware, adminCourseRouter);
 router.use("/admin/chapters", adminAuthMiddleware, adminChapterRouter);
-router.use("/admin/charts", adminAuthMiddleware, adminChartRouter);
+// charts 下含 SSE 接口（原生 EventSource 无法带请求头），改用兼容 query token 的鉴权
+router.use("/admin/charts", sseAuthMiddleware, adminChartRouter);
 router.use("/admin/auth", adminAuthRouter);
 router.use("/admin/logs", adminAuthMiddleware, adminLogsRouter);
 router.use("/admin/memberships", adminAuthMiddleware, adminMembershipsRouter);
 router.use("/admin/orders", adminAuthMiddleware, adminOrdersRouter);
+
+// 微信接口
+router.use("/wechat", wechatRouter);
 
 module.exports = router;

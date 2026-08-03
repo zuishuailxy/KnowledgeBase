@@ -1,6 +1,8 @@
 "use strict";
 const { Model, ForeignKeyConstraintError } = require("sequelize");
 const { formatDate } = require("../utils/date");
+const logger = require("../utils/logger");
+const { upsertCourse, deleteCourse } = require("../utils/meilisearch");
 module.exports = (sequelize, DataTypes) => {
   class Course extends Model {
     static associate(models) {
@@ -171,6 +173,22 @@ module.exports = (sequelize, DataTypes) => {
               throw new Error("所选用户不存在。");
             }
           }
+        },
+        // 同步 Meilisearch 索引（logger/meilisearch 已在顶部引用，失败只记日志不影响主流程）
+        afterCreate: async (course) => {
+          upsertCourse(course).catch((err) =>
+            logger.error(`[meilisearch] 课程索引创建同步失败: ${err.message}`),
+          );
+        },
+        afterUpdate: async (course) => {
+          upsertCourse(course).catch((err) =>
+            logger.error(`[meilisearch] 课程索引更新同步失败: ${err.message}`),
+          );
+        },
+        afterDestroy: async (course) => {
+          deleteCourse(course.id).catch((err) =>
+            logger.error(`[meilisearch] 课程索引删除同步失败: ${err.message}`),
+          );
         },
       },
     },

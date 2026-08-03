@@ -3,7 +3,9 @@ const Transport = require("winston-transport");
 module.exports = class SequelizeTransport extends Transport {
   constructor(opts = {}) {
     super(opts);
+    // 兼容两种配置：model（直接传模型）或 getModel（延迟解析，避免模块加载期循环依赖）
     this.model = opts.model;
+    this.getModel = opts.getModel;
   }
 
   async log(info, callback) {
@@ -26,7 +28,13 @@ module.exports = class SequelizeTransport extends Transport {
     };
 
     try {
-      await this.model.create({
+      // 写日志时才解析模型（getModel 支持延迟获取，避免模型加载期循环依赖）
+      const model = this.getModel ? this.getModel() : this.model;
+      if (!model) {
+        console.error("SequelizeTransport error: 未配置 Log 模型");
+        return callback();
+      }
+      await model.create({
         level,
         message,
         meta: JSON.stringify(meta),

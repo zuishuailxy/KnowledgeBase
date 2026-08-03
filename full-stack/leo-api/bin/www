@@ -6,8 +6,13 @@
 
 var app = require("../app");
 // 启动定时任务（node-schedule）
-require("../tasks/check-order"); // 订单超时未支付自动关闭
-require("../tasks/check-membership-expiry"); // 大会员过期自动降级
+// require("../tasks/check-order"); // 订单超时未支付自动关闭
+// require("../tasks/check-membership-expiry"); // 大会员过期自动降级
+// 初始化 Meilisearch 索引配置（显式调用，避免模块加载期副作用）
+var { initIndexes } = require("../utils/meilisearch");
+initIndexes().catch((error) => {
+  console.error("[meilisearch] 索引初始化失败:", error.message);
+});
 var debug = require("debug")("leo-api:server");
 var http = require("http");
 

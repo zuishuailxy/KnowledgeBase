@@ -1,6 +1,7 @@
 const winston = require("winston");
-const db = require("../models");
 const SequelizeTransport = require("./sequelize-transport");
+// 注意：不在此处 require models，避免被模型文件引用时形成循环依赖；
+// Log 模型在 getModel 里运行时懒取。
 
 const logger = winston.createLogger({
   level: "info",
@@ -22,8 +23,8 @@ const logger = winston.createLogger({
     // new winston.transports.File({ filename: "combined.log" }),
     //
     // - Write all logs to the Logs table via Sequelize
-    //
-    new SequelizeTransport({ model: db.Log, level: "warn" }),
+    // getModel 延迟解析：写日志时才取 models.Log，避免与模型加载形成循环依赖
+    new SequelizeTransport({ getModel: () => require("../models").Log, level: "warn" }),
   ],
 });
 

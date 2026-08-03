@@ -5,6 +5,9 @@ const { success, failure } = require("../../utils/responses");
 const { BadRequest, NotFound } = require("http-errors");
 const { delKey } = require("../../utils/redis");
 const { CACHE_HOMEPAGE } = require("../../utils/constants");
+// Sequelize 的 increment 不触发 update 钩子，点赞场景需显式同步索引
+const { upsertCourse } = require("../../utils/meilisearch");
+const logger = require("../../utils/logger");
 
 // 点赞/取消点赞（切换）
 router.post("/", async (req, res) => {
@@ -32,19 +35,29 @@ router.post("/", async (req, res) => {
       // 已点赞 → 取消点赞
       await like.destroy();
       await course.decrement("likesCount");
+      // increment/decrement 不更新实例内存值，reload 后同步索引（likesCount 是可排序字段）
+      await course.reload();
+      upsertCourse(course).catch((err) =>
+        logger.error(`[meilisearch] 课程索引同步失败: ${err.message}`),
+      );
       await delKey(CACHE_HOMEPAGE);
       success(res, "取消点赞成功", {
         liked: false,
-        likesCount: course.likesCount - 1,
+        likesCount: course.likesCount,
       });
     } else {
       // 未点赞 → 点赞
       await Like.create({ courseId, userId });
       await course.increment("likesCount");
+      // increment/decrement 不更新实例内存值，reload 后同步索引（likesCount 是可排序字段）
+      await course.reload();
+      upsertCourse(course).catch((err) =>
+        logger.error(`[meilisearch] 课程索引同步失败: ${err.message}`),
+      );
       await delKey(CACHE_HOMEPAGE);
       success(res, "点赞成功", {
         liked: true,
-        likesCount: course.likesCount + 1,
+        likesCount: course.likesCount,
       });
     }
   } catch (error) {

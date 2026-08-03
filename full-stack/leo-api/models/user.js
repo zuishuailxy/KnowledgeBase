@@ -26,6 +26,18 @@ module.exports = (sequelize, DataTypes) => {
           isEmail: { msg: "邮箱格式不正确。" },
         },
       },
+      // 微信登录 openid：唯一标识微信用户，可空（非微信登录用户没有）
+      openid: {
+        type: DataTypes.STRING(64),
+        allowNull: true,
+        unique: true,
+        validate: {
+          len: {
+            args: [0, 64],
+            msg: "openid 长度不能超过 64 个字符。",
+          },
+        },
+      },
       username: {
         type: DataTypes.STRING,
         allowNull: false,

@@ -3,6 +3,7 @@ const schedule = require("node-schedule");
 const { Op } = require("sequelize");
 const { Order } = require("../models");
 const logger = require("../utils/logger");
+const { notifyOrderChanged } = require("../stream/count-order");
 
 /** 订单超时未支付自动关闭的时长（分钟），可通过环境变量覆盖 */
 const ORDER_EXPIRE_MINUTES = Number(process.env.ORDER_EXPIRE_MINUTES) || 30;
@@ -27,6 +28,8 @@ async function closeExpiredOrders() {
     console.log(
       `[check-order] ${new Date().toISOString()} 已关闭 ${affectedCount} 笔超时未支付订单`,
     );
+    // 通知 SSE 客户端：订单状态变化（待支付 → 已取消），刷新统计
+    notifyOrderChanged();
   }
 }
 

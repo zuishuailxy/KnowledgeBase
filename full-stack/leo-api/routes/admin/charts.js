@@ -4,6 +4,12 @@ const { User } = require("../../models");
 const { Op, fn, col, where } = require("sequelize");
 const { success, failure } = require("../../utils/responses");
 const { NotFound } = require("http-errors");
+const { streamOrderCount } = require("../../stream/count-order");
+
+// SSE 实时推送订单统计数据
+router.get("/stream/order-count", (req, res) => {
+  streamOrderCount(req, res);
+});
 
 // 查询用户性别
 router.get("/sex", async (req, res) => {
@@ -22,6 +28,34 @@ router.get("/sex", async (req, res) => {
     ];
 
     success(res, "查询用户性别成功", { data });
+  } catch (error) {
+    failure(res, error);
+  }
+});
+
+// 查询用户性别
+router.get("/track_orders", async (req, res) => {
+  try {
+    res.setHeader("Content-Type", "text/event-stream");
+    res.setHeader("Cache-Control", "no-cache");
+    res.setHeader("Connection", "keep-alive");
+
+    const sendData = () => {
+      const data = {
+        timestamp: new Date().toISOString(),
+        message: "这是一个实时推送的消息",
+      };
+      res.write(`data: ${JSON.stringify(data)}\n\n`);
+    };
+
+    // 每 5 秒发送一次数据
+    const intervalId = setInterval(sendData, 5000);
+
+    // 当客户端关闭连接时，清除定时器
+    req.on("close", () => {
+      clearInterval(intervalId);
+      res.end();
+    });
   } catch (error) {
     failure(res, error);
   }

@@ -40,7 +40,20 @@ services:
       - rabbitmq_data:/var/lib/rabbitmq
       - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
 
+  meilisearch:
+    image: getmeili/meilisearch:v1.37
+    container_name: meilisearch
+    restart: always
+    environment:
+      MEILI_ENV: development # 生产环境改成 production
+      MEILI_MASTER_KEY: meili_master_key # 搜索 API 的鉴权 key，生产必须换成强密钥
+    ports:
+      - "7700:7700" # Meilisearch HTTP 端口
+    volumes:
+      - meili_data:/meili_data
+
 volumes:
   mysql_data:
   redis_data:
   rabbitmq_data:
+  meili_data:

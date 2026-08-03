@@ -2,6 +2,7 @@ const crypto = require("crypto");
 const { Order, Membership, User, sequelize } = require("../models");
 const { Op } = require("sequelize");
 const { NotFound, BadRequest } = require("http-errors");
+const { notifyOrderChanged } = require("../stream/count-order");
 
 /** 订单返回字段（排除内部字段） */
 const ORDER_ATTRS = { exclude: ["id", "UserId", "membershipId"] };
@@ -117,6 +118,9 @@ async function createMembershipOrder({ userId, membershipId, paymentMethod }) {
     status: 0,
   });
 
+  // 通知 SSE 客户端有新订单，推送最新统计
+  notifyOrderChanged();
+
   const data = order.toJSON();
   delete data.id;
   data.membershipMonths = membership.durationMonths;
@@ -212,6 +216,10 @@ async function updateOrderPaymentStatus({
     await grantMembership(order, { transaction });
 
     await transaction.commit();
+
+    // 订单状态变化（待支付 → 已支付），通知 SSE 客户端刷新统计
+    notifyOrderChanged();
+
     return order;
   } catch (error) {
     await transaction.rollback();

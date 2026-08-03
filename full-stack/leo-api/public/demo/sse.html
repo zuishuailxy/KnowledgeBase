@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>订单实时统计 - SSE + ECharts Demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+          "Microsoft YaHei", sans-serif;
+        background: #f5f6fa;
+        color: #2d3436;
+        padding: 24px;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+      h1 {
+        font-size: 20px;
+      }
+      .status {
+        padding: 4px 12px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .status.connected {
+        background: #d4edda;
+        color: #155724;
+      }
+      .status.connecting {
+        background: #fff3cd;
+        color: #856404;
+      }
+      .status.disconnected {
+        background: #f8d7da;
+        color: #721c24;
+      }
+      .token-box {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-left: auto;
+      }
+      input[type="text"] {
+        width: 300px;
+        padding: 8px 12px;
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        font-size: 13px;
+      }
+      button {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 6px;
+        background: #0984e3;
+        color: #fff;
+        font-size: 13px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #0870c4;
+      }
+      button.secondary {
+        background: #636e72;
+      }
+      button.secondary:hover {
+        background: #556063;
+      }
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+      .card {
+        background: #fff;
+        border-radius: 10px;
+        padding: 16px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      }
+      .card .label {
+        font-size: 13px;
+        color: #636e72;
+      }
+      .card .value {
+        font-size: 28px;
+        font-weight: 700;
+        margin-top: 6px;
+      }
+      .card .value.total {
+        color: #2d3436;
+      }
+      .card .value.pending {
+        color: #fdcb6e;
+      }
+      .card .value.paid {
+        color: #00b894;
+      }
+      .card .value.cancelled {
+        color: #d63031;
+      }
+      .charts {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 16px;
+      }
+      .chart-box {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        padding: 8px;
+      }
+      .chart {
+        width: 100%;
+        height: 380px;
+      }
+      .tip {
+        margin-top: 16px;
+        font-size: 12px;
+        color: #b2bec3;
+      }
+      @media (max-width: 900px) {
+        .charts {
+          grid-template-columns: 1fr;
+        }
+        .cards {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>📊 订单实时统计</h1>
+        <span id="status" class="status connecting">未连接</span>
+        <div class="token-box">
+          <input
+            id="token"
+            type="text"
+            placeholder="请输入管理员 token（?token= 方式鉴权）"
+          />
+          <button id="connectBtn">连接</button>
+          <button id="disconnectBtn" class="secondary">断开</button>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="label">订单总数</div>
+          <div class="value total" id="v-total">-</div>
+        </div>
+        <div class="card">
+          <div class="label">待支付</div>
+          <div class="value pending" id="v-pending">-</div>
+        </div>
+        <div class="card">
+          <div class="label">已支付</div>
+          <div class="value paid" id="v-paid">-</div>
+        </div>
+        <div class="card">
+          <div class="label">已取消</div>
+          <div class="value cancelled" id="v-cancelled">-</div>
+        </div>
+      </div>
+
+      <div class="charts">
+        <div class="chart-box"><div id="trendChart" class="chart"></div></div>
+        <div class="chart-box"><div id="pieChart" class="chart"></div></div>
+      </div>
+
+      <p class="tip">
+        数据来源：SSE 接口
+        <code>/api/admin/charts/stream/order-count?token=xxx</code>
+        （新建订单 / 支付成功 / 定时关单时实时推送）
+      </p>
+    </div>
+
+    <script>
+      // ---------- 配置 ----------
+      const SSE_URL = "/admin/charts/stream/order-count";
+      const MAX_POINTS = 30; // 折线图最多保留 30 个点
+
+      // ---------- 状态 ----------
+      let es = null;
+      const timeLabels = [];
+      const seriesData = { total: [], pending: [], paid: [], cancelled: [] };
+
+      // ---------- ECharts 初始化 ----------
+      const trendChart = echarts.init(document.getElementById("trendChart"));
+      const pieChart = echarts.init(document.getElementById("pieChart"));
+
+      const TREND_OPTION = {
+        title: {
+          text: "订单趋势（实时）",
+          left: 12,
+          textStyle: { fontSize: 15 },
+        },
+        tooltip: { trigger: "axis" },
+        legend: { top: 0, right: 12 },
+        grid: { left: 48, right: 20, top: 48, bottom: 32 },
+        xAxis: { type: "category", data: timeLabels, boundaryGap: false },
+        yAxis: { type: "value", minInterval: 1 },
+        series: [
+          {
+            name: "总订单",
+            type: "line",
+            smooth: true,
+            data: seriesData.total,
+          },
+          {
+            name: "待支付",
+            type: "line",
+            smooth: true,
+            data: seriesData.pending,
+          },
+          { name: "已支付", type: "line", smooth: true, data: seriesData.paid },
+          {
+            name: "已取消",
+            type: "line",
+            smooth: true,
+            data: seriesData.cancelled,
+          },
+        ],
+      };
+      trendChart.setOption(TREND_OPTION);
+
+      const PIE_OPTION = {
+        title: { text: "当前分布", left: 12, textStyle: { fontSize: 15 } },
+        tooltip: { trigger: "item", formatter: "{b}: {c} ({d}%)" },
+        legend: { bottom: 0 },
+        series: [
+          {
+            type: "pie",
+            radius: ["40%", "68%"],
+            center: ["50%", "46%"],
+            data: [
+              { name: "待支付", value: 0, itemStyle: { color: "#fdcb6e" } },
+              { name: "已支付", value: 0, itemStyle: { color: "#00b894" } },
+              { name: "已取消", value: 0, itemStyle: { color: "#d63031" } },
+            ],
+          },
+        ],
+      };
+      pieChart.setOption(PIE_OPTION);
+
+      // ---------- UI 更新 ----------
+      function setStatus(text, cls) {
+        const el = document.getElementById("status");
+        el.textContent = text;
+        el.className = "status " + cls;
+      }
+
+      function updateCards(d) {
+        document.getElementById("v-total").textContent = d.total;
+        document.getElementById("v-pending").textContent = d.pending;
+        document.getElementById("v-paid").textContent = d.paid;
+        document.getElementById("v-cancelled").textContent = d.cancelled;
+      }
+
+      function updateCharts(d) {
+        // 折线图追加一个点
+        const t = new Date(d.timestamp).toLocaleTimeString();
+        timeLabels.push(t);
+        seriesData.total.push(d.total);
+        seriesData.pending.push(d.pending);
+        seriesData.paid.push(d.paid);
+        seriesData.cancelled.push(d.cancelled);
+
+        if (timeLabels.length > MAX_POINTS) {
+          timeLabels.shift();
+          Object.values(seriesData).forEach((arr) => arr.shift());
+        }
+        trendChart.setOption({
+          xAxis: { data: timeLabels },
+          series: [
+            { data: seriesData.total },
+            { data: seriesData.pending },
+            { data: seriesData.paid },
+            { data: seriesData.cancelled },
+          ],
+        });
+
+        // 环图显示当前分布
+        pieChart.setOption({
+          series: [
+            {
+              data: [
+                { name: "待支付", value: d.pending },
+                { name: "已支付", value: d.paid },
+                { name: "已取消", value: d.cancelled },
+              ],
+            },
+          ],
+        });
+      }
+
+      // ---------- SSE ----------
+      function connect() {
+        const token = document.getElementById("token").value.trim();
+        if (!token) {
+          alert("请先输入管理员 token");
+          return;
+        }
+        disconnect();
+
+        setStatus("连接中...", "connecting");
+        es = new EventSource(SSE_URL + "?token=" + encodeURIComponent(token));
+
+        es.onopen = () => setStatus("已连接", "connected");
+
+        es.onmessage = (e) => {
+          try {
+            const data = JSON.parse(e.data);
+            updateCards(data);
+            updateCharts(data);
+          } catch (err) {
+            console.error("解析 SSE 数据失败:", err);
+          }
+        };
+
+        es.onerror = () => {
+          // EventSource 会自动重连；这里只展示状态
+          if (es && es.readyState === EventSource.CLOSED) {
+            setStatus("连接已断开", "disconnected");
+          } else {
+            setStatus("重连中...", "connecting");
+          }
+        };
+      }
+
+      function disconnect() {
+        if (es) {
+          es.close();
+          es = null;
+        }
+        setStatus("未连接", "disconnected");
+      }
+
+      // ---------- 事件绑定 & 窗口自适应 ----------
+      document.getElementById("connectBtn").addEventListener("click", connect);
+      document
+        .getElementById("disconnectBtn")
+        .addEventListener("click", disconnect);
+      window.addEventListener("resize", () => {
+        trendChart.resize();
+        pieChart.resize();
+      });
+    </script>
+  </body>
+</html>
