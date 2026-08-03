@@ -5,6 +5,7 @@
  */
 
 var app = require("../app");
+
 // 启动定时任务（node-schedule）
 // require("../tasks/check-order"); // 订单超时未支付自动关闭
 // require("../tasks/check-membership-expiry"); // 大会员过期自动降级
