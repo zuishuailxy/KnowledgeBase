@@ -4,98 +4,106 @@ import {
   SystemMessage,
   ToolMessage,
 } from "@langchain/core/messages";
-import fs from "node:fs/promises";
-import { z } from "zod";
-import { createModel } from "./create-mode.mjs";
+import { createModel } from "./create-model.mjs";
+import { tools } from "./tools.mjs";
+import { Chalk } from "chalk";
 
-const model = createModel(0.2);
-const MAX_ITERATIONS = 5;
+// chalk v5+ 移除了 chalk.Instance，改用具名导出的 Chalk 类创建自定义实例
+const cl = new Chalk({ level: 3 });
+
+const model = createModel(0);
+const MAX_ITERATIONS = 30;
 let iterations = 0;
 
-// define tool
-// 注意：@langchain/core v1 的 tool 签名是 tool(func, fields) 两个参数
-const fileReadTool = tool(
-  async ({ path }) => {
-    const content = await fs.readFile(path, "utf-8");
+const model_with_tools = model.bindTools(tools);
+
+const prompt = `你是一个项目管理助手，使用工具完成任务。
+当前工作目录: ${process.cwd()}
+
+工具：
+1. read_file: 读取文件
+2. write_file: 写入文件
+3. execute_command: 执行命令
+
+重要规则 - execute_command：
+- cwd 参数会自动切换到指定目录
+- 当使用 cwd 时，绝对不要在 command 中使用 cd
+- 错误示例: { command: "cd react-todo-app && pnpm install", cwd: "react-todo-app" }
+这是错误的！因为 cwd 已经在 react-todo-app 目录了，再 cd react-todo-app 会找不到目录
+- 正确示例: { command: "pnpm install", cwd: "react-todo-app" }
+这样就对了！cwd 已经切换到 react-todo-app，直接执行命令即可
+
+回复要简洁，只说做了什么`;
+
+async function run(query) {
+  const messages = [new SystemMessage(prompt), new HumanMessage(query)];
+  for (let i = 0; i < MAX_ITERATIONS; i++) {
     console.log(
-      `[Tool] Read file content from ${path}, the length is`,
-      content.length,
+      `\n[Iteration ${i + 1}] Invoking model with messages:`,
+      messages,
     );
-    return content;
-  },
-  {
-    name: "file_read",
-    description:
-      "当用户需要读取文件内容，查看代码，分析文件内容时使用此工具。输入为文件路径(相对或者绝对路径)，输出为文件内容。",
-    schema: z.object({
-      path: z.string().describe("The path to the file to read"),
-    }),
-  },
-);
+    const response = await model_with_tools.invoke(messages);
+    messages.push(response);
 
-const Tools = [fileReadTool];
-const model_with_tools = model.bindTools(Tools);
+    if (!response.tool_calls || response.tool_calls.length === 0) {
+      console.log(
+        `[Final Response] No more tool calls, final response:`,
+        response.content,
+      );
+      return response.content;
+    }
 
-const prompt = `你是一个代码助手，可以使用工具读取文件并解释代码。
-工作流程：
-1. 当用户要求读取文件时，立即调用工具
-2. 等待工具返回文件内容
-3. 读取文件内容后，分析并给出解释
-
-可用工具：
-- file_read: 读取文件内容，输入为文件路径，输出为文件内容
-`;
-
-const messages = [
-  new SystemMessage(prompt),
-  new HumanMessage(
-    "请读取 /Users/magicyoung/Documents/GitHub/KnowledgeBase/Agent/tool-test/src/tool-file-read.mjs 文件内容,然后解释内容",
-  ),
-];
-
-let response = await model_with_tools.invoke(messages);
-messages.push(response);
-
-while (response.tool_calls?.length > 0) {
-  if (iterations >= MAX_ITERATIONS) {
-    console.log("[Tool Call] Reached max iterations, stopping tool calls.");
-    break;
-  }
-  iterations++;
-
-  console.log("[Tool Call] Invoking tool:", response.tool_calls[0].name);
-
-  // 逐个调用工具：单个失败不回滚全部，错误信息回喂给模型
-  const toolResults = await Promise.all(
-    response.tool_calls.map(async (call) => {
-      const tool = Tools.find((t) => t.name === call.name);
+    // 逐个调用工具：单个失败不回滚全部，错误信息回喂给模型
+    for (const call of response.tool_calls) {
+      const tool = tools.find((t) => t.name === call.name);
       if (!tool) {
-        return { ok: false, error: `Tool ${call.name} not found` };
+        console.error(`[Tool Call] Tool ${call.name} not found`);
+        messages.push(
+          new ToolMessage({
+            content: `工具 ${call.name} 未找到`,
+            tool_call_id: call.id,
+          }),
+        );
+        continue;
       }
-      console.log("[Tool Call] Tool invoke:", call.name, call.args);
-      try {
-        const result = await tool.invoke(call.args);
-        return { ok: true, result };
-      } catch (err) {
-        return { ok: false, error: err.message };
-      }
-    }),
-  );
-
-  // ToolMessage 必须带 tool_call_id，模型才知道结果对应哪次调用
-  response.tool_calls.forEach((call, index) => {
-    const r = toolResults[index];
-    messages.push(
-      new ToolMessage({
-        content: r.ok ? r.result : `工具执行失败: ${r.error}`,
-        tool_call_id: call.id,
-      }),
-    );
-  });
-
-  // 关键：把工具结果发给模型，拿它的下一轮回复（必须在循环内更新 response）
-  response = await model_with_tools.invoke(messages);
+      const toolResult = await tool.invoke(call.args);
+      messages.push(
+        new ToolMessage({
+          content: toolResult,
+          tool_call_id: call.id,
+        }),
+      );
+    }
+  }
+  return messages[messages.length - 1].content;
 }
 
-// 循环结束后打印最终答案（无工具调用时也会走到这里）
-console.log("最终回复:", response.content);
+const case1 = `创建一个功能丰富的 React TodoList 应用：
+
+1. 创建项目：echo -e "n\nn" | pnpm create vite react-todo-app --template react-ts
+2. 修改 src/App.tsx，实现完整功能的 TodoList：
+ - 添加、删除、编辑、标记完成
+ - 分类筛选（全部/进行中/已完成）
+ - 统计信息显示
+ - localStorage 数据持久化
+3. 添加复杂样式：
+ - 渐变背景（蓝到紫）
+ - 卡片阴影、圆角
+ - 悬停效果
+4. 添加动画：
+ - 添加/删除时的过渡动画
+ - 使用 CSS transitions
+5. 列出目录确认
+
+注意：使用 pnpm，功能要完整，样式要美观，要有动画效果
+
+之后在 react-todo-app 项目中：
+1. 使用 pnpm install 安装依赖
+2. 使用 pnpm run dev 启动服务器
+`;
+
+try {
+  await run(case1);
+} catch (error) {
+  console.error(cl.red("[Error]"), error);
+}
