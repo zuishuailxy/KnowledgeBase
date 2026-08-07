@@ -61,7 +61,13 @@ async function main() {
     await client.connectPromise;
     console.log("connect done");
 
-    // /1. Create collection with schema
+    // 0. 删除旧集合（如果存在），确保干净重建，避免脏数据/旧 schema 问题
+    await client
+      .dropCollection({ collection_name: COLLECTION_NAME })
+      .catch(() => {});
+    console.log("旧集合已清理");
+
+    // 1. Create collection with schema
     await client.createCollection({
       collection_name: COLLECTION_NAME,
       fields: [
@@ -95,11 +101,7 @@ async function main() {
     });
     console.log("collection created");
 
-    // 2. Load into memory (required before search/query)
-    await client.loadCollection({ collection_name: COLLECTION_NAME });
-    console.log("collection loaded ");
-
-    // 3. Insert data
+    // 2. Insert data（先插入数据）
     const diaryData = await Promise.all(
       diaryContents.map(async (data) => ({
         ...data,
@@ -110,8 +112,17 @@ async function main() {
       collection_name: COLLECTION_NAME,
       data: diaryData,
     });
+    console.log(JSON.stringify(insertResult, null, 2));
 
-    // // 4. Search
+    // 3. Flush：持久化数据并构建索引（不 flush 的话数据只在增长段，索引覆盖不全）
+    await client.flush({ collection_names: [COLLECTION_NAME] });
+    console.log("flush done");
+
+    // 4. Load into memory（搜索/查询前必须加载）
+    await client.loadCollection({ collection_name: COLLECTION_NAME });
+    console.log("collection loaded");
+
+    // 4. Search
     // const results = await client.search({
     //   collection_name: COLLECTION_NAME,
     //   data: [
@@ -121,9 +132,9 @@ async function main() {
     //     )),
     //   ],
     //   limit: 10,
-    //   output_fields: ["text"],
+    //   output_fields: ["content"],
     // });
-    console.log(JSON.stringify(insertResult, null, 2));
+    // console.log("query:", results);
   } catch (error) {
     console.error("Error:", error);
   }
