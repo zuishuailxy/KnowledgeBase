@@ -1,40 +1,47 @@
-import { OpenAIEmbeddings } from "@langchain/openai";
-import "dotenv/config";
+// 本地 embedding 模型（BAAI/bge-small-zh-v1.5, ONNX, 512 维）
+// 使用 @huggingface/transformers 在本地运行，无需调用外部 API
+import { pipeline, env } from "@huggingface/transformers";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-// 注意：ChatOpenAI 是"对话模型"封装，没有 .embeddings 属性
-// 取 embedding 应该用 @langchain/openai 的 OpenAIEmbeddings 类
+// 禁止远程下载，强制使用本地模型文件（避免访问 huggingface.co）
+env.allowRemoteModels = false;
 
-// 按 dimensions 缓存实例，避免每次调用都重新创建
-const embeddingCache = new Map();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const MODEL_DIR = path.join(
+  __dirname,
+  "..",
+  "models",
+  "Xenova",
+  "bge-small-zh-v1.5",
+);
+const DEFAULT_DIMENSIONS = 512;
 
-const createEmbedding = (dimensions = 1024) => {
-  if (!embeddingCache.has(dimensions)) {
-    embeddingCache.set(
-      dimensions,
-      new OpenAIEmbeddings({
-        model: process.env.QWEN_EMBEDDING_MODEL,
-        apiKey: process.env.API_KEY,
-        configuration: {
-          baseURL: process.env.BASE_URL,
-        },
-        batchSize: 10, // Qwen Embedding API 单次最多 10 条
-        dimensions,
-      }),
-    );
+// 缓存 feature-extractor，避免每次调用都重新加载模型
+let extractorPromise;
+
+async function getExtractor() {
+  if (!extractorPromise) {
+    console.log("加载本地 embedding 模型（bge-small-zh-v1.5）...");
+    extractorPromise = pipeline("feature-extraction", MODEL_DIR, {
+      dtype: "q8", // 使用 int8 量化模型，CPU 推理更快
+    });
   }
-  return embeddingCache.get(dimensions);
-};
+  return extractorPromise;
+}
 
-async function getEmbedding(query, dimensions) {
+async function getEmbedding(text, dimensions = DEFAULT_DIMENSIONS) {
   try {
-    const embeddings = createEmbedding(dimensions);
-    const vector = await embeddings.embedQuery(query);
-    // console.log("Embedding 维度:", vector.length);
-
-    return vector;
+    const extractor = await getExtractor();
+    const output = await extractor(text, {
+      pooling: "mean", // BGE 模型使用 mean pooling
+      normalize: true, // 归一化向量，配合 COSINE 距离
+    });
+    return Array.from(output.data).slice(0, dimensions);
   } catch (error) {
     console.error("Error:", error);
+    throw error;
   }
 }
 
-export { getEmbedding, createEmbedding };
+export { getEmbedding };

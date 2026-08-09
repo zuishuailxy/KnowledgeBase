@@ -1,5 +1,4 @@
 import { parse } from "path";
-import { get_data_from_milvus } from "./query.js";
 import { createModel } from "./create-model.mjs";
 import { getEmbedding } from "./get-embedding.mjs";
 import { EPubLoader } from "@langchain/community/document_loaders/fs/epub";
@@ -8,7 +7,7 @@ import { DataType, MetricType } from "@zilliz/milvus2-sdk-node";
 import { getMilvusClient } from "./get-milvus-client.js";
 
 const COLLECTION_NAME = "ebook_collection";
-const VECTOR_DIM = 1024;
+const VECTOR_DIM = 512; // 本地 bge-small-zh-v1.5 输出 512 维
 const CHUNK_SIZE = 500; // 拆分到 500 个字符
 const CHUNK_OVER_LAP = 50;
 const EPUB_FILE = "./天龙八部.epub";
@@ -18,18 +17,21 @@ const client = getMilvusClient();
 const BOOK_NAME = parse(EPUB_FILE).name;
 console.log(BOOK_NAME);
 
-// 创建数据库
-async function createCollection(params) {
+// 创建数据库（每次运行前删除旧集合重建，避免残留幽灵数据导致搜索异常）
+async function createCollection() {
   try {
     console.log("start connecting");
     await client.connectPromise;
     console.log("connect done");
 
-    // 检查集合是否存在（SDK v3 返回 { status, value }，需取 .value）
-    const hasCollection = await client.hasCollection({
-      collection_name: COLLECTION_NAME,
-    });
-    if (hasCollection.value) return;
+    // 释放并删除旧集合（如果存在），确保干净重建
+    await client
+      .releaseCollection({ collection_name: COLLECTION_NAME })
+      .catch(() => {});
+    await client
+      .dropCollection({ collection_name: COLLECTION_NAME })
+      .catch(() => console.log("旧集合不存在，无需删除"));
+    console.log("旧集合已清理");
 
     console.log("创建集合...");
     await client.createCollection({
@@ -58,10 +60,24 @@ async function createCollection(params) {
       ],
     });
 
-    console.log("旧集合已清理");
+    console.log("集合创建完成");
   } catch (error) {
-    console.error("创建 collection 失败");
+    console.error("创建 collection 失败", error);
+    throw error;
   }
+}
+
+// 限制并发：每批最多 limit 个任务，避免触发 API 限流
+async function mapWithConcurrency(items, limit, fn) {
+  const results = [];
+  for (let i = 0; i < items.length; i += limit) {
+    const batch = items.slice(i, i + limit);
+    const batchResults = await Promise.all(
+      batch.map((item, j) => fn(item, i + j)),
+    );
+    results.push(...batchResults);
+  }
+  return results;
 }
 
 // batch insert data into vector database
@@ -69,9 +85,11 @@ async function batchInsertChunks(chunks, bookId, chapterNum) {
   try {
     if (chunks.length === 0) return 0;
 
-    // embedding doc chunk and insert into database
-    const insertData = await Promise.all(
-      chunks.map(async (chunk, chunkIndex) => {
+    // embedding doc chunk（每次并发 10 个，避免触发 API 限流）
+    const insertData = await mapWithConcurrency(
+      chunks,
+      10,
+      async (chunk, chunkIndex) => {
         const vector = await getEmbedding(chunk);
 
         return {
@@ -83,7 +101,7 @@ async function batchInsertChunks(chunks, bookId, chapterNum) {
           content: chunk,
           vector,
         };
-      }),
+      },
     );
 
     // insert into milvus
@@ -124,6 +142,12 @@ async function loadAndProcessEpub(bookId) {
       const chapterContent = chapter.pageContent;
       console.log(`processing ${i + 1} / ${docLength}`);
 
+      // 过滤过短章节（EPUB 的封面、扉页、版权页、注释等元信息）
+      if (!chapterContent || chapterContent.trim().length < 50) {
+        console.log("skip short chapter (元信息/空章节)");
+        continue;
+      }
+
       // use splitter to split again
       const chunks = await textSplitter.splitText(chapterContent);
       console.log(`split into ${chunks.length} parts`);
@@ -141,6 +165,11 @@ async function loadAndProcessEpub(bookId) {
       );
     }
 
+    // 所有章节插入完成后统一 flush，持久化数据（避免每章 flush 的性能开销）
+    console.log("所有章节插入完成，执行 flush...");
+    await client.flush({ collection_names: [COLLECTION_NAME] });
+    console.log("flush done");
+
     return totalInserted;
   } catch (error) {
     console.error("handle epub error", error);
@@ -148,7 +177,7 @@ async function loadAndProcessEpub(bookId) {
   }
 }
 
-async function main(params) {
+async function main() {
   try {
     console.log("=".repeat(80));
     console.log("电子书处理程序");
@@ -159,11 +188,11 @@ async function main(params) {
     await client.connectPromise;
     console.log("✓ 已连接\n");
 
-    // 设置 book_id（
+    // 设置 book_id
     const bookId = 1;
 
-    // 确保集合存在
-    await createCollection(bookId);
+    // 确保集合存在（会先清理旧数据，避免幽灵数据）
+    await createCollection();
 
     // 加载和处理 EPUB 文件（流式处理，边处理边插入）
     await loadAndProcessEpub(bookId);

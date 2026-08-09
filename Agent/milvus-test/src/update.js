@@ -2,7 +2,7 @@ import { getEmbedding } from "./get-embedding.mjs";
 import { getMilvusClient } from "./get-milvus-client.js";
 
 const COLLECTION_NAME = "test_collection";
-const VECTOR_DIM = 1024;
+const VECTOR_DIM = 512; // 本地 bge-small-zh-v1.5 输出 512 维
 const client = getMilvusClient();
 
 const TARGET_ID = "diary_001";

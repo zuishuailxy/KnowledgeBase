@@ -1,0 +1,17 @@
+# 依赖
+node_modules/
+
+# 环境变量（含 API 密钥，切勿提交）
+.env
+
+# 本地模型（体积大，通过脚本下载）
+models/
+
+# Milvus 数据卷
+volumes/
+
+# 日志
+*.log
+
+# macOS
+.DS_Store

@@ -2,7 +2,7 @@ import { get_data_from_milvus } from "./query.js";
 import { createModel } from "./create-model.mjs";
 
 const COLLECTION_NAME = "test_collection";
-const VECTOR_DIM = 1024;
+const VECTOR_DIM = 512; // 本地 bge-small-zh-v1.5 输出 512 维
 const LLM = createModel();
 
 const dynamicPrompt = (content) => {

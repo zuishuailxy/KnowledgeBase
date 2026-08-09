@@ -11,6 +11,10 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@huggingface/hub": "^2.15.0",
+    "@huggingface/transformers": "^4.2.0",
+    "@img/sharp-darwin-arm64": "^0.34.5",
+    "@img/sharp-libvips-darwin-arm64": "^1.2.4",
     "@langchain/community": "^1.1.29",
     "@langchain/openai": "^1.5.5",
     "@langchain/textsplitters": "^1.0.1",
