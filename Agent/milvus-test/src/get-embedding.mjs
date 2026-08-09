@@ -29,7 +29,7 @@ async function getEmbedding(query, dimensions) {
   try {
     const embeddings = createEmbedding(dimensions);
     const vector = await embeddings.embedQuery(query);
-    console.log("Embedding 维度:", vector.length);
+    // console.log("Embedding 维度:", vector.length);
 
     return vector;
   } catch (error) {
