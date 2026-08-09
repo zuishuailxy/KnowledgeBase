@@ -30,3 +30,4 @@ PostgreSQL/postgres-data
 *.pyc
 *.env
 **/volumes/**
+*.epub
