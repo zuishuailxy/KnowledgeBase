@@ -1,0 +1,14 @@
+{
+  "name": "agent-utils",
+  "version": "1.0.0",
+  "description": "Agent 通用工具模块（create-model / get-embedding / get-milvus-client）",
+  "private": true,
+  "type": "module",
+  "main": "get-milvus-client.js",
+  "dependencies": {
+    "@huggingface/transformers": "^4.2.0",
+    "@langchain/openai": "^1.5.6",
+    "@zilliz/milvus2-sdk-node": "^3.0.4",
+    "dotenv": "^17.4.2"
+  }
+}

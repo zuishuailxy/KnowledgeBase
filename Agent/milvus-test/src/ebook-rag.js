@@ -1,6 +1,6 @@
 import { DataType, MetricType } from "@zilliz/milvus2-sdk-node";
-import { getMilvusClient } from "./get-milvus-client.js";
-import { getEmbedding } from "./get-embedding.mjs";
+import { getMilvusClient } from "../../utils/get-milvus-client.js";
+import { getEmbedding } from "../../utils/get-embedding.mjs";
 import { createModel } from "./create-model.mjs";
 import { retrieveEbookRelevantContent } from "./ebook-query.js";
 

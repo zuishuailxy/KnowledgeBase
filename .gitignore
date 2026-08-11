@@ -13,6 +13,9 @@ dist
 dist-ssr
 *.local
 
+# AI 模型（体积大，通过脚本从 Hugging Face 下载）
+Agent/models/
+
 *.jpg
 *.xlsx
 # Editor directories and files

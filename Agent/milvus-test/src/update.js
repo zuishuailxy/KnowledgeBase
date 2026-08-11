@@ -1,5 +1,5 @@
-import { getEmbedding } from "./get-embedding.mjs";
-import { getMilvusClient } from "./get-milvus-client.js";
+import { getEmbedding } from "../../utils/get-embedding.mjs";
+import { getMilvusClient } from "../../utils/get-milvus-client.js";
 
 const COLLECTION_NAME = "test_collection";
 const VECTOR_DIM = 512; // 本地 bge-small-zh-v1.5 输出 512 维

@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 env.allowRemoteModels = false;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+// models 目录在 Agent 根目录（本文件在 Agent/utils，上跳一级到 Agent）
 const MODEL_DIR = path.join(
   __dirname,
   "..",

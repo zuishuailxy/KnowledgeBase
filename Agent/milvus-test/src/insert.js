@@ -1,4 +1,4 @@
-import { getEmbedding } from "./get-embedding.mjs";
+import { getEmbedding } from "../../utils/get-embedding.mjs";
 import {
   MilvusClient,
   DataType,

@@ -1,10 +1,10 @@
 import { parse } from "path";
 import { createModel } from "./create-model.mjs";
-import { getEmbedding } from "./get-embedding.mjs";
+import { getEmbedding } from "../../utils/get-embedding.mjs";
 import { EPubLoader } from "@langchain/community/document_loaders/fs/epub";
 import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 import { DataType, MetricType } from "@zilliz/milvus2-sdk-node";
-import { getMilvusClient } from "./get-milvus-client.js";
+import { getMilvusClient } from "../../utils/get-milvus-client.js";
 
 const COLLECTION_NAME = "ebook_collection";
 const VECTOR_DIM = 512; // 本地 bge-small-zh-v1.5 输出 512 维

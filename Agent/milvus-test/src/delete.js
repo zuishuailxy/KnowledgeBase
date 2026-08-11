@@ -1,4 +1,4 @@
-import { getMilvusClient } from "./get-milvus-client.js";
+import { getMilvusClient } from "../../utils/get-milvus-client.js";
 
 const COLLECTION_NAME = "test_collection";
 const client = getMilvusClient();

@@ -1,6 +1,6 @@
 import { DataType, MetricType } from "@zilliz/milvus2-sdk-node";
-import { getMilvusClient } from "./get-milvus-client.js";
-import { getEmbedding } from "./get-embedding.mjs";
+import { getMilvusClient } from "../../utils/get-milvus-client.js";
+import { getEmbedding } from "../../utils/get-embedding.mjs";
 
 const COLLECTION_NAME = "ebook_collection";
 
