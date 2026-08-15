@@ -16,6 +16,10 @@ dist-ssr
 # AI 模型（体积大，通过脚本从 Hugging Face 下载）
 Agent/models/
 
+# Python 虚拟环境
+.venv/
+venv/
+
 *.jpg
 *.xlsx
 # Editor directories and files

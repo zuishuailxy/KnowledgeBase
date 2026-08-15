@@ -1,0 +1,9 @@
+{
+  "name": "md-to-html-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "marked": "^15.0.0"
+  }
+}

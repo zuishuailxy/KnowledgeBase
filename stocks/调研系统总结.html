@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📊 A 股个人投资调研系统 · 分析总结</title>
+<style>
+/* ===== md-to-html 精美样式模板 ===== */
+:root {
+  --bg: #f5f6fa;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --accent-2: #7c3aed;
+  --border: #e5e7eb;
+  --code-bg: #0f172a;
+  --code-text: #e2e8f0;
+  --quote-border: #3b82f6;
+  --radius: 14px;
+  --shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(180deg, #eef2ff 0%, var(--bg) 340px);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  word-break: break-word;
+}
+
+/* ===== 头部 ===== */
+.doc-header {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 56px 24px 16px;
+}
+.doc-header h1 {
+  margin: 0;
+  font-size: 2.1rem;
+  line-height: 1.35;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  background: linear-gradient(120deg, var(--accent) 0%, var(--accent-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.doc-header .meta {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+/* ===== 正文卡片 ===== */
+.doc-content {
+  max-width: 860px;
+  margin: 0 auto 32px;
+  padding: 36px 40px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.doc-footer {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 24px 48px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+/* ===== 标题 ===== */
+.doc-content h1,
+.doc-content h2,
+.doc-content h3,
+.doc-content h4 {
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 1.8em 0 0.7em;
+  scroll-margin-top: 24px;
+}
+.doc-content h1 { font-size: 1.7rem; border-bottom: 2px solid var(--border); padding-bottom: 0.35em; }
+.doc-content h2 {
+  font-size: 1.4rem;
+  padding-left: 0.6em;
+  border-left: 4px solid var(--accent);
+}
+.doc-content h3 { font-size: 1.18rem; }
+.doc-content h4 { font-size: 1.02rem; color: #334155; }
+
+/* ===== 段落 / 文本 ===== */
+.doc-content p { margin: 0.8em 0; }
+.doc-content strong { color: #111827; }
+.doc-content em { color: #374151; }
+
+/* ===== 链接 ===== */
+.doc-content a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(37, 99, 235, 0.35);
+  transition: border-color 0.2s, color 0.2s;
+}
+.doc-content a:hover { color: var(--accent-2); border-color: var(--accent-2); }
+
+/* ===== 列表 ===== */
+.doc-content ul,
+.doc-content ol { padding-left: 1.6em; margin: 0.7em 0; }
+.doc-content li { margin: 0.35em 0; }
+.doc-content li::marker { color: var(--accent); }
+
+/* ===== 引用块 ===== */
+.doc-content blockquote {
+  margin: 1.2em 0;
+  padding: 0.9em 1.2em;
+  background: #f0f6ff;
+  border-left: 4px solid var(--quote-border);
+  border-radius: 0 8px 8px 0;
+  color: #1e3a5f;
+}
+.doc-content blockquote p { margin: 0.4em 0; }
+
+/* ===== 代码 ===== */
+.doc-content code {
+  font-family: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  background: #eef1f6;
+  color: #be185d;
+  padding: 0.15em 0.4em;
+  border-radius: 5px;
+}
+.doc-content pre {
+  background: var(--code-bg);
+  color: var(--code-text);
+  padding: 1.1em 1.3em;
+  border-radius: 10px;
+  overflow-x: auto;
+  line-height: 1.6;
+  margin: 1.1em 0;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+.doc-content pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+  font-size: 0.9em;
+}
+
+/* ===== 表格 ===== */
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  font-size: 0.95em;
+  display: block;
+  overflow-x: auto;
+}
+.doc-content th,
+.doc-content td {
+  border: 1px solid var(--border);
+  padding: 0.6em 0.9em;
+  text-align: left;
+}
+.doc-content th {
+  background: #f0f4ff;
+  font-weight: 600;
+  color: #1e3a5f;
+}
+.doc-content tr:nth-child(even) td { background: #fafbfc; }
+.doc-content tr:hover td { background: #f0f7ff; }
+
+/* ===== 分隔线 ===== */
+.doc-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2em 0;
+}
+
+/* ===== 图片 ===== */
+.doc-content img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+/* ===== 目录 ===== */
+.toc {
+  background: #f8faff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1em 1.4em;
+  margin-bottom: 1.8em;
+}
+.toc-title { font-weight: 700; margin: 0 0 0.5em; color: #1e3a5f; }
+.toc ol { margin: 0; padding-left: 1.3em; }
+.toc li { margin: 0.2em 0; }
+.toc a { border-bottom: none; font-size: 0.92em; }
+.toc a:hover { border-bottom: 1px solid; }
+
+/* ===== 高亮 / 任务列表 ===== */
+.doc-content input[type="checkbox"] { margin-right: 0.4em; accent-color: var(--accent); }
+
+/* ===== 打印 ===== */
+@media print {
+  body { background: #fff; }
+  .doc-header { padding-top: 24px; }
+  .doc-content { box-shadow: none; border: none; padding: 0; }
+  .doc-footer { display: none; }
+  a { color: inherit; border-bottom: none !important; }
+}
+
+/* ===== 移动端 ===== */
+@media (max-width: 640px) {
+  .doc-header { padding: 32px 16px 8px; }
+  .doc-header h1 { font-size: 1.5rem; }
+  .doc-content { padding: 20px 18px; margin: 0 8px 24px; }
+}
+
+/* ===== 重点强调 ===== */
+.doc-content strong {
+  background: linear-gradient(120deg, rgba(250, 204, 21, 0.4), rgba(250, 204, 21, 0.28));
+  padding: 0 0.25em;
+  border-radius: 4px;
+  color: #1f2937;
+  font-weight: 700;
+}
+
+/* ===== 强调卡片（关键结论 / 风险） ===== */
+.callout {
+  border-radius: 10px;
+  padding: 0.9em 1.2em;
+  margin: 1.2em 0;
+  border-left: 4px solid;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.05);
+}
+.callout p { margin: 0.3em 0; }
+.callout-key {
+  background: #eef2ff;
+  border-color: #6366f1;
+}
+.callout-key::before {
+  content: "💡 重点";
+  display: block;
+  font-weight: 700;
+  font-size: 0.82em;
+  margin-bottom: 0.3em;
+  color: #4338ca;
+}
+.callout-warn {
+  background: #fff7ed;
+  border-color: #f59e0b;
+}
+.callout-warn::before {
+  content: "⚠️ 注意";
+  display: block;
+  font-weight: 700;
+  font-size: 0.82em;
+  margin-bottom: 0.3em;
+  color: #b45309;
+}
+
+/* ===== 关键列表项 ===== */
+.doc-content li.li-key {
+  font-weight: 700;
+  color: #3730a3;
+}
+.doc-content li.li-key::marker { color: #6366f1; }
+.doc-content li.li-warn {
+  font-weight: 700;
+  color: #92400e;
+}
+.doc-content li.li-warn::marker { color: #f59e0b; }
+
+/* ===== 图表 ===== */
+.chart {
+  margin: 1.4em 0;
+  padding: 1em 1.2em;
+  background: #fbfcfe;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.chart figcaption {
+  font-weight: 700;
+  margin-bottom: 0.6em;
+  color: #1e3a5f;
+}
+.chart svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.chart .cat-label { font-size: 12px; fill: #4b5563; }
+.chart .val-label { font-size: 12px; fill: #111827; font-weight: 600; }
+
+</style>
+</head>
+<body>
+  <header class="doc-header">
+    <h1>📊 A 股个人投资调研系统 · 分析总结</h1>
+    <div class="meta">转换于 2026-08-15 · 由 md-to-html 生成</div>
+  </header>
+  <main class="doc-content">
+    <nav class="toc"><p class="toc-title">📑 目录</p><ol>
+<li><a href="#sec-0">📊 A 股个人投资调研系统 · 分析总结</a>
+<ol>
+</li>
+<li><a href="#sec-1">一、系统定位与目标</a>
+<li><a href="#sec-2">二、核心投资方法论（灵魂）</a>
+<ol>
+</li>
+<li><a href="#sec-3">2.1 四合一框架（主干）</a>
+<li><a href="#sec-4">2.2 芒格式"硬约束"</a>
+<li><a href="#sec-5">2.3 价值投资 3.0 / GARP 扩展</a>
+</ol></li>
+</li>
+<li><a href="#sec-6">三、系统架构（分层视图）</a>
+<li><a href="#sec-7">四、目录结构与职责</a>
+<ol>
+</li>
+<li><a href="#sec-8">4.1 `stocks/` 顶层（方法论 Prompt 稿）</a>
+<li><a href="#sec-9">4.2 `.github/skills/`（可复用 Skill）</a>
+<li><a href="#sec-10">4.3 `.github/prompts/`（统一报告模板）</a>
+<li><a href="#sec-11">4.4 `stocks/StockHoldings/`（数据抓取脚本）</a>
+<li><a href="#sec-12">4.5 `stocks/my/holder.json`</a>
+<li><a href="#sec-13">4.6 `stocks/reports/`（报告库）</a>
+<li><a href="#sec-14">4.7 `stocks/actionLogs/`（行动日志）</a>
+</ol></li>
+</li>
+<li><a href="#sec-15">五、完整工作流（从需求到产出）</a>
+<ol>
+</li>
+<li><a href="#sec-16">每层输出标签（强制）</a>
+<li><a href="#sec-17">关键决策规则（防伪防错）</a>
+</ol></li>
+</li>
+<li><a href="#sec-18">六、数据与工具链</a>
+<li><a href="#sec-19">七、演进历史（为什么长这样）</a>
+<li><a href="#sec-20">八、当前持仓概览（holder.json 快照）</a>
+<li><a href="#sec-21">九、系统优点与局限</a>
+<ol>
+</li>
+<li><a href="#sec-22">✅ 优点</a>
+<li><a href="#sec-23">⚠️ 局限 / 可改进</a>
+</ol></li>
+</li>
+<li><a href="#sec-24">十、一句话总结</a>
+</ol></li>
+</li></ol></nav>
+    <h1 id="sec-0">📊 A 股个人投资调研系统 · 分析总结</h1><blockquote>
+<p>生成日期：2026-08-15<br>范围：<code>KnowledgeBase/stocks</code> 目录及其关联 Skill / Prompt / 脚本<br>一句话定位：<strong>一套以&quot;巴菲特 × 费雪 × 林奇 × 格雷厄姆 + 芒格 + 价值投资 3.0&quot;为核心方法论、可重复执行的个人 A 股投研流水线，覆盖&quot;筛选 → 研究 → 估值 → 持仓决策 → 财报跟踪 → 报告生成&quot;全链路。</strong></p></blockquote>
+<hr>
+<h2 id="sec-1">一、系统定位与目标</h2><p>这是一个<strong>个人使用的 A 股长期价值投资决策系统</strong>，不是量化回测平台，也不是短线交易工具。它的目标非常明确：</p><ol>
+<li><strong>筛选值得投资的公司</strong>，而不是&quot;分析很多公司&quot;。</li><li><strong>回答&quot;现在是否值得买入 / 加仓 / 持有 / 减仓 / 清仓&quot;</strong>，而不是停留在定性描述。</li><li>以 <strong>5-10 年长期视角</strong> + <strong>安全边际优先</strong> + <strong>风险优先（先想会亏多少）</strong> 做决策。</li><li>把投研过程<strong>沉淀为可复用的方法论（Skill）+ 统一模板（Prompt）+ 历史报告库</strong>，让每次调研不必从零开始。</li></ol>
+<hr>
+<h2 id="sec-2">二、核心投资方法论（灵魂）</h2><h3 id="sec-3">2.1 四合一框架（主干）</h3><table><thead><tr><th>思想家</th><th>负责维度</th><th>核心问题</th></tr></thead><tbody><tr><td><strong>巴菲特</strong></td><td>商业质量 &amp; 护城河</td><td>这是不是一门好生意？护城河是否可持续？</td></tr><tr><td><strong>费雪</strong></td><td>成长跑道 &amp; 再投资</td><td>增长能不能持续？管理层能否把利润高回报再投资？</td></tr><tr><td><strong>林奇</strong></td><td>分类 &amp; PEG &amp; 买点</td><td>公司属于哪一类？故事是否简单可验证？估值口径是否匹配？</td></tr><tr><td><strong>格雷厄姆</strong></td><td>估值 &amp; 安全边际</td><td>内在价值多少？当前价格是否留足失败保护？</td></tr></tbody></table><h3 id="sec-4">2.2 芒格式&quot;硬约束&quot;</h3><ul>
+<li><strong>反向思考</strong>：先写&quot;什么会让这个结论失效&quot;。</li><li><strong>激励分析</strong>：先看&quot;谁因什么被奖励&quot;，再判断数据是否可信。</li><li><strong>误判心理学</strong>：显式防范确认偏误、从众、沉没成本、叙事成瘾。</li><li><strong>机会成本</strong>：没有明显优势时宁可等待，不为行动而行动。</li></ul>
+<h3 id="sec-5">2.3 价值投资 3.0 / GARP 扩展</h3><ul>
+<li>允许为<strong>高质量成长</strong>支付合理价格，但拒绝极端透支。</li><li>成长类标的加 <strong>PEG / GARP</strong> 约束；周期股、困境反转、资产型机会用差异化口径。</li><li><strong>MQVGS / 市场状态 / 情绪 / 组合优化 / 因子暴露</strong>：只在公开数据充分时才启用，数据不足时明确写&quot;数据不足&quot;，<strong>禁止输出伪精确分数</strong>——这是系统刻意设置的&quot;硬边界&quot;，防止装腔作势的量化。</li></ul>
+<hr>
+<h2 id="sec-6">三、系统架构（分层视图）</h2><pre><code>┌─────────────────────────────────────────────────────────────┐
+│  ① 方法论层（Prompt / Skill 定义&quot;怎么想&quot;）                    │
+│    prompt.md · plan.md · garp.md · grow.md · analyze.md      │
+│    skill.md · enhance3~6.md（历史演进稿）                    │
+│    .github/skills/a-share-*-workflow/SKILL.md                │
+│    .github/prompts/*.prompt.md（统一报告模板）               │
+├─────────────────────────────────────────────────────────────┤
+│  ② 流程层（三/五层决策流水线）                                │
+│    硬阈值 → 基本面 → 估值 → 持仓动作 → 可选附加层             │
+├─────────────────────────────────────────────────────────────┤
+│  ③ 数据层（脚本自动拉取，避免手工抄数）                       │
+│    stocks/StockHoldings/*_fetch_latest.py（akshare）          │
+│    *_latest_refresh.json / *_latest_metrics.json             │
+│    腾讯行情 / 东财 datacenter / 同花顺一致预期               │
+├─────────────────────────────────────────────────────────────┤
+│  ④ 决策事实层（用户自己的持仓事实源）                         │
+│    stocks/my/holder.json（股票名称/代码/数量/成本）           │
+├─────────────────────────────────────────────────────────────┤
+│  ⑤ 产出层（报告库 + 行动日志）                                │
+│    stocks/reports/*.md / *.html（完整报告 + 更新报告）        │
+│    stocks/actionLogs/*.txt（持仓优化建议、动作排序）          │
+│    .github/skills/md-to-html（md → 精美 HTML 报告生成器）    │
+└─────────────────────────────────────────────────────────────┘
+</code></pre>
+<hr>
+<h2 id="sec-7">四、目录结构与职责</h2><h3 id="sec-8">4.1 <code>stocks/</code> 顶层（方法论 Prompt 稿）</h3><table><thead><tr><th>文件</th><th>角色</th><th>状态</th></tr></thead><tbody><tr><td><code>prompt.md</code></td><td>投资分析 Agent 主提示词 v2（四合一版）</td><td>现行</td></tr><tr><td><code>plan.md</code></td><td>投资分析 Agent 提示词（四合一导向）</td><td>现行</td></tr><tr><td><code>skill.md</code></td><td>高级分析能力参考（芒格要求 + 估值/风控/决策能力）</td><td>现行</td></tr><tr><td><code>garp.md</code></td><td>自动调仓 Agent（四合一 GARP 版，三层决策）</td><td>现行</td></tr><tr><td><code>grow.md</code></td><td>四合一成长股分析 Agent</td><td>现行</td></tr><tr><td><code>analyze.md</code></td><td>英文版四合一分析框架（10 分制）</td><td>参考</td></tr><tr><td><code>enhance3/4/5/6.md</code></td><td>历史增强稿（从 MQVGS 机构版到四合一硬边界演进）</td><td><strong>历史存档，仅参考</strong></td></tr></tbody></table><h3 id="sec-9">4.2 <code>.github/skills/</code>（可复用 Skill）</h3><table><thead><tr><th>Skill</th><th>用途</th></tr></thead><tbody><tr><td><code>a-share-investment-workflow</code></td><td>主流程：硬阈值 → 基本面 → 估值 → 持仓动作 → 附加层，含完整分支规则（淘汰即停、观察可续、回避即停等）</td></tr><tr><td><code>a-share-edge-case-workflow</code></td><td>边界案例：硬阈值单项不过但基本面强时，判断是否允许继续研究（上限只到&quot;观望&quot;，买入留人工）</td></tr><tr><td><code>md-to-html</code></td><td>把研究报告 md 转成精美单文件 HTML（内联样式、TOC、图表、重点高亮）</td></tr></tbody></table><h3 id="sec-10">4.3 <code>.github/prompts/</code>（统一报告模板）</h3><ul>
+<li><code>a-share-full-investment-report.prompt.md</code>（完整决策总报告）</li><li><code>a-share-threshold-report.prompt.md</code>（硬阈值报告）</li><li><code>a-share-fundamental-report.prompt.md</code>（基本面报告）</li><li><code>a-share-valuation-report.prompt.md</code>（估值报告）</li><li><code>a-share-opportunity-cost-report.prompt.md</code>（机会成本比较）</li><li><code>a-share-earnings-event-report.prompt.md</code>（财报事件跟踪）</li><li><code>a-share-edge-case-report.prompt.md</code>（边界案例）</li><li><code>stock-holdings-batch-import.prompt.md</code> / <code>stock-holdings-monthly-review.prompt.md</code></li></ul>
+<h3 id="sec-11">4.4 <code>stocks/StockHoldings/</code>（数据抓取脚本）</h3><ul>
+<li><strong>可复用脚本</strong>：<code>cmcc_fetch_latest.py</code>（中国移动）、<code>hik_fetch_latest.py</code>（海康威视）、<code>mt_fetch_latest.py</code>（贵州茅台）、<code>import_holdings_batch.py</code></li><li><strong>历史一次性脚本</strong>：<code>tmp_*.py</code>（各家财报临时抓取）</li><li><strong>数据产物</strong>：<code>*_latest_refresh.json</code>（原始）、<code>*_latest_metrics.json</code>（精简指标）、各公司指标/研报摘要 JSON、历史年报 PDF</li></ul>
+<h3 id="sec-12">4.5 <code>stocks/my/holder.json</code></h3><p>当前持仓事实源，字段：<code>股票名称 / 股票代码 / 持仓数量 / 买入成本</code>。所有报告默认读取它做持仓匹配（按字符串处理代码，避免前导零丢失）。</p><h3 id="sec-13">4.6 <code>stocks/reports/</code>（报告库）</h3><ul>
+<li><strong>完整投资决策报告</strong> ×58（md）：覆盖 40+ 只标的</li><li><strong>HTML 报告</strong> ×3（中国移动 / 海康威视 / 贵州茅台，最新一期）</li><li><strong>更新/跟踪报告</strong> ×5：财报事件后的假设更新（如德业股份、分众传媒、瑞芯微等）</li><li>命名规则：<code>YYYY-MM-DD-公司名-报告类型</code></li></ul>
+<h3 id="sec-14">4.7 <code>stocks/actionLogs/</code>（行动日志）</h3><p>持仓优化建议、加仓顺序、动作排序等（如 <code>20260429-结合年报的持仓优化建议.txt</code>）。</p><hr>
+<h2 id="sec-15">五、完整工作流（从需求到产出）</h2><pre><code class="language-mermaid">flowchart TD
+    A[用户输入股票/公司/行业] --&gt; B{选择入口}
+    B --&gt;|完整决策| C[硬阈值层]
+    B --&gt;|边界案例| C2[边界案例复核]
+    B --&gt;|财报事件| C3[财报跟踪]
+    B --&gt;|多标的| C4[机会成本比较]
+
+    C --&gt; C5[① 硬阈值: ROE/FCF/分红率/负债率]
+    C5 --&gt;|淘汰| X1[流程停止]
+    C5 --&gt;|观察/达标| D[② 基本面层]
+    C2 --&gt; D
+    D --&gt;|回避| X2[流程停止]
+    D --&gt;|优质/观察| E[③ 估值层]
+    E --&gt; F[④ 持仓动作层&lt;br&gt;匹配 holder.json&lt;br&gt;按100股整手]
+    F --&gt; G[⑤ 输出完整投资决策报告]
+    G --&gt; H[md-to-html 转 HTML]
+    C3 --&gt; G
+    C4 --&gt; G
+    X1 --&gt; G2[输出淘汰说明]
+    X2 --&gt; G2
+</code></pre>
+<h3 id="sec-16">每层输出标签（强制）</h3><ul>
+<li><strong>硬阈值层</strong>：达标 / 观察 / 淘汰 / 不适用</li><li><strong>基本面层</strong>：优质 / 观察 / 回避</li><li><strong>估值层</strong>：买入 / 观望 / 放弃</li><li><strong>持仓动作层</strong>：继续持有 / 加仓 / 不加仓 / 减仓 / 清仓 / 只保留观察仓 / 等待</li></ul>
+<h3 id="sec-17">关键决策规则（防伪防错）</h3><ol>
+<li>硬阈值淘汰 → 默认停流程，除非用户要求边界复核。</li><li>基本面回避 → 估值只能作补充，不能因便宜反转成买入。</li><li><strong>只有基本面成立 + 安全边际足够，才允许&quot;买入&quot;</strong>。</li><li>安全边际不足时，必须给出<strong>等待条件</strong>，不能只说&quot;继续关注&quot;。</li><li>A 股动作一律 <strong>100 股整数倍</strong>，资金不足一手写&quot;等待/不操作&quot;。</li><li>数据缺失必须写&quot;数据不足&quot;，<strong>不编造成本、股数或盈亏</strong>。</li></ol>
+<hr>
+<h2 id="sec-18">六、数据与工具链</h2><table><thead><tr><th>环节</th><th>工具 / 数据源</th><th>说明</th></tr></thead><tbody><tr><td>财报数据</td><td><strong>akshare</strong>（<code>stock_financial_abstract</code> 等）</td><td>自动识别最新报告期，算 YoY</td></tr><tr><td>分红</td><td>akshare <code>stock_fhps_detail_em</code></td><td>按年度汇总 DPS，算 TTM 股息率</td></tr><tr><td>股价</td><td>东财实时 → 腾讯行情回退</td><td>多层兜底，避免抓取失败</td></tr><tr><td>一致预期</td><td>同花顺盈利预测</td><td>2026E/2027E EPS 均值与区间</td></tr><tr><td>资产负债表</td><td>东财 datacenter</td><td>合同负债、存货、应收等</td></tr><tr><td>主营构成</td><td>东财 <code>stock_zygc_em</code></td><td>分产品/分地区拆分</td></tr><tr><td>新闻旁证</td><td>东财新闻聚合</td><td>Scuttlebutt 式公开信息交叉验证</td></tr><tr><td>报告生成</td><td><code>md-to-html</code> skill</td><td>md → 单文件精美 HTML（TOC/图表/高亮）</td></tr><tr><td>Python 环境</td><td><code>/tmp/ak-env</code>（Python 3.9 venv）</td><td>复用 akshare 依赖</td></tr></tbody></table><hr>
+<h2 id="sec-19">七、演进历史（为什么长这样）</h2><p>系统经历了明显的&quot;<strong>从大而全到克制</strong>&quot;的演进：</p><ol>
+<li><strong>enhance6 / v8 机构版</strong>（早期构想）：宣称完整支持 MQVGS 多因子打分、新闻情绪 NLP、市场状态、Markowitz 组合优化、因子暴露——野心很大但数据常不充分。</li><li><strong>enhance3/4/5 中间稿</strong>：开始收敛，明确&quot;MQVGS 等仅作辅助&quot;。</li><li><strong>现行官方实现</strong>（skill.md + a-share-investment-workflow）：<ul>
+<li>保留四合一框架主干；</li><li><strong>对量化扩展设硬边界</strong>：数据不充分时禁止输出伪精确分数；</li><li>用 <strong>Prompt 模板 + Skill 工作流</strong> 把方法固化，可重复执行；</li><li>新增<strong>财报事件跟踪</strong>、<strong>机会成本比较</strong>等增量场景。</li></ul>
+</li></ol>
+<p><strong>设计哲学</strong>：宁可拒绝输出伪精确的量化字段，也不编造&quot;看起来专业&quot;的数字；一切结论必须能追溯到公开信息或前序阶段结果。</p><hr>
+<h2 id="sec-20">八、当前持仓概览（holder.json 快照）</h2><figure class="chart"><figcaption>📊 代码 对比</figcaption><svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg"><line x1="100" y1="10" x2="100" y2="458" stroke="#eceff4" stroke-width="1"/><line x1="235" y1="10" x2="235" y2="458" stroke="#eceff4" stroke-width="1"/><line x1="370" y1="10" x2="370" y2="458" stroke="#eceff4" stroke-width="1"/><line x1="505" y1="10" x2="505" y2="458" stroke="#eceff4" stroke-width="1"/><line x1="640" y1="10" x2="640" y2="458" stroke="#eceff4" stroke-width="1"/><rect x="100" y="10" width="540" height="20" rx="4" fill="#2563eb"/><text x="92" y="25" text-anchor="end" class="cat-label">中际联合</text><text x="648" y="25" class="val-label">605305</text><rect x="100" y="42" width="536.1041458438308" height="20" rx="4" fill="#2563eb"/><text x="92" y="57" text-anchor="end" class="cat-label">中国海油</text><text x="644.1041458438308" y="57" class="val-label">600938</text><rect x="100" y="74" width="536.1068221805536" height="20" rx="4" fill="#2563eb"/><text x="92" y="89" text-anchor="end" class="cat-label">中国移动</text><text x="644.1068221805536" y="89" class="val-label">600941</text><rect x="100" y="106" width="2" height="20" rx="4" fill="#2563eb"/><text x="92" y="121" text-anchor="end" class="cat-label">分众传媒</text><text x="110" y="121" class="val-label">2027</text><rect x="100" y="138" width="539.832282898704" height="20" rx="4" fill="#2563eb"/><text x="92" y="153" text-anchor="end" class="cat-label">德业股份</text><text x="647.832282898704" y="153" class="val-label">605117</text><rect x="100" y="170" width="2.0179578889981085" height="20" rx="4" fill="#2563eb"/><text x="92" y="185" text-anchor="end" class="cat-label">恩华药业</text><text x="110.01795788899811" y="185" class="val-label">2262</text><rect x="100" y="202" width="535.2994606025062" height="20" rx="4" fill="#2563eb"/><text x="92" y="217" text-anchor="end" class="cat-label">招商银行</text><text x="643.2994606025062" y="217" class="val-label">600036</text><rect x="100" y="234" width="2" height="20" rx="4" fill="#2563eb"/><text x="92" y="249" text-anchor="end" class="cat-label">格力电器</text><text x="110" y="249" class="val-label">651</text><rect x="100" y="266" width="2.314139152988989" height="20" rx="4" fill="#2563eb"/><text x="92" y="281" text-anchor="end" class="cat-label">比亚迪</text><text x="110.31413915298899" y="281" class="val-label">2594</text><rect x="100" y="298" width="2.0616713888039913" height="20" rx="4" fill="#2563eb"/><text x="92" y="313" text-anchor="end" class="cat-label">海大集团</text><text x="110.06167138880399" y="313" class="val-label">2311</text><rect x="100" y="330" width="2.1544510618613755" height="20" rx="4" fill="#2563eb"/><text x="92" y="345" text-anchor="end" class="cat-label">海康威视</text><text x="110.15445106186138" y="345" class="val-label">2415</text><rect x="100" y="362" width="538.4834091904081" height="20" rx="4" fill="#2563eb"/><text x="92" y="377" text-anchor="end" class="cat-label">珀莱雅</text><text x="646.4834091904081" y="377" class="val-label">603605</text><rect x="100" y="394" width="535.8561386408505" height="20" rx="4" fill="#2563eb"/><text x="92" y="409" text-anchor="end" class="cat-label">福耀玻璃</text><text x="643.8561386408505" y="409" class="val-label">600660</text><rect x="100" y="426" width="2" height="20" rx="4" fill="#2563eb"/><text x="92" y="441" text-anchor="end" class="cat-label">…</text><text x="110" y="441" class="val-label">0</text></svg></figure><figure class="chart"><figcaption>📊 数量 对比</figcaption><svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg"><line x1="100" y1="10" x2="100" y2="458" stroke="#eceff4" stroke-width="1"/><line x1="235" y1="10" x2="235" y2="458" stroke="#eceff4" stroke-width="1"/><line x1="370" y1="10" x2="370" y2="458" stroke="#eceff4" stroke-width="1"/><line x1="505" y1="10" x2="505" y2="458" stroke="#eceff4" stroke-width="1"/><line x1="640" y1="10" x2="640" y2="458" stroke="#eceff4" stroke-width="1"/><rect x="100" y="10" width="135" height="20" rx="4" fill="#7c3aed"/><text x="92" y="25" text-anchor="end" class="cat-label">中际联合</text><text x="243" y="25" class="val-label">600</text><rect x="100" y="42" width="90" height="20" rx="4" fill="#7c3aed"/><text x="92" y="57" text-anchor="end" class="cat-label">中国海油</text><text x="198" y="57" class="val-label">400</text><rect x="100" y="74" width="90" height="20" rx="4" fill="#7c3aed"/><text x="92" y="89" text-anchor="end" class="cat-label">中国移动</text><text x="198" y="89" class="val-label">400</text><rect x="100" y="106" width="540" height="20" rx="4" fill="#7c3aed"/><text x="92" y="121" text-anchor="end" class="cat-label">分众传媒</text><text x="648" y="121" class="val-label">2400</text><rect x="100" y="138" width="315" height="20" rx="4" fill="#7c3aed"/><text x="92" y="153" text-anchor="end" class="cat-label">德业股份</text><text x="423" y="153" class="val-label">1400</text><rect x="100" y="170" width="225" height="20" rx="4" fill="#7c3aed"/><text x="92" y="185" text-anchor="end" class="cat-label">恩华药业</text><text x="333" y="185" class="val-label">1000</text><rect x="100" y="202" width="337.5" height="20" rx="4" fill="#7c3aed"/><text x="92" y="217" text-anchor="end" class="cat-label">招商银行</text><text x="445.5" y="217" class="val-label">1500</text><rect x="100" y="234" width="135" height="20" rx="4" fill="#7c3aed"/><text x="92" y="249" text-anchor="end" class="cat-label">格力电器</text><text x="243" y="249" class="val-label">600</text><rect x="100" y="266" width="112.5" height="20" rx="4" fill="#7c3aed"/><text x="92" y="281" text-anchor="end" class="cat-label">比亚迪</text><text x="220.5" y="281" class="val-label">500</text><rect x="100" y="298" width="135" height="20" rx="4" fill="#7c3aed"/><text x="92" y="313" text-anchor="end" class="cat-label">海大集团</text><text x="243" y="313" class="val-label">600</text><rect x="100" y="330" width="270" height="20" rx="4" fill="#7c3aed"/><text x="92" y="345" text-anchor="end" class="cat-label">海康威视</text><text x="378" y="345" class="val-label">1200</text><rect x="100" y="362" width="225" height="20" rx="4" fill="#7c3aed"/><text x="92" y="377" text-anchor="end" class="cat-label">珀莱雅</text><text x="333" y="377" class="val-label">1000</text><rect x="100" y="394" width="270" height="20" rx="4" fill="#7c3aed"/><text x="92" y="409" text-anchor="end" class="cat-label">福耀玻璃</text><text x="378" y="409" class="val-label">1200</text><rect x="100" y="426" width="2" height="20" rx="4" fill="#7c3aed"/><text x="92" y="441" text-anchor="end" class="cat-label">…</text><text x="110" y="441" class="val-label">0</text></svg></figure><figure class="chart"><figcaption>📊 成本（元） 对比</figcaption><svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg"><line x1="100" y1="10" x2="100" y2="458" stroke="#eceff4" stroke-width="1"/><line x1="235" y1="10" x2="235" y2="458" stroke="#eceff4" stroke-width="1"/><line x1="370" y1="10" x2="370" y2="458" stroke="#eceff4" stroke-width="1"/><line x1="505" y1="10" x2="505" y2="458" stroke="#eceff4" stroke-width="1"/><line x1="640" y1="10" x2="640" y2="458" stroke="#eceff4" stroke-width="1"/><rect x="100" y="10" width="233.99822081644757" height="20" rx="4" fill="#0d9488"/><text x="92" y="25" text-anchor="end" class="cat-label">中际联合</text><text x="341.99822081644754" y="25" class="val-label">43.84</text><rect x="100" y="42" width="170.53474350103787" height="20" rx="4" fill="#0d9488"/><text x="92" y="57" text-anchor="end" class="cat-label">中国海油</text><text x="278.53474350103784" y="57" class="val-label">31.95</text><rect x="100" y="74" width="502.37026786596823" height="20" rx="4" fill="#0d9488"/><text x="92" y="89" text-anchor="end" class="cat-label">中国移动</text><text x="610.3702678659682" y="89" class="val-label">94.12</text><rect x="100" y="106" width="35.921715923692794" height="20" rx="4" fill="#0d9488"/><text x="92" y="121" text-anchor="end" class="cat-label">分众传媒</text><text x="143.9217159236928" y="121" class="val-label">6.73</text><rect x="100" y="138" width="280.54166254818625" height="20" rx="4" fill="#0d9488"/><text x="92" y="153" text-anchor="end" class="cat-label">德业股份</text><text x="388.54166254818625" y="153" class="val-label">52.56</text><rect x="100" y="170" width="138.1891865177424" height="20" rx="4" fill="#0d9488"/><text x="92" y="185" text-anchor="end" class="cat-label">恩华药业</text><text x="246.1891865177424" y="185" class="val-label">25.89</text><rect x="100" y="202" width="205.54907581298804" height="20" rx="4" fill="#0d9488"/><text x="92" y="217" text-anchor="end" class="cat-label">招商银行</text><text x="313.549075812988" y="217" class="val-label">38.51</text><rect x="100" y="234" width="217.55856479193434" height="20" rx="4" fill="#0d9488"/><text x="92" y="249" text-anchor="end" class="cat-label">格力电器</text><text x="325.5585647919344" y="249" class="val-label">40.76</text><rect x="100" y="266" width="540" height="20" rx="4" fill="#0d9488"/><text x="92" y="281" text-anchor="end" class="cat-label">比亚迪</text><text x="648" y="281" class="val-label">101.17</text><rect x="100" y="298" width="291.48364139567065" height="20" rx="4" fill="#0d9488"/><text x="92" y="313" text-anchor="end" class="cat-label">海大集团</text><text x="399.48364139567065" y="313" class="val-label">54.61</text><rect x="100" y="330" width="160.12651971928437" height="20" rx="4" fill="#0d9488"/><text x="92" y="345" text-anchor="end" class="cat-label">海康威视</text><text x="268.1265197192844" y="345" class="val-label">30</text><rect x="100" y="362" width="339.9486013640407" height="20" rx="4" fill="#0d9488"/><text x="92" y="377" text-anchor="end" class="cat-label">珀莱雅</text><text x="447.9486013640407" y="377" class="val-label">63.69</text><rect x="100" y="394" width="309.3110605910843" height="20" rx="4" fill="#0d9488"/><text x="92" y="409" text-anchor="end" class="cat-label">福耀玻璃</text><text x="417.3110605910843" y="409" class="val-label">57.95</text><rect x="100" y="426" width="2" height="20" rx="4" fill="#0d9488"/><text x="92" y="441" text-anchor="end" class="cat-label">…</text><text x="110" y="441" class="val-label">0</text></svg></figure><table><thead><tr><th>标的</th><th>代码</th><th>数量</th><th>成本（元）</th></tr></thead><tbody><tr><td>中际联合</td><td>605305</td><td>600</td><td>43.84</td></tr><tr><td>中国海油</td><td>600938</td><td>400</td><td>31.95</td></tr><tr><td>中国移动</td><td>600941</td><td>400</td><td>94.12</td></tr><tr><td>分众传媒</td><td>002027</td><td>2400</td><td>6.73</td></tr><tr><td>德业股份</td><td>605117</td><td>1400</td><td>52.56</td></tr><tr><td>恩华药业</td><td>002262</td><td>1000</td><td>25.89</td></tr><tr><td>招商银行</td><td>600036</td><td>1500</td><td>38.51</td></tr><tr><td>格力电器</td><td>000651</td><td>600</td><td>40.76</td></tr><tr><td>比亚迪</td><td>002594</td><td>500</td><td>101.17</td></tr><tr><td>海大集团</td><td>002311</td><td>600</td><td>54.61</td></tr><tr><td>海康威视</td><td>002415</td><td>1200</td><td>30.00</td></tr><tr><td>珀莱雅</td><td>603605</td><td>1000</td><td>63.69</td></tr><tr><td>福耀玻璃</td><td>600660</td><td>1200</td><td>57.95</td></tr><tr><td>…</td><td></td><td></td><td></td></tr></tbody></table><blockquote>
+<p>具体以 <code>stocks/my/holder.json</code> 为准；报告中的持仓动作层会按该表匹配计算盈亏并给操作建议。</p></blockquote>
+<hr>
+<h2 id="sec-21">九、系统优点与局限</h2><h3 id="sec-22">✅ 优点</h3><ul>
+<li><strong>方法一致可复用</strong>：三层流水线 + 固定标签 + 分支规则，降低主观漂移。</li><li><strong>防伪精确</strong>：拒绝编造量化分数，数据不足明确标注。</li><li><strong>贴近个人投资实操</strong>：绑定真实持仓、按 100 股整手、给触发价格与等待条件。</li><li><strong>产出物化</strong>：报告库 + 行动日志 + HTML 可视化，历史可追溯、可对比。</li><li><strong>数据自动化</strong>：akshare 脚本一键拉取最新财报，避免手工抄数错误。</li></ul>
+<h3 id="sec-23">⚠️ 局限 / 可改进</h3><ul>
+<li><strong>数据源依赖第三方聚合</strong>（akshare / 东财 / 腾讯），个别接口偶发失败或字段口径漂移（如前缀 SH/SZ、指标名变化），需多层回退。</li><li><strong>财报原文 PDF 抓取不稳定</strong>（如海康中报曾 500），分部/海外口径有时只能依赖研报转述。</li><li><strong>一致预期更新滞后</strong>：机构下修全年 EPS 后，报告的估值锚点需人工复核。</li><li><strong>港股/美股标的</strong>部分硬阈值（如 ROE 门槛）需差异化口径，当前主流程偏 A 股。</li><li><strong>enhance 系列历史稿与现行稿并存</strong>，易混淆，建议在文档头标注&quot;历史存档&quot;（现行稿已这样做）。</li></ul>
+<hr>
+<h2 id="sec-24">十、一句话总结</h2><p>这套系统把&quot;四合一价值投资&quot;从口头理念落地成了一套<strong>可重复、可追溯、防伪精确、贴合真实持仓</strong>的投研流水线：先用硬阈值粗筛、再用基本面与估值精判、最后结合持仓给出一手一手的可执行动作，并用统一模板 + 精美 HTML 把每次判断沉淀成报告库，让&quot;为什么买/为什么不买&quot;始终有据可查。</p>
+  </main>
+  <footer class="doc-footer">Generated with md-to-html skill</footer>
+</body>
+</html>

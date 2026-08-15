@@ -1,0 +1,54 @@
+{
+  "symbol": "600941",
+  "as_of": "2026-08-14",
+  "price": 97.71,
+  "latest_period": "20260630",
+  "prev_year_period": "20250630",
+  "revenue": {
+    "period": "20260630",
+    "latest": 538035000000.0,
+    "prev": 543769000000.0
+  },
+  "revenue_yoy_pct": -1.05,
+  "net_profit": {
+    "period": "20260630",
+    "latest": 78934000000.0,
+    "prev": 84235000000.0
+  },
+  "net_profit_yoy_pct": -6.29,
+  "roe": {
+    "period": "20260630",
+    "latest": 5.55,
+    "prev": 6.05
+  },
+  "net_margin": {
+    "period": "20260630",
+    "latest": 14.684918,
+    "prev": 15.497941
+  },
+  "gross_margin": {
+    "period": "20260630",
+    "latest": null,
+    "prev": null
+  },
+  "expense_ratio": {
+    "period": "20260630",
+    "latest": 12.25515,
+    "prev": 11.910388
+  },
+  "debt_ratio": {
+    "period": "20260630",
+    "latest": 32.78575,
+    "prev": 33.145323
+  },
+  "annual_dps_by_year": {
+    "2021": 2.0939,
+    "2022": 3.8738,
+    "2023": 4.409599999999999,
+    "2024": 4.6705000000000005,
+    "2025": 4.7036999999999995,
+    "2026": 2.5100000000000002
+  },
+  "ttm_dps": 4.7112,
+  "dividend_yield_pct": 4.821614983113295
+}
