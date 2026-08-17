@@ -45,4 +45,15 @@ async function getEmbedding(text, dimensions = DEFAULT_DIMENSIONS) {
   }
 }
 
-export { getEmbedding };
+import { Embeddings } from "@langchain/core/embeddings";
+class LocalEmbeddings extends Embeddings {
+  async embedDocuments(documents) {
+    return Promise.all(documents.map((doc) => getEmbedding(doc)));
+  }
+  async embedQuery(document) {
+    return getEmbedding(document);
+  }
+}
+const embeddings = new LocalEmbeddings();
+
+export { getEmbedding, embeddings };
