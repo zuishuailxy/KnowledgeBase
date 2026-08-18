@@ -1,0 +1,926 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>福耀玻璃（600660）投资决策报告 · 2026-08-18</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      /* 头部 */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      /* 卡片 */
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      /* 结论框 */
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      /* 表格 */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      /* 评分 */
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      /* 列表 */
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <!-- 头部 -->
+      <div class="hero">
+        <h1>福耀玻璃（600660）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年半年报更新版 ｜ 生成日期：2026-08-18 ｜ 数据基准：2026
+          年半年度报告（2026-08-19 披露）+ 中期利润分配方案 + 实时行情
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：Stalwart（稳健复利股）</span>
+          <span class="badge score">总分 41 / 60</span>
+        </div>
+      </div>
+
+      <!-- 1. 结论 -->
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict buy">
+          <span class="tag">HOLD · 可小额分批</span>
+          公司质地依然优秀，表观利润下滑全部来自汇兑扰动；现价已跌入上版报告测算的
+          Buy Zone，从 4 月的「观望」转为「可小额分批」。
+        </div>
+        <p>
+          一句话：<strong>经营没变坏，是报表被汇兑"错杀"了。</strong>福耀 2026
+          上半年归母净利润 39.70 亿元（同比
+          -17.37%），但官方明确披露主因是本报告期汇兑损失 8.03
+          亿元（上年同期为汇兑收益 6.02 亿元），<strong
+            >剔除汇兑后利润总额同比增长 4.78%</strong
+          >；毛利率同比提升 1.7 个百分点至 38.8%，Q2 单季经营现金流强劲回升至约
+          41.9 亿元。
+        </p>
+        <p>
+          现价 56.16 元已从 4 月 27 日的 58.25 元回落约 3.6%，对应 2025A 静态 PE
+          15.7 倍、2026E 前瞻 PE 约 17 倍、PB 3.84 倍、股息率约 3.9%，<strong
+            >已进入上版报告测算的除息后 Buy Zone（51.8-57.3 元）内</strong
+          >。福耀是四层持仓体系里少数质地与估值都过关的标的。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>持有 1200 股不动，浮亏已收窄至约 -2,149
+          元；可小额分批补仓，56 元附近最多加 100 股，55 元以下可复核加 100-200
+          股，53 元以下再提高优先级；所有动作按 100 股整数倍执行。
+        </p>
+      </div>
+
+      <!-- 2. 关键指标速览 -->
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">56.16 元 / 1466 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">静态 PE</div>
+            <div class="num">15.7 倍</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">PB</div>
+            <div class="num">3.84 倍</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">股息率</div>
+            <div class="num">3.9%</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目（2026H1）</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入</td>
+            <td class="num">219.71 亿</td>
+            <td class="num">214.47 亿</td>
+            <td class="num up">+2.44%</td>
+          </tr>
+          <tr>
+            <td>归母净利润</td>
+            <td class="num hl">39.70 亿</td>
+            <td class="num">48.05 亿</td>
+            <td class="num down">-17.37%</td>
+          </tr>
+          <tr>
+            <td>扣非净利润</td>
+            <td class="num">38.79 亿</td>
+            <td class="num">47.07 亿</td>
+            <td class="num down">-17.58%</td>
+          </tr>
+          <tr>
+            <td>经营活动现金流净额</td>
+            <td class="num">45.51 亿</td>
+            <td class="num">53.54 亿</td>
+            <td class="num down">-15.01%</td>
+          </tr>
+          <tr>
+            <td>毛利率 / 净利率</td>
+            <td class="num">38.8% / 18.1%</td>
+            <td class="num">37.1% / 22.4%</td>
+            <td class="num">毛利率↑1.7pct</td>
+          </tr>
+          <tr>
+            <td>加权 ROE</td>
+            <td class="num">10.34%</td>
+            <td class="num">13.18%</td>
+            <td class="num down">-2.84pct</td>
+          </tr>
+          <tr>
+            <td>资产负债率</td>
+            <td class="num">48.4%</td>
+            <td class="num">45.8%</td>
+            <td class="num">净现金约11亿</td>
+          </tr>
+        </table>
+        <div class="note">
+          利润下滑主因：2026H1 汇兑损失 8.03 亿元（上年同期汇兑收益 6.02
+          亿元），<strong>剔除汇兑后利润总额同比增长 4.78%</strong
+          >。经营底盘稳健。
+        </div>
+        <p class="muted">
+          数据来源：福耀玻璃 2026 年半年度报告摘要（2026-08-19 披露）、东方财富
+          / 新浪公开数据。
+        </p>
+      </div>
+
+      <!-- 3. 数据来源与可信度 -->
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：2026 年半年度报告全文及摘要、2026
+            年中期利润分配方案公告、第十一届董事局第十三次会议决议公告（2026-08-19）。
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10 主要财务指标（2017-2025
+            年报、2026H1）、新浪财经三张报表接口（利润表 / 资产负债表 /
+            现金流量表）。
+          </li>
+          <li>
+            <strong>行情与估值</strong>：东方财富日 K 线接口（现价 56.16
+            元、2024-2026 走势）。
+          </li>
+          <li>
+            <strong>分红与股东</strong>：东方财富数据中心（RPT_SHAREBONUS_DET /
+            半年报前十大股东）。
+          </li>
+          <li>
+            <strong>持仓</strong>：KnowledgeBase/stocks/my/holder.json（1200
+            股，成本 57.951 元）。
+          </li>
+        </ul>
+        <div class="note">
+          可信度说明：核心财务数字（营收、归母、扣非、现金流、ROE、汇兑损益）逐项取自半年报摘要原文；汇兑影响为公司官方披露口径。无法获取的：机构
+          2026E 一致预期 EPS 的精确分布、H 股业绩公告的汇兑分项细节，故 2026E
+          采用中报可推导口径并作保守假设，不输出伪精确目标价。
+        </div>
+      </div>
+
+      <!-- 4. 硬阈值筛选 -->
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">12.96%</td>
+            <td class="num">17.65%</td>
+            <td class="num">18.97%</td>
+            <td class="num">22.72%</td>
+            <td class="num up">25.56%</td>
+            <td class="num">19.57%</td>
+          </tr>
+        </table>
+        <p class="small">
+          5 年平均值 19.57%、其中 4 年 ≥15%、趋势向上（25.56%
+          创历史新高），明确通过。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          2023-2025 年自由现金流分别约 31.5 / 30.8 / 58.9
+          亿元，三年全部为正、累计约 121 亿元；2026H1 经营现金流 45.51 亿（Q2
+          单季 41.9 亿强劲）、资本开支 22.98 亿（同比减少），FCF 约 22.5
+          亿。通过。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <table>
+          <tr>
+            <th>年度</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">2026中期</th>
+          </tr>
+          <tr>
+            <td>每股分红(元)</td>
+            <td class="num">1.30</td>
+            <td class="num">1.80</td>
+            <td class="num">1.20</td>
+            <td class="num up">1.00</td>
+          </tr>
+        </table>
+        <p class="small">
+          2025 年度现金分红率约 58.8%；2026 中期每股派 1.00 元、占归母净利
+          65.73%。近年「中期 + 年度」双分红，股东回报持续提升。通过。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          2026H1 资产负债率 48.4%；货币资金 221.6 亿 vs 有息负债约 210.5
+          亿，基本净现金（约 11
+          亿），且中期分红明确"不会影响经营性现金流"。通过。
+        </p>
+        <div class="good-box">
+          <strong>硬阈值总判断：通过。</strong
+          >ROE、FCF、分红、负债率四项全部达标，且均为高质量水平。
+        </div>
+      </div>
+
+      <!-- 5. 基本面研究 -->
+      <div class="card">
+        <h2>🚗 基本面研究</h2>
+        <h3>公司定位与主营</h3>
+        <p class="small">
+          全球汽车玻璃龙头。2025 年主营结构中汽车玻璃收入约 418.9 亿元、占比约
+          91.5%，其余为浮法玻璃及部分其他业务；业务高度聚焦。2026H1 国内销售约
+          98% 上下（A+H 双上市，海外收入通过子公司）。
+        </p>
+        <h3>护城河（强度：强）</h3>
+        <ul class="small">
+          <li>
+            整车厂客户认证壁垒（同步开发、多年配套关系），进入后切换成本极高；
+          </li>
+          <li>全球制造交付体系（含美国、欧洲产能）+ 规模效应 + 工艺良率；</li>
+          <li>高附加值产品（HUD、可调光、天幕、隔热）持续提升单车 ASP；</li>
+          <li>毛利率 38.8% 且同比提升，验证定价权与产品结构升级。</li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>
+            创始人曹德旺家族控股体系稳定（曹晖任董事长，三益发展 + 耀华工业村 +
+            河仁慈善基金会合计持股比例高）；
+          </li>
+          <li>
+            2025 年度股东会已授权董事局制定 2026
+            年中期分红方案，治理现代化推进中；
+          </li>
+          <li>
+            持续维持约 60%
+            左右的高分红率，同时推进海外扩产（美国、福清出口基地、合肥基地）。
+          </li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          <strong>Stalwart（带轻周期属性的稳健复利股）</strong
+          >。成长来自单车价值量提升 + 全球份额提升 +
+          海外扩产，属真实成长但非爆发式。故事简单、可验证（收入结构、毛利率、ROE、资本开支、现金流均能验证）。
+        </p>
+      </div>
+
+      <!-- 6. 财务质量分析 -->
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>2026 上半年核心变化：汇兑"错杀"表观利润</h3>
+        <div class="warn-box">
+          <strong>⚠️ 归母净利 -17.37% 主因汇兑，而非经营恶化。</strong>2026H1
+          汇兑损失 8.03 亿 vs 2025H1 汇兑收益 6.02 亿，合计影响约 14
+          亿元；剔除后利润总额同比 +4.78%。
+        </div>
+        <table>
+          <tr>
+            <th>项目（H1）</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">变化</th>
+          </tr>
+          <tr>
+            <td>销售商品收到现金</td>
+            <td class="num">216.38 亿</td>
+            <td class="num">211.96 亿</td>
+            <td class="num up">+2.1%</td>
+          </tr>
+          <tr>
+            <td>经营活动现金流净额</td>
+            <td class="num">45.51 亿</td>
+            <td class="num">53.54 亿</td>
+            <td class="num down">-15.0%</td>
+          </tr>
+          <tr>
+            <td>其中 Q2 单季</td>
+            <td class="num hl">约 41.9 亿</td>
+            <td class="num">约 33.5 亿</td>
+            <td class="num up">+25%</td>
+          </tr>
+          <tr>
+            <td>资本开支（购建固定资产）</td>
+            <td class="num">22.98 亿</td>
+            <td class="num">28.61 亿</td>
+            <td class="num down">-19.7%</td>
+          </tr>
+          <tr>
+            <td>汇兑损益影响</td>
+            <td class="num down">-8.03 亿</td>
+            <td class="num up">+6.02 亿</td>
+            <td class="num">逆转约14亿</td>
+          </tr>
+        </table>
+        <p class="small">
+          解读：① 表观经营现金流同比 -15% 同样含汇兑扰动（汇率变动影响 -6.11
+          亿），剔除后 Q2 经营现金流强劲（约 41.9 亿）；②
+          资本开支同比下降，海外扩产高峰期边际放缓，有利于 FCF； ③ 货币资金
+          221.6 亿覆盖有息负债 210.5 亿，财务结构稳健。
+        </p>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li>扣非 38.79 亿与归母 39.70 亿基本一致，无非经常性损益依赖；</li>
+          <li>
+            毛利率 38.8%（同比 +1.7pct）、净利率 18.1%，核心盈利能力持续提升；
+          </li>
+          <li>研发费用 10.33 亿（占营收 4.7%），支撑高附加值产品升级；</li>
+          <li>应收账款 77.3 亿、存货 70.4 亿，周转健康；净现金约 11 亿。</li>
+        </ul>
+      </div>
+
+      <!-- 7. 行业与竞争格局 -->
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong
+            >：汽车玻璃全球集中度高（福耀、旭硝子、板硝子、圣戈班为主），单车玻璃价值量持续提升（全景天幕、HUD、可调光、智能化），是稳定增长的存量升级赛道。
+          </li>
+          <li>
+            <strong>竞争地位</strong
+            >：福耀全球市占率领先，且持续提升；规模、成本、良率、客户绑定构成较强壁垒，新进入者难以复制。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：ASP 提升（2026Q1 每平米单价同比
+            +11.01%）+ 全球份额提升 + 海外本地化扩产（美国、福清、合肥）。
+          </li>
+          <li>
+            <strong>风险</strong
+            >：全球汽车销量波动、汇率波动（直接影响报表利润）、海外工厂爬坡效率、原材料与能源成本。
+          </li>
+        </ul>
+        <p class="small">
+          结论：行业格局稳定、龙头地位巩固，成长逻辑清晰但兑现受汇率与海外爬坡扰动，需以经营口径跟踪。
+        </p>
+      </div>
+
+      <!-- 8. 估值与安全边际 -->
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值（2026-08-18，现价 56.16 元）</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">数值</th>
+            <th class="num">对应估值</th>
+          </tr>
+          <tr>
+            <td>2025A 静态（EPS 3.57）</td>
+            <td class="num">PE 15.7 倍</td>
+            <td class="num">合理</td>
+          </tr>
+          <tr>
+            <td>2026E 前瞻（全年约 84-88 亿，EPS 约 3.2-3.4）</td>
+            <td class="num">PE 约 16.7-17.5 倍</td>
+            <td class="num">合理</td>
+          </tr>
+          <tr>
+            <td>2026H1 每股净资产 14.63 元</td>
+            <td class="num">PB 3.84 倍</td>
+            <td class="num">中高位</td>
+          </tr>
+          <tr>
+            <td>2025年度1.20 + 2026中期1.00 元</td>
+            <td class="num">股息率约 3.9%</td>
+            <td class="num up">有吸引力</td>
+          </tr>
+        </table>
+        <h3>与上版报告（2026-04-27 / 除息后口径）对比</h3>
+        <table>
+          <tr>
+            <th>区间</th>
+            <th class="num">上版除息后价格</th>
+            <th class="num">现价位置</th>
+          </tr>
+          <tr>
+            <td>Fair Value</td>
+            <td class="num">60.3 元</td>
+            <td class="num">现价低于合理价值</td>
+          </tr>
+          <tr>
+            <td>Buy Zone</td>
+            <td class="num">51.8 - 57.3 元</td>
+            <td class="num hl">已进入（靠近上沿）</td>
+          </tr>
+          <tr>
+            <td>Strong Buy Zone</td>
+            <td class="num">&lt; 51.8 元</td>
+            <td class="num">未到</td>
+          </tr>
+        </table>
+        <p>
+          <strong
+            >合理价值区间：约 51.8 - 60.3 元；现价 56.16
+            元处于合理区间中下部，安全边际较 4 月显著改善。</strong
+          >
+        </p>
+        <div class="note">
+          4 月 27 日报告时股价 58.25 元（除息前 60.45
+          元），结论是"观望"；如今股价回落至 56.16
+          元且半年报确认经营底盘稳健（剔除汇兑 +4.78%、毛利率提升、中期分红
+          65.73%），估值与基本面双因素均向有利方向变化，评级由「观望」上调至「可小额分批」。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          现价已进入 Buy Zone，具备约 7% 的下行保护（至 51.8
+          元下沿）；若全球汽车周期走弱或汇率持续不利，存在回落至 51.8
+          元以下的空间，故适合"小额分批"而非一次性重仓，53 元以下再提高优先级。
+        </p>
+      </div>
+
+      <!-- 9. 六维评分 -->
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">全球汽玻龙头，认证壁垒 + 强护城河</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">ROE 25.56%、净现金、FCF 充沛</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">经营口径增长，表观受汇兑扰动</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">Stalwart，故事清晰可验证</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">PE 15.7-17、股息率3.9%、进入Buy Zone</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">汇兑、汽车周期、海外爬坡</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">41</span> / 60</div>
+      </div>
+
+      <!-- 10. 风险清单 -->
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>汇兑风险（当前主要）</strong
+            >：人民币汇率波动直接影响报表利润，2026H1 已因汇兑损失 8
+            亿致表观净利下滑；若汇率继续不利，H2 报表利润仍承压。
+          </li>
+          <li>
+            <strong>全球汽车周期</strong
+            >：海外销量、关税与贸易政策变化影响需求与海外工厂利用率。
+          </li>
+          <li>
+            <strong>海外扩产爬坡</strong
+            >：美国、福清、合肥基地投产初期良率/爬坡不及预期会压制利润率。
+          </li>
+          <li>
+            <strong>估值不便宜</strong>：PB 3.84
+            倍处于历史中高位，若利润连续两季不强，估值存在压缩风险。
+          </li>
+          <li>
+            <strong>原材料与能源成本</strong
+            >：纯碱、天然气等成本上行会侵蚀毛利率。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 11. 持仓分析与操作建议 -->
+      <div class="card">
+        <h2>💼 持仓分析与操作建议</h2>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">数值</th>
+          </tr>
+          <tr>
+            <td>当前持仓</td>
+            <td class="num">1200 股</td>
+          </tr>
+          <tr>
+            <td>买入成本</td>
+            <td class="num">57.951 元</td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num">56.16 元</td>
+          </tr>
+          <tr>
+            <td>当前市值</td>
+            <td class="num">约 67,392 元</td>
+          </tr>
+          <tr>
+            <td>账面浮亏</td>
+            <td class="num down">约 -2,149 元（-3.1%）</td>
+          </tr>
+          <tr>
+            <td>已收分红（2025中期0.90 + 2025年度1.20 + 2026中期1.00）</td>
+            <td class="num up">累计约 3,720 元</td>
+          </tr>
+        </table>
+        <p class="small">
+          浮亏较 4 月明显收窄，且已收现金分红（约 3,720
+          元）覆盖浮亏，实际经济回报为正。
+        </p>
+        <h3>操作建议</h3>
+        <ul class="small">
+          <li>
+            <strong>继续持有 1200 股</strong>，质地未变坏、估值回到 Buy
+            Zone，无减仓理由；
+          </li>
+          <li>可小额分批：<strong>56 元附近最多加 100 股</strong>；</li>
+          <li>
+            55 元以下可复核加 100-200 股；<strong>53 元以下提高优先级</strong>；
+          </li>
+          <li>
+            需跟踪：2026 三季报经营现金流与汇兑、海外工厂爬坡、ASP
+            是否延续提升。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 12. 总结 -->
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p><strong>结论：HOLD（可小额分批）。总分 41/60。</strong></p>
+        <h3>3 个持有的理由</h3>
+        <ol class="small">
+          <li>
+            全球汽玻龙头，强护城河：毛利率 38.8% 且提升、ROE 25.56%、5 年均值
+            19.57% 全部硬指标过关；
+          </li>
+          <li>
+            表观利润下滑系汇兑错杀：剔除汇兑后利润总额 +4.78%，Q2 经营现金流
+            41.9 亿强劲，经营底盘稳健；
+          </li>
+          <li>
+            高股东回报：中期分红每股 1.00 元（分红率 65.73%）、股息率约
+            3.9%，现价进入 Buy Zone。
+          </li>
+        </ol>
+        <h3>3 个不急于重仓的理由</h3>
+        <ol class="small">
+          <li>
+            PB 3.84 倍处于历史中高位，安全边际约 7%（至 51.8 元下沿）不算厚；
+          </li>
+          <li>汇兑扰动未消除，H2 表观利润仍可能受汇率影响，报表观感偏弱；</li>
+          <li>
+            全球汽车周期与海外扩产爬坡存在不确定性，需要经营数据继续验证。
+          </li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          「ASP 提升 + 全球份额提升 +
+          海外扩产爬坡成功」能否持续推动经营口径利润中双位数增长，并让毛利率稳在
+          38% 以上？若能，15-17 倍 PE
+          的估值就明显便宜；若海外爬坡失速或需求走弱，PB 3.84
+          倍的估值有压缩空间。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          人民币大幅升值导致汇兑持续大额损失、海外工厂长期爬坡不及预期、全球汽车需求进入下行周期——三者叠加会同时打击表观利润与估值。当前均未发生，汇兑是主要波动源但属非经营因素。
+        </p>
+        <div class="note">
+          数据充分性说明：本报告核心结论基于 2026
+          年半年报摘要原文（含官方披露的汇兑影响）、中期分红公告与行情接口数据，均可交叉验证；机构
+          2026E 一致预期 EPS 的精确分布无法从公开接口完整获取，2026E
+          采用中报可推导口径并作保守假设，未输出伪精确目标价。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-18
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 福耀玻璃 ·
+        600660
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,918 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>分众传媒（002027）投资决策报告 · 2026-08-18</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      /* 头部 */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      /* 卡片 */
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      /* 结论框 */
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      /* 表格 */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      /* 评分 */
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      /* 列表 */
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <!-- 头部 -->
+      <div class="hero">
+        <h1>分众传媒（002027）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年半年报更新版 ｜ 生成日期：2026-08-18 ｜ 数据基准：2026
+          年半年度报告（2026-08-19 披露）+ 中期利润分配方案 + 新潮收购重组说明
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：Stalwart（成熟现金牛）</span>
+          <span class="badge score">总分 37 / 60</span>
+        </div>
+      </div>
+
+      <!-- 1. 结论 -->
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">HOLD · 持有观察 + 小步分批</span>
+          价格已跌入 Strong Buy Zone，股息率 7%+ 提供保护；但半年报确认 Q2
+          主业扣非转弱（-17%），便宜与走弱并存，只适合小步分批、不重仓。
+        </div>
+        <p>
+          一句话：<strong>价格越来越便宜，主业越来越难讲增长。</strong>分众 2026
+          上半年营收 59.91 亿元（同比 -1.98%）、归母净利润 31.28
+          亿元（+17.39%）、扣非净利润 22.91 亿元（-7.06%）；归母高增全靠约 8.4
+          亿非经常性收益（投资收益为主），主业真实斜率在走弱——Q2 单季扣非同比约
+          -17%。
+        </p>
+        <p>
+          现价 4.96 元较 8 月 7 日（5.13 元）继续下跌，已跌破上版报告设定的
+          Strong Buy Zone（5.2 元以下）。按正常化盈利（2025 年剔除联营减值）计算
+          PE 仅约 13 倍、2026E 约 12-14 倍、股息率约
+          6.9%-7.9%，现金回报保护极强。矛盾在于：<strong>估值便宜与现金流强劲是事实，但主业（扣非）增长转负也是事实</strong>，加上新潮传媒
+          77.94 亿并购重组带来的股本摊薄与整合不确定性，当前不构成重仓理由。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>持有 3200 股不动（浮亏约 -3,926
+          元，高股息持续弥补）；可小步 100
+          股分批试探，但把重仓决定推迟到三季报主业拐点确认或新潮并购方案落地之后；反弹至
+          5.8-6.2 元且主业未加速时减仓兑现。
+        </p>
+      </div>
+
+      <!-- 2. 关键指标速览 -->
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">4.96 元 / 716 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">正常化 PE</div>
+            <div class="num">约 13 倍</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">股息率</div>
+            <div class="num">6.9%-7.9%</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">加权 ROE</div>
+            <div class="num">20.44%</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目（2026H1）</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入</td>
+            <td class="num">59.91 亿</td>
+            <td class="num">61.12 亿</td>
+            <td class="num down">-1.98%</td>
+          </tr>
+          <tr>
+            <td>归母净利润</td>
+            <td class="num">31.28 亿</td>
+            <td class="num">26.65 亿</td>
+            <td class="num up">+17.39%</td>
+          </tr>
+          <tr>
+            <td>扣非净利润</td>
+            <td class="num hl">22.91 亿</td>
+            <td class="num">24.65 亿</td>
+            <td class="num down">-7.06%</td>
+          </tr>
+          <tr>
+            <td>经营活动现金流净额</td>
+            <td class="num">44.53 亿</td>
+            <td class="num">34.02 亿</td>
+            <td class="num up">+30.91%</td>
+          </tr>
+          <tr>
+            <td>毛利率 / 净利率</td>
+            <td class="num">70.5% / 52.2%</td>
+            <td class="num">68.3% / 43.6%</td>
+            <td class="num">毛利率↑</td>
+          </tr>
+          <tr>
+            <td>加权 ROE</td>
+            <td class="num">20.44%</td>
+            <td class="num">14.52%</td>
+            <td class="num up">+5.92pct</td>
+          </tr>
+          <tr>
+            <td>资产负债率</td>
+            <td class="num">35.6%</td>
+            <td class="num">27.7%</td>
+            <td class="num">净现金充沛</td>
+          </tr>
+        </table>
+        <div class="note">
+          归母 +17.39% 与扣非 -7.06% 的背离：本期含约 8.4
+          亿非经常性收益（投资收益为主），主业真实斜率在下滑；Q2 单季扣非同比约
+          -17%。
+        </div>
+        <p class="muted">
+          数据来源：分众传媒 2026 年半年度报告摘要（2026-08-19 披露）、东方财富
+          / 新浪公开数据。
+        </p>
+      </div>
+
+      <!-- 3. 数据来源与可信度 -->
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：2026 年半年度报告全文及摘要、2026
+            年半年度利润分配方案公告、第九届董事会第十三次会议决议、关于本次交易构成重大资产重组的说明（2026-08-19）。
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10 主要财务指标（2017-2025
+            年报、2026H1）、新浪财经三张报表接口。
+          </li>
+          <li>
+            <strong>行情与估值</strong>：东方财富日 K 线接口（现价 4.96
+            元、2025-2026 走势）。
+          </li>
+          <li>
+            <strong>分红与股东</strong
+            >：中期利润分配方案公告、半年报前十大股东。
+          </li>
+          <li>
+            <strong>持仓</strong>：KnowledgeBase/stocks/my/holder.json（3200
+            股，成本 6.187 元）。
+          </li>
+        </ul>
+        <div class="note">
+          可信度说明：营收、归母、扣非、现金流、ROE
+          等逐项取自半年报摘要原文，可交叉验证。无法获取的：2026H1
+          非经常性收益（约 8.4 亿）的具体构成附注、新潮并购完成后 2026E
+          并表后盈利的精确预测，故相关结论作保守假设，不输出伪精确目标价。
+        </div>
+      </div>
+
+      <!-- 4. 硬阈值筛选 -->
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">33.13%</td>
+            <td class="num">14.82%</td>
+            <td class="num">28.42%</td>
+            <td class="num">29.91%</td>
+            <td class="num">18.28%</td>
+            <td class="num">约24.9%</td>
+          </tr>
+        </table>
+        <p class="small">
+          5 年平均值约 24.9%、其中 4 年 ≥15%、无一年低于 10%，明确通过。2025
+          年回落至 18.28% 系联营减值拖累（非现金）。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          2023-2025 年自由现金流分别约 74 / 63 / 70 亿元，三年全部为正；2026H1
+          经营现金流 44.53 亿（+30.91%）、资本开支仅约 2.1 亿，轻资产模式下 FCF
+          极强。通过。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          2023-2025 年现金分红率分别约 98.7% / 92.4% / 166.7%（2025
+          表观口径含减值），分红慷慨且逐年上升；2026 中期继续每 10 股派 0.50
+          元（每股 0.05 元）。通过。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          2026H1 资产负债率 35.6%；货币资金 38.7 亿 + 交易性金融资产 54.5 亿 ≈
+          93 亿类现金，有息负债极少，净现金充沛。通过。
+        </p>
+        <div class="good-box">
+          <strong>硬阈值总判断：通过。</strong>分众是典型的轻资产、高
+          ROE、高现金流、高分红现金牛，四项全部高质量达标。
+        </div>
+      </div>
+
+      <!-- 5. 基本面研究 -->
+      <div class="card">
+        <h2>📺 基本面研究</h2>
+        <h3>公司定位与主营</h3>
+        <p class="small">
+          城市生活圈媒体龙头：电梯电视、电梯海报、影院媒体（映前广告）。核心资产是优质楼宇点位网络
+          +
+          规模化运营能力，下游面向品牌广告主。商业模式轻资产、预收款为主、现金流极好。
+        </p>
+        <h3>护城河（强度：强，但边际承压）</h3>
+        <ul class="small">
+          <li>
+            核心楼宇点位网络（尤其一二线写字楼/社区）构成中心化线下曝光入口，品牌广告主高度依赖；
+          </li>
+          <li>高频触达 + 规模化投放 + 数据化能力，规模效应显著；</li>
+          <li>毛利率 70.5% 且同比提升，验证定价与成本控制能力；</li>
+          <li>
+            <span class="hl">脆弱点</span
+            >：短视频、效果广告持续分流品牌广告预算，梯媒"不可替代性"在被侵蚀，广告大盘疲软时增长受限。
+          </li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>创始人江南春控制（Media Management HK 23.72%），治理稳定；</li>
+          <li>高分红回报股东（近年分红率 90%-166%）；</li>
+          <li>
+            资本运作：拟发行股份 + 现金收购新潮传媒 90.02% 股权（作价 77.94
+            亿），张继学将任副总裁兼首席增长官，属关联交易、构成重大资产重组（不构成重组上市）。
+          </li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          <strong>Stalwart（成熟现金牛）</strong
+          >，而非成长股。投资逻辑是"合理价格买稳定现金流 +
+          高分红"，而不是买增长爆发；当前主业增长中枢已降至 0 附近甚至转负。
+        </p>
+      </div>
+
+      <!-- 6. 财务质量分析 -->
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>2026 上半年核心变化：归母与扣非背离、Q2 主业走弱</h3>
+        <div class="warn-box">
+          <strong>⚠️ 主业增长转负。</strong>归母 +17.39% 完全由约 8.4
+          亿非经常性收益驱动；扣非 -7.06%，其中 Q2 单季扣非约 12.25 亿、同比约
+          -17%，是 2023 年以来主业最弱的一个季度。
+        </div>
+        <table>
+          <tr>
+            <th>单季拆解</th>
+            <th class="num">2026Q2</th>
+            <th class="num">2025Q2</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入</td>
+            <td class="num">30.76 亿</td>
+            <td class="num">32.55 亿</td>
+            <td class="num down">-5.5%</td>
+          </tr>
+          <tr>
+            <td>归母净利润</td>
+            <td class="num">13.38 亿</td>
+            <td class="num">15.29 亿</td>
+            <td class="num down">-12.5%</td>
+          </tr>
+          <tr>
+            <td>扣非净利润</td>
+            <td class="num hl">12.25 亿</td>
+            <td class="num">14.77 亿</td>
+            <td class="num down">-17.1%</td>
+          </tr>
+          <tr>
+            <td>经营现金流（H1 整体）</td>
+            <td class="num">44.53 亿</td>
+            <td class="num">34.02 亿</td>
+            <td class="num up">+30.91%</td>
+          </tr>
+        </table>
+        <p class="small">
+          解读：① 主业（扣非）连续两季增速放缓（Q1 +7.88% → Q2
+          -17%），反映品牌广告主预算在宏观消费疲软下收缩；② 但经营现金流 +30.91%
+          至 44.53 亿，说明现金回收能力依然强、轻资产预收款模式未坏；③ 净现金约
+          93 亿、资产负债率 35.6%，财务极为稳健。
+        </p>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li>
+            归母与扣非差异约 8.4
+            亿（投资收益为主），不可持续，估值不应锚定归母高增速；
+          </li>
+          <li>
+            毛利率 70.5%（同比 +2.2pct）、净利率 52.2%，盈利能力行业顶级；
+          </li>
+          <li>
+            归母净资产 139.9 亿（同比 -1.82%），被高分红持续"掏空"，PB
+            参考意义有限；
+          </li>
+          <li>
+            应收账款 31.3 亿、存货仅 0.07 亿，轻资产、低库存，现金周转健康。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 7. 行业与竞争格局 -->
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong>：线下生活圈媒体（电梯 +
+            影院），头部集中，分众优势明显；但面对短视频、内容平台、效果广告的预算分流，行业大盘增长乏力。
+          </li>
+          <li>
+            <strong>竞争地位</strong>：梯媒绝对龙头（电梯电视 +
+            电梯海报点位第一），新潮传媒是主要竞争对手——本次收购新潮 90.02%
+            股权意在整合行业、消除竞争、扩大点位网络。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：提价（ASP）+ 点位扩张 + 影院复苏 +
+            新潮并表；但 2026 年广告需求疲软，短期增长承压。
+          </li>
+          <li>
+            <strong>风险</strong
+            >：广告周期下行、线上预算挤压、新潮并购整合与摊薄、影院媒体依赖票房。
+          </li>
+        </ul>
+        <p class="small">
+          结论：行业地位稳固，但增长引擎已从"自然增长"转向"并购整合"，新潮并表是未来关键变量，同时带来摊薄与整合不确定性。
+        </p>
+      </div>
+
+      <!-- 8. 估值与安全边际 -->
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值（2026-08-18，现价 4.96 元）</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">数值</th>
+            <th class="num">对应估值</th>
+          </tr>
+          <tr>
+            <td>2025A 静态（表观归母 29.46 亿）</td>
+            <td class="num">PE 24.3 倍</td>
+            <td class="num">偏高</td>
+          </tr>
+          <tr>
+            <td>2025A 正常化（剔除联营减值，约 54.7 亿）</td>
+            <td class="num">PE 13.1 倍</td>
+            <td class="num up">便宜</td>
+          </tr>
+          <tr>
+            <td>2026E 归母（约 50-60 亿）</td>
+            <td class="num">PE 12-14 倍</td>
+            <td class="num up">便宜</td>
+          </tr>
+          <tr>
+            <td>股息率（2025年度 0.34 元）</td>
+            <td class="num">约 6.85%</td>
+            <td class="num up">高</td>
+          </tr>
+          <tr>
+            <td>近12月股息率（+2026中期 0.05 元）</td>
+            <td class="num">约 7.86%</td>
+            <td class="num up">高</td>
+          </tr>
+        </table>
+        <h3>与上版报告（2026-08-07）对比</h3>
+        <table>
+          <tr>
+            <th>区间</th>
+            <th class="num">上版价格</th>
+            <th class="num">现价位置</th>
+          </tr>
+          <tr>
+            <td>Fair Value</td>
+            <td class="num">6.2 元</td>
+            <td class="num">现价远低于</td>
+          </tr>
+          <tr>
+            <td>Buy Zone</td>
+            <td class="num">5.2 - 5.8 元</td>
+            <td class="num">已跌破下沿</td>
+          </tr>
+          <tr>
+            <td>Strong Buy Zone</td>
+            <td class="num">&lt; 5.2 元</td>
+            <td class="num hl">已进入（4.96 元）</td>
+          </tr>
+        </table>
+        <p>
+          <strong
+            >现价 4.96 元已进入 Strong Buy Zone，正常化 PE 约 13 倍、股息率
+            7%+，价格层面具备充足安全边际。</strong
+          >
+        </p>
+        <div class="note">
+          但"便宜"必须与"主业走弱"放在一起看：若按 2026E 扣非口径（全年约 45-48
+          亿）估值，扣非 PE 约 15-16 倍，尚不算极端便宜；真正便宜的锚是"现金流 +
+          分红"（FCF 年化 80 亿+、股息率
+          7%+），而非成长。故便宜支持"小步分批"，不支持"重仓下注成长"。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          价格安全边际充足（正常化 PE 13 倍、股息率 7%+、净现金 93
+          亿）；但基本面安全边际不足（主业扣非转负、新潮并购摊薄与整合不确定），需等待三季报主业拐点或并购方案明朗后再上重仓。
+        </p>
+      </div>
+
+      <!-- 9. 六维评分 -->
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">梯媒龙头、护城河强，但短视频分流</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">净现金93亿、现金流44.5亿、高分红</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">4/10</div>
+            <div class="bar"><div class="fill" style="width: 40%"></div></div>
+            <div class="small">Q2扣非-17%，主业增长转负</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">现金牛清晰，新潮并购增不确定性</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">正常化PE 13、股息率7%、Strong Buy</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">广告周期、主业下滑、并购摊薄</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">37</span> / 60</div>
+      </div>
+
+      <!-- 10. 风险清单 -->
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>主业持续走弱（当前最核心）</strong>：Q2 扣非
+            -17%，若广告主预算收缩延续，2026 全年扣非可能下滑，估值锚下移。
+          </li>
+          <li>
+            <strong>新潮并购风险</strong>：77.94 亿交易（发行股份 +
+            现金）将摊薄股本约 10%，且整合效果、新潮自身盈利能力存不确定性。
+          </li>
+          <li>
+            <strong>非经常性收益不可持续</strong>：约 8.4
+            亿投资收益不稳定，归母表观高增不可外推。
+          </li>
+          <li>
+            <strong>线上分流</strong
+            >：短视频、效果广告长期侵蚀品牌广告预算，梯媒增长天花板受压。
+          </li>
+          <li>
+            <strong>广告周期</strong
+            >：与宏观消费强相关，经济下行时广告主率先收缩投放。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 11. 持仓分析与操作建议 -->
+      <div class="card">
+        <h2>💼 持仓分析与操作建议</h2>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">数值</th>
+          </tr>
+          <tr>
+            <td>当前持仓</td>
+            <td class="num">3200 股</td>
+          </tr>
+          <tr>
+            <td>买入成本</td>
+            <td class="num">6.187 元</td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num">4.96 元</td>
+          </tr>
+          <tr>
+            <td>当前市值</td>
+            <td class="num">约 15,872 元</td>
+          </tr>
+          <tr>
+            <td>账面浮亏</td>
+            <td class="num down">约 -3,926 元（-19.8%）</td>
+          </tr>
+          <tr>
+            <td>近12月每股分红</td>
+            <td class="num up">约 0.39 元（股息率 7.9%）</td>
+          </tr>
+        </table>
+        <p class="small">
+          浮亏较大（-19.8%），但分众高分红持续弥补：按现价年化股息率约 7%，持有
+          3 年分红即可覆盖约 21% 的浮亏，这是继续持有的底仓逻辑。
+        </p>
+        <h3>操作建议</h3>
+        <ul class="small">
+          <li>
+            <strong>继续持有 3200 股</strong>，高股息 + 净现金 +
+            现金流强，不因浮亏割肉；
+          </li>
+          <li>
+            <strong>可小步 100 股分批试探</strong>（Strong Buy Zone
+            内），但每批间隔拉开；
+          </li>
+          <li>
+            <strong>重仓决定推迟</strong
+            >到三季报主业扣非拐点确认或新潮并购方案落地后；
+          </li>
+          <li>反弹至 5.8-6.2 元且主业未加速时，减仓 300-500 股兑现；</li>
+          <li>
+            需跟踪：三季报扣非斜率、新潮并购进展与摊薄比例、广告行业景气。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 12. 总结 -->
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p><strong>结论：HOLD（持有观察 + 小步分批）。总分 37/60。</strong></p>
+        <h3>3 个持有的理由</h3>
+        <ol class="small">
+          <li>
+            极致现金牛：净现金 93 亿、经营现金流 44.5 亿（+30.9%）、毛利率
+            70.5%、ROE 20.4%，财务质量顶级；
+          </li>
+          <li>
+            价格安全边际充足：正常化 PE 约 13 倍、股息率 7%+、已进入 Strong Buy
+            Zone；
+          </li>
+          <li>
+            高分红底仓逻辑：年化股息率约 7%
+            提供现金回报保护，长期持有可通过分红覆盖浮亏。
+          </li>
+        </ol>
+        <h3>3 个不重仓的理由</h3>
+        <ol class="small">
+          <li>
+            主业增长转负：Q2 扣非 -17%，归母 +17.4% 全靠 8.4
+            亿非经常收益，成长锚不可靠；
+          </li>
+          <li>
+            新潮并购摊薄与整合不确定：77.94 亿交易将摊薄股本，整合效果待验证；
+          </li>
+          <li>
+            行业天花板承压：短视频与效果广告持续分流品牌预算，梯媒增长中枢下移。
+          </li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          「新潮并购整合 + 广告行业回暖」能否在 2026H2-2027
+          让扣非利润重回增长？若能，当前 13 倍正常化 PE
+          就是显著的错误定价；若不能，分众将从"成长现金牛"退化为"衰退型高股息股"，估值锚需下移。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          广告需求持续下行 + 新潮并购整合失败 +
+          高分红难以为继（现金流恶化）——三者叠加会同时打击现金流与估值。目前现金流依然强劲、净现金充沛，尚未出现，但主业扣非转负是必须盯紧的前兆信号。
+        </p>
+        <div class="note">
+          数据充分性说明：本报告核心结论基于 2026
+          年半年报摘要原文、中期分红方案与重组说明公告，可交叉验证；2026H1
+          非经常性收益附注明细、新潮并表后 2026E
+          盈利精确预测无法从公开接口完整获取，相关测算作保守假设，未输出伪精确目标价。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-18
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 分众传媒 ·
+        002027
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,956 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>恩华药业（002262）投资决策报告 · 2026-08-18</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      /* 头部 */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      /* 卡片 */
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      /* 结论框 */
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      /* 表格 */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      /* 评分 */
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      /* 列表 */
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>恩华药业（002262）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年半年报更新版 ｜ 生成日期：2026-08-18 ｜ 数据基准：2026
+          年半年度报告（当日披露）+ 实时行情
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：Stalwart（稳健复利股）</span>
+          <span class="badge score">总分 35 / 60</span>
+        </div>
+      </div>
+
+      <!-- 结论 -->
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">HOLD · 持有不加仓</span>
+          公司质地依然优质，但股价已在两个月内反弹约
+          18%，估值从「接近合理」重新回到「偏贵」。
+        </div>
+        <p>
+          一句话：<strong>公司没变坏，是价格变贵了。</strong>恩华药业 2026
+          上半年归母净利润 7.41 亿元（同比 +5.74%），延续了营收 +6.9% / 净利
+          +5.7%
+          的低个位数到中个位数增长；高毛利（73.9%）、低负债（12.3%）、净现金约
+          37 亿元、社保与养老金组合重仓的优质底色没有改变。但股价已从 6 月 5
+          日的约 19.32 元涨至今日 22.75 元（+17.8%），业绩只增长约
+          5.7%——<strong>上涨基本来自估值扩张而非盈利改善</strong>。
+        </p>
+        <p>
+          当前 22.75 元对应 2025A 静态 PE 约 21.7 倍、2026E 前瞻 PE 约 20 倍、PB
+          2.76 倍，已经明显高于上一版报告（6 月 5 日）测算的 Fair Value 19.8
+          元与 Buy Zone 18.3-19.0 元。上一次「接近第一买点」的机会窗口（6 月 5
+          日 19.42 元）已经过去。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>持有 1000
+          股不动，浮亏已收窄；不追高、不在此价位补仓；等待股价回到 20
+          元以下再评估第一买点，19 元以下才是舒服的加仓区。
+        </p>
+      </div>
+
+      <!-- 关键数据速览 -->
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">22.75 元 / 231 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">静态 PE</div>
+            <div class="num">21.7 倍</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">PB</div>
+            <div class="num">2.76 倍</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">股息率(2025A)</div>
+            <div class="num">1.76%</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目（2026H1）</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入</td>
+            <td class="num">32.18 亿</td>
+            <td class="num">30.10 亿</td>
+            <td class="num up">+6.91%</td>
+          </tr>
+          <tr>
+            <td>归母净利润</td>
+            <td class="num">7.41 亿</td>
+            <td class="num">7.00 亿</td>
+            <td class="num up">+5.74%</td>
+          </tr>
+          <tr>
+            <td>扣非净利润</td>
+            <td class="num">7.46 亿</td>
+            <td class="num">6.99 亿</td>
+            <td class="num up">+6.65%</td>
+          </tr>
+          <tr>
+            <td>经营活动现金流净额</td>
+            <td class="num hl">2.80 亿</td>
+            <td class="num">4.95 亿</td>
+            <td class="num down">-43.33%</td>
+          </tr>
+          <tr>
+            <td>毛利率 / 净利率</td>
+            <td class="num">73.9% / 23.0%</td>
+            <td class="num">72.4% / 23.3%</td>
+            <td class="num">毛利率↑</td>
+          </tr>
+          <tr>
+            <td>加权 ROE</td>
+            <td class="num">8.86%</td>
+            <td class="num">9.26%</td>
+            <td class="num down">-0.40pct</td>
+          </tr>
+          <tr>
+            <td>资产负债率</td>
+            <td class="num">12.3%</td>
+            <td class="num">约 13%</td>
+            <td class="num">健康</td>
+          </tr>
+        </table>
+        <p class="muted">
+          数据来源：恩华药业 2026 年半年度报告（2026-08-18 披露）、东方财富 /
+          新浪公开数据。
+        </p>
+      </div>
+
+      <!-- 数据来源 -->
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：2026
+            年半年度报告全文及摘要、第七届董事会第九次会议决议公告、财务总监变更公告（2026-08-18）。
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10 主要财务指标（2017-2025
+            年报、2026H1）、新浪财经三张报表接口（利润表 / 资产负债表 /
+            现金流量表）。
+          </li>
+          <li>
+            <strong>行情与估值</strong>：东方财富实时行情接口（现价 22.75 元、PE
+            15.63 动态 / PB 2.76）、日 K 线（2025-2026）。
+          </li>
+          <li>
+            <strong>分红与股东</strong>：东方财富数据中心（RPT_SHAREBONUS_DET /
+            RPT_F10_EH_HOLDERS / 股东户数）。
+          </li>
+          <li>
+            <strong>研报观点</strong>：东方财富研报页（主流券商 2025
+            年持续「买入」评级，聚焦创新药管线与麻醉新品放量）。
+          </li>
+        </ul>
+        <div class="note">
+          可信度说明：核心财务数字来自公告原文（半年报摘要逐项核对），行情估值来自实时接口，互相可印证。无法获取的：机构
+          2026-2028 一致预期 EPS
+          的精确分布、创新药管线各品种的具体申报时间表，故估值部分采用基于中报的可推导口径，不输出伪精确目标价。
+        </div>
+      </div>
+
+      <!-- 硬阈值 -->
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">17.69%</td>
+            <td class="num">17.20%</td>
+            <td class="num">17.28%</td>
+            <td class="num">16.79%</td>
+            <td class="num down">13.88%</td>
+            <td class="num">16.57%</td>
+          </tr>
+        </table>
+        <p class="small">
+          5 年平均值 16.57%、其中 4 年 ≥15%，达标。但需注意 2025 年 ROE 已跌破
+          15% 关口，若 2026 年继续下探至 12% 以下，基本面评级需降级。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          2023-2025 年经营现金流分别为约 10.2 / 9.2 / 10.8
+          亿元，持续为正且为正的资本开支强度低，近三年 FCF 累计为正，通过。<span
+            class="hl"
+            >但 2026H1 经营现金流仅 2.80 亿元（同比 -43.3%）</span
+          >，是本报告最重要的边际变化，详见财务质量章节。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <table>
+          <tr>
+            <th>年度</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+          </tr>
+          <tr>
+            <td>每股分红(元)</td>
+            <td class="num">0.20</td>
+            <td class="num">0.32</td>
+            <td class="num">0.36</td>
+            <td class="num up">0.40</td>
+          </tr>
+        </table>
+        <p class="small">
+          分红连续四年提升，近三年平均现金分红率约 33.7%，通过。2026
+          年中期不分配（符合公司惯例，分红集中在年报）。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          2026H1 资产负债率仅 12.3%；货币资金 12.2 亿 + 交易性金融资产 25.2 亿 ≈
+          37.4 亿类现金，有息负债仅约 0.4 亿（短期借款），净现金约 37
+          亿元。极低杠杆，明确通过。
+        </p>
+        <div class="good-box">
+          <strong>硬阈值总判断：通过。</strong>恩华是少数
+          ROE、FCF、分红、负债率四项全部过关的 A 股制造型公司。
+        </div>
+      </div>
+
+      <!-- 基本面 -->
+      <div class="card">
+        <h2>🏥 基本面研究</h2>
+        <h3>公司定位与主营（2026H1）</h3>
+        <table>
+          <tr>
+            <th>业务板块</th>
+            <th class="num">收入(亿)</th>
+            <th class="num">占比</th>
+          </tr>
+          <tr>
+            <td>麻醉类（核心）</td>
+            <td class="num">16.68</td>
+            <td class="num">51.8%</td>
+          </tr>
+          <tr>
+            <td>精神类</td>
+            <td class="num">6.51</td>
+            <td class="num">20.2%</td>
+          </tr>
+          <tr>
+            <td>神经类</td>
+            <td class="num">2.22</td>
+            <td class="num">6.9%</td>
+          </tr>
+          <tr>
+            <td>商业医药</td>
+            <td class="num">4.61</td>
+            <td class="num">14.3%</td>
+          </tr>
+          <tr>
+            <td>原料药 / 其他</td>
+            <td class="num">1.56</td>
+            <td class="num">4.9%</td>
+          </tr>
+        </table>
+        <p class="small">
+          CNS 三大核心品类（麻醉+精神+神经）合计约 25.4 亿元、占营收约
+          79%；工业制药合计占 83.8%，国内销售占
+          98.3%。高度聚焦中枢神经系统专科药。
+        </p>
+        <h3>护城河</h3>
+        <ul class="small">
+          <li>麻精药品定点生产资质 + 院内准入壁垒，形成强监管护城河；</li>
+          <li>原料药 → 制剂一体化，成本与供给可控；</li>
+          <li>
+            约 72%-74%
+            的高毛利，验证细分赛道定价能力（非自由定价但竞争格局优）；
+          </li>
+          <li>
+            产品矩阵完整（麻醉镇静、镇痛、精神、神经），渠道深度（国内医院）多年积累。
+          </li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>
+            实控人孙彭生、付卿、陈增良、杨自亮合计控制 47.98%，股权结构稳定；
+          </li>
+          <li>
+            董事长孙彭生 2026-04-22 以均价 21.34 元增持 20 万股并承诺 12
+            个月不减持；
+          </li>
+          <li>
+            全国社保基金一一三组合（2.71%）、基本养老保险基金八零二组合（2.17%）、社保四一三组合（1.59%）持续重仓；
+          </li>
+          <li>
+            <span class="hl"
+              >2026-08-17
+              财务总监李岗生辞任，聘任何竹子（前有三诺生物财务总监背景）</span
+            >，公告称因个人原因，属于正常人事更替，但值得在后续季报中留意财务政策是否变化。
+          </li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          <strong>Stalwart（稳健复利股）</strong>，而非 Fast
+          Grower。成长跑道仍在（老龄化、心理健康、脑科学、创新药政策），但短期增速（+5.7%）不足以支撑高成长估值框架。故事简单、可验证、在能力圈内。
+        </p>
+      </div>
+
+      <!-- 财务质量 -->
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>2026 上半年核心变化</h3>
+        <div class="warn-box">
+          <strong
+            >⚠️ 经营现金流大幅下滑（-43.3%）是本报告最需要关注的变化。</strong
+          >
+        </div>
+        <table>
+          <tr>
+            <th>现金流量项（H1，亿元）</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">变化</th>
+          </tr>
+          <tr>
+            <td>销售商品收到现金</td>
+            <td class="num">32.85</td>
+            <td class="num">31.40</td>
+            <td class="num up">+4.6%</td>
+          </tr>
+          <tr>
+            <td>购买商品支付现金</td>
+            <td class="num">9.78</td>
+            <td class="num">8.32</td>
+            <td class="num down">+17.5%</td>
+          </tr>
+          <tr>
+            <td>支付职工现金</td>
+            <td class="num">5.17</td>
+            <td class="num">4.77</td>
+            <td class="num">+8.4%</td>
+          </tr>
+          <tr>
+            <td>支付税费</td>
+            <td class="num">3.89</td>
+            <td class="num">3.84</td>
+            <td class="num">+1.5%</td>
+          </tr>
+          <tr>
+            <td>经营活动现金流净额</td>
+            <td class="num hl">2.80</td>
+            <td class="num">4.95</td>
+            <td class="num down">-43.3%</td>
+          </tr>
+        </table>
+        <p class="small">
+          原因拆解：①
+          销售收现增速（+4.6%）低于营收增速（+6.9%），部分收入尚未回款；② 存货由
+          Q1 的 6.95 亿增至 8.58 亿（+1.63 亿），备货增加；③ 采购支出同比
+          +17.5%。本质是「增长期备货 + 回款节奏」所致，且公司有约 37
+          亿类现金托底，<strong>不构成流动性风险</strong>，但说明利润现金含量在
+          H1 边际走弱，需观察下半年回补。
+        </p>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li>
+            扣非与归母基本一致（扣非 7.46 亿 &gt; 归母 7.41
+            亿），无显著非经常性损益依赖，盈利质量扎实（对比京东方 H1 含 20
+            亿浮盈）；
+          </li>
+          <li>研发费用 3.12 亿（占营收 9.7%），创新药管线是未来期权；</li>
+          <li>
+            总资产 95.35 亿，其中类现金约 37.4
+            亿，几乎零有息负债，资产负债表极为干净；
+          </li>
+          <li>
+            应收票据及应收账款 17.57 亿元，需关注回款效率（销售收现/营收约
+            1.02，尚可）。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 行业与竞争 -->
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong
+            >：CNS（中枢神经）药物细分领域，麻精药品受严格管控、准入壁垒高，不同于仿制药红海；老龄化、心理健康、手术量恢复为长期需求提供支撑。
+          </li>
+          <li>
+            <strong>竞争地位</strong
+            >：麻醉镇静/镇痛领域国内头部企业，与恒瑞、人福等竞争，但细分产品（如丙泊酚、右美托咪定、阿芬太尼等）份额稳固。
+          </li>
+          <li>
+            <strong>创新药管线</strong
+            >：自研新药进入报产阶段（券商称「创新步入收获期」），是未来 2-3
+            年最重要的估值期权，但目前尚未规模化贡献利润。
+          </li>
+          <li>
+            <strong>风险</strong
+            >：医保控费、集采扩围、药品审评政策变化可能压制价格与放量节奏。
+          </li>
+        </ul>
+        <p class="small">
+          结论：行业格局稳定，公司地位稳中有升，但成长斜率取决于创新药兑现与新品放量，短期仍未看到明显加速证据。
+        </p>
+      </div>
+
+      <!-- 估值 -->
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值（2026-08-18，现价 22.75 元）</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">数值</th>
+            <th class="num">对应估值</th>
+          </tr>
+          <tr>
+            <td>2025A 静态（EPS 1.05）</td>
+            <td class="num">PE 21.7 倍</td>
+            <td class="num">偏高</td>
+          </tr>
+          <tr>
+            <td>2026E 前瞻（全年约 11.2-11.6 亿，EPS 约 1.10-1.14）</td>
+            <td class="num">PE 约 20 倍</td>
+            <td class="num">偏贵</td>
+          </tr>
+          <tr>
+            <td>2026H1 每股净资产 8.23 元</td>
+            <td class="num">PB 2.76 倍</td>
+            <td class="num">偏贵</td>
+          </tr>
+          <tr>
+            <td>2025 年度每股分红 0.40 元</td>
+            <td class="num">股息率 1.76%</td>
+            <td class="num">偏低</td>
+          </tr>
+        </table>
+        <h3>三锚交叉验证（参考 6 月报告方法，剔除分红影响后）</h3>
+        <table>
+          <tr>
+            <th>估值锚</th>
+            <th class="num">合理区间（元）</th>
+          </tr>
+          <tr>
+            <td>2025A EPS × 18-20 倍 PE</td>
+            <td class="num">18.9 - 21.0</td>
+          </tr>
+          <tr>
+            <td>2026E EPS（约 1.11）× 17-19 倍 PE</td>
+            <td class="num">18.9 - 21.1</td>
+          </tr>
+          <tr>
+            <td>PB 2.3 - 2.5 倍</td>
+            <td class="num">18.9 - 20.6</td>
+          </tr>
+        </table>
+        <p>
+          <strong
+            >合理价值区间：约 19 - 21 元；现价 22.75 元高于合理区间上沿约
+            8%-20%。</strong
+          >
+        </p>
+        <div class="note">
+          相比 6 月 5 日（19.42 元，对应静态 PE 18.5、Fair Value 19.8、Buy Zone
+          18.3-19.0），本次股价上涨约 +17.8%，而同期盈利仅增长约 +5.7%，<strong
+            >估值扩张贡献了约 12 个百分点</strong
+          >。市场显然对创新药管线与麻醉新品放量给予了更高的预期溢价。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          当前安全边际为负（现价高于合理区间）。要回到「可以分批买入」的位置，需要股价回落至约
+          20 元以下；要回到「舒服加仓区」，需要 19
+          元以下。若下半年创新药或麻醉新品出现超预期催化，合理区间上沿可上修，但在业绩兑现前，不应提前支付溢价。
+        </p>
+      </div>
+
+      <!-- 评分 -->
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">CNS 专科壁垒 + 麻精资质 + 72% 毛利</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">净现金 37 亿、负债率 12%，但 H1 现金流-43%</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">增速 5-7% 偏慢，创新药为未兑现期权</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">Stalwart，故事清晰可验证</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">3/10</div>
+            <div class="bar"><div class="fill" style="width: 30%"></div></div>
+            <div class="small">PE 20-22、PB 2.76，高于合理区间</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">现金厚、护城河稳，现金流边际转弱</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">35</span> / 60</div>
+      </div>
+
+      <!-- 风险 -->
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>估值回归风险（当前最主要）</strong>：股价两个月 +18%
+            已透支部分预期，若中报后无创新药催化，股价存在向 19-21
+            元合理区间回归的压力。
+          </li>
+          <li>
+            <strong>现金流质量风险</strong>：H1 经营现金流
+            -43.3%，若下半年继续走弱（存货去化不畅、应收恶化），将侵蚀利润含金量与高估值基础。
+          </li>
+          <li>
+            <strong>成长不及预期</strong>：若 2026 全年净利增速持续低于 6%，ROE
+            或进一步降至 12% 附近，将触发基本面降级。
+          </li>
+          <li>
+            <strong>集采与医保控费</strong
+            >：麻精药品虽相对抗集采，但若扩围或价格调整，毛利率可能承压。
+          </li>
+          <li>
+            <strong>创新药不确定性</strong
+            >：报产、审评、放量节奏存在时间与结果不确定性，若延期则高预期溢价回落。
+          </li>
+          <li>
+            <strong>治理观察项</strong
+            >：财务总监更替，需后续季报确认财务政策连续性。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 持仓与操作 -->
+      <div class="card">
+        <h2>💼 持仓分析与操作建议</h2>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">数值</th>
+          </tr>
+          <tr>
+            <td>当前持仓</td>
+            <td class="num">1000 股</td>
+          </tr>
+          <tr>
+            <td>买入成本</td>
+            <td class="num">25.889 元</td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num">22.75 元</td>
+          </tr>
+          <tr>
+            <td>当前市值</td>
+            <td class="num">约 22,750 元</td>
+          </tr>
+          <tr>
+            <td>账面浮亏</td>
+            <td class="num down">约 -3,139 元（-12.1%）</td>
+          </tr>
+          <tr>
+            <td>含 2025 年度分红 0.40 元/股的经济口径</td>
+            <td class="num down">约 -2,739 元</td>
+          </tr>
+        </table>
+        <p class="small">
+          浮亏较 6 月 5 日（-6,469 元）已大幅收窄约 3,330
+          元，主因股价反弹，而非基本面大幅改善。
+        </p>
+        <h3>操作建议</h3>
+        <ul class="small">
+          <li>
+            <strong>继续持有 1000 股</strong
+            >，公司质地未变坏、现金充裕、机构认可度高，没有卖出理由；
+          </li>
+          <li>
+            <strong>不追高、不在此价位（22.75 元）补仓</strong
+            >，当前已高于合理区间上沿；
+          </li>
+          <li>
+            第一买点：股价回落至
+            <strong>20 元以下</strong> 且基本面未恶化，可考虑补 100 股；
+          </li>
+          <li>舒服加仓区：<strong>19 元以下</strong>，接近上一版 Buy Zone；</li>
+          <li>
+            需跟踪触发条件：2026
+            三季报现金流回补、麻醉新品放量、创新药报产/获批进展。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 总结 -->
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p><strong>结论：HOLD（持有，不加仓）。总分 35/60。</strong></p>
+        <h3>3 个持有的理由</h3>
+        <ol class="small">
+          <li>
+            硬阈值全过：5 年均值 ROE 16.57%、低负债
+            12%、分红连续提升、社保/养老金重仓；
+          </li>
+          <li>
+            高毛利（73.9%）+ 净现金（约 37 亿）+
+            无显著非经常损益，盈利质量扎实；
+          </li>
+          <li>CNS 专科药护城河稳定，创新药管线（自研报产）是免费看涨期权。</li>
+        </ol>
+        <h3>3 个不加仓的理由</h3>
+        <ol class="small">
+          <li>
+            估值偏贵：PE 20-22 倍、PB 2.76 倍，高于合理区间上沿，股价两个月 +18%
+            已透支；
+          </li>
+          <li>成长斜率不足：营收 +6.9%、净利 +5.7%，尚未见到中报加速证据；</li>
+          <li>H1 经营现金流 -43.3%，利润现金含量边际走弱，需下半年验证。</li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          「麻醉新品 + 创新药管线」能否在 2026-2027 年把净利增速从个位数重新拉回
+          15% 以上、并推动 ROE 重回 15% 上方？若不能，当前 20 倍以上的 PE
+          就是为「缓慢的稳健」支付溢价；若能，则 22 元的提前定价是合理的。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          集采对麻精品种超预期降价、创新药临床/审批失败、H1
+          现金流下滑延续为全年趋势——任一项发生都会导致估值与基本面双杀。目前均未发生，但现金流下滑是三个风险中最需要盯防的。
+        </p>
+        <div class="note">
+          数据充分性说明：本报告全部结论基于公开公告、半年报原文与行情接口数据；机构
+          2026-2028 一致预期 EPS 的精确分布无法从公开接口完整获取，故 2026E
+          采用中报可推导口径（H1 7.41 亿 + 测算
+          H2），已作保守假设处理，未输出伪精确目标价。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-18
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 恩华药业 ·
+        002262
+      </footer>
+    </div>
+  </body>
+</html>

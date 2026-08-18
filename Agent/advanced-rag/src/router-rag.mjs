@@ -11,6 +11,8 @@ const GraphState = Annotation.Root({
   k: Annotation,
   documents: Annotation,
   generation: Annotation,
+  strategy: Annotation,
+  routeReason: Annotation,
 });
 
 let vectorStore;
@@ -24,11 +26,14 @@ const routeQuestionNode = async (state) => {
   console.log("---ROUTE_QUESTION---");
   const router = model.withStructuredOutput(RouteSchema);
   const route = await router.invoke(`
-你是问答路由器。请判断用户问题是否需要外部检索。
+你是问答路由器。请判断用户问题是否需要外部检索，并**以 JSON 格式输出**。
 
 规则：
 - simple: 常识问答、简短定义、无需特定小说细节即可回答。
 - complex: 需要《天龙八部》具体情节、人物关系、章节事实、原文细节或证据支持。
+
+请严格按照以下 JSON 结构返回（不要输出其他内容）：
+{"strategy": "simple 或 complex", "reason": "判断理由"}
 
 用户问题：${state.question}
 `);
@@ -113,7 +118,8 @@ const directAnswerNode = async (state) => {
   };
 };
 
-const generateNode = async (state) => {
+const ragGenerateNode = async (state) => {
+  console.log("---RAG_GENERATE---");
   const context = state.documents
     .map(
       (item, i) =>
@@ -122,11 +128,13 @@ const generateNode = async (state) => {
 内容: ${item.content}`,
     )
     .join("\n\n━━━━━\n\n");
-
-  const prompt = `你是一个专业的《天龙八部》小说助手。基于小说内容回答问题，用准确、详细的语言。
+  process.stdout.write("\n【AI 回答（流式）】\n");
+  let generation = "";
+  const stream =
+    await model.stream(`你是一个专业的《天龙八部》小说助手。基于小说内容回答问题，用准确、详细的语言。
 
 请根据以下《天龙八部》小说片段内容回答问题：
-${context}
+${context || "（未检索到相关内容）"}
 
 用户问题: ${state.question}
 
@@ -137,11 +145,7 @@ ${context}
 4. 回答要准确，符合小说的情节和人物设定
 5. 可以引用原文内容来支持你的回答
 
-AI 助手的回答:`;
-
-  process.stdout.write("\n【AI 回答（流式）】\n");
-  let generation = "";
-  const stream = await model.stream(prompt);
+AI 助手的回答:`);
   for await (const chunk of stream) {
     const text = typeof chunk.content === "string" ? chunk.content : "";
     if (!text) continue;
@@ -153,6 +157,8 @@ AI 助手的回答:`;
   return {
     question: state.question,
     k: state.k,
+    strategy: state.strategy,
+    routeReason: state.routeReason,
     documents: state.documents,
     generation,
   };
@@ -178,7 +184,8 @@ const graph = new StateGraph(GraphState)
   .compile();
 
 async function main() {
-  const question = "雁门关事件的主谋，他的儿子最终结局是什么？";
+  // const question = "雁门关事件的主谋，他的儿子最终结局是什么？";
+  const question = "主角是谁？";
   const k = 5;
 
   // 导出为 Mermaid：可复制到 https://mermaid.live 或 Markdown 的 ```mermaid 代码块
