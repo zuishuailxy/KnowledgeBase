@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>小米集团-W（01810.HK）投资决策报告 · 2026-08-18</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>小米集团-W（01810.HK）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年中报更新版 ｜ 生成日期：2026-08-18 ｜ 数据基准：2026
+          年中报（8/18 披露）+ 2025 年年报 + 公开财报解读
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge"
+            >分类：Cyclical + Fast Grower（周期成长混合）</span
+          >
+          <span class="badge score">总分 26 / 60</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">WATCHLIST · 观察不买入</span>
+          小米 2026 年中报全面承压：营收 -8.4%、归母净利
+          -37.9%，唯汽车业务（收入 +17%）逆势增长但仍在亏损。
+        </div>
+        <p>
+          2025 年的高增长（营收 +25%、净利 +76%）在 2026 年被逆转：上半年营收
+          2080.6 亿（-8.4%）、归母净利 141.9 亿（-37.9%），且
+          <strong
+            >141.9 亿净利中约 73.1 亿来自"重估盈余"（投资公允价值变动），占净利
+            51.5%</strong
+          >——主业盈利质量堪忧。手机基本盘受存储等核心器件涨价冲击（Q2 手机出货量
+          -26.5%、毛利率降至 8.5%），IoT
+          受国补退坡拖累（-19.2%），汽车是唯一亮点（Q2 交付 10.4
+          万辆、+28.2%，收入 +17.1%）但单季经营亏损仍达 26 亿。现价 26.18
+          港元对应 2025 年静态 PE 约 15 倍、但按经调整净利口径约 25
+          倍，估值与业绩双双"不算便宜、不算健康"。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong
+          >新资金不参与，放入观察池。等待两个信号之一：① 手机出货量企稳 +
+          存储涨价压力缓解 + 毛利率回升；②汽车业务实现单季经营利润转正。否则现价
+          26.18 港元高于 Fair Value（约 23-25 港元），安全边际不足。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">26.18 港元<br />6745 亿港元</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 营收</div>
+            <div class="num down">2080.6 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 归母净利</div>
+            <div class="num down">141.9 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026Q2 经调整净利</div>
+            <div class="num down">62 亿</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业总收入（亿元）</td>
+            <td class="num">2080.6</td>
+            <td class="num">2272.5</td>
+            <td class="num down">-8.4%</td>
+          </tr>
+          <tr>
+            <td>归母净利润（亿元）</td>
+            <td class="num">141.9</td>
+            <td class="num">228.3</td>
+            <td class="num down">-37.9%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">20.9%</td>
+            <td class="num">22.7%</td>
+            <td class="num down">-1.8pct</td>
+          </tr>
+          <tr>
+            <td>Q2 手机出货量（万部）</td>
+            <td class="num">3120</td>
+            <td class="num">4240</td>
+            <td class="num down">-26.5%</td>
+          </tr>
+          <tr>
+            <td>Q2 汽车交付（辆）</td>
+            <td class="num">104,199</td>
+            <td class="num">约 8.1 万</td>
+            <td class="num up">+28.2%</td>
+          </tr>
+          <tr>
+            <td>Q2 经调整净利润（亿元）</td>
+            <td class="num">62</td>
+            <td class="num">约 108</td>
+            <td class="num down">-42.6%</td>
+          </tr>
+        </table>
+        <p class="muted">
+          数据来源：东方财富港股 F10 + 小米集团 2026
+          年二季度业绩公告（财联社/中证报解读）
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：小米集团 2026 年二季度业绩公告（8/18
+            披露）
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富港股
+            F10（RPT_HKF10_FN_MAININDICATOR / INCOME / BALANCE）
+          </li>
+          <li>
+            <strong>行情与估值</strong>：腾讯自有时效行情接口（前复权日 K）
+          </li>
+          <li>
+            <strong>研报观点</strong>：财联社、中证报、中国证券报等财报解读
+          </li>
+        </ul>
+        <div class="note">
+          可信度说明：核心财务数字（营收 2080.6 亿、净利 141.9
+          亿、分部收入、汽车交付 10.4 万辆、经调整净利 62 亿）来自财报公告与
+          F10，可互相印证，可信度高。<strong>无法获取</strong>：2026H1
+          完整现金流量表明细、各手机/IoT
+          分部的精确毛利率、汽车业务单车经济性拆解。故不输出伪精确的"目标价/一致预期"。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">14.8%</td>
+            <td class="num down">1.8%</td>
+            <td class="num down">11.4%</td>
+            <td class="num down">13.4%</td>
+            <td class="num">18.3%</td>
+            <td class="num">约 11.9%</td>
+          </tr>
+        </table>
+        <p class="small">
+          五年中仅 2025 年（18.3%）达标，2022 年仅 1.8%（汽车投入 +
+          手机低谷），2026H1 ROE 已回落至 10.6%。<strong
+            >这是"周期成长型"ROE，不是"稳定复利型"ROE。</strong
+          >
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          经营现金流：2023 年 413 亿 / 2024 年 393 亿 / 2025 年 341
+          亿——三年为正但<strong>逐年回落</strong>，2022 年为 -43.9
+          亿，汽车/AI/芯片重投入持续吞噬现金流（2026H1 研发 182
+          亿、+25.6%）。边界通过。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          现金分红极低（上市以来长期不分红，2024 年才小规模回购），股息率接近
+          0。<strong>明确失败</strong>。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          2026H1 资产负债率 47.7%，净现金约 1300
+          亿+（现金类减有息负债）。<strong>通过</strong>。
+        </p>
+        <div class="warn-box">
+          <strong>硬阈值总判断：未通过</strong>——ROE
+          五年仅一年达标、分红极低、FCF 逐年回落。小米是"周期 + 成长 +
+          重投入"混合体，不具备进入"长期稳定复利"池的资格，属于需择时的进攻型资产。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📱 基本面研究</h2>
+        <h3>公司定位与主营（2026Q2 分部收入）</h3>
+        <table>
+          <tr>
+            <th>业务板块</th>
+            <th class="num">收入(亿元)</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>手机 × AIoT（手机 421 / IoT 313 / 互联网服务 90）</td>
+            <td class="num">840</td>
+            <td class="num down">-11.3%</td>
+          </tr>
+          <tr>
+            <td>智能电动汽车及 AI 等创新业务（汽车 239 / AI 等 10）</td>
+            <td class="num">249</td>
+            <td class="num up">+17.1%</td>
+          </tr>
+        </table>
+        <h3>护城河</h3>
+        <ul class="small">
+          <li>
+            「人车家全生态」战略协同（手机 × 汽车 × IoT × AI），是差异化卖点；
+          </li>
+          <li>性价比 + 渠道 + 生态链规模，手机全球前三、IoT 品类最全；</li>
+          <li>汽车品牌势能（雷军 IP）+ SU7/YU7/澎程系列的产品力。</li>
+          <li>
+            但每一块业务都在红海竞争，护城河强度<strong>中等偏弱</strong>——无腾讯式垄断连接层、无泡泡玛特式
+            IP 心智。
+          </li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>
+            总裁卢伟冰主导业务，持续加码底层技术（下半年发布新一代玄戒芯片、MiMo
+            大模型）；
+          </li>
+          <li>
+            汽车出海计划 2027 年三四季度启动，2026 年内澎程系列（增程 SUV）9
+            月上市，小订超预期。
+          </li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          <strong>Cyclical（周期）+ Fast Grower（成长）混合</strong
+          >：手机是周期性消费品，汽车是尚在投入期的第二曲线。2022 年（ROE
+          1.8%）→ 2025 年（ROE 18.3%）完成一轮困境反转，2026
+          年又转入下行——典型的周期成长，需择时而非长期躺平。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>2026H1 业绩下滑的三重压力</h3>
+        <div class="warn-box">
+          <strong
+            >⚠️ 关键提示：利润下滑是"量价齐跌 + 逆势投入 +
+            非经常收益撑门面"的综合结果。</strong
+          >
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">变化</th>
+          </tr>
+          <tr>
+            <td>毛利</td>
+            <td class="num">434.2 亿</td>
+            <td class="num down">-15.7%</td>
+          </tr>
+          <tr>
+            <td>销售及分销费用</td>
+            <td class="num">169.2 亿</td>
+            <td class="num down">+13.0%</td>
+          </tr>
+          <tr>
+            <td>研发费用</td>
+            <td class="num">181.9 亿</td>
+            <td class="num down">+25.6%</td>
+          </tr>
+          <tr>
+            <td>重估盈余（非经常）</td>
+            <td class="num">73.1 亿</td>
+            <td class="num up">+18.0%</td>
+          </tr>
+          <tr>
+            <td>经营溢利</td>
+            <td class="num">161.8 亿</td>
+            <td class="num down">-39.1%</td>
+          </tr>
+          <tr>
+            <td>归母净利</td>
+            <td class="num">141.9 亿</td>
+            <td class="num down">-37.9%</td>
+          </tr>
+        </table>
+        <p class="small">
+          <strong>原因拆解</strong>：① 存储等核心器件涨价 + 产品矩阵优化 →
+          手机出货量 -26.5%、手机毛利率 11.5%→8.5%；② 国补退坡 → IoT 收入
+          -19.2%；③ 毛利率整体从 22.7% 降至 20.9%；④ 销售费用 +13%、研发 +25.6%
+          逆势加码（汽车/AI/芯片）；⑤ 汽车单季经营亏损 26 亿。
+        </p>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li>
+            <strong>盈利质量差</strong>：H1 归母净利 141.9
+            亿中，重估盈余（投资公允价值变动）73.1 亿占
+            51.5%——主业扣非后利润大幅缩水；
+          </li>
+          <li>
+            <strong>经调整净利口径</strong>：Q2 经调整净利 62
+            亿（-42.6%），更能反映主业真实水平；
+          </li>
+          <li>
+            <strong>资产负债表尚可</strong>：负债率
+            47.7%、净现金充足，但存货与营运资金随汽车扩产上升。
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong>：智能手机（成熟存量 +
+            存储涨价）、IoT（国补退坡）、智能电动汽车（价格战 +
+            高端化）、AI（玄戒芯片 + 大模型）。
+          </li>
+          <li>
+            <strong>竞争地位</strong
+            >：手机全球前三、汽车新势力第一梯队（月交付约 3
+            万辆），但每块业务都面临华为/苹果/比亚迪/蔚小理等强竞争。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：汽车第二曲线（澎程系列 9 月上市）+
+            汽车出海（2027 年）+ 芯片自研（玄戒）。
+          </li>
+          <li>
+            <strong>风险</strong
+            >：存储涨价挤压手机利润、汽车持续亏损、国补退坡、重估盈余不可持续。
+          </li>
+        </ul>
+        <p class="small">
+          结论：小米处于"手机基本盘承压 + 汽车第二曲线待盈利"的夹缝期，2026
+          年是关键验证年。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">净利</th>
+            <th class="num">对应 PE</th>
+          </tr>
+          <tr>
+            <td>2025 年静态（归母 416.4 亿）</td>
+            <td class="num">约 450 亿港元</td>
+            <td class="num">约 15 倍</td>
+          </tr>
+          <tr>
+            <td>2026H1 年化（141.9 × 2）</td>
+            <td class="num">约 307 亿港元</td>
+            <td class="num">约 22 倍</td>
+          </tr>
+          <tr>
+            <td>经调整净利口径（H1 约 122 亿年化）</td>
+            <td class="num">约 264 亿港元</td>
+            <td class="num">约 25.5 倍</td>
+          </tr>
+        </table>
+        <h3>估值锚交叉验证</h3>
+        <table>
+          <tr>
+            <th>估值锚</th>
+            <th class="num">合理区间（港元）</th>
+          </tr>
+          <tr>
+            <td>PE 锚（2026E 净利中性 240 亿 × 15-18 倍）</td>
+            <td class="num">19-23</td>
+          </tr>
+          <tr>
+            <td>经调整 PE 锚（2026E 经调整净利 250 亿 × 15-18 倍）</td>
+            <td class="num">20-24</td>
+          </tr>
+          <tr>
+            <td>PB 锚（每股净资产约 10.3 元 × 2.0-2.4 倍）</td>
+            <td class="num">22-27</td>
+          </tr>
+        </table>
+        <p>
+          <strong
+            >合理价值区间：约 19-25 港元；现价 26.18 港元高于区间上沿。</strong
+          >
+        </p>
+        <div class="note">
+          现价 26.18 港元对应"2026 年业绩大幅下滑"的静态口径虽只有 15 倍
+          PE，但按经调整净利口径约 25 倍——市场仍在为"汽车第二曲线 + AI
+          期权"付溢价，而 2026 中报显示这一前提尚未兑现。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          <strong>安全边际不足</strong>。现价高于 Fair Value（约 23-25
+          港元），业绩下滑与估值未同步下修。需等手机企稳 +
+          汽车盈利转正，或股价回落至 18-22 港元（Buy Zone）。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">人车家生态有想象力，但每块业务都在红海竞争</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">
+              净现金尚可，但 ROE 波动大、FCF 回落、分红极低
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">3/10</div>
+            <div class="bar"><div class="fill" style="width: 30%"></div></div>
+            <div class="small">
+              营收 -8.4%、净利 -37.9%、手机出货 -26.5%，成长暂证伪
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">周期 + 成长混合，故事宏大但可验证性差</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">4/10</div>
+            <div class="bar"><div class="fill" style="width: 40%"></div></div>
+            <div class="small">
+              静态 15 倍但经调整 25 倍，现价高于 Fair Value
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">4/10</div>
+            <div class="bar"><div class="fill" style="width: 40%"></div></div>
+            <div class="small">
+              存储涨价、手机下滑、汽车亏损、重估盈余不可持续
+            </div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">26</span> / 60</div>
+      </div>
+
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>存储等核心器件涨价</strong>：手机毛利率降至
+            8.5%，若涨价持续，手机基本盘利润进一步压缩。
+          </li>
+          <li>
+            <strong>手机出货量 -26.5%</strong>：产品矩阵优化 +
+            中低端收缩，若高端化不及预期，份额与收入双失。
+          </li>
+          <li>
+            <strong>汽车持续亏损</strong>：Q2 经营亏损 26 亿（毛利率 19.2%
+            大幅回落），第二曲线盈利拐点未现。
+          </li>
+          <li>
+            <strong>重估盈余占净利一半</strong>：141.9 亿净利中 73.1
+            亿为非经常性投资收益，盈利质量堪忧，若投资市场波动将反噬利润。
+          </li>
+          <li>
+            <strong>国补退坡拖累 IoT</strong>：IoT 收入
+            -19.2%，政策红利消退后的真实需求待验证。
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p><strong>结论：WATCHLIST（观察，不买入）。总分 26/60。</strong></p>
+        <h3>3 个持有的理由（长期逻辑）</h3>
+        <ol class="small">
+          <li>
+            汽车第二曲线真实存在：Q2 交付 10.4 万辆（+28.2%）、收入
+            +17.1%，澎程系列（增程 SUV）9 月上市且小订超预期，年度目标 55 万辆。
+          </li>
+          <li>
+            财务底盘尚可：负债率 47.7%、净现金充足，研发投入 182
+            亿（+25.6%）持续加码 AI/芯片（玄戒芯片）。
+          </li>
+          <li>
+            估值已大幅回落：股价较 2025 年 7 月峰值回撤约
+            56%，悲观预期已部分消化，若汽车盈利转正存在修复空间。
+          </li>
+        </ol>
+        <h3>3 个不买/卖出的理由</h3>
+        <ol class="small">
+          <li>
+            业绩全面下滑：营收 -8.4%、净利 -37.9%、手机出货 -26.5%、IoT
+            -19.2%，成长逻辑暂被证伪。
+          </li>
+          <li>
+            硬阈值不达标：ROE 五年仅一年 ≥15%、分红极低、FCF
+            逐年回落，不符合"稳定复利"标准。
+          </li>
+          <li>
+            估值与盈利质量双弱：经调整净利口径 PE 约 25 倍 + 重估盈余占净利
+            51.5%，现价仍在为"未兑现的第二曲线"付溢价。
+          </li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          <strong
+            >小米汽车能否在 2026 下半年（澎程系列上市 +
+            交付放量）实现单季经营利润转正，同时让手机业务在存储涨价冲击下企稳？</strong
+          >
+          若能，现价 26 港元的悲观定价有望修复；若不能（汽车亏损扩大 +
+          手机继续下滑），2025 年 416 亿净利将被证明是周期高点，现价仍贵。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          汽车价格战失控导致亏损持续扩大、手机高端化失败且出货量继续下滑、存储涨价挤压毛利率至个位数、重估盈余（投资收益）反转吞噬利润、国补退坡后
+          IoT 需求不振——任一条兑现都会让估值进一步下修。
+        </p>
+        <div class="note">
+          数据充分性说明：核心财务与分部数据（营收/净利/毛利率/手机出货/汽车交付/经调整净利）来自财报公告与
+          F10，可互相印证；<strong>未获取</strong> 2026H1
+          完整现金流明细、分部毛利率精确拆分、汽车单车经济性，故不输出伪精确目标价。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-18
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 小米集团-W ·
+        01810.HK
+      </footer>
+    </div>
+  </body>
+</html>
