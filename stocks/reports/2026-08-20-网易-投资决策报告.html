@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>网易（09999.HK）投资决策报告 · 2026-08-20</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>网易（09999.HK）完整投资决策报告</h1>
+        <div class="sub">
+          2026 中报更新版 ｜ 生成日期：2026-08-20 ｜ 数据基准：2026 年中报（8/20
+          披露）+ 2026Q2 + 2025 年报 + 业绩公告
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：Stalwart（稳健成长）</span>
+          <span class="badge score">总分 40 / 60</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">HOLD · 审慎持有，逢低分批</span>
+          网易中报"主业强劲、报表净利下滑"：营收 607 亿（+7%）、毛利率大幅提升至
+          69.9%（+5.5pct）、经营溢利 247.5 亿（+26.9%），但归母净利 176.6
+          亿（-6.6%）——主因是税项 +43.8% 与"溢利其他项目"投资损失 -35
+          亿，非主业恶化。
+        </div>
+        <p>
+          旧报告（2026-08-12）判断为 HOLD（44/60），预期"8
+          月下旬中报验证游戏流水与新品管线"。中报给出的答案偏积极：<strong>主业盈利能力显著增强</strong>——毛利率从
+          64.4% 跳升至 69.9%（+5.5pct）、经营溢利 +26.9%、Q2 营业利润 121
+          亿（+33%），梦幻西游系列与燕云十六声净收入提升显著。但<strong
+            >报表净利 -6.6%</strong
+          >，主因是税项 49.8
+          亿（+43.8%）和"溢利其他项目"（投资收益/公允价值相关）-35.05 亿（同比
+          -321%）——均属非经营性拖累，主业现金流质量依旧优秀。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>现价 193.4 港元，PE(TTM) 16.5 倍，扣除约
+          29% 净现金后主业实际 PE 约 12 倍，处于合理偏低、Buy Zone
+          上沿。可维持分批建仓策略，不追高；等待中报电话会对"净利下滑原因、2026H2
+          游戏管线、税率趋势"的进一步说明后再决定加仓节奏。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">193.4 港元<br />6171 亿港元</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 净收入</div>
+            <div class="num">607 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 归母净利</div>
+            <div class="num down">176.6 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 毛利率</div>
+            <div class="num up">69.9%</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>净收入（亿元）</td>
+            <td class="num">606.98</td>
+            <td class="num">567.20</td>
+            <td class="num up">+7.0%</td>
+          </tr>
+          <tr>
+            <td>毛利（亿元）</td>
+            <td class="num">424.34</td>
+            <td class="num">365.32</td>
+            <td class="num up">+16.2%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">69.91%</td>
+            <td class="num">64.41%</td>
+            <td class="num up">+5.5pct</td>
+          </tr>
+          <tr>
+            <td>经营溢利（亿元）</td>
+            <td class="num">247.46</td>
+            <td class="num">195.02</td>
+            <td class="num up">+26.9%</td>
+          </tr>
+          <tr>
+            <td>归母净利（亿元）</td>
+            <td class="num">176.55</td>
+            <td class="num">189.02</td>
+            <td class="num down">-6.6%</td>
+          </tr>
+          <tr>
+            <td>税项（亿元）</td>
+            <td class="num">49.83</td>
+            <td class="num">34.66</td>
+            <td class="num down">+43.8%</td>
+          </tr>
+          <tr>
+            <td>溢利其他项目（亿元）</td>
+            <td class="num down">-35.05</td>
+            <td class="num">约 +15.9</td>
+            <td class="num down">-321%</td>
+          </tr>
+          <tr>
+            <td>经营现金流（亿元）</td>
+            <td class="num">237.1</td>
+            <td class="num">229.7</td>
+            <td class="num up">+3.2%</td>
+          </tr>
+          <tr>
+            <td>ROE（年化）</td>
+            <td class="num">21.6%</td>
+            <td class="num">26.2%</td>
+            <td class="num down">-4.6pct</td>
+          </tr>
+        </table>
+        <p class="muted">
+          数据来源：东方财富港股 F10 + 网易 2026 年中期业绩公告（8/20）
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>🏢 分部业绩（2026H1）</h2>
+        <table>
+          <tr>
+            <th>业务分部</th>
+            <th class="num">H1 净收入(亿元)</th>
+            <th class="num">同比</th>
+            <th class="num">Q2 净收入(亿元)</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>游戏及相关增值服务</td>
+            <td class="num">507</td>
+            <td class="num up">+8.3%</td>
+            <td class="num">250</td>
+            <td class="num up">+9.7%</td>
+          </tr>
+          <tr>
+            <td>网易有道</td>
+            <td class="num">28</td>
+            <td class="num up">+3.6%</td>
+            <td class="num">15</td>
+            <td class="num up">+3.5%</td>
+          </tr>
+          <tr>
+            <td>云音乐</td>
+            <td class="num">40</td>
+            <td class="num up">+3.4%</td>
+            <td class="num">20</td>
+            <td class="num">持平</td>
+          </tr>
+          <tr>
+            <td>创新及其他</td>
+            <td class="num">32</td>
+            <td class="num down">-4.0%</td>
+            <td class="num">16</td>
+            <td class="num down">-3.5%</td>
+          </tr>
+        </table>
+        <ul class="small">
+          <li>
+            <strong>游戏（占 84%）</strong>：H1 +8.3%、Q2 +9.7%，<span
+              class="hl"
+              >梦幻西游系列与燕云十六声净收入提升显著</span
+            >；Q2 游戏环比略降（部分自研及代理游戏净收入下降）。
+          </li>
+          <li><strong>有道</strong>：AI 教育 + 硬件，稳增 +3.6%。</li>
+          <li><strong>云音乐</strong>：+3.4%，原创音乐人超 125 万，已盈利。</li>
+          <li>
+            <strong>创新及其他</strong>：受电商业务净收入下降拖累（-4%）。
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>🔬 净利下滑归因（本报告核心）</h2>
+        <p class="small">
+          营收 +7%、毛利率 +5.5pct、经营溢利 +26.9%，但归母净利
+          -6.6%。利润表从"经营溢利"到"归母净利"的差额由三块非经营性项目解释：
+        </p>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">变化</th>
+            <th>说明</th>
+          </tr>
+          <tr>
+            <td>经营溢利</td>
+            <td class="num">247.46</td>
+            <td class="num">195.02</td>
+            <td class="num up">+52.4</td>
+            <td>主业强劲</td>
+          </tr>
+          <tr>
+            <td>利息收入</td>
+            <td class="num">17.53</td>
+            <td class="num">20.14</td>
+            <td class="num down">-2.6</td>
+            <td>利率下行</td>
+          </tr>
+          <tr>
+            <td>溢利其他项目</td>
+            <td class="num down">-35.05</td>
+            <td class="num">约 +15.9</td>
+            <td class="num down">-50.9</td>
+            <td>投资/公允价值相关损失</td>
+          </tr>
+          <tr>
+            <td>除税前溢利</td>
+            <td class="num">229.95</td>
+            <td class="num">231.01</td>
+            <td class="num down">-0.5%</td>
+            <td>基本持平</td>
+          </tr>
+          <tr>
+            <td>税项</td>
+            <td class="num">49.83</td>
+            <td class="num">34.66</td>
+            <td class="num down">+15.2</td>
+            <td>税率/税务成本上升</td>
+          </tr>
+          <tr>
+            <td>少数股东损益</td>
+            <td class="num">3.57</td>
+            <td class="num">7.31</td>
+            <td class="num down">-3.7</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>归母净利</td>
+            <td class="num">176.55</td>
+            <td class="num">189.02</td>
+            <td class="num down">-6.6%</td>
+            <td>—</td>
+          </tr>
+        </table>
+        <div class="warn-box">
+          <strong>归因结论：净利下滑几乎全部来自非经营性项目。</strong
+          >①"溢利其他项目"同比恶化约 51 亿（从 +15.9 亿转为 -35.1
+          亿，疑为投资收益/公允价值波动）；②税项 +43.8%（+15.2
+          亿）。主业（经营溢利 +26.9%）与现金流（OCF 237 亿）依旧健康。非 GAAP
+          口径 Q2 归母净利 77 亿（去年同期 95 亿），同样受投资收益影响走低。
+        </div>
+        <div class="good-box">
+          需注意：若剔除投资损失与税项一次性影响，网易实际主业净利仍在增长（经营溢利
+          +26.9%）。这正是"报表净利与经营质量背离"的典型案例——适合用现金流与经营溢利而非单一净利润评估。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">19.0%</td>
+            <td class="num">20.3%</td>
+            <td class="num">25.7%</td>
+            <td class="num">22.6%</td>
+            <td class="num">22.6%</td>
+            <td class="num">约 22%</td>
+          </tr>
+        </table>
+        <p class="small">
+          连续 5 年全部 ≥15%，波动极小（19%-26%），2026H1 年化
+          21.6%。<strong>通过（优秀）</strong>。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          OCF 三年 353 → 397 → 507 亿逐年增长，2026H1 237
+          亿（+3.2%）依旧远超净利；轻资产、无存货压力。<strong>通过（优秀）</strong>。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          2025 年分红率 40.3%，叠加持续大规模回购（2026H1 库存股 -16.2
+          亿），综合股东回报率约 5%+。<strong>通过</strong>。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          2026H1 负债率 26.1%；现金及等价物 228 + 短期存款 1020 + 短期投资 506 +
+          受限制 45 ≈ 1799 亿，短期贷款仅 126 亿，<strong
+            >净现金约 1673 亿人民币（约 1810 亿港元，占市值约 29%）</strong
+          >。<strong>通过（优秀）</strong>。
+        </p>
+        <div class="good-box">
+          <strong>硬阈值总判断：四项全部通过</strong
+          >，且质量均属优秀。网易是港股通里"高质量 + 大额净现金 +
+          高分红回购"最干净的科技标的之一。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">
+              游戏 +8.3%、毛利率 70% 优秀，但依赖爆款、创新业务下滑
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">
+              毛利率 +5.5pct、经营溢利 +27%、净现金占市值 29%、OCF 强劲
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">
+              营收 +7% 个位数增长，报表净利 -6.6%（非经营拖累）
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">
+              Stalwart，梦幻西游长青 + 燕云十六声 + 全球拓展，故事可验证
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">
+              PE(TTM) 16.5，扣净现金后约 12 倍，低于合理价值
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">
+              投资损益波动大、税率上升、游戏增速放缓、新品不确定
+            </div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">40</span> / 60</div>
+        <p class="muted small" style="margin-top: 8px">
+          较旧报告 44/60 下调 4 分：报表净利 -6.6% 与 Q2
+          游戏环比走弱是主要扣分项；毛利率跳升与经营溢利 +27% 形成对冲。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">净利</th>
+            <th class="num">对应 PE</th>
+          </tr>
+          <tr>
+            <td>TTM（2025H2+2026H1）</td>
+            <td class="num">约 325 亿人民币</td>
+            <td class="num">约 16.5 倍</td>
+          </tr>
+          <tr>
+            <td>2026E 中性（全年约 335 亿）</td>
+            <td class="num">约 335 亿人民币</td>
+            <td class="num">约 16 倍</td>
+          </tr>
+          <tr>
+            <td>扣除净现金后主业</td>
+            <td class="num">主业约 315 亿人民币</td>
+            <td class="num">约 12 倍</td>
+          </tr>
+        </table>
+        <h3>估值锚交叉验证（2026E 净利 335 亿人民币，约 362 亿港元）</h3>
+        <table>
+          <tr>
+            <th>情景</th>
+            <th class="num">主业合理 PE</th>
+            <th class="num">对应价格(港元)</th>
+          </tr>
+          <tr>
+            <td>保守（增长停滞，主业 13 倍）</td>
+            <td class="num">13 倍</td>
+            <td class="num">约 170</td>
+          </tr>
+          <tr>
+            <td>中性（质量溢价，主业 15-17 倍）</td>
+            <td class="num">15-17 倍</td>
+            <td class="num">188-205</td>
+          </tr>
+          <tr>
+            <td>乐观（游戏回暖 + 全球扩张，主业 18-20 倍）</td>
+            <td class="num">18-20 倍</td>
+            <td class="num">220-240</td>
+          </tr>
+        </table>
+        <p class="small">
+          计算方式：主业价值 = 主业净利 × 合理 PE，再加净现金 1810
+          亿港元，除以约 32.1 亿股。
+        </p>
+        <p>
+          <strong
+            >合理价值区间：约 195-220 港元；Fair Value 约 210 港元。现价 193.4
+            港元略低于 Fair Value。</strong
+          >
+        </p>
+        <h3>安全边际判断</h3>
+        <div class="note">
+          现价对应 2026E 约 16 倍 PE，扣除净现金后主业约 12 倍——对一家 ROE
+          22%、毛利率 70%、OCF
+          强劲的游戏龙头，<strong>估值合理偏低，具备中等安全边际</strong>。Buy
+          Zone：<strong>175-205 港元</strong>（现价 193.4 处于区间内）；Strong
+          Buy：<strong>&lt;175 港元</strong>。
+        </div>
+        <p class="small muted">
+          旧报告（8/12）判断现价 196.5 已入 Buy Zone、等待回调至 175
+          附近再加；本次中报落地后维持该区间，主业盈利增强但报表净利下滑，估值锚基本不变。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong
+            >：中国游戏市场进入存量竞争，增速个位数，头部集中（腾讯/网易双寡头）。
+          </li>
+          <li>
+            <strong>竞争地位</strong>：网易是国内游戏研发实力第二（梦幻西游 20
+            年长青、蛋仔派对 UGC、永劫无间、燕云十六声），暴雪合作回归提供增量。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：燕云十六声等新品放量 +
+            全球市场拓展（丁磊明确聚焦海外）+ 原创玩法。
+          </li>
+          <li>
+            <strong>风险</strong>：Q2 游戏环比走弱、创新业务下滑、爆款依赖、AI
+            时代游戏形态不确定。
+          </li>
+        </ul>
+        <p class="small">
+          结论：网易护城河（长线运营 +
+          研发能力）中上，但行业增速与公司增速均放缓至个位数，估值已合理反映——赚的是"质量
+          + 股息回购 + 现金流"的钱，而非高成长的钱。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>报表净利下滑</strong>：2026H1 归母净利 -6.6%（税项
+            +43.8%、投资损失 -35
+            亿），若税率与投资收益持续不利，全年净利可能持平甚至微降。
+          </li>
+          <li>
+            <strong>投资损益波动</strong>："溢利其他项目"从 +15.9 亿转 -35.1
+            亿（-321%），显示投资组合/公允价值波动对报表利润冲击大。
+          </li>
+          <li>
+            <strong>Q2 游戏环比走弱</strong>：Q2 游戏净收入 250
+            亿环比下降，部分自研及代理游戏净收入回落。
+          </li>
+          <li>
+            <strong>创新业务下滑</strong>：创新及其他 -4%，电商业务净收入下降。
+          </li>
+          <li>
+            <strong>增速中枢下移</strong>：营收 +7%
+            个位数，若新品（燕云十六声后续内容、新游管线）不及预期，增速可能进一步放缓。
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p><strong>结论：HOLD（审慎持有，逢低分批）。总分 40/60。</strong></p>
+        <h3>3 个持有的理由</h3>
+        <ol class="small">
+          <li>
+            主业强劲：毛利率跳升至 69.9%（+5.5pct）、经营溢利 +26.9%、Q2
+            营业利润 +33%，梦幻西游与燕云十六声放量。
+          </li>
+          <li>
+            财务底盘极厚：净现金约 1673 亿人民币（占市值 29%）、ROE 连续 5 年
+            ≥15%、OCF 507 亿/年、分红率 40%+ 加回购。
+          </li>
+          <li>
+            估值合理偏低：PE(TTM) 16.5 倍，扣净现金后主业约 12 倍，现价 193.4
+            低于 Fair Value 约 210。
+          </li>
+        </ol>
+        <h3>3 个不追高的理由</h3>
+        <ol class="small">
+          <li>
+            报表净利 -6.6%、Q2 归母净利 70
+            亿（-18.6%），市场已因此让美股盘前跌超 3%。
+          </li>
+          <li>
+            税项 +43.8% 与投资损失 -35
+            亿属非经营拖累，但持续性与回补时点不确定。
+          </li>
+          <li>
+            增速个位数 +
+            游戏新品不确定，缺乏高成长催化剂，股价短期难有大幅上行空间。
+          </li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          <strong>2026H2 净利能否因投资收益回补 + 税项正常化而回升？</strong>若
+          H2 主业延续（毛利率
+          70%、游戏稳定），叠加投资损失减少，全年净利有望持平甚至转正增长；若 Q2
+          游戏环比走弱持续，增速压力将反映到估值中枢。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          投资收益与税率持续恶化 →
+          报表净利连年下滑，侵蚀"净现金+高分红"叙事；游戏新品全线不及预期 →
+          主业增速归零，PE 面临压缩；全球扩张（海外）投入产出失衡 →
+          利润率下行。三者任一长期化，均需重新评估。
+        </p>
+        <div class="note">
+          数据充分性说明：营收/净利/分部收入/毛利率/税项/资产负债表均来自业绩公告与
+          F10，可互相印证；<strong>未获取</strong>
+          "溢利其他项目"的精确拆分明细（投资收益 vs 汇兑 vs
+          公允价值）、下半年游戏管线精确排期、电话会完整纪要。故归因基于利润表差额推断并标注为合理推测。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-20
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 网易 · 09999.HK
+      </footer>
+    </div>
+  </body>
+</html>

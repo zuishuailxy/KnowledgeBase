@@ -1,0 +1,861 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>恒瑞医药（600276）投资决策报告 · 2026-08-20</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>恒瑞医药（600276）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年中报更新版 ｜ 生成日期：2026-08-20 ｜ 数据基准：2026
+          年中报（8/19 晚披露）+ 2025 年年报 + 财报解读
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：创新药龙头（Stalwart 转型中）</span>
+          <span class="badge score">总分 33 / 60</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">WATCHLIST · 观望不买入</span>
+          恒瑞 2026 中报显示"经营修复被打断"：营收 -1.94%、扣非净利
+          -12.71%、经营现金流 -53.8%，归母净利 +0.34% 靠 Kailera
+          股权浮盈撑门面。
+        </div>
+        <p>
+          旧报告（2026-05-09）基于 2026Q1 判断"经营修复继续成立"（收入
+          +13%、净利 +21.8%），但中报把这一叙事打破：Q2 单季营收同比约
+          -14%、扣非净利大幅下滑。全年口径 H1 营收 154.6 亿（-1.94%）、归母净利
+          44.7 亿（+0.34%），而
+          <strong
+            >扣非归母净利 37.3 亿（-12.71%）、经营现金流 19.87
+            亿（-53.8%）</strong
+          >——表面"营收小跌、利润横盘"，拆开看是"肿瘤院端老盘失速 +
+          非肿瘤消费医疗新盘不会卖"的<strong>经营错位</strong>。归母净利的微增靠的是
+          Kailera（GLP-1 NewCo）纳斯达克上市带来的 8.21 亿公允价值浮盈。现价
+          52.66 元对应静态 PE 约 44 倍，仍严重透支。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>新资金不参与，放入观察池。等待两个信号：①
+          抗肿瘤 ADC/双抗新药进入放量期、扣非净利重回正增长；②
+          非肿瘤（减重/代谢/自免）建立"非院端"商业化能力并贡献收入。否则现价远高于
+          Fair Value（约 28-30 元），无安全边际。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">52.66 元<br />约 3360 亿元</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 营收</div>
+            <div class="num down">154.6 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 扣非净利</div>
+            <div class="num down">37.3 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 经营现金流</div>
+            <div class="num down">19.87 亿</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入（亿元）</td>
+            <td class="num">154.56</td>
+            <td class="num">157.6</td>
+            <td class="num down">-1.94%</td>
+          </tr>
+          <tr>
+            <td>归母净利润（亿元）</td>
+            <td class="num">44.65</td>
+            <td class="num">44.5</td>
+            <td class="num up">+0.34%</td>
+          </tr>
+          <tr>
+            <td>扣非归母净利（亿元）</td>
+            <td class="num">37.30</td>
+            <td class="num">42.7</td>
+            <td class="num down">-12.71%</td>
+          </tr>
+          <tr>
+            <td>经营现金流（亿元）</td>
+            <td class="num">19.87</td>
+            <td class="num">约 43</td>
+            <td class="num down">-53.8%</td>
+          </tr>
+          <tr>
+            <td>创新药收入（亿元）</td>
+            <td class="num">88.09</td>
+            <td class="num">75.7</td>
+            <td class="num up">+16.38%</td>
+          </tr>
+          <tr>
+            <td>其中：抗肿瘤创新药</td>
+            <td class="num">62.65</td>
+            <td class="num">61.1</td>
+            <td class="num down">+2.58%</td>
+          </tr>
+          <tr>
+            <td>其中：非肿瘤创新药</td>
+            <td class="num">25.45</td>
+            <td class="num">14.6</td>
+            <td class="num up">+73.97%</td>
+          </tr>
+          <tr>
+            <td>仿制药收入（亿元）</td>
+            <td class="num">51.39</td>
+            <td class="num">61.3</td>
+            <td class="num down">-16.07%</td>
+          </tr>
+        </table>
+        <p class="muted">
+          数据来源：东方财富 F10 + 恒瑞医药 2026 年半年报（蓝鲸财经/财联社解读）
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：恒瑞医药 2026 年半年报（8/19 晚披露）
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10（ZYZBAjaxNew type=0，含 2026
+            中报）
+          </li>
+          <li>
+            <strong>行情与估值</strong>：腾讯自有时效行情接口（前复权日 K）
+          </li>
+          <li>
+            <strong>研报观点</strong>：蓝鲸财经、东方/西南/天风/东吴等券商解读
+          </li>
+        </ul>
+        <div class="note">
+          可信度说明：营收 154.56 亿、归母净利 44.65 亿、扣非 37.30
+          亿、经营现金流 19.87 亿、分部收入（创新药 88.09 亿/仿制药 51.39
+          亿）均来自财报公告与
+          F10，可互相印证。<strong>无法获取</strong>：创新药分产品（卡瑞利珠单抗/瑞康曲妥珠等）的精确收入、Kailera
+          股权浮盈的完整测算、研发管线进展细节。故不输出伪精确目标价。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">13.96%</td>
+            <td class="num">10.89%</td>
+            <td class="num">10.99%</td>
+            <td class="num">14.73%</td>
+            <td class="num">14.26%</td>
+            <td class="num">12.97%</td>
+          </tr>
+        </table>
+        <p class="small">
+          五年中 <strong>0 年 ≥15%</strong>，5 年均值
+          12.97%——恒瑞是"高毛利、低杠杆、慢周转"的研发型药企，ROE 长期卡在
+          11-15% 区间，未达"持续高 ROE"标准。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          2023-2025 年 FCF 约 61.60 / 54.54 / 82.73 亿，三年为正。<strong
+            >但 2026H1 经营现金流 19.87 亿（-53.8%）大幅恶化</strong
+          >，需警惕 FCF 趋势逆转。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          2023/2024/2025 年分红率约 29.41% / 20.00% / 16.81%，三年均值约
+          22.07%——<strong>未达 25% 门槛且逐年下滑</strong>。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          2026H1 资产负债率 8.2%，净资产 644
+          亿、几乎零有息负债——<strong>通过（财务极干净）</strong>。
+        </p>
+        <div class="warn-box">
+          <strong>硬阈值总判断：未通过</strong>——ROE 五年 0
+          次达标、分红率不足、现金流恶化。淘汰不等于公司差，而是它尚未重新证明"长期高
+          ROE + 足够股东回报"的主流程资格。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>💊 基本面研究</h2>
+        <h3>公司定位与主营（2026H1 收入结构）</h3>
+        <table>
+          <tr>
+            <th>业务板块</th>
+            <th class="num">收入(亿元)</th>
+            <th class="num">同比</th>
+            <th class="num">占比</th>
+          </tr>
+          <tr>
+            <td>创新药</td>
+            <td class="num">88.09</td>
+            <td class="num up">+16.38%</td>
+            <td class="num">63%</td>
+          </tr>
+          <tr>
+            <td>　抗肿瘤创新药</td>
+            <td class="num">62.65</td>
+            <td class="num down">+2.58%</td>
+            <td class="num">71%（占创新药）</td>
+          </tr>
+          <tr>
+            <td>　非肿瘤创新药</td>
+            <td class="num">25.45</td>
+            <td class="num up">+73.97%</td>
+            <td class="num">29%（占创新药）</td>
+          </tr>
+          <tr>
+            <td>仿制药</td>
+            <td class="num">51.39</td>
+            <td class="num down">-16.07%</td>
+            <td class="num">37%</td>
+          </tr>
+        </table>
+        <h3>护城河</h3>
+        <ul class="small">
+          <li>
+            自研管线规模全球第二（2026 Citeline
+            排名），研发实力与现金流俱强（净资产 644 亿、几乎零负债）；
+          </li>
+          <li>
+            肿瘤院端销售网络强（覆盖 2.5 万家医院），曾是 PD-1/CDK4/6
+            放量期的"核武器"；
+          </li>
+          <li>
+            但当前面临<strong>能力圈错位</strong>：肿瘤老盘不增长、非肿瘤新盘不会卖（消费医疗需零售/电商/DTP
+            打法，与院端代表体系相反）。
+          </li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>
+            坚持"科技创新 + 国际化"双轮驱动，推进
+            ADC（SHR-A2102）、双抗（瑞拉芙普 α）等肿瘤换代管线；
+          </li>
+          <li>
+            通过 NewCo 模式（Kailera
+            等）实现资产价值重估与出海，但美国市场仍零突破（卡 cGMP 现场检查）。
+          </li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          <strong>Stalwart（稳健型）转型中</strong
+          >：从"仿创结合"向"创新药平台"转型，创新药占比已破 63%
+          属结构改善，但增速中枢从双位数回落，且扣非利润下滑暴露盈利质量恶化——成长质量待修复。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>2026H1 的"经营错位"（核心变化）</h3>
+        <div class="warn-box">
+          <strong
+            >⚠️
+            关键提示：归母净利微增是"股权浮盈"撑起来的，主业实际双降。</strong
+          >
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">变化</th>
+          </tr>
+          <tr>
+            <td>毛利</td>
+            <td class="num">约 133 亿（毛利率 86.3%）</td>
+            <td class="num">高毛利维持</td>
+          </tr>
+          <tr>
+            <td>归母净利</td>
+            <td class="num">44.65 亿</td>
+            <td class="num up">+0.34%</td>
+          </tr>
+          <tr>
+            <td>非经常性损益</td>
+            <td class="num">7.36 亿</td>
+            <td class="num">Kailera 上市公允价值收益 8.21 亿</td>
+          </tr>
+          <tr>
+            <td>扣非归母净利</td>
+            <td class="num">37.30 亿</td>
+            <td class="num down">-12.71%</td>
+          </tr>
+          <tr>
+            <td>经营现金流</td>
+            <td class="num">19.87 亿</td>
+            <td class="num down">-53.8%</td>
+          </tr>
+        </table>
+        <p class="small">
+          <strong>原因拆解</strong>：① 抗肿瘤创新药（占创新药 71%）仅
+          +2.58%——吡咯替尼等老药受竞争与集采降价，新 ADC/双抗还没到放量期；②
+          仿制药 -16.07%（集采尾浪）；③ 总营收因此 -1.94%；④ 现金流 -53.8%
+          反映回款与营运资金压力。
+        </p>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li>
+            <strong>盈利质量恶化</strong>：扣非 -12.71% 与归母 +0.34%
+            的背离，说明利润靠一次性股权浮盈维持；
+          </li>
+          <li>
+            <strong>资产负债表极干净</strong>：负债率 8.2%、净资产 644
+            亿，不缺钱，缺的是"增长"而非"财务安全"。
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong>：肿瘤（PD-1 红海 +
+            ADC/双抗新方向）、代谢/减重（GLP-1）、自免、心血管——创新药多元化。
+          </li>
+          <li>
+            <strong>竞争地位</strong>：研发管线全球第二、创新药占比破
+            63%，但肿瘤线七成权重增速不到 3%；PD-1 被百济/信达/君实分食，GLP-1
+            面临礼来/信达竞争。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：非肿瘤创新药（+73.97%）+ ADC/双抗肿瘤换代
+            + 国际化 BD/NewCo。
+          </li>
+          <li>
+            <strong>风险</strong
+            >：肿瘤老盘失速、仿制药集采、非肿瘤"不会卖"、美国市场零突破。
+          </li>
+        </ul>
+        <p class="small">
+          结论：恒瑞不缺管线不缺钱，缺的是"从院端肿瘤向非肿瘤消费医疗"的组织能力再造——这是决定未来
+          2-3 年增速的关键。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">净利</th>
+            <th class="num">对应 PE</th>
+          </tr>
+          <tr>
+            <td>2025 年静态（归母 77.11 亿）</td>
+            <td class="num">77.11 亿</td>
+            <td class="num">约 44 倍</td>
+          </tr>
+          <tr>
+            <td>2026H1 年化（44.65 × 2）</td>
+            <td class="num">约 89 亿</td>
+            <td class="num">约 38 倍</td>
+          </tr>
+          <tr>
+            <td>2026E 正常化（剔除股权浮盈，约 70 亿）</td>
+            <td class="num">70 亿</td>
+            <td class="num">约 48 倍</td>
+          </tr>
+        </table>
+        <h3>估值锚交叉验证</h3>
+        <table>
+          <tr>
+            <th>估值锚</th>
+            <th class="num">合理区间（元）</th>
+          </tr>
+          <tr>
+            <td>PE 锚（正常化净利 70 亿 × 20-25 倍）</td>
+            <td class="num">22-27</td>
+          </tr>
+          <tr>
+            <td>PE 锚（乐观净利 80 亿 × 25-30 倍）</td>
+            <td class="num">31-37</td>
+          </tr>
+          <tr>
+            <td>PB 锚（每股净资产约 10.1 元 × 3-4 倍）</td>
+            <td class="num">30-40</td>
+          </tr>
+        </table>
+        <p>
+          <strong
+            >合理价值区间：约 22-37 元；现价 52.66 元远高于区间上沿（高约
+            42%）。</strong
+          >
+        </p>
+        <div class="note">
+          恒瑞估值长期偏高（PE 40-50
+          倍），是市场对"创新药管线全球第二"的溢价。但在四合一框架下，这个价格没有格雷厄姆式的安全边际——现价已隐含"ADC/双抗/GLP-1
+          全面兑现 + 非肿瘤商业化成功"的乐观预期，而中报显示这些尚未发生。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          <strong>安全边际不足</strong>。Fair Value 约 28-30 元，现价 52.66
+          元严重透支。需等扣非利润重回增长、或股价回落至 Buy Zone（24-30
+          元）才有配置价值。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">管线全球第二、毛利率 86%、研发实力强</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">
+              净资产 644 亿、负债率 8%，但 ROE 持续&lt;15%、现金流恶化
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">
+              创新药 +16% 但抗肿瘤失速、扣非 -12.7%、靠股权浮盈
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">创新药龙头故事清晰，但"非肿瘤市场化"未验证</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">3/10</div>
+            <div class="bar"><div class="fill" style="width: 30%"></div></div>
+            <div class="small">PE 44 倍，远超合理区间，无安全边际</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">
+              肿瘤老盘失速、集采、非肿瘤不会卖、股权浮盈不可持续
+            </div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">33</span> / 60</div>
+      </div>
+
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>肿瘤老盘失速</strong>：抗肿瘤创新药（占创新药 71%）仅
+            +2.58%，吡咯替尼等老药受竞争与集采降价，若新
+            ADC/双抗不能及时放量，基本盘持续卡死。
+          </li>
+          <li>
+            <strong>仿制药集采尾浪</strong>：仿制药
+            -16.07%，集采降价与主动收缩仍在出清。
+          </li>
+          <li>
+            <strong>非肿瘤"不会卖"</strong
+            >：减重/代谢/自免等消费医疗需零售/电商/DTP
+            打法，与院端代表体系相反，组织能力再造未完成。
+          </li>
+          <li>
+            <strong>股权浮盈不可持续</strong>：Kailera 上市公允价值收益 8.21
+            亿是一次性的，剔除后主业双降。
+          </li>
+          <li>
+            <strong>经营现金流 -53.8%</strong
+            >：回款与营运资金压力上升，需持续跟踪。
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p><strong>结论：WATCHLIST（观望，不买入）。总分 33/60。</strong></p>
+        <h3>3 个持有的理由（长期逻辑）</h3>
+        <ol class="small">
+          <li>
+            研发管线规模全球第二，ADC/双抗/GLP-1/自免多技术平台布局完整，创新药占比已破
+            63%（结构改善）。
+          </li>
+          <li>
+            财务极干净：净资产 644 亿、资产负债率 8.2%、几乎零有息负债，不缺钱。
+          </li>
+          <li>
+            非肿瘤创新药 +73.97%
+            是真实亮点（恒格列净、艾玛昔替尼、夫那奇珠单抗等新进医保放量）。
+          </li>
+        </ol>
+        <h3>3 个不买/卖出的理由</h3>
+        <ol class="small">
+          <li>
+            主业双降：扣非净利 -12.71%、经营现金流 -53.8%，归母净利微增靠
+            Kailera 股权浮盈撑门面。
+          </li>
+          <li>硬阈值未通过：ROE 五年 0 次 ≥15%、分红率约 22% 且逐年下滑。</li>
+          <li>
+            估值严重透支：静态 PE 约 44 倍，现价远高于 Fair Value（28-30
+            元），无安全边际。
+          </li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          <strong
+            >恒瑞能否在 2-3 年内完成"从中国最强院端肿瘤药企 → 全球多模态慢病 +
+            肿瘤平台"的组织再造，让非肿瘤创新药（+73.97%）接过增长接力棒，并把扣非净利重新拉回双位数增长？</strong
+          >
+          若能，现价的高估值才有支撑；若不能（肿瘤老药继续阴跌、GLP-1
+          被礼来信达分走心智），营收下滑将从半年报的"偶然"变成"转型迟到的常态"。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          肿瘤老盘持续阴跌且
+          ADC/双抗放量不及预期、非肿瘤商业化能力迟迟无法建立、Kailera 等 NewCo
+          浮盈反转、集采进一步压价、美国市场始终零突破——任一条兑现都会让 PE 44
+          倍的高估值向下重估。
+        </p>
+        <div class="note">
+          数据充分性说明：核心财务与分部数据（营收/净利/扣非/现金流/创新药-仿制药拆分）来自半年报与
+          F10，可互相印证；<strong>未获取</strong> 创新药分产品精确收入、Kailera
+          浮盈完整测算、管线进展细节，故不输出伪精确目标价。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-20
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 恒瑞医药 ·
+        600276
+      </footer>
+    </div>
+  </body>
+</html>
