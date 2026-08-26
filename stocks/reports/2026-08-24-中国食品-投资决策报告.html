@@ -1,0 +1,909 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>中国食品（00506.HK）投资决策报告 · 2026-08-24</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      /* 头部 */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      /* 卡片 */
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      /* 结论框 */
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      /* 表格 */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      /* 评分 */
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      /* 列表 */
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <!-- 头部 -->
+      <div class="hero">
+        <h1>中国食品（00506.HK）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年最新版 ｜ 生成日期：2026-08-24 ｜ 数据基准：2025
+          年年报（2026-03-24 披露）+ 末期股息公告 +
+          实时行情（港元计价，公司报表以美元列示）
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：Stalwart（高股息现金牛）</span>
+          <span class="badge score">总分 36 / 60</span>
+        </div>
+      </div>
+
+      <!-- 1. 结论 -->
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">HOLD · 可小步分批建仓</span>
+          可口可乐中国装瓶龙头、高股息现金牛，估值不贵（PE 9.8、股息率
+          5%+）；增长平淡与"含糖饮料健康化"压力是长期担忧，适合作为港股高股息组合的小步配置。
+        </div>
+        <p>
+          一句话：<strong
+            >中国食品是"低增长 + 高分红 +
+            可口可乐特许装瓶"的稳定现金牛。</strong
+          >2025 年营业额 220.7 亿元人民币（+5.0%）、股东应占溢利 8.62
+          亿元人民币（+0.17%，基本持平）、毛利率
+          37.1%（-0.7pct，水品类占比提升与铝价影响）。公司为中粮集团旗下可口可乐中国装瓶商（中粮可口可乐），2020
+          年剥离酒类业务后聚焦饮料，覆盖中国大部分区域。
+        </p>
+        <p>
+          现价 3.325 港元对应 PE 9.8 倍、PB 1.22 倍、<strong
+            >股息率约 5.1%</strong
+          >（2025 年度末期股息每股 0.154 元人民币、分红率约
+          50%）。相对港股同类的非酒精饮料板块估值不高，且有约 5%
+          股息率提供现金回报保护。需要留意：股东溢利连续多年低个位数增长，含糖碳酸饮料面临健康化趋势压力，外资机构（布朗兄弟、富达等）近期有减持动作。2026
+          年中期业绩将于 2026-08-25（明日）披露，是短期关键催化剂。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>未持仓。可小步分批建仓：3.0-3.2
+          港元（股息率 5.3%-5.6%）首批试探；跌至约 2.8 港元（股息率
+          6%）可加仓；明日中期业绩若确认增长回暖且中期分红落地，可上调优先级。
+        </p>
+      </div>
+
+      <!-- 2. 关键指标速览 -->
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">3.325 港元 / 93 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">PE / PB</div>
+            <div class="num">9.8 / 1.22</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">股息率</div>
+            <div class="num">约 5.1%</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">ROE</div>
+            <div class="num">约 12.5%</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目（2025 年报）</th>
+            <th class="num">2025</th>
+            <th class="num">2024</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业额</td>
+            <td class="num">220.7 亿RMB</td>
+            <td class="num">约 210 亿RMB</td>
+            <td class="num up">+5.0%</td>
+          </tr>
+          <tr>
+            <td>股东应占溢利</td>
+            <td class="num">8.62 亿RMB</td>
+            <td class="num">8.61 亿RMB</td>
+            <td class="num">+0.17%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">37.1%</td>
+            <td class="num">37.8%</td>
+            <td class="num down">-0.7pct</td>
+          </tr>
+          <tr>
+            <td>每股盈利</td>
+            <td class="num">0.308 RMB</td>
+            <td class="num">0.307 RMB</td>
+            <td class="num">+0.3%</td>
+          </tr>
+          <tr>
+            <td>每股股息</td>
+            <td class="num">0.154 RMB</td>
+            <td class="num">0.153 RMB</td>
+            <td class="num">持平</td>
+          </tr>
+          <tr>
+            <td>分红率</td>
+            <td class="num">约 50%</td>
+            <td class="num">约 50%</td>
+            <td class="num">稳定</td>
+          </tr>
+        </table>
+        <div class="note">
+          公司以美元列示报表（营业额 31.4 亿美元、股东应占 1.23
+          亿美元）；人民币口径为业务所在地计价。2026 年中期业绩将于 2026-08-25
+          披露。
+        </div>
+        <p class="muted">
+          数据来源：2025
+          年年报、末期股息公告、新浪/东财港股行情（港元计价）、东财港股财务分析。
+        </p>
+      </div>
+
+      <!-- 3. 数据来源与可信度 -->
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：2025
+            年全年业绩公告（2026-03-24）、末期股息内容摘要公告（2026-03-24）、股息派发公告（0.154
+            元人民币/股，2026-07-08 派发）。
+          </li>
+          <li>
+            <strong>财务明细</strong>：新浪港股财务页（2022-2025
+            年利润表，美元）、东财港股行情与财务分析（PE/PB/股息率/ROE）。
+          </li>
+          <li>
+            <strong>行情</strong>：东财港股日 K 线（现价 3.325 港元、2025-2026
+            走势）。
+          </li>
+          <li>
+            <strong>机构观点</strong
+            >：东财港股研报汇总（国泰君安香港"买入"，目标价 3.45-3.95 港元）。
+          </li>
+        </ul>
+        <div class="note">
+          可信度说明：2025
+          年报数据（营业额、股东应占、毛利率、股息）经人民币/美元双口径交叉验证。<strong>数据不足项</strong>：2026
+          年中期业绩尚未披露（8/25）；2025
+          年末完整资产负债表未从公开接口完整获取，净资产采用东财港股 PB
+          反推值（约 76.35
+          亿港元）并已注明；港股报表以美元列示、派息以人民币计价，汇率折算存在小幅差异。
+        </div>
+      </div>
+
+      <!-- 4. 硬阈值筛选 -->
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <p class="small">
+          约 12.5%，低于 15% 门槛。装瓶行业属重资产运营（工厂、物流、渠道），ROE
+          天然低于品牌公司；中国食品近年 ROE 稳定在 12%
+          上下，属行业正常水平。按行业属性放宽，不构成淘汰项。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          装瓶业务现金流稳定（预收/现结为主、无大额研发），近年自由现金流为正；资本开支以产能维护为主。通过（趋势判断，具体数值以年报附注为准）。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          分红率约 50% 且连续多年稳定（2023-2025 年度末期股息 0.153/0.153/0.154
+          元人民币），股息率约 5.1%。通过。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          净资产约 76
+          亿港元、负债以运营性为主，杠杆水平对装瓶行业属稳健（具体负债率未完整获取，以年报为准）。通过（趋势判断）。
+        </p>
+        <div class="good-box">
+          <strong>硬阈值总判断：通过（按装瓶/公用事业口径）。</strong
+          >核心是分红稳定性与现金流，中国食品的分红纪律与约 5%
+          股息率构成主要配置价值。
+        </div>
+      </div>
+
+      <!-- 5. 基本面研究 -->
+      <div class="card">
+        <h2>🥤 基本面研究</h2>
+        <h3>公司定位与业务</h3>
+        <p class="small">
+          中粮集团（COFCO）旗下港股上市公司，可口可乐中国区主要装瓶商（中粮可口可乐），覆盖华北、西南、东北等大部分区域；产品含碳酸（可口可乐、雪碧、芬达）、果汁（美汁源）、水品类、即饮茶/咖啡等。2020
+          年剥离酒类业务后为纯饮料公司。
+        </p>
+        <h3>护城河（强度：强，但有结构性压力）</h3>
+        <ul class="small">
+          <li>
+            可口可乐特许装瓶区域独占权：全球最强势饮料品牌之一的中国区装瓶权，天然壁垒高、进入者稀少；
+          </li>
+          <li>全国工厂 + 物流 + 渠道网络，规模效应显著；</li>
+          <li>中粮集团国资背景，区域资源与渠道协同；</li>
+          <li>
+            <span class="hl">脆弱点</span
+            >：毛利率受原材料（PET、铝、糖）与产品结构（低毛利水品类占比上升）影响；含糖碳酸饮料面临"健康化"消费趋势压力。
+          </li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>
+            中粮系国企治理，管理层稳定；2026 年 6
+            月陈刚辞任非执行董事、郭莹接任（正常换届）；
+          </li>
+          <li>分红率 50%、连续多年稳定派息，股东回报导向清晰；</li>
+          <li>
+            外资机构（布朗兄弟哈里曼、富达、Pandanus）近期减持，需留意筹码面。
+          </li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          <strong>Stalwart（高股息现金牛）</strong>。投资逻辑是"稳定分红 +
+          股息率保护 +
+          品牌特许权"，不追求高增长；增长来自品类结构优化与提价，斜率低但波动小。
+        </p>
+      </div>
+
+      <!-- 6. 财务质量分析 -->
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>2025 年核心变化：收入恢复增长、盈利基本持平、毛利率微降</h3>
+        <table>
+          <tr>
+            <th>项目（亿美元）</th>
+            <th class="num">2025</th>
+            <th class="num">2024</th>
+            <th class="num">2023</th>
+            <th class="num">2022</th>
+          </tr>
+          <tr>
+            <td>营业额</td>
+            <td class="num">31.40</td>
+            <td class="num">29.90</td>
+            <td class="num">30.28</td>
+            <td class="num">30.11</td>
+          </tr>
+          <tr>
+            <td>股东应占溢利</td>
+            <td class="num">1.226</td>
+            <td class="num">1.197</td>
+            <td class="num">1.176</td>
+            <td class="num">0.947</td>
+          </tr>
+          <tr>
+            <td>基本每股盈利（美分）</td>
+            <td class="num">4.38</td>
+            <td class="num">4.28</td>
+            <td class="num">4.20</td>
+            <td class="num">3.39</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">37.1%</td>
+            <td class="num">37.8%</td>
+            <td class="num">约 37%</td>
+            <td class="num">约 36%</td>
+          </tr>
+        </table>
+        <p class="small">
+          解读：① 营业额 2024 年小幅回落后 2025
+          年恢复增长（+5.0%），盈利连续三年温和上行（1.176 → 1.197 → 1.226
+          亿美元）；② 毛利率 -0.7pct
+          主因低毛利水品类占比提升与铝价上涨，属结构性而非恶化；③ 2026H1
+          行业景气回暖（可口可乐南方上半年创三年新高），中期业绩有望验证增长。
+        </p>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li>
+            股东应占与整体净利差异来自少数股东（装瓶合资方约 40%），口径需注意；
+          </li>
+          <li>现金流以现结为主，经营现金流稳定、无大额资本开支压力；</li>
+          <li>净资产约 76 亿港元、PB 1.22，资产负债表稳健；</li>
+          <li>分红率 50%、股息率约 5.1%，现金回报能力强于增长属性。</li>
+        </ul>
+      </div>
+
+      <!-- 7. 行业与竞争格局 -->
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong
+            >：中国软饮料市场整体低个位数增长，碳酸饮料受健康化趋势压制，但即饮茶/无糖/水品类结构性增长；可口可乐/百事双寡头占碳酸主导。
+          </li>
+          <li>
+            <strong>竞争地位</strong
+            >：中粮可口可乐（中国食品）为中国区两大装瓶体系之一，区域独占权稳定；竞争主要来自农夫山泉、东鹏等本土品牌在非碳酸品类的渗透。
+          </li>
+          <li>
+            <strong>成长驱动</strong
+            >：品类结构优化（无糖、即饮茶、水）、提价、渠道下沉；2026H1
+            行业景气回暖是短期正面。
+          </li>
+          <li>
+            <strong>风险</strong
+            >：健康化趋势、原材料成本（PET/铝/糖）、汇率（美元报表）、可口可乐总部特许政策。
+          </li>
+        </ul>
+        <p class="small">
+          结论：稳定但低增速的成熟赛道，中国食品凭特许装瓶独占权地位稳固；弹性有限，主要回报来自分红。
+        </p>
+      </div>
+
+      <!-- 8. 估值与安全边际 -->
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值（2026-08-24，现价 3.325 港元）</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">数值</th>
+            <th class="num">对应估值</th>
+          </tr>
+          <tr>
+            <td>2025A PE（EPS 0.341 港元）</td>
+            <td class="num">约 9.8 倍</td>
+            <td class="num">不贵</td>
+          </tr>
+          <tr>
+            <td>PB</td>
+            <td class="num">约 1.22 倍</td>
+            <td class="num">中性</td>
+          </tr>
+          <tr>
+            <td>股息率（0.154 RMB/股）</td>
+            <td class="num">约 5.1%</td>
+            <td class="num up">有吸引力</td>
+          </tr>
+          <tr>
+            <td>ROE</td>
+            <td class="num">约 12.5%</td>
+            <td class="num">行业正常</td>
+          </tr>
+        </table>
+        <h3>估值锚（现金牛：股息率主锚 + PE 辅锚）</h3>
+        <table>
+          <tr>
+            <th>锚</th>
+            <th class="num">价格（港元）</th>
+            <th>对应</th>
+          </tr>
+          <tr>
+            <td>股息率 6%</td>
+            <td class="num">约 2.80</td>
+            <td>PE 约 8.2 倍</td>
+          </tr>
+          <tr>
+            <td>股息率 5.5%</td>
+            <td class="num">约 3.05</td>
+            <td>PE 约 9.0 倍</td>
+          </tr>
+          <tr>
+            <td>股息率 5.0%</td>
+            <td class="num">约 3.36</td>
+            <td>PE 约 9.9 倍（现价附近）</td>
+          </tr>
+          <tr>
+            <td>股息率 4.5%</td>
+            <td class="num">约 3.73</td>
+            <td>PE 约 10.9 倍</td>
+          </tr>
+        </table>
+        <p>
+          <strong
+            >合理价值区间：约 3.0 - 3.5 港元；现价 3.325
+            港元处于合理区中上部，股息率约 5.1%，安全边际中等。</strong
+          >
+        </p>
+        <div class="note">
+          判断：作为港股高股息标的，中国食品估值不贵（PE 9.8、PB 1.22），股息率
+          5.1% 相对无风险利率有约 3
+          个点的超额，具备配置价值但不便宜。机构国泰君安（香港）维持"买入"、目标价
+          3.45-3.95 港元，与合理区上沿接近。明日（8/25）中期业绩 +
+          中期分红落地是短期催化。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          中等。约 5% 股息率提供现金回报下限，下行空间有限（特许装瓶 +
+          分红刚性）；上行弹性来自行业景气回暖与提价，但增长平淡限制了弹性。安全边际更厚需等股息率
+          5.5-6%（约 2.8-3.1 港元）。
+        </p>
+      </div>
+
+      <!-- 9. 六维评分 -->
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">可口可乐特许装瓶、区域独占、品牌强</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">ROE 12.5%、现金流稳，重资产运营</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">低个位数增长，靠品类结构与提价</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">现金牛清晰，特许权+高股息</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">PE 9.8、股息率5.1%、港股折价</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">健康化、原材料、汇率、特许政策</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">36</span> / 60</div>
+      </div>
+
+      <!-- 10. 风险清单 -->
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>健康化趋势（长期）</strong
+            >：含糖碳酸饮料消费增长乏力，"含糖饮料大势已去"的舆论与政策（如糖税）是结构性压力。
+          </li>
+          <li>
+            <strong>毛利率压力</strong
+            >：原材料（铝、PET、糖）价格波动、低毛利水品类占比提升，持续压缩毛利率。
+          </li>
+          <li>
+            <strong>汇率风险</strong
+            >：公司以美元列报，人民币/美元汇率波动影响报表与派息折算。
+          </li>
+          <li>
+            <strong>特许经营依赖</strong
+            >：装瓶权续约与可口可乐总部政策（如自营化调整）是长期不确定性。
+          </li>
+          <li><strong>筹码面</strong>：外资机构近期减持，港股流动性一般。</li>
+        </ul>
+      </div>
+
+      <!-- 11. 建仓参考（未持仓） -->
+      <div class="card">
+        <h2>💼 建仓参考（当前未持仓）</h2>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">数值</th>
+          </tr>
+          <tr>
+            <td>当前持仓</td>
+            <td class="num">0 股（未持有）</td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num">3.325 港元</td>
+          </tr>
+          <tr>
+            <td>建议首批建仓区</td>
+            <td class="num">3.0 - 3.2 港元（股息率 5.3%-5.6%）</td>
+          </tr>
+          <tr>
+            <td>建议加仓区</td>
+            <td class="num">2.7 - 2.9 港元（股息率 5.8%-6.2%）</td>
+          </tr>
+          <tr>
+            <td>加仓节奏</td>
+            <td class="num">每下跌约 0.2 港元或每两周一评估</td>
+          </tr>
+          <tr>
+            <td>暂停条件</td>
+            <td class="num">中期业绩转弱 / 分红率下降 / 特许政策变化</td>
+          </tr>
+        </table>
+        <h3>买卖点位参考（2025 年度每股股息约 0.168 港元，股息率主锚）</h3>
+        <table>
+          <tr>
+            <th>区间</th>
+            <th class="num">价格（港元）</th>
+            <th>估值锚</th>
+          </tr>
+          <tr>
+            <td class="up">强买点 Strong Buy</td>
+            <td class="num">2.7 - 2.9</td>
+            <td>股息率 5.8%-6.2%（PE 约 8-8.5 倍）</td>
+          </tr>
+          <tr>
+            <td>买点 Buy Zone</td>
+            <td class="num">3.0 - 3.2</td>
+            <td>股息率 5.3%-5.6%（PE 约 9 倍）</td>
+          </tr>
+          <tr>
+            <td>合理价值 Fair Value</td>
+            <td class="num">3.0 - 3.5</td>
+            <td>股息率 4.8%-5.6% + 装瓶同业 PE 8-12 倍交叉验证</td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num hl">3.325 港元</td>
+            <td>股息率约 5.1%，合理区中上部，中性</td>
+          </tr>
+          <tr>
+            <td class="down">估值卖点（减仓）</td>
+            <td class="num">3.7 港元以上</td>
+            <td>股息率跌破 4.5%（高估锚）</td>
+          </tr>
+          <tr>
+            <td class="down">无条件卖点</td>
+            <td class="num">不限价格</td>
+            <td>特许经营续约不利 / 分红大幅下降 / 重大经营恶化</td>
+          </tr>
+        </table>
+        <div class="note">
+          中国食品为"股息率驱动"型现金牛：买点由股息率 5.3%-6.2% 反推（3.0-3.2
+          元 / 2.7-2.9 元），PE 仅作交叉验证；估值卖点用股息率跌破 4.5%（约 3.7
+          港元）触发。港股注意：以港元交易、派息以人民币计并按 10%
+          代扣所得税（非居民）、无涨跌幅限制。
+        </div>
+      </div>
+
+      <!-- 12. 总结 -->
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p>
+          <strong
+            >结论：HOLD（可小步分批建仓，港股高股息底仓定位）。总分
+            36/60。</strong
+          >
+        </p>
+        <h3>3 个持有的理由</h3>
+        <ol class="small">
+          <li>
+            估值不贵 + 高股息：PE 9.8 倍、PB 1.22、股息率约 5.1%、分红率 50%
+            稳定，现金回报保护强；
+          </li>
+          <li>
+            特许装瓶护城河：可口可乐中国区装瓶独占权 +
+            中粮国资背景，竞争格局稳定；
+          </li>
+          <li>
+            行业景气回暖：2026H1
+            可口可乐南方创三年新高，明日中期业绩有望验证增长。
+          </li>
+        </ol>
+        <h3>3 个不急于重仓的理由</h3>
+        <ol class="small">
+          <li>成长平淡：股东应占溢利连续多年低个位数增长，缺乏弹性；</li>
+          <li>
+            健康化长期压力：含糖碳酸饮料增长受限，毛利率被水品类与成本挤压；
+          </li>
+          <li>
+            筹码与流动性：外资减持、港股流动性一般，汇率与特许政策存不确定性。
+          </li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          「品类结构优化（无糖/即饮茶/水）+
+          提价」能否对冲健康化与成本压力，维持股东应占溢利中低个位数增长并支撑股息率
+          5%+？若能，当前估值合理、可作为高股息底仓；若毛利率持续下滑且增长停滞，则更像"债券替代品"，回报约等于股息率。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          可口可乐特许装瓶权调整、糖税/健康政策超预期、原材料成本大幅上涨——三者叠加会同时打击盈利、分红与估值。目前分红刚性未破、特许权稳固，风险可控但需跟踪中期业绩与政策动向。
+        </p>
+        <div class="note">
+          数据充分性说明：本报告基于 2025
+          年年报、末期股息公告与港股行情，核心数据经人民币/美元双口径交叉验证；2025
+          年末完整资产负债表、2026 中期业绩（明日披露）尚未获取，净资产采用东财
+          PB 反推值（约 76.35
+          亿港元）并已注明。港股报表以美元列示、派息以人民币计价，汇率折算存在小幅差异，不输出伪精确目标价。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-24
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 中国食品 ·
+        00506.HK
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,963 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>珀莱雅（603605）投资决策报告 · 2026-08-24</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      /* 头部 */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      /* 卡片 */
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      /* 结论框 */
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      /* 表格 */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      /* 评分 */
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      /* 列表 */
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <!-- 头部 -->
+      <div class="hero">
+        <h1>珀莱雅（603605）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年半年报更新版 ｜ 生成日期：2026-08-24 ｜ 数据基准：2026
+          年半年度报告（2026-08-25 披露）+ 中期利润分配方案 + Q2 主要经营数据
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：Stalwart（增长待验证观察期）</span>
+          <span class="badge score">总分 31 / 60</span>
+        </div>
+      </div>
+
+      <!-- 1. 结论 -->
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">WATCHLIST · 观望</span>
+          半年报验证并强化了上版判断：主业增长停滞、费用率继续抬升，归母高增是收购会计处理的一次性收益，不是经营改善。
+        </div>
+        <p>
+          一句话：<strong
+            >归母 +46% 是"会计收益"，扣非 -13.8% 才是经营真相。</strong
+          >2026 上半年营收 53.75 亿元（+0.24%，停滞）、归母净利润 11.68
+          亿元（+46.26%）、扣非净利润 6.64 亿元（-13.80%）；约 5
+          亿非经常性损益主要来自分步收购深圳花知晓（彩妆品牌）实现非同一控制下企业合并产生的一次性投资收益。剔除后，主业连续第三个报告期走弱，Q2
+          单季扣非约 -17.6%。
+        </p>
+        <p>
+          更值得警惕的是费用端：销售费用率升至 53.13%（2025A
+          49.63%）、形象宣传推广费率 47.20%（2025A 44.03%），毛利率 74.32%
+          的改善被费用完全吞噬；Q2 三大品类平均售价全面下滑（护肤 -9.4%、彩妆
+          -14.9%、洗护 -11.7%），低价小容量产品占比提升。现价 56.56
+          元（较上版报告 4/28 的 60.26 元 -6.1%），对应静态 PE 14.8 倍、<strong
+            >扣非 PE 约 17 倍、PB 3.34 倍</strong
+          >——在扣非下滑的背景下并不便宜。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>持有 1000 股不动（浮亏约 -5,926
+          元），不加仓；等待两个条件之一：① 三季报扣非重回增长（费用率企稳）；②
+          股价回落至约 45 元以下（对应扣非 PE 约 13
+          倍）提供安全边际。在此之前维持观望。
+        </p>
+      </div>
+
+      <!-- 2. 关键指标速览 -->
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">56.56 元 / 224 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">静态 PE</div>
+            <div class="num">14.8 倍</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">扣非 PE / PB</div>
+            <div class="num">约17 / 3.34</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">股息率</div>
+            <div class="num">4.2%</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目（2026H1）</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入</td>
+            <td class="num">53.75 亿</td>
+            <td class="num">53.62 亿</td>
+            <td class="num">+0.24%</td>
+          </tr>
+          <tr>
+            <td>归母净利润</td>
+            <td class="num">11.68 亿</td>
+            <td class="num">7.99 亿</td>
+            <td class="num up">+46.26%</td>
+          </tr>
+          <tr>
+            <td>扣非净利润</td>
+            <td class="num hl">6.64 亿</td>
+            <td class="num">7.71 亿</td>
+            <td class="num down">-13.80%</td>
+          </tr>
+          <tr>
+            <td>经营活动现金流净额</td>
+            <td class="num">9.51 亿</td>
+            <td class="num">12.93 亿</td>
+            <td class="num down">-26.48%</td>
+          </tr>
+          <tr>
+            <td>毛利率 / 净利率</td>
+            <td class="num">74.32% / 22.22%</td>
+            <td class="num">73.4% / 14.9%</td>
+            <td class="num">净利率含非经常</td>
+          </tr>
+          <tr>
+            <td>销售费用率</td>
+            <td class="num down">53.13%</td>
+            <td class="num">49.63%</td>
+            <td class="num down">+3.5pct</td>
+          </tr>
+          <tr>
+            <td>加权 ROE（扣非口径）</td>
+            <td class="num">17.61% / 10.02%</td>
+            <td class="num">14.35% / 13.85%</td>
+            <td class="num">扣非 -3.83pct</td>
+          </tr>
+        </table>
+        <div class="note">
+          归母 +46.3% 与扣非 -13.8% 的背离：约 5.04
+          亿非经常性损益，主因分步收购深圳花知晓实现非同一控制下企业合并产生的一次性投资收益（另含政府补助
+          0.49 亿）。不可持续，不应作为估值锚。
+        </div>
+        <p class="muted">
+          数据来源：珀莱雅 2026 年半年度报告摘要与全文（2026-08-25 披露）、Q2
+          主要经营数据公告、东方财富公开数据。
+        </p>
+      </div>
+
+      <!-- 3. 数据来源与可信度 -->
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：2026
+            年半年度报告全文及摘要（含非经常性损益明细表）、2026
+            年半年度利润分配方案、2026
+            年第二季度主要经营数据公告（2026-08-25）。
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10 主要财务指标（2017-2025
+            年报、2026Q1）、半年报摘要逐项核对。
+          </li>
+          <li>
+            <strong>行情与估值</strong>：东方财富日 K 线接口（现价 56.56
+            元、2025-2026 走势）。
+          </li>
+          <li>
+            <strong>持仓</strong>：KnowledgeBase/stocks/my/holder.json（1000
+            股，成本 62.486 元）。
+          </li>
+        </ul>
+        <div class="note">
+          可信度说明：营收、归母、扣非、费用率、非经常性损益明细（花知晓收购投资收益、政府补助等）均取自半年报公告原文，可交叉验证。<strong>数据不足项</strong>：Q2
+          单季利润表明细（新浪接口尚未更新半年报），Q2 扣非由 H1 减 Q1
+          推算；花知晓并表后的业务贡献与整合进展在摘要中未详细披露，相关判断作保守处理。
+        </div>
+      </div>
+
+      <!-- 4. 硬阈值筛选 -->
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">22.25%</td>
+            <td class="num">25.95%</td>
+            <td class="num">29.94%</td>
+            <td class="num">32.53%</td>
+            <td class="num">25.80%</td>
+            <td class="num">约27.3%</td>
+          </tr>
+        </table>
+        <p class="small">
+          5 年全部高于 15%、均值约 27.3%，强通过。<span class="hl"
+            >但注意 2026H1 扣非 ROE 已降至 10.02%</span
+          >，表观 17.61% 含一次性收益。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          2023-2025 年 FCF 分别约 12.9 / 8.1 / 20.2 亿元，三年全部为正；2026H1
+          经营现金流 9.51 亿（-26.5%），现金流质量边际转弱但仍为正。通过。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          近年分红率约 30% 且逐年提升；2026 中期每 10 股派 11.80 元（每股 1.18
+          元），加上上半年回购 1.29 亿，合计占归母净利 50.61%。通过。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          2026H1 资产负债率约 38%（总资产 108.67 亿/净资产 67.08
+          亿），财务结构稳健。通过。
+        </p>
+        <div class="good-box">
+          <strong>硬阈值总判断：通过（历史口径）。</strong
+          >但门槛层"强通过"掩盖了当前增长停滞的现实——这正是本报告最需要警惕的"假通过"：财务底子好
+          ≠ 增长仍在。
+        </div>
+      </div>
+
+      <!-- 5. 基本面研究 -->
+      <div class="card">
+        <h2>🧴 基本面研究</h2>
+        <h3>公司定位与主营</h3>
+        <p class="small">
+          国货美妆龙头：主品牌珀莱雅（护肤）+ 彩棠（彩妆）+ 原色波塔（彩妆）+
+          洗护品牌矩阵。2025 年护肤类占收入约
+          77%，仍高度依赖主品牌与护肤大单品。
+        </p>
+        <h3>护城河（强度：中上，但依赖持续高投入维护）</h3>
+        <ul class="small">
+          <li>
+            品牌心智 + 产品迭代（红宝石、双抗等大单品）+ 内容种草 +
+            电商运营效率，复合护城河强于普通日化企业；
+          </li>
+          <li>毛利率 74.32% 验证品牌力与定价能力仍在；</li>
+          <li>
+            <span class="hl">脆弱点</span>：护城河需要每年 47%+
+            营收比例的形象宣传推广费去维护，费用率持续抬升而收入停滞，说明投入产出比在恶化。
+          </li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>
+            创始人侯军呈家族控股（侯军呈 34.53% + 方玉友 15.06%），控制权稳定；
+          </li>
+          <li>
+            2026 年员工持股计划落地、中期分红 + 回购合计占归母 50.61% +
+            "提质增效重回报" 2.0 行动方案，股东回报意愿积极；
+          </li>
+          <li>
+            资本动作：分步收购深圳花知晓（彩妆），补充彩妆板块，但一次性会计收益掩盖主业问题，整合效果待验证。
+          </li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          <strong>Stalwart 的观察期</strong>（不再是已验证的 Fast
+          Grower）。核心故事"国货龙头靠品牌与运营拿份额"依然清晰，但最新财报要求它重新证明增长：营收
+          +0.24%、扣非 -13.8%、Q2 均价全面下滑。
+        </p>
+      </div>
+
+      <!-- 6. 财务质量分析 -->
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>2026 上半年核心变化：会计收益 vs 经营真相</h3>
+        <div class="warn-box">
+          <strong>⚠️ 主业连续第三个报告期走弱。</strong>营收 +0.24% 停滞、扣非
+          -13.8%，Q2 单季扣非约 3.23 亿（同比约
+          -17.6%）；归母高增是花知晓收购的一次性投资收益（约 5
+          亿），不具可持续性。
+        </div>
+        <table>
+          <tr>
+            <th>费用率拆解</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025A</th>
+            <th class="num">2024A</th>
+          </tr>
+          <tr>
+            <td>销售毛利率</td>
+            <td class="num">74.32%</td>
+            <td class="num">73.26%</td>
+            <td class="num">71.39%</td>
+          </tr>
+          <tr>
+            <td>销售费用率</td>
+            <td class="num down">53.13%</td>
+            <td class="num">49.63%</td>
+            <td class="num">47.88%</td>
+          </tr>
+          <tr>
+            <td>其中形象宣传推广费率</td>
+            <td class="num down">47.20%</td>
+            <td class="num">44.03%</td>
+            <td class="num">42.70%</td>
+          </tr>
+          <tr>
+            <td>扣非销售净利率</td>
+            <td class="num down">约 12.4%</td>
+            <td class="num">13.7%</td>
+            <td class="num">14.1%</td>
+          </tr>
+        </table>
+        <p class="small">
+          解读：① 毛利率提升 1.1pct 被销售费用率提升 3.5pct
+          完全吞噬，"毛利率改善"不构成盈利质量改善；②
+          费用率连续三年抬升（44.6%→47.9%→49.6%→53.1%），说明增长越来越"贵"——投入相同费用换不来等量收入；③
+          Q2 均价全面下滑（护肤 -9.4%、彩妆 -14.9%、洗护
+          -11.7%），低价小容量占比上升，价格结构在走低。
+        </p>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li>
+            总资产 108.67
+            亿（+28%），主因花知晓收购并表，商誉与无形资产需关注减值测试；
+          </li>
+          <li>经营现金流 9.51 亿（-26.5%），弱于 2025H1 的 12.93 亿；</li>
+          <li>资产负债率约 38%、无有息负债压力，财务结构干净；</li>
+          <li>
+            存货周转率 3.76 次（2025A 4.37
+            次）下降，备货节奏与动销匹配度需跟踪。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 7. 行业与竞争格局 -->
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong
+            >：国货美妆渗透率提升仍有长期空间，但行业流量红利消退、竞争白热化，新锐品牌与外资品牌双向挤压。
+          </li>
+          <li>
+            <strong>竞争地位</strong
+            >：珀莱雅仍是国货护肤龙头（主品牌第一梯队），彩妆（彩棠 +
+            花知晓）与洗护构成第二曲线，但第二曲线体量尚小。
+          </li>
+          <li>
+            <strong>核心矛盾</strong
+            >：美妆是"费用驱动型"生意，行业获客成本持续上升，公司用 53%
+            销售费用率换取收入持平，说明当前不是扩张期而是防守期。
+          </li>
+          <li>
+            <strong>风险</strong
+            >：流量成本继续上升、大单品生命周期衰退、彩妆板块整合不及预期、行业价格战。
+          </li>
+        </ul>
+        <p class="small">
+          结论：行业结构性机会仍在，但公司的投入产出效率正在恶化，增长验证期拉长。
+        </p>
+      </div>
+
+      <!-- 8. 估值与安全边际 -->
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值（2026-08-24，现价 56.56 元）</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">数值</th>
+            <th class="num">对应估值</th>
+          </tr>
+          <tr>
+            <td>2025A 静态（EPS 3.81）</td>
+            <td class="num">PE 14.8 倍</td>
+            <td class="num">中性</td>
+          </tr>
+          <tr>
+            <td>2026H1 扣非年化（EPS 3.36）</td>
+            <td class="num">PE 约 16.8 倍</td>
+            <td class="num down">偏贵</td>
+          </tr>
+          <tr>
+            <td>2026H1 表观年化（EPS 5.92，含非经常）</td>
+            <td class="num">PE 约 9.6 倍</td>
+            <td class="num">不可靠</td>
+          </tr>
+          <tr>
+            <td>PB（每股净资产 16.94 元）</td>
+            <td class="num">3.34 倍</td>
+            <td class="num down">中高</td>
+          </tr>
+          <tr>
+            <td>股息率（1.20 + 1.18 元）</td>
+            <td class="num">约 4.2%</td>
+            <td class="num">尚可</td>
+          </tr>
+        </table>
+        <h3>估值判断</h3>
+        <p>
+          <strong
+            >现价对"主业真实盈利"并不便宜：扣非 PE 约 17 倍、PB 3.34
+            倍，且扣非在负增长。</strong
+          >表观 14.8 倍静态 PE 与 9.6 倍动态 PE 均含有一次性收益的误导性。
+        </p>
+        <div class="note">
+          反向估值：若 2026 全年扣非约 13-14 亿（按 H1 扣非 6.64 亿 + H2
+          保守估计），对应扣非 PE 约 16-17
+          倍。对一家增长停滞、费用率攀升的消费公司，16-17 倍扣非 PE
+          不提供安全边际；要回到合理买入区（扣非 PE 13-15 倍），对应股价约 44-51
+          元。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          无安全边际。当前价格隐含"主业恢复增长"的预期，而最新财报恰恰证伪了这个预期；安全边际只会在两种情况下重新出现——扣非重回增长，或股价回落至
+          45 元以下。
+        </p>
+      </div>
+
+      <!-- 9. 六维评分 -->
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">国货美妆龙头、74%毛利、品牌矩阵</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">低负债、FCF正、分红+回购50.6%</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">3/10</div>
+            <div class="bar"><div class="fill" style="width: 30%"></div></div>
+            <div class="small">营收停滞、扣非-13.8%、Q2均价下滑</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">Stalwart观察期，收购整合待验证</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">4/10</div>
+            <div class="bar"><div class="fill" style="width: 40%"></div></div>
+            <div class="small">扣非PE17、PB3.34，无安全边际</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">费用率失控、流量成本、并购整合</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">31</span> / 60</div>
+      </div>
+
+      <!-- 10. 风险清单 -->
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>费用率失控（当前最核心）</strong>：销售费用率连续三年抬升至
+            53.13%，若继续上升而收入不恢复，扣非利润将进一步承压。
+          </li>
+          <li>
+            <strong>大单品衰退</strong
+            >：红宝石、双抗等核心大单品若进入生命周期衰退期，主品牌增长引擎熄火。
+          </li>
+          <li>
+            <strong>并购整合风险</strong
+            >：花知晓并表后商誉减值、整合不及预期；且分步收购带来的一次性收益不可复制。
+          </li>
+          <li>
+            <strong>行业流量成本上升</strong
+            >：获客成本持续攀升，投入产出比恶化趋势难逆转。
+          </li>
+          <li>
+            <strong>估值与基本面背离</strong>：扣非负增长下 PB 3.34
+            倍仍偏高，存在估值进一步压缩风险。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 11. 持仓分析与操作建议 -->
+      <div class="card">
+        <h2>💼 持仓分析与操作建议</h2>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">数值</th>
+          </tr>
+          <tr>
+            <td>当前持仓</td>
+            <td class="num">1000 股</td>
+          </tr>
+          <tr>
+            <td>买入成本</td>
+            <td class="num">62.486 元</td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num">56.56 元</td>
+          </tr>
+          <tr>
+            <td>当前市值</td>
+            <td class="num">约 56,560 元</td>
+          </tr>
+          <tr>
+            <td>账面浮亏</td>
+            <td class="num down">约 -5,926 元（-9.5%）</td>
+          </tr>
+          <tr>
+            <td>近12月每股分红</td>
+            <td class="num up">约 2.38 元（股息率 4.2%）</td>
+          </tr>
+        </table>
+        <p class="small">
+          浮亏约 9.5%，股息率 4.2%
+          提供部分缓冲，但基本面（扣非下滑）不支持此时摊薄成本。
+        </p>
+        <h3>买卖点位参考（2026E 扣非口径，全年约 13 亿、EPS 约 3.28 元）</h3>
+        <table>
+          <tr>
+            <th>区间</th>
+            <th class="num">价格</th>
+            <th>估值锚</th>
+          </tr>
+          <tr>
+            <td class="up">强买点 Strong Buy</td>
+            <td class="num">36 - 40 元</td>
+            <td>
+              扣非 PE 11-12 倍（合理×0.70-0.75，增长证伪期确定性低放宽折扣）+
+              股息率 5.9%-6.6%
+            </td>
+          </tr>
+          <tr>
+            <td>买点 Buy Zone</td>
+            <td class="num">42 - 48 元</td>
+            <td>扣非 PE 12.5-14.5 倍（合理×0.85）+ 股息率 5%-5.5%</td>
+          </tr>
+          <tr>
+            <td>合理价值 Fair Value</td>
+            <td class="num">49 - 56 元</td>
+            <td>
+              扣非 PE 15-17 倍（停滞期消费龙头同行中枢；股息率 5% 反推约 48 元 ≈
+              14.5 倍交叉验证）
+            </td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num hl">56.56 元</td>
+            <td>扣非 PE 约 17.2 倍（合理上沿之上，偏贵，未到卖点）</td>
+          </tr>
+          <tr>
+            <td class="down">估值卖点（减仓）</td>
+            <td class="num">62 - 66 元</td>
+            <td>扣非 PE 19-20 倍（高估锚）+ 接近回本价 62.5 元（双重触发）</td>
+          </tr>
+          <tr>
+            <td class="down">兑现卖点</td>
+            <td class="num">72 元以上</td>
+            <td>扣非 PE 22 倍+，需扣非重回双位数增长支撑，否则为纯泡沫</td>
+          </tr>
+          <tr>
+            <td class="down">无条件卖点</td>
+            <td class="num">不限价格</td>
+            <td>
+              三季报扣非继续大降 + 费用率 &gt;55% / 花知晓商誉减值 →
+              无论价格离场
+            </td>
+          </tr>
+        </table>
+        <div class="note">
+          买点锚定<strong>扣非盈利</strong>（2026 全年约 13 亿、EPS
+          3.28），因归母含花知晓收购一次性收益（约 5 亿）不可持续；合理扣非 PE
+          15-17 倍按"停滞期 Stalwart → 盈利质量修正 → 成长斜率压向低端 → 股息率
+          5% 反推交叉验证"确定，不套固定值；卖点用高估锚（扣非 PE 19-20 倍 / 22
+          倍+）而非机械乘数；另设独立组合规则：反弹至回本价 62.5 元且主业未改善
+          → 减仓（与估值无关）。现价处于合理上沿之上、估值卖点之下，维持观望。
+        </div>
+        <h3>操作建议</h3>
+        <ul class="small">
+          <li>
+            <strong>继续持有 1000 股观察，不割肉也不加仓</strong
+            >——公司质地未坏（低负债、高毛利、高分红），但增长证伪期不适合追加；
+          </li>
+          <li>
+            向下等买点：回落到 <strong>42-48 元</strong>（Buy
+            Zone）可考虑首批分批，回落至 <strong>36-40 元</strong>（Strong
+            Buy，股息率 6%+）加大力度；
+          </li>
+          <li>
+            向上等卖点：反弹至 <strong>62-66 元</strong>（估值卖点，扣非 PE
+            19-20 倍且接近回本价）且主业未改善时，减仓 200-300 股；若冲上
+            <strong>72 元以上</strong>（兑现卖点，需基本面配合）可进一步兑现；
+          </li>
+          <li>
+            触发条件提醒：三季报扣非重回增长且费用率企稳 →
+            买点上修、卖点后移；花知晓整合不及预期或费用率继续抬升（&gt;55%） →
+            无条件卖点触发，买点下修。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 12. 总结 -->
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p><strong>结论：WATCHLIST（观望）。总分 31/60。</strong></p>
+        <h3>3 个持有的理由</h3>
+        <ol class="small">
+          <li>
+            硬阈值历史口径全部强通过：5 年 ROE 均值 27.3%、FCF 三年为正、低负债
+            38%；
+          </li>
+          <li>
+            国货美妆龙头品牌力仍在：毛利率 74.32% 提升，主品牌 + 彩棠 +
+            花知晓品牌矩阵完整；
+          </li>
+          <li>
+            股东回报意愿强：中期分红 + 回购合计占归母 50.61%，股息率 4.2%。
+          </li>
+        </ol>
+        <h3>3 个不加仓的理由</h3>
+        <ol class="small">
+          <li>
+            主业真实盈利在下滑：扣非 -13.8%、Q2 单季约 -17.6%，归母 +46%
+            是花知晓收购的一次性会计收益；
+          </li>
+          <li>
+            费用率持续失控：销售费用率
+            53.13%（+3.5pct），投入产出比恶化，增长越来越"贵"；
+          </li>
+          <li>
+            估值无安全边际：扣非 PE 约 17 倍、PB 3.34
+            倍，价格仍隐含增长恢复预期。
+          </li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          「销售费用率能否在 53%
+          附近企稳，并重新撬动收入与扣非利润重回双位数增长？」若能，公司回到
+          Fast Grower
+          轨道，当前价格合理；若不能（费用率继续升、收入继续平），扣非利润中枢将继续下移，估值与盈利双杀。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          大单品生命周期衰退 + 流量成本持续上升 +
+          花知晓整合失败（商誉减值）——三者叠加将同时打击收入、利润与估值。目前毛利率仍在提升、品牌矩阵尚在扩张，未到"坏"的程度，但增长验证期被明确拉长。
+        </p>
+        <div class="note">
+          数据充分性说明：本报告基于 2026
+          年半年报全文及摘要（含非经常性损益明细：花知晓收购投资收益、政府补助等）、中期分红方案与
+          Q2 经营数据公告，核心判断均有据可查；Q2 单季扣非为推算值（H1 减
+          Q1）已注明；不输出伪精确的目标价。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-24
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 珀莱雅 · 603605
+      </footer>
+    </div>
+  </body>
+</html>

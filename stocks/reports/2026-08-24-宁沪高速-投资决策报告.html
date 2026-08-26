@@ -1,0 +1,963 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>宁沪高速（600377）投资决策报告 · 2026-08-24</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      /* 头部 */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      /* 卡片 */
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      /* 结论框 */
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      /* 表格 */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      /* 评分 */
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      /* 列表 */
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <!-- 头部 -->
+      <div class="hero">
+        <h1>宁沪高速（600377）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年最新版 ｜ 生成日期：2026-08-24 ｜ 数据基准：2025 年年报 + 2026
+          年一季报 + 收购苏锡常南部高速公告 + 中期分红提议 + 实时行情
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：Stalwart（高股息现金牛）</span>
+          <span class="badge score">总分 37 / 60</span>
+        </div>
+      </div>
+
+      <!-- 1. 结论 -->
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">HOLD · 可小步分批建仓</span>
+          江苏苏南高速路网龙头，高分红现金牛底色扎实；现价股息率约
+          4%，处于合理价值上沿、安全边际中等，适合作为高股息底仓小步分批，不追高。
+        </div>
+        <p>
+          一句话：<strong
+            >宁沪是"低增长 + 高分红 + 路网扩张"的类公用事业现金牛。</strong
+          >2025 年归母净利润 45.94 亿元（-7.3%），营收 202.9
+          亿元（-12.5%，主因建造服务收入减少、非经营性恶化）；2026Q1 归母 13.7
+          亿元（+13.2%）明显回暖。收费公路是核心利润源（2025 年收费公路收入 95.6
+          亿、占营收 47%），分红连续多年每股 0.46-0.49 元、分红率约 54%。
+        </p>
+        <p>
+          现价 12.19 元对应静态 PE 13.4 倍、PB 1.48 倍、<strong
+            >股息率约 4.02%</strong
+          >。两件正面事件：① 拟以 73.4 亿元现金收购苏锡常南部高速 100%
+          股权（自有资金、不摊薄、标的 2025
+          年已扭亏为盈、有业绩补偿承诺），扩大苏南路网版图；② 董事会提议 2026
+          年中期分红不低于半年报归母净利润
+          30%，全年分红有望提升。需要留意的：沿江高速改扩建进入资本开支高峰（2025
+          年资本开支 76.3 亿 &gt; 经营现金流 67.6 亿，FCF
+          暂时为负），短期靠借款支撑，盈利弹性有限。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>未持仓。可小步分批建仓：11 元以下（股息率
+          4.5%+）首批 500-1000 股；跌至约 10 元（股息率
+          5%）可加仓；若半年报（8/28
+          披露）确认收购落地且中期分红超预期，可上调优先级。
+        </p>
+      </div>
+
+      <!-- 2. 关键指标速览 -->
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">12.19 元 / 614 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">静态 PE / PB</div>
+            <div class="num">13.4 / 1.48</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">股息率</div>
+            <div class="num">4.02%</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">分红率</div>
+            <div class="num">54%</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2025A</th>
+            <th class="num">2024A</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入</td>
+            <td class="num">202.9 亿</td>
+            <td class="num">232.0 亿</td>
+            <td class="num down">-12.5%</td>
+          </tr>
+          <tr>
+            <td>归母净利润</td>
+            <td class="num">45.9 亿</td>
+            <td class="num">49.5 亿</td>
+            <td class="num down">-7.3%</td>
+          </tr>
+          <tr>
+            <td>经营现金流净额</td>
+            <td class="num">67.6 亿</td>
+            <td class="num">约 55 亿</td>
+            <td class="num up">+23%</td>
+          </tr>
+          <tr>
+            <td>资本开支</td>
+            <td class="num hl">76.3 亿</td>
+            <td class="num">约 52 亿</td>
+            <td class="num down">扩建高峰</td>
+          </tr>
+          <tr>
+            <td>每股分红</td>
+            <td class="num">0.49 元</td>
+            <td class="num">0.49 元</td>
+            <td class="num">持平</td>
+          </tr>
+          <tr>
+            <td>资产负债率</td>
+            <td class="num">43.0%</td>
+            <td class="num">44.7%</td>
+            <td class="num">稳健</td>
+          </tr>
+        </table>
+        <div class="note">
+          2026Q1：营收 45.3 亿（-5.2%）、归母 13.7 亿（+13.2%）、ROE
+          3.22%，主业回暖。2026 年半年报将于 2026-08-28 披露。
+        </div>
+        <p class="muted">
+          数据来源：2025 年年报、2026
+          年一季报、收购苏锡常南部高速公告、中期分红提议公告、东方财富公开数据。
+        </p>
+      </div>
+
+      <!-- 3. 数据来源与可信度 -->
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：2025
+            年年度报告三张表、收购江苏苏锡常南部高速 100%
+            股权暨关联交易公告（2026-08-21）、2026
+            年中期利润分配提议公告（2026-08-05）、半年度业绩说明会公告（半年报
+            8/28 披露）。
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10
+            主要财务指标、新浪财经三张报表接口、主营构成接口。
+          </li>
+          <li>
+            <strong>行情与估值</strong>：东方财富日 K 线接口（现价 12.19
+            元、2025-2026 走势）。
+          </li>
+          <li>
+            <strong>分红</strong>：东方财富数据中心分红接口（2017-2025 连续多年
+            10 派 4.6-4.9 元）。
+          </li>
+        </ul>
+        <div class="note">
+          可信度说明：核心财务数字与分红取自公告原文，可交叉验证。<strong>数据不足项</strong>：2026
+          年半年报尚未披露（8/28）；苏锡常南部高速并表后的具体盈利增厚测算、收购资产包内路产详情未在公告中完整披露，相关判断作保守处理；宁沪为
+          A+H 两地上市，本报告按 A 股口径。
+        </div>
+      </div>
+
+      <!-- 4. 硬阈值筛选 -->
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">约14.8%</td>
+            <td class="num">约11.5%</td>
+            <td class="num">约12.8%</td>
+            <td class="num">13.63%</td>
+            <td class="num down">11.48%</td>
+            <td class="num">约12.8%</td>
+          </tr>
+        </table>
+        <p class="small">
+          高速公用事业类 ROE 天然低于 15%（重资产、高净资产），12-14%
+          属行业正常水平；本项按行业属性放宽，不构成淘汰项。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          2025 年经营现金流 67.6 亿但资本开支 76.3 亿（沿江高速改扩建等），FCF
+          约 -8.7 亿——<span class="hl">扩建高峰期阶段性转负</span>。历史常态年份
+          FCF
+          为正（收费公路折旧大、现金流强），属"周期性资本开支"而非经营恶化。边界通过。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          连续多年每股分红 0.46-0.49 元、2025 年分红率约 54%；2026
+          年中期分红提议不低于半年报归母 30%，全年有望提升。强通过。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          2025 年末资产负债率 43.0%、有息负债约 289 亿（货币资金 61
+          亿），对高速行业属稳健水平。通过。
+        </p>
+        <div class="good-box">
+          <strong>硬阈值总判断：通过（按公用事业口径）。</strong
+          >核心看点是分红稳定性而非成长，宁沪的分红纪律（14
+          年连续分红）是最大亮点。
+        </div>
+      </div>
+
+      <!-- 5. 基本面研究 -->
+      <div class="card">
+        <h2>🛣️ 基本面研究</h2>
+        <h3>公司定位与主营（2025 年报）</h3>
+        <table>
+          <tr>
+            <th>业务板块</th>
+            <th class="num">收入(亿)</th>
+            <th class="num">占比</th>
+          </tr>
+          <tr>
+            <td>收费公路</td>
+            <td class="num">95.6</td>
+            <td class="num">47.1%</td>
+          </tr>
+          <tr>
+            <td>建造服务（改扩建工程）</td>
+            <td class="num">81.6</td>
+            <td class="num">40.2%</td>
+          </tr>
+          <tr>
+            <td>公路配套服务</td>
+            <td class="num">14.6</td>
+            <td class="num">7.2%</td>
+          </tr>
+          <tr>
+            <td>电力 / 租赁</td>
+            <td class="num">9.3</td>
+            <td class="num">4.6%</td>
+          </tr>
+        </table>
+        <p class="small">
+          核心利润来自收费公路（沪宁高速 +
+          苏南路网，类垄断）；建造服务收入随改扩建工程进度波动（毛利率接近
+          0），是 2025 年营收下滑的主因，非经营性恶化。
+        </p>
+        <h3>护城河（强度：强）</h3>
+        <ul class="small">
+          <li>
+            苏南高速路网区域垄断地位：沪宁高速为全国最繁忙路段之一，车流量与经济圈绑定；
+          </li>
+          <li>特许经营权（30 年期路权）+ 收费公路牌照，天然壁垒高；</li>
+          <li>投资收益补充（2025 年 12.6 亿，含联营江苏银行等股权分红）；</li>
+          <li>
+            控股股东江苏交控持续注入路产（苏锡常南部高速收购），路网版图扩张。
+          </li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>
+            控股股东江苏交控（国企），关联资产注入意愿强、节奏清晰（收购案重启后落地概率高）；
+          </li>
+          <li>
+            分红纪律优秀：连续多年高分红 + 2026
+            年新增中期分红，股东回报导向明确；
+          </li>
+          <li>"提质增效重回报" 2.0 行动方案发布。</li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          <strong>Stalwart（高股息现金牛）</strong
+          >，类公用事业。投资逻辑是"稳定分红 + 股息率保护 +
+          路网扩张期权"，不追求高增长；当前扩建期资本开支是短期扰动。
+        </p>
+      </div>
+
+      <!-- 6. 财务质量分析 -->
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>2025 年核心变化：营收下滑是"建造服务收缩"，利润回落有扩建期因素</h3>
+        <table>
+          <tr>
+            <th>项目（亿元）</th>
+            <th class="num">2025A</th>
+            <th class="num">2024A</th>
+            <th class="num">说明</th>
+          </tr>
+          <tr>
+            <td>收费公路收入</td>
+            <td class="num">95.6</td>
+            <td class="num">约 98</td>
+            <td class="num">小幅下滑（经济/分流）</td>
+          </tr>
+          <tr>
+            <td>建造服务收入</td>
+            <td class="num">81.6</td>
+            <td class="num">约 110</td>
+            <td class="num down">改扩建进度变化，低毛利</td>
+          </tr>
+          <tr>
+            <td>财务费用</td>
+            <td class="num">8.3</td>
+            <td class="num">约 7</td>
+            <td class="num down">扩建借款利息增加</td>
+          </tr>
+          <tr>
+            <td>投资收益</td>
+            <td class="num">12.6</td>
+            <td class="num">约 15</td>
+            <td class="num">联营分红（江苏银行等）</td>
+          </tr>
+        </table>
+        <p class="small">
+          解读：① 归母 -7.3% 主要来自建造服务收入减少 +
+          财务费用上升，收费公路基本盘稳健；② 2026Q1 归母 +13.2% 显示回暖；③
+          经营现金流 67.6 亿强劲，但资本开支 76.3
+          亿进入扩建高峰（沿江高速改扩建、收购资金），FCF
+          阶段性转负，短期靠借款（新增 57 亿）支撑。
+        </p>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li>
+            净利率约 23.8%（归母口径）、分红率 54%，现金分红有经营性现金流支撑；
+          </li>
+          <li>资产负债率 43%、有息负债约 289 亿，对重资产公用事业属稳健；</li>
+          <li>
+            货币资金 61 亿 + 融资渠道顺畅（多次发行超短融/中票），收购 73.4
+            亿主要用自有资金；
+          </li>
+          <li>
+            扩建完成后（沿江改扩建 +
+            苏锡常南部高速并表）盈利与现金流有望显著增厚。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 7. 行业与竞争格局 -->
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong>：高速公路行业整体进入成熟期，车流量与
+            GDP/出行需求弱相关、增长低个位数；行业核心回报来自稳定现金分红而非成长。
+          </li>
+          <li>
+            <strong>竞争地位</strong
+            >：苏南经济圈核心路网（沪宁高速等），区域垄断、无实质竞争；对比粤高速、深高速等同业，宁沪资产质量与分红均属第一梯队。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：沿江高速改扩建通车后车流与费额提升 +
+            苏锡常南部高速并表 + 可能的持续路产注入。
+          </li>
+          <li>
+            <strong>风险</strong
+            >：车流量受经济与出行结构影响、扩建期资本开支压力、收费政策与特许经营到期安排。
+          </li>
+        </ul>
+        <p class="small">
+          结论：成熟稳定的现金牛赛道，宁沪为其中优质资产；短期处于"扩建 +
+          并表"的投入期，2-3 年后有望进入收获期。
+        </p>
+      </div>
+
+      <!-- 8. 估值与安全边际 -->
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值（2026-08-24，现价 12.19 元）</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">数值</th>
+            <th class="num">对应估值</th>
+          </tr>
+          <tr>
+            <td>2025A 静态 PE</td>
+            <td class="num">13.4 倍</td>
+            <td class="num">中性</td>
+          </tr>
+          <tr>
+            <td>PB</td>
+            <td class="num">1.48 倍</td>
+            <td class="num">中性</td>
+          </tr>
+          <tr>
+            <td>股息率（2025年度 0.49 元）</td>
+            <td class="num">约 4.02%</td>
+            <td class="num">中性</td>
+          </tr>
+          <tr>
+            <td>2026E 股息率（若 0.50-0.52 元，含中期）</td>
+            <td class="num">约 4.1%-4.3%</td>
+            <td class="num">中性</td>
+          </tr>
+        </table>
+        <h3>估值锚（现金牛：股息率为主锚，PE 辅锚）</h3>
+        <table>
+          <tr>
+            <th>锚</th>
+            <th class="num">价格</th>
+            <th>对应</th>
+          </tr>
+          <tr>
+            <td>股息率 5%</td>
+            <td class="num">9.8 元</td>
+            <td>PE 约 10.7 倍</td>
+          </tr>
+          <tr>
+            <td>股息率 4.5%</td>
+            <td class="num">10.9 元</td>
+            <td>PE 约 12 倍</td>
+          </tr>
+          <tr>
+            <td>股息率 4.0%</td>
+            <td class="num">12.3 元</td>
+            <td>PE 约 13.4 倍（现价附近）</td>
+          </tr>
+          <tr>
+            <td>股息率 3.5%</td>
+            <td class="num">14.0 元</td>
+            <td>PE 约 15.4 倍</td>
+          </tr>
+        </table>
+        <p>
+          <strong
+            >合理价值区间：约 10.5 - 12.5 元；现价 12.19
+            元处于合理价值上沿，安全边际中等。</strong
+          >
+        </p>
+        <div class="note">
+          判断：宁沪作为"高股息防御资产"，当前 4% 股息率相对十年期国债（约
+          2%+）仍有约 2 个点的超额，具备配置价值但不便宜。若股价回到 11
+          元以下（股息率 4.5%+）、或 10 元附近（股息率
+          5%），则是更舒服的加仓区。收购落地 + 中期分红落地 +
+          半年报确认是短期催化剂。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          中等。股息率 4%
+          提供"现金回报下限"保护，下行风险有限（类公用事业、分红刚性）；上行弹性来自收购并表与扩建通车。安全边际要更厚需等股息率
+          5%（约 10 元）。
+        </p>
+      </div>
+
+      <!-- 9. 六维评分 -->
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">苏南路网垄断、类公用事业、现金流稳定</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">负债率43%、分红54%，扩建期FCF暂负</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">内生低增长，靠收购+扩建；Q1+13%</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">现金牛清晰：高股息+路网扩张</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">股息率4%中性，需5%才厚</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">扩建资本开支、车流量、政策</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">37</span> / 60</div>
+      </div>
+
+      <!-- 10. 风险清单 -->
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>扩建期资本开支压力</strong>：沿江高速改扩建 + 73.4
+            亿收购，短期 FCF 为负、靠借款支撑，财务费用上升。
+          </li>
+          <li>
+            <strong>收购整合风险</strong>：苏锡常南部高速虽 2025
+            年已扭亏，但并表后盈利贡献与预期可能有偏差（设有业绩补偿承诺，风险可控）。
+          </li>
+          <li>
+            <strong>车流量波动</strong
+            >：经济下行、出行结构变化（高铁分流）、改扩建期间交通管制影响流量。
+          </li>
+          <li>
+            <strong>政策与路权</strong
+            >：收费公路管理条例变化、特许经营到期续期安排（沪宁高速路段）。
+          </li>
+          <li>
+            <strong>估值弹性有限</strong
+            >：类公用事业股价弹性低，主要回报来自分红复投，需耐心。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 11. 建仓参考（未持仓） -->
+      <div class="card">
+        <h2>💼 建仓参考（当前未持仓）</h2>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">数值</th>
+          </tr>
+          <tr>
+            <td>当前持仓</td>
+            <td class="num">0 股（未持有）</td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num">12.19 元</td>
+          </tr>
+          <tr>
+            <td>建议首批建仓区</td>
+            <td class="num">10.5 - 11.0 元（股息率 4.5%-4.7%）</td>
+          </tr>
+          <tr>
+            <td>建议加仓区</td>
+            <td class="num">9.5 - 10.0 元（股息率 5%-5.2%）</td>
+          </tr>
+          <tr>
+            <td>加仓节奏</td>
+            <td class="num">每下跌约 0.5 元或每两周一评估</td>
+          </tr>
+          <tr>
+            <td>暂停条件</td>
+            <td class="num">收购终止 / 分红率大幅下降 / 半年报利润继续下滑</td>
+          </tr>
+        </table>
+        <h3>买卖点位参考（2025A EPS 0.91、分红 0.49 元，股息率主锚）</h3>
+        <table>
+          <tr>
+            <th>区间</th>
+            <th class="num">价格</th>
+            <th>估值锚</th>
+          </tr>
+          <tr>
+            <td class="up">强买点 Strong Buy</td>
+            <td class="num">8.9 - 9.8 元</td>
+            <td>股息率 5.0%-5.5%（PE 10-11 倍）</td>
+          </tr>
+          <tr>
+            <td>买点 Buy Zone</td>
+            <td class="num">10.0 - 11.0 元</td>
+            <td>股息率 4.5%-5.0%（PE 11-12 倍）</td>
+          </tr>
+          <tr>
+            <td>合理价值 Fair Value</td>
+            <td class="num">10.5 - 12.5 元</td>
+            <td>股息率 4%-4.7% + 高速同业 PE 11-14 倍交叉验证</td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num hl">12.19 元</td>
+            <td>股息率约 4.0%，合理上沿，中性</td>
+          </tr>
+          <tr>
+            <td class="down">估值卖点（减仓）</td>
+            <td class="num">14.0 元以上</td>
+            <td>股息率跌破 3.5%（高估锚）</td>
+          </tr>
+          <tr>
+            <td class="down">无条件卖点</td>
+            <td class="num">不限价格</td>
+            <td>收购整合失败 / 分红率大幅下降 / 收费政策重大变化</td>
+          </tr>
+        </table>
+        <div class="note">
+          宁沪为"股息率驱动"型现金牛：买点由股息率 4.5%-5.5% 反推（10-11 元 /
+          8.9-9.8 元），PE 仅作交叉验证；估值卖点用股息率跌破 3.5%（14
+          元）触发；另设独立组合规则：若未来有持仓且反弹至成本区回本、基本面未改善，可减仓控制敞口。
+        </div>
+      </div>
+
+      <!-- 12. 总结 -->
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p>
+          <strong
+            >结论：HOLD（可小步分批建仓，高股息底仓定位）。总分 37/60。</strong
+          >
+        </p>
+        <h3>3 个持有的理由</h3>
+        <ol class="small">
+          <li>
+            高分红现金牛：分红率 54%、连续多年每股 0.46-0.49 元、2026
+            年新增中期分红提议，股息率 4% 提供现金回报下限；
+          </li>
+          <li>
+            苏南路网垄断 + 国企股东持续注入：73.4
+            亿收购苏锡常南部高速（自有资金、不摊薄、标的已扭亏），2-3
+            年后进入收获期；
+          </li>
+          <li>
+            财务稳健：负债率 43%、经营现金流 67.6 亿，类公用事业的防御属性强。
+          </li>
+        </ol>
+        <h3>3 个不急于重仓的理由</h3>
+        <ol class="small">
+          <li>股息率仅 4%，相对历史（5-5.8%）不算厚，安全边际中等；</li>
+          <li>
+            扩建期 FCF 暂时为负（资本开支 76.3 亿 &gt; 经营现金流 67.6
+            亿），短期盈利弹性有限；
+          </li>
+          <li>
+            2025 年归母下滑 7.3%，内生增长低，回报主要靠分红复投而非资本增值。
+          </li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          「苏锡常南部高速并表 + 沿江改扩建通车」能否在 2027
+          年后显著增厚收费公路收入与自由现金流，并支撑分红继续提升？若能，当前
+          4% 股息率 +
+          潜在盈利增厚构成良好赔率；若扩建投入产出比不及预期，则宁沪退化为"低增长纯分红"资产，回报仅约
+          4-5%。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          收购整合失败、车流量因经济/分流持续下滑、特许经营到期处置不当——三者叠加会同时打击盈利、分红与估值。目前收购有业绩补偿承诺、分红刚性未破，风险可控但需跟踪半年报与收购落地进度。
+        </p>
+        <div class="note">
+          数据充分性说明：本报告基于 2025
+          年报、2026Q1、收购公告、分红提议等公开信息，核心数据可交叉验证；2026
+          半年报（8/28
+          披露）与苏锡常南部高速并表后的精确盈利增厚暂未公开，相关测算作保守处理，不输出伪精确目标价。宁沪为高股息现金牛，估值以股息率为主锚、PE
+          为辅锚。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-24
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 宁沪高速 ·
+        600377
+      </footer>
+    </div>
+  </body>
+</html>

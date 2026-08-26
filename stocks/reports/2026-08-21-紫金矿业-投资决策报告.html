@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>紫金矿业（601899.SH）投资决策报告 · 2026-08-21</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>紫金矿业（601899.SH）完整投资决策报告</h1>
+        <div class="sub">
+          2026 中报更新版 ｜ 生成日期：2026-08-21 ｜ 数据基准：2026 年中报（8/21
+          披露）+ 2025 年报 + 2026Q1
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：强周期龙头（铜金双主业）</span>
+          <span class="badge score">总分 42 / 60</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">HOLD · 持有不加仓，强周期顶部警惕</span>
+          紫金矿业 2026H1 业绩超预期：营收 1941.78 亿（+15.8%）、归母净利 391.70
+          亿（+68.2%）、毛利率从 23.75% 大幅跳升至 37.75%（+14pct）、拟中期分红
+          111 亿——金铜量价齐升充分兑现。
+        </div>
+        <p>
+          旧报告（2026-05-12）结论为"持有不加仓"，当时 Fair Value 35 元、Buy
+          Zone 上沿 32 元。中报给出了更强的答案：<strong
+            >毛利率 37.75%（+14pct）是最大亮点</strong
+          >——金价高位运行 + 铜金产量提升 + 低本成本优势，推动净利 +68.2%、扣非
+          +75.9%。现价 34.74 元（今日除息），PE(TTM) 约 13.7 倍、PE(2026E 年化)
+          约 11.8 倍，<strong>估值不贵，但已处周期盈利高位</strong>。
+        </p>
+        <p class="small">
+          <strong>持仓动作：</strong>当前持仓 2400 股（成本 29.8 元，浮盈约
+          16.6%），继续持有、不加仓。现价 34.74 元处于 Buy Zone 上沿（32-38
+          元）附近。核心观察：① 金价能否站稳高位；②
+          铜矿（卡莫阿、巨龙等）产量爬坡；③
+          锂板块布局兑现。若金铜价格回调，强周期属性将放大回撤。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">34.74 元<br />9238 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 营收</div>
+            <div class="num">1941.8 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 归母净利</div>
+            <div class="num up">391.7 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 毛利率</div>
+            <div class="num up">37.8%</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入（亿元）</td>
+            <td class="num">1941.78</td>
+            <td class="num">1677.1</td>
+            <td class="num up">+15.8%</td>
+          </tr>
+          <tr>
+            <td>归母净利润（亿元）</td>
+            <td class="num">391.70</td>
+            <td class="num">232.9</td>
+            <td class="num up">+68.2%</td>
+          </tr>
+          <tr>
+            <td>扣非净利（亿元）</td>
+            <td class="num">380.3</td>
+            <td class="num">216.2</td>
+            <td class="num up">+75.9%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">37.75%</td>
+            <td class="num">23.75%</td>
+            <td class="num up">+14.0pct</td>
+          </tr>
+          <tr>
+            <td>净利率</td>
+            <td class="num">25.65%</td>
+            <td class="num">17.08%</td>
+            <td class="num up">+8.6pct</td>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">19.60%</td>
+            <td class="num">16.11%</td>
+            <td class="num up">+3.5pct</td>
+          </tr>
+          <tr>
+            <td>每股收益（元）</td>
+            <td class="num">1.47</td>
+            <td class="num">0.88</td>
+            <td class="num up">+68.0%</td>
+          </tr>
+          <tr>
+            <td>资产负债率</td>
+            <td class="num">49.55%</td>
+            <td class="num">56.36%</td>
+            <td class="num up">-6.8pct</td>
+          </tr>
+        </table>
+        <p class="muted">
+          数据来源：东方财富 F10（紫金矿业 2026 年半年度报告摘要，2026-08-21）
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📈 季度动能</h2>
+        <table>
+          <tr>
+            <th>季度</th>
+            <th class="num">营收(亿元)</th>
+            <th class="num">归母净利(亿元)</th>
+            <th class="num">净利环比</th>
+            <th class="num">净利同比</th>
+          </tr>
+          <tr>
+            <td>2026Q2</td>
+            <td class="num">956.8</td>
+            <td class="num">190.9</td>
+            <td class="num down">-4.9%</td>
+            <td class="num up">+45.5%</td>
+          </tr>
+          <tr>
+            <td>2026Q1</td>
+            <td class="num">985.0</td>
+            <td class="num">200.8</td>
+            <td class="num">—</td>
+            <td class="num up">+97.5%</td>
+          </tr>
+          <tr>
+            <td>2025Q4</td>
+            <td class="num">948.8</td>
+            <td class="num">139.2</td>
+            <td class="num">—</td>
+            <td class="num up">+80.8%</td>
+          </tr>
+        </table>
+        <div class="note">
+          Q2 单季净利 190.9 亿（同比 +45.5%），环比 Q1 的 200.8
+          亿略降（-4.9%）。若 H2 金铜价格维持高位，2026 全年净利有望达 750-800
+          亿元。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：紫金矿业 2026 年半年度报告摘要（8/21
+            披露）
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10（ZYZBAjaxNew，A 股口径）
+          </li>
+          <li>
+            <strong>行情与估值</strong>：腾讯自有时效行情接口（前复权日 K）
+          </li>
+          <li><strong>研报观点</strong>：南方财经网等业绩报道</li>
+        </ul>
+        <div class="note">
+          可信度说明：营收 1941.78 亿、归母净利 391.70 亿、毛利率、中期分红 111
+          亿均来自半年报摘要，可与 F10
+          交叉印证。<strong>无法获取</strong>：铜/金/锂分品种产量与售价精确拆分、分矿山经营数据、金铜价格假设。故盈利归因（金价
+          + 产量 + 成本）基于公开信息推断。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">23.97%</td>
+            <td class="num">25.29%</td>
+            <td class="num">21.43%</td>
+            <td class="num">25.89%</td>
+            <td class="num">33.04%</td>
+            <td class="num">约 25.9%</td>
+          </tr>
+        </table>
+        <p class="small">
+          5 年全部 ≥15%、无一年 <10%、5 年均值约 25.9%，2026H1 年化约 39%——ROE
+          质量极高且跨周期稳定。<strong>通过（优秀）</strong>。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          2023-2025 年 FCF 约 64.3、240.6、444.5 亿，三年累计约 749
+          亿且全部为正（重资产但有强造血能力）。<strong>通过</strong>。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          历史分红率约 31%（2023-2025 年均值），叠加本次中期分红 111
+          亿，分红率稳超 25%。<strong>通过</strong>。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          2026H1 资产负债率 49.55%（较 2025H1 的 56.36%
+          明显下降），处于健康区间。<strong>通过</strong>。
+        </p>
+        <div class="good-box">
+          <strong>硬阈值总判断：四项全部通过（优秀）。</strong>紫金矿业是 A
+          股资源股里少数"ROE 跨周期稳定 25%+ + FCF 强 + 分红稳定 +
+          负债可控"的标的，是强周期行业中的高质量龙头。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🔬 基本面研究</h2>
+        <h3>业务与护城河</h3>
+        <ul class="small">
+          <li>
+            <strong>铜金双主业 + 锂新增长</strong
+            >：全球矿业龙头，铜（卡莫阿-卡库拉、巨龙、Timok
+            等）、金（哥伦比亚武里蒂卡、大陆黄金等）、锂（Manono
+            等）多矿种布局。
+          </li>
+          <li>
+            <strong>低成本护城河</strong>：矿端低成本优势 +
+            全球化并购整合能力，是持续跑赢同行的核心。
+          </li>
+          <li>
+            <strong>量价齐升</strong>：金价高位 + 铜金产量持续爬坡，驱动毛利率从
+            23.75% 跳升至 37.75%。
+          </li>
+          <li><strong>中期分红 111 亿</strong>：股东回报意识增强。</li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          <strong>强周期龙头（Cyclical + Fast Grower 混合）</strong
+          >：成长性真实（产量持续提升），但盈利高度依赖金属价格——价格是外生变量，公司无法控制。这是周期股而非纯成长股，需按周期顶部折价对待。
+        </p>
+        <h3>核心矛盾</h3>
+        <p class="small">
+          业绩爆发是"金铜价格高位 +
+          产量爬坡"共同作用的结果。<strong>当前盈利处于周期高位</strong>——格雷厄姆视角下，周期股不能按顶部盈利
+          × 正常 PE 估值，而应按多年平均盈利或顶部盈利 × 折价 PE 估值。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong>：铜（新能源/电网/AI 数据中心用铜需求增长）+
+            金（避险 + 央行购金）+ 锂（新能源），三大金属中长期需求向好。
+          </li>
+          <li>
+            <strong>竞争地位</strong
+            >：全球前五矿业集团，铜金产量全球前十，成本曲线位于行业前列。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：铜矿（卡莫阿三期、巨龙二期）放量 +
+            金矿增产 + 锂项目投产。
+          </li>
+          <li>
+            <strong>风险</strong
+            >：金属价格周期回落、地缘政治、海外矿山运营风险、资本开支高位。
+          </li>
+        </ul>
+        <p class="small">
+          结论：紫金的行业地位与资源禀赋无可挑剔，但矿业是"价格决定盈利"的强周期行业——当前金铜价格处于历史高位，盈利的可持续性取决于价格而非公司能力。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">净利</th>
+            <th class="num">对应 PE</th>
+          </tr>
+          <tr>
+            <td>PE(2026E 年化 ≈ 783 亿)</td>
+            <td class="num">约 783 亿</td>
+            <td class="num">约 11.8 倍</td>
+          </tr>
+          <tr>
+            <td>PE(TTM ≈ 676.6 亿)</td>
+            <td class="num">约 676.6 亿</td>
+            <td class="num">约 13.7 倍</td>
+          </tr>
+          <tr>
+            <td>PB</td>
+            <td class="num">—</td>
+            <td class="num">约 5.25 倍</td>
+          </tr>
+        </table>
+        <h3>估值锚交叉验证（2026E 净利 750-800 亿，周期顶部折价）</h3>
+        <table>
+          <tr>
+            <th>情景</th>
+            <th class="num">2026E 净利(亿)</th>
+            <th class="num">合理 PE</th>
+            <th class="num">对应价格(元)</th>
+          </tr>
+          <tr>
+            <td>保守（金铜价回落，全年 700 亿）</td>
+            <td class="num">700</td>
+            <td class="num">10-12 倍</td>
+            <td class="num">26.3-31.6</td>
+          </tr>
+          <tr>
+            <td>中性（价格高位维持，全年 770 亿）</td>
+            <td class="num">770</td>
+            <td class="num">12-14 倍</td>
+            <td class="num">34.7-40.5</td>
+          </tr>
+          <tr>
+            <td>乐观（价格再上台阶，全年 850 亿）</td>
+            <td class="num">850</td>
+            <td class="num">14-16 倍</td>
+            <td class="num">44.7-51.1</td>
+          </tr>
+        </table>
+        <p class="small">
+          按总股本约 266 亿股折算。周期股给折价 PE（10-16 倍），避免用顶部盈利 ×
+          成长股 PE 高估。
+        </p>
+        <p>
+          <strong
+            >合理价值区间：约 35-40 元；Fair Value 约 38 元。现价 34.74 元略低于
+            Fair Value。</strong
+          >
+        </p>
+        <h3>安全边际判断</h3>
+        <div class="note">
+          现价对应 2026E 约 12 倍 PE、TTM 约 13.7
+          倍，估值不高但<strong>盈利处于周期高位</strong>——若金铜价格回落，EPS
+          与股价将同步下修，当前估值的安全边际是"假设价格维持高位"下的，<strong>并非真正的格雷厄姆式安全边际</strong>。Buy
+          Zone：<strong>32-38 元</strong>（现价 34.74 处于区间内）；Strong
+          Buy：<strong>&lt;32 元</strong>。
+        </div>
+        <p class="small muted">
+          旧报告（5/12）Fair Value 35 元、Buy Zone 上沿 32
+          元；本次中报毛利率跳升 + 净利超预期，Fair Value 上修至 38 元。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">
+              全球矿业龙头、低成本护城河、铜金锂多矿种布局
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">
+              毛利率 37.75%、ROE 25.9%、FCF 强、负债率降至 49.6%
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">
+              营收 +15.8%、净利 +68.2%、扣非 +75.9%，量价齐升
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">
+              强周期龙头，成长故事清晰可验证，但价格是外生变量
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">
+              PE 12-14 倍不高，但处周期盈利高位，安全边际依赖价格假设
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">
+              金铜价格回落、地缘、海外矿山、资本开支、周期顶部回撤
+            </div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">42</span> / 60</div>
+        <p class="muted small" style="margin-top: 8px">
+          较旧报告上调：毛利率跳升 + 净利超预期 +
+          中期分红，成长质量与财务强度显著增强；估值与风险维度因"周期顶部"仍扣分。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>金铜价格回落</strong
+            >：当前盈利处于金铜价历史高位，价格回调将直接压缩 EPS 与股价。
+          </li>
+          <li>
+            <strong>强周期属性</strong
+            >：矿业是"价格决定盈利"的行业，公司无法控制价格。
+          </li>
+          <li>
+            <strong>海外矿山风险</strong
+            >：地缘政治、资源国政策（税改、矿权）、运营安全。
+          </li>
+          <li>
+            <strong>资本开支高位</strong
+            >：扩产投入大，若价格下行，投入产出比恶化。
+          </li>
+          <li>
+            <strong>汇率波动</strong>：海外收入占比高，人民币汇率影响折算利润。
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p>
+          <strong
+            >结论：HOLD（持有不加仓，强周期顶部警惕）。总分 42/60。</strong
+          >
+        </p>
+        <h3>3 个继续持有的理由</h3>
+        <ol class="small">
+          <li>
+            硬阈值四项全过（ROE 5 年均 25.9%、FCF 强、分红率 31%、负债率
+            50%），A 股资源股里的高质量龙头。
+          </li>
+          <li>
+            业绩爆发：毛利率 37.75%（+14pct）、净利 +68.2%、中期分红 111
+            亿，量价齐升兑现。
+          </li>
+          <li>
+            中长期成长确定：铜金锂三线布局，铜矿放量 + 金矿增产 +
+            锂项目投产提供持续成长。
+          </li>
+        </ol>
+        <h3>3 个不加仓的理由</h3>
+        <ol class="small">
+          <li>
+            盈利处周期高位，PE 12 倍是"金铜价高位维持"假设下的估值，价格回落则
+            EPS 同步下修。
+          </li>
+          <li>现价 34.74 元已到 Buy Zone 上沿（32-38 元），安全边际不厚。</li>
+          <li>
+            强周期顶部追高，是格雷厄姆框架下典型的"好公司 + 好价格"错配风险。
+          </li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          <strong
+            >金铜价格能否在 2027
+            年维持或继续上行？铜矿产量爬坡能否对冲价格波动？</strong
+          >若金铜价格维持高位 + 产量增长，当前 12 倍 PE
+          将被业绩持续消化；若价格回落，EPS 与估值双杀。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          金价/铜价大幅回落 →
+          毛利率与净利同步下修，股价深度回撤；海外矿山重大事故或资源国政策剧变 →
+          核心资产受损；锂板块投产不及预期 →
+          拖累资本回报。强周期股的致命缺陷本质是"价格"，而价格无法被公司基本面控制。
+        </p>
+        <div class="note">
+          数据充分性说明：营收/净利/毛利率/分红/负债率来自半年报摘要与
+          F10，可互相印证；<strong>未获取</strong>
+          分品种产量与售价、分矿山经营数据、金铜价格假设。故盈利归因基于公开信息推断，不输出伪精确目标价。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-21
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 紫金矿业 ·
+        601899.SH
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>华润三九（000999.SZ）投资决策报告 · 2026-08-21</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>华润三九（000999.SZ）完整投资决策报告</h1>
+        <div class="sub">
+          2026 中报更新版 ｜ 生成日期：2026-08-21 ｜ 数据基准：2026 年中报（8/21
+          披露）+ 2025 年报 + 2026Q1
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：Stalwart（稳健成长）</span>
+          <span class="badge score">总分 36 / 60</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">HOLD · 审慎持有，等待利润修复</span>
+          华润三九中报营收失速：营收 150.14 亿（+1.37%）、归母净利 16.71
+          亿（-7.96%），Q2 单季营收约 68.8 亿（同比 -13.5%）大幅转负——Q1 的
+          +18.62% 实为并表基数效应。
+        </div>
+        <p>
+          旧报告（2026-04-27）结论为"审慎买入"，判断"质量仍在、估值回落、等待利润修复验证"。中报验证了利润仍在承压：<strong
+            >营收增速几乎归零（+1.37%），Q2 单季营收同比转负（-13.5%）</strong
+          >，归母净利连续第三个下滑季度（-8%）。但硬阈值底盘依然扎实——ROE
+          五年均值约 15.7%、FCF 三年为正、分红率约 50%、负债率 30%
+          全部通过；且股价已从 4 月末的 26.38 元回落至 24.14 元，PE 12.3 倍、PB
+          1.76 倍，进入历史估值低位。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong
+          >维持持有、可小幅分批，但把"利润修复验证"作为加仓前提。现价 24.14
+          元已处 Buy Zone（22-26 元）。核心观察点：① CHC
+          感冒药高基数何时消化完；②
+          处方药集采压力与并购整合（昆药集团等）协同能否兑现；③ 毛利率（已升至
+          56.8%）能否带动净利率修复。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">24.14 元<br />402 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 营收</div>
+            <div class="num">150.1 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 归母净利</div>
+            <div class="num down">16.7 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 毛利率</div>
+            <div class="num up">56.8%</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入（亿元）</td>
+            <td class="num">150.14</td>
+            <td class="num">148.1</td>
+            <td class="num up">+1.37%</td>
+          </tr>
+          <tr>
+            <td>归母净利润（亿元）</td>
+            <td class="num">16.71</td>
+            <td class="num">18.2</td>
+            <td class="num down">-7.96%</td>
+          </tr>
+          <tr>
+            <td>扣非净利（亿元）</td>
+            <td class="num">16.0</td>
+            <td class="num">17.0</td>
+            <td class="num down">-5.93%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">56.79%</td>
+            <td class="num">53.54%</td>
+            <td class="num up">+3.25pct</td>
+          </tr>
+          <tr>
+            <td>净利率</td>
+            <td class="num">13.33%</td>
+            <td class="num">14.93%</td>
+            <td class="num down">-1.60pct</td>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">7.31%</td>
+            <td class="num">8.80%</td>
+            <td class="num down">-1.49pct</td>
+          </tr>
+          <tr>
+            <td>每股收益（元）</td>
+            <td class="num">1.00</td>
+            <td class="num">1.09</td>
+            <td class="num down">-8.26%</td>
+          </tr>
+          <tr>
+            <td>资产负债率</td>
+            <td class="num">29.92%</td>
+            <td class="num">34.19%</td>
+            <td class="num up">-4.27pct</td>
+          </tr>
+        </table>
+        <p class="muted">
+          数据来源：东方财富 F10（华润三九 2026 年半年度报告摘要，2026-08-21）
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📉 营收失速拆解（本报告核心）</h2>
+        <table>
+          <tr>
+            <th>季度</th>
+            <th class="num">营收(亿元)</th>
+            <th class="num">营收同比</th>
+            <th class="num">归母净利(亿元)</th>
+            <th class="num">净利同比</th>
+          </tr>
+          <tr>
+            <td>2026Q2</td>
+            <td class="num">68.8</td>
+            <td class="num down">-13.5%</td>
+            <td class="num">5.9</td>
+            <td class="num up">+7.3%</td>
+          </tr>
+          <tr>
+            <td>2026Q1</td>
+            <td class="num">81.3</td>
+            <td class="num up">+18.6%</td>
+            <td class="num">10.8</td>
+            <td class="num down">-15.3%</td>
+          </tr>
+          <tr>
+            <td>2025Q4</td>
+            <td class="num">96.1</td>
+            <td class="num up">+19.9%</td>
+            <td class="num">10.7</td>
+            <td class="num up">+160%</td>
+          </tr>
+          <tr>
+            <td>2025Q3</td>
+            <td class="num">71.8</td>
+            <td class="num up">+16.5%</td>
+            <td class="num">5.3</td>
+            <td class="num down">-5.4%</td>
+          </tr>
+        </table>
+        <div class="warn-box">
+          <strong
+            >关键信号：Q2 单季营收同比 -13.5%（约 68.8 亿 vs 去年 79.6
+            亿）。</strong
+          >Q1 营收 +18.62%
+          主要是并购（昆药集团等）并表带来的基数效应，剔除并表后内生增长已停滞甚至转负。华润三九正处在"CHC
+          感冒药高基数回落 + 处方药集采压价 + 并购整合未达预期"三重压力叠加期。
+        </div>
+        <div class="good-box">
+          <strong>积极面：</strong>① 毛利率逆势升至
+          56.79%（+3.25pct，产品结构优化）；② Q2 单季净利 5.9
+          亿（+7.3%）已边际改善（Q1 为 -15.3%）；③ 负债率降至
+          29.92%，资产负债表更干净。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：华润三九 2026 年半年度报告摘要（8/21
+            披露）
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10（ZYZBAjaxNew，A 股口径）
+          </li>
+          <li>
+            <strong>行情与估值</strong>：腾讯自有时效行情接口（前复权日 K）
+          </li>
+          <li><strong>研报观点</strong>：南方财经网等业绩报道</li>
+        </ul>
+        <div class="note">
+          可信度说明：营收 150.14 亿、归母净利 16.71 亿、毛利率、EPS
+          均来自半年报摘要，可与 F10
+          交叉印证。<strong>无法获取</strong>：CHC/处方药/批发零售分部收入的精确拆分、昆药集团并表贡献精确值、感冒药细分品类动销数据。故分部与并表分析基于公开信息推断并标注。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">14.14%</td>
+            <td class="num">15.15%</td>
+            <td class="num">15.86%</td>
+            <td class="num">17.33%</td>
+            <td class="num">16.07%</td>
+            <td class="num">约 15.7%</td>
+          </tr>
+        </table>
+        <p class="small">
+          5 年中 4 年 ≥15%，无一年 <10%，5 年均值约 15.7%——典型的"稳健复利"型
+          ROE。2026H1 年化约 14.6%（略降）。<strong>通过</strong>。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          2023-2025 年 FCF 分别约 33.4、36.1、42.4 亿，三年累计约 111.9
+          亿且全部为正。<strong>通过</strong>。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          2023-2025 年现金分红率约 52.0%、50.3%、50.6%，三年均值约 51%，显著高于
+          25%。<strong>通过（优秀）</strong>。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          2026H1 资产负债率 29.92%（较 2025 年 34.58%
+          进一步下降）。<strong>通过</strong>。
+        </p>
+        <div class="good-box">
+          <strong>硬阈值总判断：四项全部通过。</strong>华润三九是 A
+          股医药里少数"ROE 稳健 + FCF 强 + 高分红 +
+          低负债"四合一标的，资格未因中报利润波动被否定。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🔬 基本面研究</h2>
+        <h3>业务与护城河</h3>
+        <ul class="small">
+          <li>
+            <strong>CHC（自我诊疗，约 55% 营收）</strong>：999
+            感冒灵、皮炎平、三九胃泰等品牌 OTC，渠道与品牌心智是核心护城河。
+          </li>
+          <li>
+            <strong>处方药（约 25%）</strong
+            >：配方颗粒、中药注射剂等，受集采与医保控费压制。
+          </li>
+          <li>
+            <strong>药品批发零售（约 20%）</strong
+            >：并表昆药集团等带来的增量，低毛利、体量大。
+          </li>
+          <li>
+            <strong>并购整合</strong
+            >：华润系平台化整合（昆药集团、澳诺制药等），协同效应待兑现。
+          </li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          <strong>Stalwart（稳健成长）</strong>：不是高增长，而是靠品牌 OTC +
+          处方药平台 + 并购整合维持中低速复利。当前处于"增长失速 +
+          等待修复"的过渡期。
+        </p>
+        <h3>核心矛盾</h3>
+        <p class="small">
+          品牌力（CHC
+          心智）与渠道力未受损，但<strong>收入端失速</strong>：感冒药高基数（2023-2024
+          疫情后放量）+ 处方药集采 +
+          并购整合摊薄，导致营收增速归零、利润连续下滑。这是"好公司遇到阶段性经营逆风"的典型形态。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong>：OTC 中成药 + 处方药，需求刚性强但增速中低速。
+          </li>
+          <li>
+            <strong>竞争地位</strong>：OTC 感冒类龙头（999
+            品牌），渠道覆盖广，行业前二。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：品类扩张（CHC
+            向家庭常备药延伸）、并购整合协同、处方药创新转型。
+          </li>
+          <li>
+            <strong>压力</strong
+            >：集采降价、医保控费、感冒药高基数、零售渠道变革。
+          </li>
+        </ul>
+        <p class="small">
+          结论：华润三九的行业地位与品牌壁垒未变，但行业整体进入"控费 +
+          低增长"阶段，公司需靠并购整合与品类扩张重新找回增长。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值</h3>
+        <table>
+          <tr>
+            <th>估值指标</th>
+            <th class="num">数值</th>
+          </tr>
+          <tr>
+            <td>市盈率 PE(动态)</td>
+            <td class="num">12.02 倍</td>
+          </tr>
+          <tr>
+            <td>市盈率 PE(TTM)</td>
+            <td class="num">11.74 倍</td>
+          </tr>
+          <tr>
+            <td>市盈率 PE(静态)</td>
+            <td class="num">12.26 倍</td>
+          </tr>
+          <tr>
+            <td>市净率 PB</td>
+            <td class="num">1.76 倍</td>
+          </tr>
+          <tr>
+            <td>总市值</td>
+            <td class="num">401.7 亿</td>
+          </tr>
+        </table>
+        <h3>估值锚交叉验证（2026E 净利约 33-34 亿）</h3>
+        <table>
+          <tr>
+            <th>情景</th>
+            <th class="num">2026E 净利(亿)</th>
+            <th class="num">合理 PE</th>
+            <th class="num">对应价格(元)</th>
+          </tr>
+          <tr>
+            <td>保守（H2 继续走弱，全年 31 亿）</td>
+            <td class="num">31</td>
+            <td class="num">11-13 倍</td>
+            <td class="num">20.5-24.2</td>
+          </tr>
+          <tr>
+            <td>中性（H2 企稳，全年 33 亿）</td>
+            <td class="num">33</td>
+            <td class="num">13-15 倍</td>
+            <td class="num">25.8-29.7</td>
+          </tr>
+          <tr>
+            <td>乐观（利润修复，全年 36 亿）</td>
+            <td class="num">36</td>
+            <td class="num">15-17 倍</td>
+            <td class="num">32.4-36.8</td>
+          </tr>
+        </table>
+        <p class="small">
+          按总股本约 16.6 亿股折算。华润三九历史 PE 中枢约 15-20 倍，当前 12.3
+          倍已到历史低位（对应增长失速的定价）。
+        </p>
+        <p>
+          <strong
+            >合理价值区间：约 26-30 元；Fair Value 约 28 元。现价 24.14 元低于
+            Fair Value 约 14%。</strong
+          >
+        </p>
+        <h3>安全边际判断</h3>
+        <div class="note">
+          现价对应 2026E 约 12 倍 PE、PB 1.76 倍，叠加约 50% 分红率（股息率约 4%
+          量级），<strong>估值已具备中等偏上安全边际</strong>——市场已充分反映增长失速。Buy
+          Zone：<strong>22-26 元</strong>（现价 24.14 处于区间内）；Strong
+          Buy：<strong>&lt;22 元</strong>。买入前提仍是"利润修复验证"。
+        </div>
+        <p class="small muted">
+          旧报告（4/27）参考价 26.38 元；本次中报营收失速后股价回落至 24.14
+          元，估值带进一步压缩。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">
+              CHC 品牌 OTC 护城河中上，但增长失速、并购整合未达预期
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">
+              ROE 15.7%、FCF 强、负债率 30%、毛利率 57%，底盘扎实
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">4/10</div>
+            <div class="bar"><div class="fill" style="width: 40%"></div></div>
+            <div class="small">
+              营收 +1.37%、净利 -8%，Q2 单季营收 -13.5% 失速
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">
+              Stalwart 稳健，品牌 + 并购整合故事清晰但当前被证伪压力大
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">
+              PE 12.3、PB 1.76、分红率 50%，历史低位，具备安全边际
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">CHC 高基数、集采、并购整合、增长失速延续</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">36</span> / 60</div>
+        <p class="muted small" style="margin-top: 8px">
+          较旧报告下调：成长质量从"待验证"转为"已失速"是主要扣分项；财务强度与估值安全边际形成对冲。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>营收持续失速</strong>：Q2 单季营收 -13.5%，若 CHC
+            高基数消化慢，全年营收可能负增长。
+          </li>
+          <li>
+            <strong>利润连续下滑</strong>：归母净利已连续 3 个季度下滑（2025Q3
+            起），修复时点不确定。
+          </li>
+          <li>
+            <strong>并购整合风险</strong
+            >：昆药集团等并表贡献低毛利收入、摊薄整体利润率。
+          </li>
+          <li><strong>集采与医保控费</strong>：处方药持续压价，侵蚀利润。</li>
+          <li>
+            <strong>商誉减值风险</strong
+            >：连续并购积累的商誉，若整合不及预期有减值压力。
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p>
+          <strong>结论：HOLD（审慎持有，等待利润修复）。总分 36/60。</strong>
+        </p>
+        <h3>3 个持有的理由</h3>
+        <ol class="small">
+          <li>
+            硬阈值四项全过：ROE 五年均值 15.7%、FCF 三年为正、分红率约
+            50%、负债率 30%——A 股医药里的稳健复利标的。
+          </li>
+          <li>
+            估值历史低位：PE 12.3、PB 1.76，叠加约 50% 分红（股息率约
+            4%），安全边际充分。
+          </li>
+          <li>
+            毛利率逆势提升至 56.8%，Q2
+            单季净利已边际改善（+7.3%），利润修复有迹可循。
+          </li>
+        </ol>
+        <h3>3 个不加仓/观望的理由</h3>
+        <ol class="small">
+          <li>
+            营收失速：Q2 单季营收 -13.5%，Q1 的 +18.62%
+            是并表假象，内生增长停滞。
+          </li>
+          <li>利润连续 3 个季度下滑，修复时点与力度不确定。</li>
+          <li>
+            并购整合（昆药等）未兑现协同，反而摊薄利润率，商誉减值风险悬顶。
+          </li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          <strong
+            >CHC
+            感冒药高基数何时消化完？并购整合能否从"摊薄"转为"协同"？</strong
+          >若 H2 营收企稳 + 毛利率带动净利率修复，当前 12 倍 PE
+          的低估值将迎来戴维斯双击；若失速延续到 2027，估值中枢可能进一步下移。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          CHC 品牌老化、感冒药需求持续萎缩 → 主营收入负增长；集采范围扩大 →
+          处方药利润被击穿；并购整合失败 + 商誉减值 →
+          净利大幅下修。三者任一长期化，华润三九将从"稳健
+          Stalwart"滑向"价值陷阱"。
+        </p>
+        <div class="note">
+          数据充分性说明：营收/净利/毛利率/EPS/负债率来自半年报摘要与
+          F10，可互相印证；<strong>未获取</strong>
+          分部收入精确拆分、并表贡献精确值、感冒药动销数据。故分部与并表分析基于公开信息推断并标注。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-21
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 华润三九 ·
+        000999.SZ
+      </footer>
+    </div>
+  </body>
+</html>

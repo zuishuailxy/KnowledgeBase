@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>工业富联（601138.SH）投资决策报告 · 2026-08-26</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>工业富联（601138.SH）完整投资决策报告</h1>
+        <div class="sub">
+          2026 中报版（行情更新至 8/26） ｜ 生成日期：2026-08-26 ｜
+          数据基准：2026 年中报（8/12 已披露）+ 2025 年报
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：Fast Grower（AI 服务器景气制造）</span>
+          <span class="badge score">总分 32 / 60</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">WATCHLIST · 观望，不买入</span>
+          工业富联中报"利润翻倍、现金流却跟不上、杠杆继续加码"：营收 5578.6
+          亿（+54.6%）、净利 237.4 亿（+96.0%）增长真实，但 H1 经营现金流仅 73.9
+          亿（OCF/净利 0.31）、Q2 单季约 -176 亿，负债率回升至 65.7%。
+        </div>
+        <p>
+          旧报告（2026-08-12）结论为 WATCHLIST（观望），核心担忧"Q1
+          现金流修复是阶段性"——中报给出否定答案：<strong
+            >H1 经营现金流 73.9 亿仅为净利 237.4 亿的 0.31 倍，Q2
+            单季现金流转负（约 -176 亿）</strong
+          >；存货与应收环比合计增加约 500 亿，靠短期借款（+199
+          亿）和应付账款（+248 亿）垫付。这是"高增长吞噬现金流"的典型形态。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>不买入，继续观望。现价 60.28 元（较 8/12 的
+          66 元回落约 9%，较 6 月峰值 80.4 元回撤约 25%），动态 PE 约 24
+          倍、静态约 34 倍，仍高于 Fair Value（约 42 元）。观察清单：① Q3
+          经营现金流单季转正并覆盖净利；② 负债率回 60% 以下；③ 股价回落至 Buy
+          Zone（35-42 元）。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">60.28 元<br />11962 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 营收</div>
+            <div class="num up">5578.6 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 归母净利</div>
+            <div class="num up">237.4 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 经营现金流</div>
+            <div class="num down">73.9 亿</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入（亿元）</td>
+            <td class="num">5578.6</td>
+            <td class="num">3607.6</td>
+            <td class="num up">+54.6%</td>
+          </tr>
+          <tr>
+            <td>归母净利润（亿元）</td>
+            <td class="num">237.4</td>
+            <td class="num">121.1</td>
+            <td class="num up">+96.0%</td>
+          </tr>
+          <tr>
+            <td>扣非净利（亿元）</td>
+            <td class="num">229.8</td>
+            <td class="num">116.7</td>
+            <td class="num up">+97.0%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">7.15%</td>
+            <td class="num">6.60%</td>
+            <td class="num up">+0.55pct</td>
+          </tr>
+          <tr>
+            <td>净利率</td>
+            <td class="num">4.26%</td>
+            <td class="num">3.36%</td>
+            <td class="num up">+0.90pct</td>
+          </tr>
+          <tr>
+            <td>经营现金流（亿元）</td>
+            <td class="num down">73.9</td>
+            <td class="num">14.1</td>
+            <td class="num">Q2 单季 -176</td>
+          </tr>
+          <tr>
+            <td>OCF/归母净利</td>
+            <td class="num down">0.31</td>
+            <td class="num">—</td>
+            <td class="num down">现金含量差</td>
+          </tr>
+          <tr>
+            <td>每股收益（元）</td>
+            <td class="num">1.20</td>
+            <td class="num">0.61</td>
+            <td class="num up">+96.7%</td>
+          </tr>
+          <tr>
+            <td>资产负债率</td>
+            <td class="num down">65.66%</td>
+            <td class="num">60.33%</td>
+            <td class="num down">+5.3pct</td>
+          </tr>
+        </table>
+        <p class="muted">
+          数据来源：东方财富 F10（工业富联 2026 年中期报告，2026-08-12 披露）
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>🔬 核心问题：增长与现金流严重背离（本报告核心）</h2>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2026Q1</th>
+            <th class="num">隐含 Q2</th>
+          </tr>
+          <tr>
+            <td>经营现金流净额（亿元）</td>
+            <td class="num">73.9</td>
+            <td class="num">250.2</td>
+            <td class="num down">约 -176.3</td>
+          </tr>
+          <tr>
+            <td>存货（亿元）</td>
+            <td class="num">1921.1</td>
+            <td class="num">1673.3</td>
+            <td class="num down">+247.8</td>
+          </tr>
+          <tr>
+            <td>应收账款（亿元）</td>
+            <td class="num">1275.2</td>
+            <td class="num">1025.0</td>
+            <td class="num down">+250.2</td>
+          </tr>
+          <tr>
+            <td>短期借款（亿元）</td>
+            <td class="num">1023.3</td>
+            <td class="num">824.0</td>
+            <td class="num down">+199.3</td>
+          </tr>
+          <tr>
+            <td>财务费用（亿元）</td>
+            <td class="num">19.1</td>
+            <td class="num">—</td>
+            <td class="num down">同比 +768%</td>
+          </tr>
+        </table>
+        <div class="warn-box">
+          <strong
+            >最关键发现：Q1 经营现金流 250.2 亿的"强修复"在 Q2
+            完全逆转。</strong
+          >H1 合计仅 73.9 亿，Q2 单季约 -176 亿；存货+应收一个季度增加约 500
+          亿，靠短期借款（+199 亿）与应付账款（+248 亿）垫付，财务费用暴增
+          768%。收入放量依赖垫资——利润表好看，资产负债表在持续加杠杆。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：工业富联 2026 年中期报告（8/12 披露）
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10（ZYZBAjaxNew，A 股口径）
+          </li>
+          <li>
+            <strong>行情与估值</strong>：腾讯自有时效行情接口（8/26 更新）
+          </li>
+        </ul>
+        <div class="note">
+          可信度说明：营收/净利/现金流/负债率/存货/应收来自中报，可交叉印证。<strong>无法获取</strong>：AI
+          服务器订单分客户明细、H2
+          业绩指引、存货中在制品/成品细分。故不输出伪精确目标价。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <p class="small">
+          2021-2025 年 ROE 18.0% / 16.2% / 15.6% / 15.9% / 21.7%，连续 5 年
+          ≥15%；2026H1 年化 13.36%（半年口径）。<strong>通过</strong>。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          2025 年 FCF 约 -120 亿；2026H1 经营现金流 73.9 亿 - 资本开支 90.9 亿 ≈
+          <strong>-17 亿</strong>（半年 FCF 为负）。<strong
+            >恶化 / 不通过</strong
+          >。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          2025 年分红率约 55%，中期分红延续。<strong>通过</strong>。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          2026H1 负债率 <strong>65.7%</strong>，显著高于 60% 门槛且较 Q1 回升
+          4.3pct。<strong>不通过</strong>。
+        </p>
+        <div class="warn-box">
+          <strong>硬阈值总判断：未通过</strong>——FCF（半年 -17
+          亿）与负债率（65.7%）两个硬伤被中报坐实，OCF/净利仅 0.31。这是"ROE
+          好看但现金流与资产负债表拖后腿"的典型制造平台。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🏭 基本面研究</h2>
+        <h3>公司定位与护城河</h3>
+        <ul class="small">
+          <li>
+            <strong>AI 服务器/算力硬件龙头</strong
+            >：全球最大服务器与算力设备代工平台之一，深度绑定英伟达链与头部云厂商。
+          </li>
+          <li>
+            <strong>护城河中上</strong
+            >：规模制造、头部客户认证、供应链组织能力；但无定价权、客户集中、订单随客户资本开支波动。
+          </li>
+          <li>
+            <strong>薄利模式</strong>：毛利率仅约 7%——增长靠规模而非利润率提升。
+          </li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          <strong>Fast Grower（AI 硬件景气制造）</strong>：增长真实（营收
+          +54.6%、净利 +96% 无水分），但周期位置处于 AI
+          硬件景气高点附近，市场预期已高。若错当"稳定成长股"，会低估客户资本开支、价格竞争与营运资金风险。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong>：AI 服务器与算力硬件代工，绑定全球云厂商 AI
+            资本开支周期。
+          </li>
+          <li>
+            <strong>竞争地位</strong
+            >：全球服务器代工第一梯队（与广达、纬创等竞争），英伟达链核心供应商。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：AI 服务器放量、800G
+            交换机等网络设备、液冷散热新品类。
+          </li>
+          <li>
+            <strong>风险</strong
+            >：客户资本开支放缓、价格年降、客户集中、营运资金吞噬现金流。
+          </li>
+        </ul>
+        <p class="small">
+          结论：工业富联处于 AI 硬件景气的核心位置，增长已兑现；但薄利 + 垫资 +
+          加杠杆的增长模式，决定了它是"高景气观察标的"而非"低估买入标的"。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值（8/26 更新）</h3>
+        <table>
+          <tr>
+            <th>估值指标</th>
+            <th class="num">数值</th>
+          </tr>
+          <tr>
+            <td>市盈率 PE(动态)</td>
+            <td class="num">25.5 倍</td>
+          </tr>
+          <tr>
+            <td>市盈率 PE(静态，2025A)</td>
+            <td class="num">约 33.9 倍</td>
+          </tr>
+          <tr>
+            <td>市净率 PB</td>
+            <td class="num">6.81 倍</td>
+          </tr>
+          <tr>
+            <td>总市值</td>
+            <td class="num">11962 亿</td>
+          </tr>
+          <tr>
+            <td>股息率</td>
+            <td class="num">约 1.5%</td>
+          </tr>
+        </table>
+        <h3>估值锚交叉验证（2026E 净利情景）</h3>
+        <table>
+          <tr>
+            <th>情景</th>
+            <th class="num">2026E 净利(亿)</th>
+            <th class="num">EPS(元)</th>
+            <th class="num">对应 PE</th>
+            <th class="num">合理价(元)</th>
+          </tr>
+          <tr>
+            <td>保守（H2 回落，全年 420 亿）</td>
+            <td class="num">420</td>
+            <td class="num">2.12</td>
+            <td class="num">约 28 倍</td>
+            <td class="num">31.8（15 倍）</td>
+          </tr>
+          <tr>
+            <td>中性（全年 500 亿）</td>
+            <td class="num">500</td>
+            <td class="num">2.52</td>
+            <td class="num">约 24 倍</td>
+            <td class="num">40.3（16 倍）</td>
+          </tr>
+          <tr>
+            <td>乐观（全年 560 亿）</td>
+            <td class="num">560</td>
+            <td class="num">2.82</td>
+            <td class="num">约 21 倍</td>
+            <td class="num">50.8（18 倍）</td>
+          </tr>
+        </table>
+        <p class="small">
+          合理 PE 按 15-18 倍（薄利代工 + 客户集中 +
+          现金流质量差，显著折价于成长股）。
+        </p>
+        <p>
+          <strong
+            >合理价值区间：约 35-42 元；Fair Value 约 42 元。现价 60.28 元高于
+            Fair Value 约 44%。</strong
+          >
+        </p>
+        <h3>安全边际判断</h3>
+        <div class="note">
+          现价对应 2026E 中性约 24 倍 PE、PB 6.81——对毛利率 7%、负债率
+          65.7%、OCF/净利 0.31 的制造平台，估值仍无安全边际。Buy Zone：<strong
+            >35-42 元</strong
+          >；Strong Buy：<strong>&lt;35 元</strong>。现价 60.28 较 6 月峰值 80.4
+          已回撤 25%，但仍远离 Buy Zone。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">
+              AI 服务器龙头但薄利（毛利率 7%）、客户集中、无定价权
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">4/10</div>
+            <div class="bar"><div class="fill" style="width: 40%"></div></div>
+            <div class="small">
+              OCF/净利 0.31、Q2 现金流转负、负债率 65.7%、FCF 为负
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">
+              营收 +54.6%、净利 +96%，AI 景气增长真实无水分
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">Fast Grower，AI 硬件故事清晰但周期属性强</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">4/10</div>
+            <div class="bar"><div class="fill" style="width: 40%"></div></div>
+            <div class="small">
+              动态 PE 25.5、PB 6.81，现价高于 Fair Value 44%
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">4/10</div>
+            <div class="bar"><div class="fill" style="width: 40%"></div></div>
+            <div class="small">
+              资本开支波动、营运资金反噬、高负债、戴维斯双杀
+            </div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">32</span> / 60</div>
+      </div>
+
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>客户资本开支波动</strong>：AI
+            服务器需求绑定英伟达链与云厂商资本开支，放缓即断崖。
+          </li>
+          <li>
+            <strong>现金流/营运资金反噬</strong>：存货 1921 亿 + 应收 1275
+            亿，需求转弱即减值与周转压力；财务费用 +768%。
+          </li>
+          <li>
+            <strong>价格压力</strong>：硬件制造薄利（毛利率
+            7%），客户压价直接冲击净利率。
+          </li>
+          <li>
+            <strong>高负债</strong>：负债率
+            65.7%，融资环境变化或回款延迟即流动性承压。
+          </li>
+          <li>
+            <strong>估值回归</strong>：若增速回落至 20-30%，24 倍动态 PE
+            缺乏支撑，戴维斯双杀风险。
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p><strong>结论：WATCHLIST（观望，不买入）。总分 32/60。</strong></p>
+        <h3>3 个值得关注的理由</h3>
+        <ol class="small">
+          <li>
+            AI 服务器景气兑现：营收 +54.6%、净利 +96%，增长真实无水分（扣非
+            229.8 亿）。
+          </li>
+          <li>
+            AI 硬件核心供应商地位：英伟达链 +
+            头部云厂商深度绑定，800G/液冷新品类提供延伸空间。
+          </li>
+          <li>
+            股价已回撤 25%（自 6 月峰值 80.4 至 60.28），估值压力部分释放。
+          </li>
+        </ol>
+        <h3>3 个不买入的理由</h3>
+        <ol class="small">
+          <li>
+            现金流质量差：OCF/净利仅 0.31，Q2 单季 -176 亿，增长靠垫资与加杠杆。
+          </li>
+          <li>硬阈值未通过：FCF 半年 -17 亿、负债率 65.7%（超 60% 门槛）。</li>
+          <li>
+            估值仍贵：动态 PE 25.5、PB 6.81，现价高于 Fair Value（42 元）约
+            44%。
+          </li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          <strong
+            >2026Q3
+            经营现金流能否单季转正并覆盖净利？云厂商资本开支能否延续？</strong
+          >若现金流修复 + 景气延续，当前 24 倍动态 PE
+          可被业绩消化；若资本开支见顶或回款继续恶化，营收高增长的"垫资模式"将引发减值与流动性双重压力。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          客户资本开支大幅收缩 → 订单与价格双杀；存货/应收减值爆发 →
+          净利大幅下修；短期借款持续膨胀 + 财务费用侵蚀 → 流动性风险；增速回落 →
+          24 倍 PE 戴维斯双杀。任一发生，股价面临剧烈回撤。
+        </p>
+        <div class="note">
+          数据充分性说明：营收/净利/现金流/负债率/存货应收来自中报与
+          F10，可互相印证；<strong>未获取</strong> 分客户订单、H2
+          指引、存货细分。不输出伪精确目标价。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-26
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 工业富联 ·
+        601138.SH
+      </footer>
+    </div>
+  </body>
+</html>

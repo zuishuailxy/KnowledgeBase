@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>阿里巴巴（09988.HK）投资决策报告 · 2026-08-21</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>阿里巴巴（09988.HK）完整投资决策报告</h1>
+        <div class="sub">
+          FY2027 Q1 财报更新版 ｜ 生成日期：2026-08-21 ｜ 数据基准：FY2027
+          Q1（截至 2026-06-30）+ FY2026 年报（截至 2026-03-31）
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge"
+            >分类：Stalwart 偏 Turnaround（电商存量 + AI 第二曲线）</span
+          >
+          <span class="badge score">总分 35 / 60</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">WATCHLIST · 转型观察，不追高</span>
+          阿里 FY2027 Q1 呈现"营收稳、利润崩"：营收 2689.5 亿（+9%），但 GAAP
+          净利 104.4 亿（-75%）、非 GAAP 调整后净利 207.2 亿（-38%）——主因是 AI
+          重投入（资本开支 +75%）+ 商誉减值 + 投资损益下滑。
+        </div>
+        <p>
+          这是阿里巴巴的首次分析（无旧报告）。核心矛盾在于：<strong
+            >阿里正把利润"砸"向 AI 基建</strong
+          >——单季资本开支 676.8 亿（+75%）、研发费用 +50.2%、自由现金流净流出
+          447 亿；换来的是 AI 云收入 +45%（创 22 个季度新高）、AI
+          相关产品收入连续 12 个季度三位数增长、云经调整 EBITA 利润率升至
+          12%。这是典型的"用当期利润换未来期权"的转型期。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>不追高，放入观察池。现价 123 港元，PE(TTM)
+          约 20 倍、PB 1.94、净现金约 4745 亿人民币（占市值约
+          22%）。硬阈值（ROE/FCF/分红率）不通过，但净现金 + 云 AI
+          高增长提供支撑。核心观察：① 云 AI 商业化能否持续兑现（CEO 预计下季度
+          AI ARR 接近 100 亿美元）；② 电商 CMR（-7%）何时企稳；③
+          资本开支高峰后的自由现金流修复。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📊 关键指标速览（FY2027 Q1）</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">123 港元<br />23585 亿港元</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">营收</div>
+            <div class="num up">2689.5 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">GAAP 净利</div>
+            <div class="num down">104.4 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">资本开支</div>
+            <div class="num down">676.8 亿</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">FY2027 Q1</th>
+            <th class="num">FY2026 Q1</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营收（亿元）</td>
+            <td class="num">2689.53</td>
+            <td class="num">2476.52</td>
+            <td class="num up">+9%</td>
+          </tr>
+          <tr>
+            <td>毛利（亿元）</td>
+            <td class="num">1028.57</td>
+            <td class="num">1112.2</td>
+            <td class="num down">-7.5%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">38.24%</td>
+            <td class="num">44.91%</td>
+            <td class="num down">-6.7pct</td>
+          </tr>
+          <tr>
+            <td>经营利润（亿元）</td>
+            <td class="num">151.61</td>
+            <td class="num">350.1</td>
+            <td class="num down">-57%</td>
+          </tr>
+          <tr>
+            <td>GAAP 净利（亿元）</td>
+            <td class="num">104.44</td>
+            <td class="num">424.7</td>
+            <td class="num down">-75%</td>
+          </tr>
+          <tr>
+            <td>非 GAAP 净利（亿元）</td>
+            <td class="num">207.15</td>
+            <td class="num">335.10</td>
+            <td class="num down">-38%</td>
+          </tr>
+          <tr>
+            <td>研发费用（亿元）</td>
+            <td class="num">225.29</td>
+            <td class="num">150.0</td>
+            <td class="num down">+50.2%</td>
+          </tr>
+          <tr>
+            <td>资本开支（亿元）</td>
+            <td class="num">676.78</td>
+            <td class="num">386.76</td>
+            <td class="num down">+75%</td>
+          </tr>
+          <tr>
+            <td>自由现金流（亿元）</td>
+            <td class="num down">-446.70</td>
+            <td class="num">-188.15</td>
+            <td class="num down">净流出扩大</td>
+          </tr>
+        </table>
+        <p class="muted">
+          数据来源：东方财富港股 F10 + 阿里 FY2027 Q1 财报（2026-08-20 披露）
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📈 分部表现（战略重组后四大板块）</h2>
+        <table>
+          <tr>
+            <th>板块</th>
+            <th class="num">收入(亿元)</th>
+            <th class="num">同比</th>
+            <th>要点</th>
+          </tr>
+          <tr>
+            <td>AI 云与算力服务（云+平头哥）</td>
+            <td class="num">484.37</td>
+            <td class="num up">+45%</td>
+            <td>
+              外部收入 +45% 创 22 季度新高；AI 产品收入 123.76 亿连续 12
+              季度三位数增长
+            </td>
+          </tr>
+          <tr>
+            <td>阿里巴巴电商集团（国内+国际+盒马）</td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td>CMR -7%（同口径 +1%）；即时零售 +45%；88VIP 约 6400 万</td>
+          </tr>
+          <tr>
+            <td>AI 实验室与应用（千问等）</td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td>旗舰 Agent「千问办公」+ 千问 APP 付费订阅</td>
+          </tr>
+          <tr>
+            <td>所有其他</td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td>—</td>
+          </tr>
+        </table>
+        <ul class="small">
+          <li>
+            <strong>战略重组</strong
+            >：本季度起分部改为四大板块——「阿里巴巴电商集团」（中国电商 +
+            国际数字商业 + 盒马）、「AI云与算力服务」（云智能 +
+            平头哥）、「AI实验室与应用」（AI模型实验室 + 千问 2C +
+            千问办公）、「所有其他」。
+          </li>
+          <li>
+            <strong>云 AI 是最大亮点</strong>：收入 +45%、AI 产品连续 12
+            季度三位数增长、云经调整 EBITA +133%（利润率升至 12%）。
+          </li>
+          <li>
+            <strong>电商承压</strong>：CMR -7%（剔除营销冲减项后
+            +1%），靠即时零售（+45%）与 88VIP 拉新。
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>🔬 净利暴跌归因（本报告核心）</h2>
+        <p class="small">
+          营收 +9% 但 GAAP 净利 -75%、非 GAAP 净利
+          -38%，利润表从"收入"到"净利"的差额由三层原因解释：
+        </p>
+        <table>
+          <tr>
+            <th>层级</th>
+            <th class="num">FY2027 Q1</th>
+            <th class="num">同比</th>
+            <th>说明</th>
+          </tr>
+          <tr>
+            <td>经营利润</td>
+            <td class="num">151.61 亿</td>
+            <td class="num down">-57%</td>
+            <td>AI 重投入 + 商誉减值 + 准备金</td>
+          </tr>
+          <tr>
+            <td>经调整 EBITA</td>
+            <td class="num">273.29 亿</td>
+            <td class="num down">-30%</td>
+            <td>科技投入，部分被云业务改善抵销</td>
+          </tr>
+          <tr>
+            <td>GAAP 净利</td>
+            <td class="num">104.44 亿</td>
+            <td class="num down">-75%</td>
+            <td>
+              经营利润下滑 + 处置投资净收益减少 + 股权投资市值变动收益减少
+            </td>
+          </tr>
+        </table>
+        <div class="warn-box">
+          <strong>归因结论：净利下滑 = 主动投入 + 被动减值。</strong>①
+          主动：研发 +50.2%（225 亿）、行政开支 +71.8%（127 亿）、资本开支
+          +75%（677 亿）；② 被动：商誉减值及准备金 44.58
+          亿、股权投资按市值计价的净收益减少、税项 +44.4%（128
+          亿）。自由现金流净流出 447 亿——主业造血（经营现金流 229
+          亿，+11%）尚可，但利润大部分砸进 AI 基建。
+        </div>
+        <div class="good-box">
+          需注意：经营现金流 +11%（229
+          亿）仍为正且增长，说明电商现金牛未坏；净现金 4745 亿充裕，足以支撑 AI
+          投入。这是"利润下滑但现金流尚稳"的转型期特征。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：阿里巴巴 FY2027 Q1 财报（2026-08-20
+            披露）
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富港股
+            F10（RPT_HKF10_FN_MAININDICATOR / INCOME）
+          </li>
+          <li>
+            <strong>行情与估值</strong>：腾讯自有时效行情接口（前复权日 K）
+          </li>
+          <li>
+            <strong>研报观点</strong>：券商中国、证券日报、中新经纬等财报解读
+          </li>
+        </ul>
+        <div class="note">
+          可信度说明：营收 2689.5 亿、GAAP 净利 104.4 亿、非 GAAP 净利 207.2
+          亿、资本开支 676.8 亿、自由现金流 -447 亿均来自财报，可与 F10
+          交叉印证。<strong>无法获取</strong>：四大新板块的完整收入明细（仅 AI
+          云 484 亿披露）、淘天 GMV/CMR 精确值、云 EBITA
+          绝对额。故分部数据仅披露已公开部分。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>财年</th>
+            <th class="num">FY2023</th>
+            <th class="num">FY2024</th>
+            <th class="num">FY2025</th>
+            <th class="num">FY2026</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">8.01%</td>
+            <td class="num">12.89%</td>
+            <td class="num">9.91%</td>
+            <td class="num">约 9.9%</td>
+          </tr>
+        </table>
+        <p class="small">
+          ROE 长期在 8-13% 区间，从未稳定达到 15%——阿里巴巴是"大体量 + 大量现金
+          + 低周转"的平台公司，ROE 结构性低于 15%。<strong>失败</strong>。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          FY2027 Q1 自由现金流净流出 447 亿（AI 资本开支 677 亿吞噬）；FY2025
+          年度 FCF 也已因资本开支扩张而承压。<strong>失败（恶化中）</strong>。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          历史分红率约 14-19%（低于
+          25%），叠加回购但分红率仍不达标。<strong>失败</strong>。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          FY2027 Q1 负债率 43.23%，净现金约 4745
+          亿人民币，资产负债结构健康。<strong>通过</strong>。
+        </p>
+        <div class="warn-box">
+          <strong>硬阈值总判断：未通过</strong>——ROE（8-13%）、FCF（AI
+          投入致净流出）、分红率（<25%）三项不达标。阿里巴巴不符合"稳定复利 +
+          股东现金回报"的主投资池标准，尽管净现金充裕。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>电商（现金牛）</strong>：淘天 + 国际数字商业 +
+            盒马整合，国内电商龙头但面临拼多多、抖音电商激烈竞争，CMR -7% 承压。
+          </li>
+          <li>
+            <strong>AI 云（第二曲线）</strong>：云智能 + 平头哥，AI
+            商业化爆发（+45%），自研全栈芯片（GPU/CPU/存储/网络）。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：AI 云算力需求 + 即时零售（+45%）+
+            国际电商 + AI 应用（千问）。
+          </li>
+          <li>
+            <strong>风险</strong>：电商竞争、AI
+            资本开支回报不确定、投资损益波动、监管。
+          </li>
+        </ul>
+        <p class="small">
+          结论：阿里正从"电商利润机器"转向"AI 基础设施 + 电商"双轮。AI
+          云的高增长是真实的（连续 12 季度三位数），但电商 CMR
+          下滑与巨额资本开支，使当期利润被深度压制。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值</h3>
+        <table>
+          <tr>
+            <th>估值指标</th>
+            <th class="num">数值</th>
+          </tr>
+          <tr>
+            <td>市盈率 PE(TTM)</td>
+            <td class="num">约 20 倍</td>
+          </tr>
+          <tr>
+            <td>市净率 PB</td>
+            <td class="num">约 1.94 倍</td>
+          </tr>
+          <tr>
+            <td>总市值</td>
+            <td class="num">23585 亿港元</td>
+          </tr>
+          <tr>
+            <td>净现金</td>
+            <td class="num">约 4745 亿人民币（占市值约 22%）</td>
+          </tr>
+        </table>
+        <h3>估值锚交叉验证（非 GAAP 口径）</h3>
+        <table>
+          <tr>
+            <th>情景</th>
+            <th class="num">FY2027E 非GAAP净利(亿)</th>
+            <th class="num">合理 PE</th>
+            <th class="num">对应价格(港元)</th>
+          </tr>
+          <tr>
+            <td>保守（AI 投入持续拖累，全年 850 亿）</td>
+            <td class="num">850</td>
+            <td class="num">15-17 倍</td>
+            <td class="num">约 71-80</td>
+          </tr>
+          <tr>
+            <td>中性（云 AI 兑现，全年 950 亿）</td>
+            <td class="num">950</td>
+            <td class="num">17-20 倍</td>
+            <td class="num">约 90-106</td>
+          </tr>
+          <tr>
+            <td>乐观（AI 商业化超预期，全年 1050 亿）</td>
+            <td class="num">1050</td>
+            <td class="num">20-23 倍</td>
+            <td class="num">约 117-135</td>
+          </tr>
+        </table>
+        <p class="small">
+          按总股本约 193 亿股、汇率 0.925 折算。注意：阿里 GAAP PE 仅 20
+          倍看似便宜，但当前净利被 AI 投入深度压制，真实盈利需看非 GAAP 口径。
+        </p>
+        <p>
+          <strong
+            >合理价值区间：约 105-130 港元；Fair Value 约 120 港元。现价 123
+            港元略高于 Fair Value。</strong
+          >
+        </p>
+        <h3>安全边际判断</h3>
+        <div class="note">
+          现价对应 GAAP PE 约 20 倍、PB 1.94 倍，净现金 4745 亿（占市值
+          22%）提供一定安全垫。但<strong
+            >当前盈利处于"AI 重投入期"被深度压制</strong
+          >——GAAP 净利 -75% 意味着 20 倍 PE
+          是用被压低的利润算出来的，实际安全边际有限。Buy Zone：<strong
+            >100-125 港元</strong
+          >（现价 123 处于区间上沿）；Strong Buy：<strong>&lt;100 港元</strong
+          >。
+        </div>
+        <p class="small muted">
+          市场反应：美股盘前跌超 4-5.5%（非 GAAP 净利 207 亿低于预估 255.8
+          亿）；港股 8/21 高开 129.2 回落收 123（-2.53%）。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">
+              电商龙头 + 云 AI 爆发，护城河深，但电商竞争加剧、CMR 承压
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">
+              净现金 4745 亿充裕，但 GAAP 净利 -75%、FCF 净流出 447 亿
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">
+              营收 +9%、云 +45%、AI 产品三位数增长，但非GAAP净利 -38%
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">
+              Stalwart 偏 Turnaround，AI 第二曲线故事正在兑现但未转化为利润
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">
+              GAAP PE 20、PB 1.94、净现金 22%，中低位但利润被压制
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">
+              电商竞争、AI 资本开支回报、投资损益波动、监管
+            </div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">35</span> / 60</div>
+      </div>
+
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>AI 资本开支回报不确定</strong>：单季资本开支 677
+            亿（+75%），若 AI 商业化不及预期，巨额投入将侵蚀长期回报。
+          </li>
+          <li>
+            <strong>电商竞争加剧</strong>：CMR -7%，拼多多、抖音电商持续分流。
+          </li>
+          <li>
+            <strong>利润持续被压制</strong>：研发 +50%、行政开支
+            +72%、商誉减值，短期利润难恢复。
+          </li>
+          <li>
+            <strong>投资损益波动</strong
+            >：股权投资市值计价收益减少，是净利暴跌主因之一。
+          </li>
+          <li>
+            <strong>监管与地缘</strong
+            >：平台经济监管、中美科技摩擦、芯片供应限制。
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p>
+          <strong>结论：WATCHLIST（转型观察，不追高）。总分 35/60。</strong>
+        </p>
+        <h3>3 个值得关注的理由</h3>
+        <ol class="small">
+          <li>
+            云 AI 商业化爆发：AI 云收入 +45%（22 季度新高）、AI 产品连续 12
+            季度三位数增长、云 EBITA 利润率升至 12%，CEO 预计下季度 AI ARR 接近
+            100 亿美元。
+          </li>
+          <li>
+            财务底盘厚：净现金 4745 亿人民币（占市值 22%），经营现金流 +11%
+            仍为正，足以支撑 AI 投入。
+          </li>
+          <li>
+            估值中低位：GAAP PE 20 倍、PB 1.94，处于历史中低位，电商现金牛 +
+            云期权双轮。
+          </li>
+        </ol>
+        <h3>3 个不追高的理由</h3>
+        <ol class="small">
+          <li>硬阈值三项不通过：ROE 8-13%、FCF 净流出、分红率 <25%。</li>
+          <li>
+            利润崩跌：GAAP 净利 -75%、非 GAAP -38% 低于预期，市场已用美股盘前跌
+            5% 投票。
+          </li>
+          <li>
+            AI 投入的"当期利润 → 未来期权"转化尚待验证，电商 CMR 下滑未见底。
+          </li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          <strong
+            >阿里云 AI 商业化（+45%、连续 12 季度三位数增长）能否在未来 2-3
+            个季度内，把经调整 EBITA 的改善传导到集团净利润？电商 CMR
+            何时企稳？</strong
+          >若 AI 兑现 + 电商企稳，当前被压制的利润将修复，20 倍 PE
+          的估值将显得便宜；若资本开支回报不及预期，则进入"增收不增利"的价值陷阱。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          AI 资本开支（677 亿/季）持续扩张但商业化回报长期不达预期 →
+          自由现金流持续失血，估值中枢下移；电商 CMR 持续下滑 →
+          现金牛失速；投资组合大幅减值 →
+          净利进一步崩跌。三者任一长期化，阿里将从"转型观察"滑向"价值陷阱"。
+        </p>
+        <div class="note">
+          数据充分性说明：营收/净利/资本开支/现金流/分部（AI 云）数据来自财报与
+          F10，可互相印证；<strong>未获取</strong> 四大新板块完整收入明细、淘天
+          GMV/CMR 精确值、云 EBITA
+          绝对额、回购计划细节。故分部数据仅披露已公开部分，不输出伪精确目标价。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-21
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 阿里巴巴 ·
+        09988.HK
+      </footer>
+    </div>
+  </body>
+</html>

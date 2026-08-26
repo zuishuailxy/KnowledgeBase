@@ -1,0 +1,868 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>安踏体育（02020.HK）投资决策报告 · 2026-08-26</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>安踏体育（02020.HK）完整投资决策报告</h1>
+        <div class="sub">
+          2026 中报更新版 ｜ 生成日期：2026-08-26 ｜ 数据基准：2026 年中报（8/26
+          披露）+ 2025 年报 + 2026Q2 营运数据
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge"
+            >分类：Stalwart 偏 Fast Grower（多品牌 + 全球化）</span
+          >
+          <span class="badge score">总分 44 / 60</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">HOLD · 审慎持有，可分批建仓</span>
+          安踏 2026 中报大幅反弹超预期：营收 435.07 亿（+12.9%）、归母净利 94.87
+          亿（+34.9%）、毛利率 63.88% 创新高——一扫 2025 年报净利 -12.9% 的阴霾。
+        </div>
+        <p>
+          旧报告（2026-08-12，HOLD 43/60）基于 2025
+          年报净利下滑给出谨慎判断。中报给出了更强的答案：<strong
+            >营收双位数增长 + 净利 +34.9% 大幅反弹 + 毛利率创历史新高</strong
+          >，且亚玛芬（Amer Sports）联营贡献显著提升（"溢利其他项目"22.57
+          亿，+420%）。硬阈值四项全过（ROE 连续 6 年 ≥15%、OCF 强劲、分红率
+          46%、负债率 38%），现价 71.55 港元对应 PE(TTM) 约 12-13
+          倍——处于历史低位。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>现价 71.55 港元低于 Buy Zone 下沿，处于
+          Strong Buy 区间（&lt;80 港元）。这是港股通里"高质量 + 低估值 +
+          高分红"的优质消费龙头，可分批建仓。核心观察：① 安踏/FILA
+          主品牌流水是否延续双位数增长；② 亚玛芬贡献的持续性；③
+          存货周转与渠道库存健康度。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">71.55 港元<br />2001 亿港元</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 营收</div>
+            <div class="num up">435.1 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 归母净利</div>
+            <div class="num up">94.9 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 毛利率</div>
+            <div class="num up">63.9%</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入（亿元）</td>
+            <td class="num">435.07</td>
+            <td class="num">385.44</td>
+            <td class="num up">+12.9%</td>
+          </tr>
+          <tr>
+            <td>毛利（亿元）</td>
+            <td class="num">277.92</td>
+            <td class="num">244.2</td>
+            <td class="num up">+13.8%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">63.88%</td>
+            <td class="num">63.37%</td>
+            <td class="num up">+0.5pct</td>
+          </tr>
+          <tr>
+            <td>经营溢利（亿元）</td>
+            <td class="num">117.60</td>
+            <td class="num">101.3</td>
+            <td class="num up">+16.1%</td>
+          </tr>
+          <tr>
+            <td>除税前溢利（亿元）</td>
+            <td class="num">145.24</td>
+            <td class="num">111.6</td>
+            <td class="num up">+30.1%</td>
+          </tr>
+          <tr>
+            <td>归母净利（亿元）</td>
+            <td class="num">94.87</td>
+            <td class="num">70.31</td>
+            <td class="num up">+34.9%</td>
+          </tr>
+          <tr>
+            <td>溢利其他项目（亿元）</td>
+            <td class="num">22.57</td>
+            <td class="num">4.34</td>
+            <td class="num up">+420%</td>
+          </tr>
+          <tr>
+            <td>经营现金流（亿元）</td>
+            <td class="num">130.81</td>
+            <td class="num">109.31</td>
+            <td class="num up">+19.7%</td>
+          </tr>
+          <tr>
+            <td>ROE（年化）</td>
+            <td class="num">27.61%</td>
+            <td class="num">22.41%</td>
+            <td class="num up">+5.2pct</td>
+          </tr>
+          <tr>
+            <td>资产负债率</td>
+            <td class="num">38.39%</td>
+            <td class="num">41.03%</td>
+            <td class="num up">-2.6pct</td>
+          </tr>
+        </table>
+        <p class="muted">
+          数据来源：东方财富港股 F10（安踏体育 2026 年中期业绩公告，2026-08-26）
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📈 净利增长拆解（+34.9% 的来源）</h2>
+        <table>
+          <tr>
+            <th>驱动项</th>
+            <th class="num">2026H1</th>
+            <th class="num">同比</th>
+            <th>说明</th>
+          </tr>
+          <tr>
+            <td>经营溢利</td>
+            <td class="num">117.60 亿</td>
+            <td class="num up">+16.1%</td>
+            <td>主业：收入 +12.9% + 毛利率提升 + 费用管控</td>
+          </tr>
+          <tr>
+            <td>溢利其他项目</td>
+            <td class="num">22.57 亿</td>
+            <td class="num up">+420%</td>
+            <td>联营公司贡献大增（亚玛芬 Amer Sports 等）</td>
+          </tr>
+          <tr>
+            <td>其他收入</td>
+            <td class="num">16.08 亿</td>
+            <td class="num up">+22.3%</td>
+            <td>政府补助/利息等</td>
+          </tr>
+          <tr>
+            <td>少数股东损益</td>
+            <td class="num">14.32 亿</td>
+            <td class="num up">+32.6%</td>
+            <td>并表子公司少数股东部分</td>
+          </tr>
+        </table>
+        <div class="good-box">
+          <strong>净利 +34.9% 的构成：</strong>主业经营溢利 +16.1%
+          是基本盘，而"溢利其他项目"（+420% 至 22.57
+          亿，主要来自亚玛芬联营贡献）与"其他收入"放大了利润弹性。亚玛芬（始祖鸟/萨洛蒙/威尔胜母公司，安踏持股约
+          45%）已从"拖累项"转为"增长引擎"，这是多品牌 + 全球化战略的关键拐点。
+        </div>
+        <div class="warn-box">
+          <strong>需注意：</strong
+          >"溢利其他项目"包含联营公司（亚玛芬）的应占溢利，其持续性取决于亚玛芬在欧美市场的表现与安踏持股比例变动；若剔除该部分，纯主业净利增速约
+          16%，与经营溢利一致。核心盈利能力仍健康，但 34.9%
+          的总增速含"亚玛芬期权"成分。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：安踏体育 2026 年中期业绩公告（8/26
+            披露）
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富港股
+            F10（RPT_HKF10_FN_MAININDICATOR / INCOME / BALANCE）
+          </li>
+          <li><strong>行情与估值</strong>：腾讯自有时效行情接口</li>
+          <li><strong>研报观点</strong>：港媒与券商解读（部分渠道搜索受限）</li>
+        </ul>
+        <div class="note">
+          可信度说明：营收/净利/毛利率/现金流/负债率/现金均来自中报，可交叉印证。<strong>无法获取</strong>：安踏品牌/FILA/其他品牌分部收入的精确拆分、亚玛芬贡献的精确归属、分季度流水。故"溢利其他项目=亚玛芬贡献"基于公开常识推断并标注为合理推测。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2020</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">23.4%</td>
+            <td class="num">29.2%</td>
+            <td class="num">24.0%</td>
+            <td class="num">23.8%</td>
+            <td class="num">27.6%</td>
+            <td class="num">21.3%</td>
+          </tr>
+        </table>
+        <p class="small">
+          连续 6 年全部 ≥15%，波动区间 21-29%，5 年均值约
+          25%——高质量且稳定的"复利型" ROE。2026H1 年化
+          27.6%。<strong>通过（优秀）</strong>。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          OCF 2021-2025 年 118.6 / 121.5 / 196.3 / 167.4 / 210.0
+          亿，全部为正且强劲；2026H1 130.8
+          亿（+19.7%），现金含量高。<strong>通过（优秀）</strong>。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          2021-2025 年分红率 77.9% / 79.5% / 61.6% / 40.3% / 45.8%，2026H1 口径
+          45.8%——持续高分红。<strong>通过</strong>。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          2026H1 负债率 38.39%；现金类约 628 亿 vs 有息负债约 235 亿，<strong
+            >净现金约 393 亿人民币</strong
+          >。<strong>通过</strong>。
+        </p>
+        <div class="good-box">
+          <strong>硬阈值总判断：四项全部通过（优秀）。</strong
+          >安踏是港股消费里少数"ROE 连续 6 年 20%+ + 现金流强劲 + 高分红 +
+          净现金充裕"的标的，财务质量对标腾讯、网易级别。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>👟 基本面研究</h2>
+        <h3>公司定位与品牌矩阵</h3>
+        <ul class="small">
+          <li>
+            <strong>多品牌矩阵</strong>：安踏（大众运动）+ FILA（时尚运动）+
+            迪桑特/可隆（高端户外）+
+            亚玛芬旗下始祖鸟/萨洛蒙/威尔胜（全球高端户外，联营）。
+          </li>
+          <li>
+            <strong>全球化</strong>：通过亚玛芬（持股约 45%，2024
+            年美股上市）布局欧美市场，是"中国品牌全球化"的标杆。
+          </li>
+          <li>
+            <strong>渠道</strong>：DTC 直营转型 + 电商，安踏品牌门店约万家。
+          </li>
+        </ul>
+        <h3>护城河</h3>
+        <ul class="small">
+          <li>多品牌运营能力（中国运动品牌第一），单一品牌风险分散。</li>
+          <li>供应链 + 渠道 + 体育营销（奥运赞助等）壁垒深厚。</li>
+          <li>亚玛芬联营带来的全球化协同与高端品牌稀缺性。</li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          <strong>Stalwart 偏 Fast Grower</strong>：体量超 800
+          亿营收，增速回到双位数（+12.9%），多品牌 +
+          全球化提供成长期权。故事清晰可验证（流水、毛利率、亚玛芬贡献）。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>核心变化：从"下滑"到"反弹"</h3>
+        <ul class="small">
+          <li>
+            2025 年报净利 135.88 亿（-12.9%）曾引发担忧（亚玛芬拖累 +
+            消费疲软）；
+          </li>
+          <li>
+            2026H1 净利 94.87 亿（+34.9%）大幅反弹，营收 +12.9%、毛利率 63.88%
+            创新高；
+          </li>
+          <li>
+            经营溢利 +16.1%，费用管控良好（销售费用 +13.8%
+            与收入增速匹配，行政开支 +8.7% 慢于收入）。
+          </li>
+        </ul>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li>
+            <strong>现金流强劲</strong>：OCF 130.8 亿 &gt; 净利 94.9
+            亿，现金含量高。
+          </li>
+          <li>
+            <strong>净现金 393 亿</strong>：现金类 628 亿（含中长期存款 190
+            亿）vs 有息负债 235 亿。
+          </li>
+          <li>
+            <strong>存货 103.5 亿</strong>：需跟踪周转，但运动鞋服库存通常健康。
+          </li>
+          <li>
+            <strong>联营公司权益 179.1 亿</strong
+            >：亚玛芬持股的公允价值，是隐藏资产。
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong>：中国运动鞋服市场规模 5000
+            亿+，增速高个位数，国货替代趋势延续。
+          </li>
+          <li>
+            <strong>竞争地位</strong
+            >：中国运动品牌龙头（超过李宁/特步/361°），全球第三大运动品牌集团（耐克/阿迪之后）。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：安踏/FILA 双位数增长 +
+            户外（迪桑特/始祖鸟）高景气 + 亚玛芬全球扩张。
+          </li>
+          <li>
+            <strong>风险</strong>：消费疲软、库存周期、亚玛芬业绩波动、地缘。
+          </li>
+        </ul>
+        <p class="small">
+          结论：安踏的多品牌 +
+          全球化战略正在兑现——中报的净利反弹与亚玛芬贡献验证了"第二曲线"成立，行业地位稳固。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值</h3>
+        <table>
+          <tr>
+            <th>估值指标</th>
+            <th class="num">数值</th>
+          </tr>
+          <tr>
+            <td>市盈率 PE(TTM)</td>
+            <td class="num">约 12-13 倍</td>
+          </tr>
+          <tr>
+            <td>市净率 PB</td>
+            <td class="num">约 2.44 倍</td>
+          </tr>
+          <tr>
+            <td>总市值</td>
+            <td class="num">2001 亿港元（约 1853 亿人民币）</td>
+          </tr>
+          <tr>
+            <td>净现金</td>
+            <td class="num">约 393 亿人民币（占市值约 21%）</td>
+          </tr>
+          <tr>
+            <td>股息率</td>
+            <td class="num">约 3.6%（分红率 46%）</td>
+          </tr>
+        </table>
+        <h3>估值锚交叉验证（2026E 净利 170-195 亿人民币）</h3>
+        <table>
+          <tr>
+            <th>情景</th>
+            <th class="num">2026E 净利(亿人民币)</th>
+            <th class="num">合理 PE</th>
+            <th class="num">对应价格(港元)</th>
+          </tr>
+          <tr>
+            <td>保守（剔除亚玛芬弹性，全年 160 亿）</td>
+            <td class="num">160</td>
+            <td class="num">13-15 倍</td>
+            <td class="num">约 75-86</td>
+          </tr>
+          <tr>
+            <td>中性（延续 H1 节奏，全年 180 亿）</td>
+            <td class="num">180</td>
+            <td class="num">15-17 倍</td>
+            <td class="num">约 96-109</td>
+          </tr>
+          <tr>
+            <td>乐观（亚玛芬 + 主品牌超预期，全年 195 亿）</td>
+            <td class="num">195</td>
+            <td class="num">17-19 倍</td>
+            <td class="num">约 118-132</td>
+          </tr>
+        </table>
+        <p class="small">
+          按总股本约 28.0 亿股、汇率 1.08 折算。安踏历史 PE 区间 15-25 倍，当前
+          12-13 倍处于历史低位（市场对消费股的悲观定价）。
+        </p>
+        <p>
+          <strong
+            >合理价值区间：约 95-115 港元；Fair Value 约 100 港元。现价 71.55
+            港元低于 Fair Value 约 28%。</strong
+          >
+        </p>
+        <h3>安全边际判断</h3>
+        <div class="note">
+          现价对应 2026E 约 10-11 倍 PE（中性口径）、PB 2.44，叠加净现金 393
+          亿（占市值 21%）与 3.6%
+          股息率，<strong>安全边际充足</strong>——市场过度定价了消费悲观预期。Buy
+          Zone：<strong>80-100 港元</strong>；Strong Buy：<strong
+            >&lt;80 港元</strong
+          >。现价 71.55 已处于 Strong Buy 区间。
+        </div>
+        <p class="small muted">
+          旧报告（8/12）基于年报下滑给出 HOLD 43/60；本次中报净利 +34.9%
+          反弹，估值锚与评分均上修。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">
+              多品牌矩阵龙头 + 亚玛芬全球化，护城河深，分散单一品牌风险
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">
+              ROE 27.6%、毛利率 63.9%、净现金 393 亿、OCF 131 亿
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">
+              营收 +12.9%、净利 +34.9%，从年报下滑大幅反弹
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">
+              Stalwart 偏 Fast Grower，多品牌 + 全球化故事清晰且正在兑现
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">
+              PE 12-13 倍历史低位、PB 2.44、净现金 21%，安全边际充足
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">消费疲软、亚玛芬波动、存货周期、地缘</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">44</span> / 60</div>
+        <p class="muted small" style="margin-top: 8px">
+          较旧报告 43/60 上调 1 分：中报净利反弹 + 毛利率创新高 +
+          亚玛芬贡献兑现；估值安全边际进一步加厚。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>消费疲软</strong
+            >：若居民消费信心持续低迷，运动鞋服增速可能回落。
+          </li>
+          <li>
+            <strong>亚玛芬依赖</strong>："溢利其他项目" +420%
+            贡献了利润弹性，若亚玛芬欧美业绩波动或安踏减持，利润增速将回落至经营溢利增速（约
+            16%）。
+          </li>
+          <li>
+            <strong>库存周期</strong>：存货 103.5
+            亿，若终端动销放缓，折扣促销将侵蚀毛利率。
+          </li>
+          <li>
+            <strong>联营公司估值</strong>：亚玛芬持股（联营权益 179
+            亿）受美股波动影响。
+          </li>
+          <li><strong>地缘与汇率</strong>：全球化布局受关税、汇率波动影响。</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p><strong>结论：HOLD（审慎持有，可分批建仓）。总分 44/60。</strong></p>
+        <h3>3 个持有的理由</h3>
+        <ol class="small">
+          <li>
+            硬阈值四项全过：ROE 连续 6 年 20%+、OCF 强劲、分红率 46%、净现金 393
+            亿。
+          </li>
+          <li>
+            中报大幅反弹：营收 +12.9%、净利 +34.9%、毛利率 63.88%
+            创新高，亚玛芬贡献兑现。
+          </li>
+          <li>
+            估值历史低位：PE 12-13 倍、PB 2.44，现价 71.55 港元处于 Strong Buy
+            区间（&lt;80）。
+          </li>
+        </ol>
+        <h3>3 个仍需留意的理由</h3>
+        <ol class="small">
+          <li>
+            净利增速含"亚玛芬期权"成分（溢利其他项目 +420%），纯主业增速约 16%。
+          </li>
+          <li>消费大环境疲软，运动鞋服行业增速放缓，库存周期需跟踪。</li>
+          <li>联营公司（亚玛芬）表现与持股比例变动不可控。</li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          <strong
+            >安踏/FILA
+            主品牌的流水增长能否延续双位数？亚玛芬的贡献是否可持续？</strong
+          >若主品牌延续中报势头 + 亚玛芬稳定贡献，当前 10-11 倍 PE
+          的低估值将迎来戴维斯双击；若消费进一步疲软或亚玛芬波动，估值修复的节奏将延后。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          主品牌增长失速（消费长期疲软）→
+          营收增速回落至个位数；亚玛芬业绩大幅波动或减值 →
+          联营权益缩水；库存积压 →
+          毛利率被折扣侵蚀。三者任一长期化，安踏将从"高质量成长"滑向"低增长价值股"。
+        </p>
+        <div class="note">
+          数据充分性说明：营收/净利/毛利率/现金流/现金/负债率来自中报与
+          F10，可互相印证；<strong>未获取</strong>
+          分部收入（安踏/FILA/其他）精确拆分、亚玛芬贡献精确归属、分季度流水。故"溢利其他项目=亚玛芬"基于公开常识推断并标注。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-26
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 安踏体育 ·
+        02020.HK
+      </footer>
+    </div>
+  </body>
+</html>

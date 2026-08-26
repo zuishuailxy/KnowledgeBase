@@ -1,0 +1,870 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>中际旭创（300308.SZ）投资决策报告 · 2026-08-21</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>中际旭创（300308.SZ）完整投资决策报告</h1>
+        <div class="sub">
+          2026 中报更新版 ｜ 生成日期：2026-08-21 ｜ 数据基准：2026 年中报（8/22
+          披露）+ 2025 年报 + 2026Q1
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：Fast Grower（AI 光模块景气龙头）</span>
+          <span class="badge score">总分 36 / 60</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">WATCHLIST · 高景气观察，估值观望</span>
+          中际旭创 2026H1 业绩爆发超预期：营收 417.78 亿（+182.5%）、归母净利
+          136.51 亿（+241.7%）、Q2 净利 79.17 亿（环比 +38%），单半年营收已超
+          2025 全年——AI 光模块景气兑现到报表。
+        </div>
+        <p>
+          旧报告（2026-06-15）结论为"主流程淘汰 / 高景气观察"，等待 780
+          元以下复核。中报给出了比预期更强劲的答案：<strong
+            >营收与净利翻倍以上增长、毛利率升至 46.25%、Q2
+            环比加速、并首次推出中期分红（每 10 股派 12 元）</strong
+          >。但按硬阈值体系，它依旧不干净通过——ROE 历史（2021 年约
+          10%）、分红率（历史均值约 12%）未达标准；且现价 943 元对应动态 PE 约
+          40 倍、TTM PE 约 54
+          倍，<strong>估值已充分反映业绩爆发，缺乏格雷厄姆式安全边际</strong>。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>新资金不追高，放入观察池。现价 943 元远高于
+          Fair Value（约 650 元）。等待：① 股价回落至复核区（约 550-680 元）；②
+          1.6T/CPO 出货与毛利率能否持续验证；③ 关注应收账款与存货高企（周转 246
+          天）带来的现金流质量风险。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">943 元<br />11030 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 营收</div>
+            <div class="num">417.8 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 归母净利</div>
+            <div class="num">136.5 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 毛利率</div>
+            <div class="num up">46.3%</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入（亿元）</td>
+            <td class="num">417.78</td>
+            <td class="num">147.9</td>
+            <td class="num up">+182.5%</td>
+          </tr>
+          <tr>
+            <td>归母净利润（亿元）</td>
+            <td class="num">136.51</td>
+            <td class="num">40.0</td>
+            <td class="num up">+241.7%</td>
+          </tr>
+          <tr>
+            <td>扣非净利（亿元）</td>
+            <td class="num">130.92</td>
+            <td class="num">39.8</td>
+            <td class="num up">+229.3%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">46.25%</td>
+            <td class="num">39.33%</td>
+            <td class="num up">+6.9pct</td>
+          </tr>
+          <tr>
+            <td>净利率</td>
+            <td class="num">35.27%</td>
+            <td class="num">28.69%</td>
+            <td class="num up">+6.6pct</td>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">37.62%</td>
+            <td class="num">18.84%</td>
+            <td class="num up">+18.8pct</td>
+          </tr>
+          <tr>
+            <td>ROIC</td>
+            <td class="num">36.88%</td>
+            <td class="num">—</td>
+            <td class="num up">+121.6%</td>
+          </tr>
+          <tr>
+            <td>每股收益（元）</td>
+            <td class="num">12.31</td>
+            <td class="num">3.64</td>
+            <td class="num up">+238.2%</td>
+          </tr>
+          <tr>
+            <td>资产负债率</td>
+            <td class="num">36.08%</td>
+            <td class="num">30.31%</td>
+            <td class="num down">+5.8pct</td>
+          </tr>
+        </table>
+        <p class="muted">
+          数据来源：东方财富 F10（中际旭创 2026 年半年度报告，NOTICE
+          2026-08-22）
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📈 季度动能（Q2 环比加速）</h2>
+        <table>
+          <tr>
+            <th>季度</th>
+            <th class="num">营收(亿元)</th>
+            <th class="num">归母净利(亿元)</th>
+            <th class="num">净利环比</th>
+            <th class="num">净利同比</th>
+          </tr>
+          <tr>
+            <td>2026Q2</td>
+            <td class="num">222.8</td>
+            <td class="num">79.17</td>
+            <td class="num up">+38.1%</td>
+            <td class="num up">+228.2%</td>
+          </tr>
+          <tr>
+            <td>2026Q1</td>
+            <td class="num">195.0</td>
+            <td class="num">57.34</td>
+            <td class="num">—</td>
+            <td class="num up">+262.3%</td>
+          </tr>
+          <tr>
+            <td>2025Q4</td>
+            <td class="num">132.4</td>
+            <td class="num">36.7</td>
+            <td class="num">—</td>
+            <td class="num up">+141.6%</td>
+          </tr>
+        </table>
+        <div class="good-box">
+          <strong>季度动能仍在加速：</strong>Q2 营收 222.8 亿（环比
+          +14.3%）、净利 79.17 亿（环比 +38%）。若 H2 维持 Q2 节奏，2026
+          全年净利有望达 280-300 亿元——比旧报告隐含预期更强。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：中际旭创 2026 年半年度报告（8/22 披露）
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10（ZYZBAjaxNew，A 股口径）
+          </li>
+          <li>
+            <strong>行情与估值</strong>：腾讯自有时效行情接口（前复权日 K）+
+            东方财富行情页
+          </li>
+          <li><strong>研报观点</strong>：财联社、证券时报等业绩报道</li>
+        </ul>
+        <div class="note">
+          可信度说明：营收 417.78 亿、归母净利 136.51 亿、毛利率、中期分红 12
+          元/10 股均来自半年报，可与 F10
+          交叉印证。<strong>无法获取</strong>：1.6T
+          具体出货量、分客户收入（海外云厂商占比）、在手订单精确值、机构一致预期精确值。故不输出伪精确目标价。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">2026H1</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">9.98%</td>
+            <td class="num">10.28%</td>
+            <td class="num">16.58%</td>
+            <td class="num">31.23%</td>
+            <td class="num">43.84%</td>
+            <td class="num">37.62%</td>
+          </tr>
+        </table>
+        <p class="small">
+          仅 2023-2025 三年 ≥15%，且 2021 年 <10%——历史 ROE
+          是"周期爆发型"而非"稳定复利型"。2026H1 年化 75%
+          极高，但可持续性未验证。<strong>按"持续 15%"标准失败</strong>。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          每股经营现金流 1.61 元（同比 -44.3%），相对 EPS 12.31 元比值仅约
+          0.13——<strong>净利含金量低</strong>：大量利润沉淀在应收（周转 45.8
+          天）与存货（周转 246
+          天，备货巨大）。经营现金流为正但远弱于利润。<strong
+            >边界通过 / 质量存疑</strong
+          >。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          历史分红率约 12%（2023 16.07%、2024 10.59%、2025 10.20%），低于 25%
+          门槛。本次中期分红每 10 股派 12 元（对应当期 EPS 12.31 约
+          9.7%），虽属改善但比率仍低。<strong>失败</strong>。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          2026H1 资产负债率 36.08%（较 2025 年 30.18% 上升），流动比率
+          2.56、速动比率 1.47，仍属健康。<strong>通过</strong>。
+        </p>
+        <div class="warn-box">
+          <strong>硬阈值总判断：未通过</strong>——ROE 历史（仅 3 年
+          ≥15%）与分红率（约
+          12%）均不达标。尽管当前景气度极高，但按跨周期稳定性与股东现金回报标准，不进主投资池。
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🔬 基本面研究</h2>
+        <h3>业务与护城河</h3>
+        <ul class="small">
+          <li>
+            <strong>全球光模块龙头</strong>：2024 年光模块厂商排名全球第一，覆盖
+            100G-1.6T 高速光模块，服务全球云数据中心与 AI 算力集群。
+          </li>
+          <li>
+            <strong>景气驱动</strong>：AI 训练/推理集群扩张 +
+            网络互联带宽升级，推动 800G/1.6T 光模块快速放量。
+          </li>
+          <li>
+            <strong>毛利率提升</strong>：46.25%（+6.9pct vs
+            2025H1），高端产品（1.6T 等）占比提升 + 规模效应。
+          </li>
+          <li>
+            <strong>中期分红</strong>：首次推出中期分红（每 10 股派 12
+            元），股东回报意识增强。
+          </li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          <strong>Fast Grower（高景气成长）</strong>：故事简单可验证（AI
+          光模块出货 + 毛利率），但强周期属性——客户资本开支、技术路线（CPO
+          替代可插拔？）、价格竞争是核心变量。
+        </p>
+        <h3>管理层与治理（业绩说明）</h3>
+        <ul class="small">
+          <li>
+            中报披露"聚焦原创新玩法和全球市场拓展"口径（注意：该表述为公司通用表述，光模块主业口径以"高速率、低功耗、1.6T
+            迭代"为主）。
+          </li>
+          <li>
+            应收与存货高企：存货周转 246 天、应收周转 45.8
+            天，显示为应对订单大幅备货，需跟踪去化。
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>盈利质量亮点</h3>
+        <ul class="small">
+          <li>
+            毛利率 46.25%（+6.9pct）、净利率
+            35.27%（+6.6pct）同步扩张，量价齐升。
+          </li>
+          <li>
+            扣非净利 130.92 亿（+229.3%），与非经常损益占比低，利润来自主业。
+          </li>
+          <li>ROE 37.62%、ROIC 36.88%，资本回报极高。</li>
+        </ul>
+        <h3>⚠️ 现金流质量隐忧（本报告重点风险）</h3>
+        <div class="warn-box">
+          <strong>净利与现金流严重背离：</strong>2026H1 每股经营现金流仅 1.61
+          元（同比 -44.3%），EPS 12.31 元，净现比约 0.13。存货周转天数 246
+          天、应收 45.8
+          天——利润大量沉淀在营运资金。若下游需求或回款放缓，减值与坏账风险上升。<strong
+            >这是高增长光模块公司的典型特征，需持续跟踪经营现金流是否随收入确认而修复。</strong
+          >
+        </div>
+        <h3>资产负债表</h3>
+        <p class="small">
+          负债率 36.08%（上升 5.8pct，扩张备货所致）、流动比率 2.56、速动比率
+          1.47，短期偿债无忧；净现金充裕（轻资产 + 高周转备货）。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong>：AI 算力网络互联（800G/1.6T 光模块 +
+            CPO），全球云厂商资本开支高景气。
+          </li>
+          <li>
+            <strong>竞争地位</strong>：全球第一（与
+            II-VI/Coherent、新易盛等竞争），高端产品交付与客户认证壁垒高。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：1.6T 上量 + 海外云厂商 AI 集群扩张 +
+            毛利率结构升级。
+          </li>
+          <li>
+            <strong>风险</strong
+            >：客户集中（海外头部云厂商）、技术路线切换（CPO）、价格年降、贸易限制、资本开支周期见顶。
+          </li>
+        </ul>
+        <p class="small">
+          结论：中际旭创处于 AI 光模块景气核心位置，业绩兑现已落地；但行业强周期
+          + 客户集中 + 高估值，决定了它是"高景气观察标的"而非"低估买入标的"。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">净利</th>
+            <th class="num">对应 PE</th>
+          </tr>
+          <tr>
+            <td>动态（2026H1 年化 273 亿）</td>
+            <td class="num">约 273 亿</td>
+            <td class="num">约 40 倍</td>
+          </tr>
+          <tr>
+            <td>TTM（2025H2+2026H1 ≈ 204.5 亿）</td>
+            <td class="num">约 204.5 亿</td>
+            <td class="num">约 54 倍</td>
+          </tr>
+          <tr>
+            <td>2026E 乐观（H2 维持 Q2 节奏，约 290 亿）</td>
+            <td class="num">约 290 亿</td>
+            <td class="num">约 38 倍</td>
+          </tr>
+        </table>
+        <h3>估值锚交叉验证（2026E 净利 273-290 亿）</h3>
+        <table>
+          <tr>
+            <th>情景</th>
+            <th class="num">2026E 净利(亿)</th>
+            <th class="num">合理 PE</th>
+            <th class="num">对应价格(元)</th>
+          </tr>
+          <tr>
+            <td>保守（H2 增速回落，全年 240 亿）</td>
+            <td class="num">240</td>
+            <td class="num">18-22 倍</td>
+            <td class="num">370-450</td>
+          </tr>
+          <tr>
+            <td>中性（景气延续，全年 273 亿）</td>
+            <td class="num">273</td>
+            <td class="num">22-27 倍</td>
+            <td class="num">515-630</td>
+          </tr>
+          <tr>
+            <td>乐观（H2 加速，全年 300 亿）</td>
+            <td class="num">300</td>
+            <td class="num">27-32 倍</td>
+            <td class="num">690-820</td>
+          </tr>
+        </table>
+        <p class="small">
+          按总股本约 11.7 亿股折算。合理 PE 参考：高景气成长但强周期 +
+          客户集中，给予 20-30 倍区间（对 1.6T 龙头，A
+          股光模块板块通常给更高，但按本框架折价处理）。
+        </p>
+        <p>
+          <strong
+            >合理价值区间：约 550-680 元；Fair Value 约 650 元。现价 943 元高于
+            Fair Value 约 45%。</strong
+          >
+        </p>
+        <h3>安全边际判断</h3>
+        <div class="note">
+          现价对应 2026E 约 40 倍 PE、TTM 约 54 倍——市场已把 AI 光模块 2026-2027
+          年继续爆发充分写入价格。<strong>安全边际严重不足</strong>。Fair Value
+          约 650 元，现价 943 高约 45%。等股价回落至复核区（550-680
+          元）或景气进一步验证后回撤，才有配置价值。
+        </div>
+        <p class="small muted">
+          旧报告（6/15）复核线 780 元；本次中报业绩上调（单半年净利 136.5 亿已超
+          2025 全年 108 亿），复核区上移至约 550-680 元。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">
+              全球光模块龙头、1.6T 高端产品、毛利率 46%，但客户集中、强周期
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">
+              高 ROE/ROIC、负债率 36% 健康；但净现比仅 0.13、存货周转 246 天
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">9/10</div>
+            <div class="bar"><div class="fill" style="width: 90%"></div></div>
+            <div class="small">
+              营收 +182%、净利 +242%、Q2 环比 +38%，景气爆发兑现
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">
+              Fast Grower，AI 光模块故事清晰，但周期属性与爆款依赖并存
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">4/10</div>
+            <div class="bar"><div class="fill" style="width: 40%"></div></div>
+            <div class="small">
+              动态 PE 40 倍、TTM 54 倍，现价高于 Fair Value 45%，无安全边际
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">4/10</div>
+            <div class="bar"><div class="fill" style="width: 40%"></div></div>
+            <div class="small">
+              客户集中、资本开支见顶、CPO 路线、现金流质量、高估值回撤风险
+            </div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">36</span> / 60</div>
+      </div>
+
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>客户高度集中</strong>：收入主要依赖海外头部云厂商 AI
+            资本开支，任一客户砍单即大幅影响。
+          </li>
+          <li>
+            <strong>资本开支周期见顶</strong>：AI
+            算力投资若放缓，光模块需求与价格承压。
+          </li>
+          <li>
+            <strong>现金流质量</strong>：净现比 0.13、存货周转 246 天、应收周转
+            45.8 天，减值与坏账风险。
+          </li>
+          <li>
+            <strong>技术路线切换</strong
+            >：CPO（共封装光学）等新路线可能冲击可插拔光模块格局。
+          </li>
+          <li>
+            <strong>估值高位</strong>：动态 PE 40 倍、TTM 54
+            倍，业绩不及预期即面临戴维斯双杀。
+          </li>
+          <li><strong>贸易限制</strong>：海外政策/出口管制不确定性。</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p>
+          <strong
+            >结论：WATCHLIST（高景气观察，估值观望，不追高）。总分
+            36/60。</strong
+          >
+        </p>
+        <h3>3 个值得关注的理由（长期逻辑）</h3>
+        <ol class="small">
+          <li>
+            AI 光模块全球龙头，1.6T 高端产品放量 + 毛利率升至
+            46.25%，量价齐升兑现。
+          </li>
+          <li>
+            成长爆发力极强：营收 +182%、净利 +242%、Q2 环比 +38%，单半年净利已超
+            2025 全年。
+          </li>
+          <li>
+            首次中期分红（每 10 股派 12 元）+ ROE 37.6%/ROIC
+            36.9%，资本回报与股东回报意识提升。
+          </li>
+        </ol>
+        <h3>3 个不买/观望的理由</h3>
+        <ol class="small">
+          <li>
+            估值透支：动态 PE 40 倍、TTM 54 倍，现价 943 高于 Fair Value 约
+            45%，无安全边际。
+          </li>
+          <li>
+            硬阈值未通过：ROE 历史仅 3 年 ≥15%、分红率约
+            12%，跨周期稳定性与股东现金回报不足。
+          </li>
+          <li>
+            现金流质量隐忧：净现比 0.13、存货周转 246 天，利润含金量待验证。
+          </li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          <strong
+            >AI 光模块景气能持续到 2027 吗？1.6T
+            上量能否对冲价格年降、现金流能否随收入确认修复？</strong
+          >若景气延续 + 现金流修复，当前高估值可被业绩消化；若资本开支见顶或 CPO
+          冲击，40 倍 PE 将大幅压缩。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          海外云厂商 AI 资本开支大幅收缩 → 订单与价格双杀；1.6T
+          份额被新易盛等竞争者侵蚀 → 毛利率回落；存货/应收减值爆发 →
+          净利大幅下修；CPO 路线颠覆可插拔 →
+          主业逻辑动摇。任一发生，股价面临剧烈回撤。
+        </p>
+        <div class="note">
+          数据充分性说明：营收/净利/毛利率/分红/周转指标来自半年报与
+          F10；<strong>未获取</strong> 分客户收入、1.6T
+          出货量、在手订单、机构一致预期精确值，故不输出伪精确目标价，估值基于
+          2026E 情景区间。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-21
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 中际旭创 ·
+        300308.SZ
+      </footer>
+    </div>
+  </body>
+</html>

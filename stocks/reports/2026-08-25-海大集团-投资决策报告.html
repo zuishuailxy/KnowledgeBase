@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>海大集团（002311）投资决策报告 · 2026-08-25</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      /* 头部 */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      /* 卡片 */
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      /* 结论框 */
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      /* 表格 */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      /* 评分 */
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      /* 列表 */
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <!-- 头部 -->
+      <div class="hero">
+        <h1>海大集团（002311）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年半年报更新版 ｜ 生成日期：2026-08-25 ｜ 数据基准：2026
+          年半年度报告（2026-08-25 披露）+ 中期利润分配方案 + 回购注销公告
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：Stalwart（周期偏弱的饲料龙头）</span>
+          <span class="badge score">总分 31 / 60</span>
+        </div>
+      </div>
+
+      <!-- 1. 结论 -->
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">WATCHLIST · 观望</span>
+          半年报验证并强化了上版担忧：增收不增利恶化，扣非 -50.8%
+          确认是行业景气与盈利能力下降，而非短期扰动；现金流虽强，但动态 PE 约
+          20 倍对下滑利润不便宜。
+        </div>
+        <p>
+          一句话：<strong>收入在涨，利润在塌。</strong>2026 上半年营收 642.4
+          亿元（+9.19%）、归母净利润 16.11 亿元（-38.95%）、<strong
+            >扣非净利润 13.06 亿元（-50.81%）</strong
+          >，毛利率从 11.7% 降至
+          9.3%。上半年利润大幅下滑主因饲料行业景气下行（养殖端亏损、补栏意愿弱）+
+          原料成本 + 行业价格竞争，成本传导能力阶段性下降。
+        </p>
+        <p>
+          现价 44.69 元对应 2025A 静态 PE 17.3 倍、2026E 动态 PE 约 20 倍、PB
+          3.10 倍、股息率约 2.6%-2.9%。半年报确认 Q1
+          的"收入增利润降"并非偶发：Q2 单季扣非同比约 -46%，虽较
+          Q1（-56%）略缓解，但盈利中枢已明显下移。公司质地未坏（经营现金流
+          +28.7%、Q2 单季现金流约 39 亿强劲、资产负债率 54.6% 可控），但<strong
+            >在利润下滑 50% 的背景下，20 倍动态 PE 并不提供安全边际</strong
+          >。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>持有 600 股不动（浮亏约 -5,289
+          元，-16.5%），不割肉也不加仓；等待行业景气拐点（养殖盈利修复、饲料量价回升）或股价回落至约
+          33-37 元买点区再评估；反弹至 50-54 元（接近成本
+          53.5）且基本面未改善时减仓控制敞口。
+        </p>
+      </div>
+
+      <!-- 2. 关键指标速览 -->
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">44.69 元 / 735 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">静态 / 动态 PE</div>
+            <div class="num">17.3 / 约20</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">PB</div>
+            <div class="num">3.10</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">股息率</div>
+            <div class="num">2.6%-2.9%</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目（2026H1）</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入</td>
+            <td class="num">642.4 亿</td>
+            <td class="num">588.3 亿</td>
+            <td class="num up">+9.19%</td>
+          </tr>
+          <tr>
+            <td>归母净利润</td>
+            <td class="num">16.11 亿</td>
+            <td class="num">26.39 亿</td>
+            <td class="num down">-38.95%</td>
+          </tr>
+          <tr>
+            <td>扣非净利润</td>
+            <td class="num hl">13.06 亿</td>
+            <td class="num">26.54 亿</td>
+            <td class="num down">-50.81%</td>
+          </tr>
+          <tr>
+            <td>经营活动现金流净额</td>
+            <td class="num">39.24 亿</td>
+            <td class="num">30.48 亿</td>
+            <td class="num up">+28.72%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num down">9.3%</td>
+            <td class="num">11.7%</td>
+            <td class="num down">-2.4pct</td>
+          </tr>
+          <tr>
+            <td>加权 ROE</td>
+            <td class="num">6.47%</td>
+            <td class="num">10.70%</td>
+            <td class="num down">-4.23pct</td>
+          </tr>
+          <tr>
+            <td>资产负债率</td>
+            <td class="num">54.6%</td>
+            <td class="num">49.2%</td>
+            <td class="num">上升</td>
+          </tr>
+        </table>
+        <div class="warn-box">
+          <strong>⚠️ 增收不增利确认恶化。</strong>Q2 单季归母 7.24
+          亿（-46.6%）、扣非 7.36 亿（-46.4%），环比 Q1
+          略缓解但同比仍大幅下滑；半年报证明 Q1
+          的利润下滑非偶发，而是行业景气下行所致。
+        </div>
+        <p class="muted">
+          数据来源：2026
+          年半年度报告摘要、中期利润分配方案公告、东方财富公开数据。
+        </p>
+      </div>
+
+      <!-- 3. 数据来源与可信度 -->
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：2026
+            年半年度报告全文及摘要（2026-08-25）、2026
+            年中期利润分配方案公告、变更回购股份用途并注销公告。
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10 主要财务指标（2022-2025
+            年报、2026H1）、新浪财经现金流量表接口。
+          </li>
+          <li>
+            <strong>行情与估值</strong>：东方财富日 K 线接口（现价 44.69
+            元、2025-2026 走势）。
+          </li>
+          <li>
+            <strong>分红</strong>：东方财富数据中心分红接口（2025 年度 10 派 11
+            元 + 中期 10 派 1.5 元）。
+          </li>
+          <li>
+            <strong>持仓</strong>：KnowledgeBase/stocks/my/holder.json（600
+            股，成本 53.505 元）。
+          </li>
+        </ul>
+        <div class="note">
+          可信度说明：营收、归母、扣非、现金流、ROE、毛利率均取自半年报摘要原文，可交叉验证。<strong>数据不足项</strong>：半年报中利润下滑的具体分项拆解（分品种饲料毛利率、生猪养殖板块盈亏）未在摘要中详细披露；行业景气判断（养殖盈利、饲料需求）基于公开行业信息推断，未获取精确行业数据，相关结论作保守处理。
+        </div>
+      </div>
+
+      <!-- 4. 硬阈值筛选 -->
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">11.74%</td>
+            <td class="num">18.47%</td>
+            <td class="num">14.53%</td>
+            <td class="num">20.88%</td>
+            <td class="num">17.42%</td>
+            <td class="num">16.61%</td>
+          </tr>
+        </table>
+        <p class="small">
+          5 年均值 16.61% 达标，但仅 3/5 年 ≥15%（2021、2023
+          低于），未完全满足"至少 4 年"要求；且 2026H1 加权 ROE 已降至
+          6.47%。边界未通过。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          2023-2025 年 FCF 分别约 93.5 / 48.6 / 29.2 亿元，三年全为正；2026H1
+          经营现金流 39.2 亿（+28.7%）、资本开支 16.9 亿，FCF 约 22.3
+          亿，现金流质量优异。通过。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          2025 年度合计每股分红 1.30 元（中期 0.20 + 末期 1.10），分红率约
+          50%；2026 中期每股 0.15 元 + 回购注销合计占归母 32.9%。通过。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          2026H1 资产负债率 54.6%（2025 年末 46.4%，上升 8pct），仍低于 60%
+          但趋势需留意。边界通过。
+        </p>
+        <div class="warn-box">
+          <strong>硬阈值总判断：未完全通过（ROE 稳定性不足）。</strong
+          >现金流与分红质量好，但 ROE 仅 3/5 年达标、且 2026H1 骤降至
+          6.47%，只能进入观察池，不能无条件买入。
+        </div>
+      </div>
+
+      <!-- 5. 基本面研究 -->
+      <div class="card">
+        <h2>🌾 基本面研究</h2>
+        <h3>公司定位与主营</h3>
+        <p class="small">
+          国内饲料行业龙头之一（水产料、禽料、猪料），业务覆盖饲料 + 动保苗种 +
+          养殖服务 + 生猪养殖，形成"饲料 +
+          养殖服务"一体化体系。客户粘性强、渠道深，但行业利润率天然偏薄（毛利率
+          9.3%）。
+        </p>
+        <h3>护城河（强度：中等偏强，但利润受行业景气主导）</h3>
+        <ul class="small">
+          <li>
+            规模采购 + 配方研发 + 服务能力（帮助养殖户降本增效），渠道粘性强；
+          </li>
+          <li>水产饲料细分龙头地位稳固，禽料/猪料份额提升中；</li>
+          <li>
+            <span class="hl">脆弱点</span>：低毛利生意（毛利率
+            9%），利润高度依赖养殖景气与原料成本，缺乏定价权；2026H1 毛利率
+            -2.4pct 即反映成本传导能力下降。
+          </li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>控股股东广州海灏投资（55.34%）持股集中，治理稳定；</li>
+          <li>
+            分红率约 50% + 中期分红 + 回购注销（2026 年注销 2.82
+            亿回购股份），股东回报导向清晰；
+          </li>
+          <li>社保基金（多个组合）重仓，机构认可度较高。</li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          <strong>Stalwart（带强周期属性的饲料龙头）</strong>。故事清晰（规模 +
+          服务拿份额），但盈利随养殖周期大幅波动；当前处于周期低谷，成长逻辑需等行业回暖验证。
+        </p>
+      </div>
+
+      <!-- 6. 财务质量分析 -->
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>2026 上半年核心变化：增收不增利，盈利中枢下移</h3>
+        <table>
+          <tr>
+            <th>单季拆解</th>
+            <th class="num">2026Q2</th>
+            <th class="num">2025Q2</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入</td>
+            <td class="num">352.3 亿</td>
+            <td class="num">332.1 亿</td>
+            <td class="num up">+6.1%</td>
+          </tr>
+          <tr>
+            <td>归母净利润</td>
+            <td class="num">7.24 亿</td>
+            <td class="num">13.56 亿</td>
+            <td class="num down">-46.6%</td>
+          </tr>
+          <tr>
+            <td>扣非净利润</td>
+            <td class="num hl">7.36 亿</td>
+            <td class="num">13.72 亿</td>
+            <td class="num down">-46.4%</td>
+          </tr>
+          <tr>
+            <td>经营现金流（H1）</td>
+            <td class="num">39.24 亿</td>
+            <td class="num">30.48 亿</td>
+            <td class="num up">+28.7%</td>
+          </tr>
+        </table>
+        <p class="small">
+          解读：① 收入端仍扩张（+9.2%），但毛利率从 11.7% 降至
+          9.3%（-2.4pct），利润弹性被压缩——行业价格竞争 + 原料成本 +
+          养殖端亏损传导；② Q2 环比 Q1（扣非 -56%）略缓解，但同比仍
+          -46%，盈利中枢明显下移；③ <strong>现金流是亮点</strong>：经营现金流
+          +28.7%、Q2 单季约 39
+          亿，利润下滑未伴随现金流恶化，说明应收/库存管理稳健。
+        </p>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li>
+            扣非 13.06 亿与归母 16.11 亿差异约 3
+            亿（政府补助、公允价值变动等非经常项）；
+          </li>
+          <li>
+            总资产 552.9 亿（+16.2%，扩产/并购投入），归母净资产 237.4
+            亿（-2.1%，分红+回购）；
+          </li>
+          <li>资产负债率 54.6% 上升（2025 年末 46.4%），需关注加杠杆节奏；</li>
+          <li>中期分红每股 0.15 元 + 回购注销，合计占归母 32.9%。</li>
+        </ul>
+      </div>
+
+      <!-- 7. 行业与竞争格局 -->
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong
+            >：饲料行业成熟、总量低速增长，集中度持续提升（海大、新希望、牧原等头部份额扩大）；利润受上游原料（玉米、豆粕）与下游养殖景气双重夹击。
+          </li>
+          <li>
+            <strong>竞争地位</strong
+            >：水产饲料全球龙头，禽料/猪料国内第一梯队；规模、配方、服务构成领先优势。
+          </li>
+          <li>
+            <strong>核心矛盾</strong>：2026 年养殖端亏损（生猪、禽类价格低迷）→
+            饲料需求与提价能力双双承压，行业进入以价换量、利润压缩期。
+          </li>
+          <li>
+            <strong>风险</strong
+            >：养殖周期底部延长、原料价格波动、行业价格战、公司自身生猪养殖板块亏损。
+          </li>
+        </ul>
+        <p class="small">
+          结论：龙头地位稳固、长期份额逻辑不变，但当前处于行业景气低谷，盈利拐点取决于养殖盈利修复。
+        </p>
+      </div>
+
+      <!-- 8. 估值与安全边际 -->
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值（2026-08-25，现价 44.69 元）</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">数值</th>
+            <th class="num">对应估值</th>
+          </tr>
+          <tr>
+            <td>2025A 静态 PE（EPS 2.58）</td>
+            <td class="num">17.3 倍</td>
+            <td class="num">中性</td>
+          </tr>
+          <tr>
+            <td>2026E 动态 PE（全年约 34-38 亿，EPS 约 2.1-2.3）</td>
+            <td class="num">约 19-21 倍</td>
+            <td class="num down">偏贵</td>
+          </tr>
+          <tr>
+            <td>PB（每股净资产 14.44 元）</td>
+            <td class="num">3.10 倍</td>
+            <td class="num down">偏高</td>
+          </tr>
+          <tr>
+            <td>股息率（2025 年度 1.30 元）</td>
+            <td class="num">2.91%</td>
+            <td class="num">偏低</td>
+          </tr>
+        </table>
+        <h3>估值锚（周期属性：PE + 正常化盈利）</h3>
+        <table>
+          <tr>
+            <th>锚</th>
+            <th class="num">价格（元）</th>
+            <th>对应</th>
+          </tr>
+          <tr>
+            <td>2026E EPS 2.15 × 13 倍（周期低谷折价）</td>
+            <td class="num">约 28</td>
+            <td>强买</td>
+          </tr>
+          <tr>
+            <td>2026E EPS 2.15 × 15-17 倍</td>
+            <td class="num">32 - 37</td>
+            <td>买点</td>
+          </tr>
+          <tr>
+            <td>2026E EPS 2.15 × 17-19 倍</td>
+            <td class="num">36 - 41</td>
+            <td>合理价值</td>
+          </tr>
+          <tr>
+            <td>2026E EPS 2.15 × 21-23 倍</td>
+            <td class="num">45 - 49</td>
+            <td>偏贵/减仓区</td>
+          </tr>
+        </table>
+        <p>
+          <strong
+            >合理价值区间：约 36 - 41 元；现价 44.69
+            元高于合理区间上沿，安全边际不足。</strong
+          >
+        </p>
+        <div class="note">
+          判断：海大作为周期偏 Stalwart 的饲料龙头，历史 PE 中枢约 15-18
+          倍（正常化盈利口径）。当前利润下滑 50% 时仍给约 20 倍动态
+          PE，隐含市场对"盈利 V
+          型修复"的乐观预期——若行业景气拐点（养殖盈利修复）确认，估值可消化；若周期底部延长，则
+          20 倍 PE + 3.1 倍 PB 缺乏下行保护。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          无厚安全边际。买点区 33-37 元（对应 2026E PE 15-17
+          倍）才进入舒适区间；强买点 28-32 元（PE 13-15
+          倍，周期底部折价）。当前价需等待景气拐点或价格回落。
+        </p>
+      </div>
+
+      <!-- 9. 六维评分 -->
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">饲料龙头、渠道强，但利润率薄、无定价权</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">现金流强、FCF正，负债率升至54.6%</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">4/10</div>
+            <div class="bar"><div class="fill" style="width: 40%"></div></div>
+            <div class="small">营收+9%但扣非-51%，增收不增利</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">周期偏Stalwart，景气低谷待验证</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">4/10</div>
+            <div class="bar"><div class="fill" style="width: 40%"></div></div>
+            <div class="small">动态PE20、PB3.1，无厚安全边际</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">养殖周期、原料成本、行业价格战</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">31</span> / 60</div>
+      </div>
+
+      <!-- 10. 风险清单 -->
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>养殖周期底部延长（当前核心）</strong>：生猪/禽类价格持续低迷
+            → 饲料需求与提价能力承压，盈利中枢可能继续下移。
+          </li>
+          <li>
+            <strong>毛利率压力</strong>：行业价格竞争 +
+            原料成本（玉米、豆粕）波动，2026H1 毛利率已降 2.4pct。
+          </li>
+          <li>
+            <strong>资产负债率上升</strong>：从 46.4% 升至
+            54.6%，若加杠杆扩产与周期底部叠加，财务压力上升。
+          </li>
+          <li>
+            <strong>生猪养殖板块</strong
+            >：公司自有养殖业务随猪价波动，底部可能加大亏损。
+          </li>
+          <li>
+            <strong>估值与基本面背离</strong>：动态 PE 20
+            倍对下滑利润偏高，存在估值压缩风险。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 11. 持仓分析与操作建议 -->
+      <div class="card">
+        <h2>💼 持仓分析与操作建议</h2>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">数值</th>
+          </tr>
+          <tr>
+            <td>当前持仓</td>
+            <td class="num">600 股</td>
+          </tr>
+          <tr>
+            <td>买入成本</td>
+            <td class="num">53.505 元</td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num">44.69 元</td>
+          </tr>
+          <tr>
+            <td>当前市值</td>
+            <td class="num">约 26,814 元</td>
+          </tr>
+          <tr>
+            <td>账面浮亏</td>
+            <td class="num down">约 -5,289 元（-16.5%）</td>
+          </tr>
+          <tr>
+            <td>近12月每股分红</td>
+            <td class="num up">约 1.45 元（股息率 3.2%）</td>
+          </tr>
+        </table>
+        <h3>买卖点位参考（2026E 扣非/归母口径，EPS 约 2.15 元）</h3>
+        <table>
+          <tr>
+            <th>区间</th>
+            <th class="num">价格</th>
+            <th>估值锚</th>
+          </tr>
+          <tr>
+            <td class="up">强买点 Strong Buy</td>
+            <td class="num">28 - 32 元</td>
+            <td>PE 13-15 倍（周期低谷折价，2026E EPS 2.15）</td>
+          </tr>
+          <tr>
+            <td>买点 Buy Zone</td>
+            <td class="num">33 - 37 元</td>
+            <td>PE 15-17 倍（饲料龙头历史中枢下沿）</td>
+          </tr>
+          <tr>
+            <td>合理价值 Fair Value</td>
+            <td class="num">36 - 41 元</td>
+            <td>PE 17-19 倍（正常化盈利 40 亿 × 15-18 倍交叉验证）</td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num hl">44.69 元</td>
+            <td>动态 PE 约 20 倍，高于合理上沿，偏贵</td>
+          </tr>
+          <tr>
+            <td class="down">估值卖点（减仓）</td>
+            <td class="num">49 - 54 元</td>
+            <td>PE 23-25 倍（高估锚）+ 接近持仓成本 53.5 元（组合规则）</td>
+          </tr>
+          <tr>
+            <td class="down">无条件卖点</td>
+            <td class="num">不限价格</td>
+            <td>连续两季扣非下滑且现金流转负 / 负债率失控 / 行业全面亏损</td>
+          </tr>
+        </table>
+        <div class="note">
+          买点锚定 2026E 盈利（全年约 34-38 亿、EPS 约 2.1-2.3），因归母含约 3
+          亿非经常项、扣非更能反映主业；合理倍数按"周期偏 Stalwart 饲料龙头 →
+          历史 PE 中枢 15-18 倍 →
+          景气低谷折价"确定，不套固定值。另设独立组合规则：反弹至成本区（52-54
+          元）且基本面未改善 → 减仓 200 股。
+        </div>
+        <h3>操作建议</h3>
+        <ul class="small">
+          <li>
+            <strong>继续持有 600 股观察，不割肉也不加仓</strong
+            >——现金流强、龙头地位稳，但盈利下滑期不宜追加；
+          </li>
+          <li>
+            向下等买点：回落到 <strong>33-37 元</strong>（Buy Zone）可考虑补 100
+            股，<strong>28-32 元</strong>（Strong Buy）加大力度；
+          </li>
+          <li>
+            向上等卖点：反弹至
+            <strong>49-54 元</strong>（接近成本区）且主业未改善时，减仓 200
+            股降低敞口；
+          </li>
+          <li>
+            需跟踪：三季报扣非与毛利率、养殖景气（猪/禽价）、原料价格、公司生猪养殖板块盈亏。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 12. 总结 -->
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p><strong>结论：WATCHLIST（观望）。总分 31/60。</strong></p>
+        <h3>3 个持有的理由</h3>
+        <ol class="small">
+          <li>
+            饲料龙头地位稳固：规模、配方、服务壁垒，水产料全球龙头，长期份额逻辑不变；
+          </li>
+          <li>
+            现金流优异：2026H1 经营现金流 +28.7%、FCF 约 22
+            亿，利润下滑未伴随现金流恶化；
+          </li>
+          <li>
+            股东回报积极：分红率约 50% + 中期分红 + 回购注销，社保基金重仓。
+          </li>
+        </ol>
+        <h3>3 个不加仓的理由</h3>
+        <ol class="small">
+          <li>
+            盈利大幅下滑：扣非 -50.8%、Q2 单季
+            -46%，增收不增利确认恶化，盈利中枢下移；
+          </li>
+          <li>
+            行业景气低谷：养殖端亏损、饲料提价能力弱、毛利率降
+            2.4pct，拐点未现；
+          </li>
+          <li>估值无安全边际：动态 PE 约 20 倍、PB 3.1 倍，对下滑利润偏贵。</li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          「养殖景气拐点（猪/禽价修复）+ 毛利率企稳」能否在 2026H2-2027
+          让扣非利润重回增长？若能，当前 20 倍动态 PE
+          是对盈利修复的合理定价；若周期底部延长，则存在估值与盈利双杀风险。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          养殖周期底部大幅延长 + 原料成本持续高企 + 行业价格战加剧 +
+          资产负债率失控——四者叠加会同时打击盈利、现金流与估值。目前现金流仍强、负债率
+          54.6% 可控，尚未触发，但扣非 -51% 是必须盯紧的预警信号。
+        </p>
+        <div class="note">
+          数据充分性说明：本报告核心结论基于 2026
+          年半年报摘要原文与中期分红公告，可交叉验证；半年报中分品种盈利拆解、行业景气精确数据未在摘要披露，相关判断作保守处理，不输出伪精确目标价。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-25
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 海大集团 ·
+        002311
+      </footer>
+    </div>
+  </body>
+</html>
