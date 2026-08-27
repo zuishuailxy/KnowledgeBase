@@ -1,0 +1,982 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>伊利股份（600887）投资决策报告 · 2026-08-27</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>伊利股份（600887）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年半年报更新版 ｜ 生成日期：2026-08-27 ｜ 数据基准：2026 半年报 +
+          2026-08-27 行情快照
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：现金牛 / Stalwart（稳定增长）</span>
+          <span class="badge score">总分 40 / 60</span>
+        </div>
+      </div>
+
+      <!-- 1. 结论 -->
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict buy">
+          <span class="tag">BUY ZONE · 可小步分批</span>
+          2026 半年报表观归母 -20%，主因是一次性计提 24.61
+          亿资产减值（澳优奶粉商誉 15.47 亿 + 存货跌价 9.08
+          亿）；剔除后经营层面归母约 76 亿、同比 +5.5%， 基本面稳健。现价 26.23
+          元对应 TTM PE 16.4 倍、股息率 5.26%，处买入区间。
+        </div>
+        <p>
+          <strong>利润下滑是一次性"财务出清"，不是经营恶化</strong>：2026H1 营收
+          644.9 亿（+4.1%），表观归母 57.59
+          亿（-20.0%）。董事会同步公告计提资产减值合计 24.61
+          亿元（非现金）——澳优乳业主动推进奶粉渠道结构优化与库存去化，导致其经营
+          亏损并出现商誉减值迹象，公司据此对澳优资产组计提商誉减值 15.47
+          亿、存货跌价 9.08 亿。剔除减值（税后约 18.5 亿）后，归母约 76 亿，同比
+          2025H1 的 72.0 亿 实际为 +5.5%。
+        </p>
+        <p>
+          <strong>股东回报厚</strong>：2025 年度分红每股 1.38 元（10 派 9 + 中期
+          10 派 4.8）， 按现价股息率约 5.26%；同时公布 10-20
+          亿元回购并<b>全部注销</b>（价格上限 39.53 元），与高分红形成双重托底。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>无持仓。现价 26.23 元处于买点区间（25-28
+          元）上部， 可小步分批建仓；25 元下方为更好的买点，23-25
+          元为强买区。核心跟踪：澳优出清 进度、负债率（63.6% 偏高）、H2
+          扣非能否回正。
+        </p>
+      </div>
+
+      <!-- 2. 关键指标速览 -->
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">26.23 元 / 1659 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">TTM PE / PB</div>
+            <div class="num">16.4 / 3.09</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">TTM 股息率</div>
+            <div class="num up">约 5.26%</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 归母</div>
+            <div class="num down">57.59 亿（-20%，含减值）</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目（2026H1）</th>
+            <th class="num">本期</th>
+            <th class="num">上期(2025H1)</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入</td>
+            <td class="num">644.90 亿</td>
+            <td class="num">619.30 亿</td>
+            <td class="num up">+4.1%</td>
+          </tr>
+          <tr>
+            <td>归母净利润（表观）</td>
+            <td class="num">57.59 亿</td>
+            <td class="num">72.00 亿</td>
+            <td class="num down">-20.0%</td>
+          </tr>
+          <tr>
+            <td>归母净利润（剔除减值）</td>
+            <td class="num">约 76 亿</td>
+            <td class="num">72.00 亿</td>
+            <td class="num up">+5.5%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num">55.96 亿</td>
+            <td class="num">70.16 亿</td>
+            <td class="num down">-20.2%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">36.43%</td>
+            <td class="num">36.05%</td>
+            <td class="num up">+0.38pct</td>
+          </tr>
+          <tr>
+            <td>经营现金流净额</td>
+            <td class="num up">97.59 亿</td>
+            <td class="num">—</td>
+            <td class="num up">健康</td>
+          </tr>
+        </table>
+        <p class="muted">
+          数据来源：东方财富 F10 财务指标接口 + 新浪利润表/现金流量表（2026
+          半年报）
+        </p>
+      </div>
+
+      <!-- 3. 数据来源与可信度 -->
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：2026
+            年半年度报告（2026-08-27）、关于计提资产减值准备的公告（临
+            2026-056）、半年度经营数据公告（临 2026-057）、回购股份方案公告（临
+            2026-059）
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10 财务指标接口 +
+            新浪利润表/资产负债表/现金流量表（单位万元）
+          </li>
+          <li>
+            <strong>行情与估值</strong>：腾讯行情快照 + 东方财富日 K
+            线接口（2026-08-27）
+          </li>
+          <li>
+            <strong>分红与股东</strong>：东方财富 RPT_SHAREBONUS_DET 分红接口
+          </li>
+          <li><strong>研报观点</strong>：未引用（无一手研报原文）</li>
+        </ul>
+        <div class="note">
+          可信度说明：营收/归母/扣非/减值等核心数据来自公司公告原文与东财
+          F10、新浪三表，可交叉验证； "剔除减值后归母"为按 25%
+          所得税率推算口径（公司未直接披露），用于还原经营层面趋势； 2026E
+          正常化盈利为推算口径，不输出伪精确目标价。
+        </div>
+      </div>
+
+      <!-- 4. 硬阈值筛选 -->
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">25.59%</td>
+            <td class="num">19.23%</td>
+            <td class="num">20.20%</td>
+            <td class="num">15.81%</td>
+            <td class="num up">20.87%</td>
+            <td class="num">20.34%</td>
+          </tr>
+        </table>
+        <p class="small">
+          <strong>通过</strong>。近 5 年全部 ≥15%，均值 20.34%；2026H1 累计
+          10.09% （年化约 20%），盈利能力延续高质量。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          <strong>通过</strong>。每股经营现金流 2021-2025 为
+          2.43/2.10/2.87/3.42/2.27 元， 2026H1 经营现金流 97.59 亿（销售收现
+          639.45 亿、收现比 0.99），持续强劲为正。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          <strong>通过</strong>。2025 年度每股分红 1.38 元（10 派 9 + 中期 10 派
+          4.8）， 分红率约 75%，远超 25% 标准；连续多年高分红。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          <strong>未通过</strong>。2026-06-30 负债率 63.56%（2021-2025 为
+          52.15%→61.51%， 持续攀升）。货币资金 166.17 亿，但短期借款高达 646.77
+          亿（短贷滚动规模巨大，
+          依赖供应链占款与发债），负债结构偏高是主要瑕疵。
+        </p>
+        <div class="warn-box">
+          <strong>硬阈值总判断：3/4 通过</strong
+          >。ROE、FCF、分红率达标；仅资产负债率 （63.6%）略超 60%
+          红线，需持续跟踪负债结构与有息负债规模。
+        </div>
+      </div>
+
+      <!-- 5. 基本面研究 -->
+      <div class="card">
+        <h2>🥛 基本面研究</h2>
+        <h3>公司定位与主营（2026H1 分产品）</h3>
+        <table>
+          <tr>
+            <th>产品板块</th>
+            <th class="num">收入(亿)</th>
+            <th class="num">占比</th>
+          </tr>
+          <tr>
+            <td>液体乳（主营核心）</td>
+            <td class="num">365.90</td>
+            <td class="num">57.4%</td>
+          </tr>
+          <tr>
+            <td>奶粉及奶制品（含澳优）</td>
+            <td class="num">168.45</td>
+            <td class="num">26.4%</td>
+          </tr>
+          <tr>
+            <td>冷饮产品</td>
+            <td class="num">90.73</td>
+            <td class="num">14.2%</td>
+          </tr>
+          <tr>
+            <td>其他</td>
+            <td class="num">12.66</td>
+            <td class="num">2.0%</td>
+          </tr>
+        </table>
+        <p class="small">
+          结构要点：液体乳是基本盘（57%），奶粉板块（26%，含澳优）是本次减值的重灾区；
+          经销模式占比 95.3%，华南经销商数量同比减少 351
+          家（渠道调整），华北增加 112 家。
+        </p>
+        <h3>护城河</h3>
+        <ul class="small">
+          <li>
+            乳制品双寡头之一，液体乳市占率领先，品牌 +
+            全国冷链渠道网络构成强护城河；
+          </li>
+          <li>
+            ROE 长期 20% 上下（2017-2025 多数年份
+            ≥20%），高毛利高周转的成熟现金牛；
+          </li>
+          <li>
+            高分红（分红率 75%）+ 现金流强（每股经营现金流 2-3
+            元），自由现金流可持续。
+          </li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>
+            公司无控股股东、无实际控制人；持股 5% 以上股东呼和浩特投资承诺未来
+            3-6 个月无减持计划；
+          </li>
+          <li>
+            董事会同步通过 10-20 亿回购注销方案（价格上限 39.53
+            元），体现对股东回报的重视；
+          </li>
+          <li>需跟踪：澳优减值的后续出清进度、经营层面对渠道库存的管控。</li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          归类：<strong>成熟现金牛 / Stalwart（稳定增长）</strong
+          >。营收增速已放缓至个位数 （2023 年峰值 1261.8 亿，2024-2025 回落至
+          1157-1159 亿），但盈利质量、现金流与 分红稳定，属于"赚回报率钱 +
+          赚分红钱"的现金牛，而非高成长标的。估值主锚应用股息率。
+        </p>
+      </div>
+
+      <!-- 6. 财务质量分析 -->
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>2026H1：一次性减值出清 vs 经营基本盘稳健</h3>
+        <div class="warn-box">
+          <strong>⚠️ 计提资产减值合计 24.61 亿（非现金）</strong
+          >：澳优乳业商誉减值 15.47 亿 + 存货跌价 9.08 亿 + 信用/固资 0.07 亿。
+          直接导致 Q2 单季归母仅 3.64 亿（2025Q2 为 23.26 亿）。
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">变化</th>
+          </tr>
+          <tr>
+            <td>营收</td>
+            <td class="num">644.90 亿</td>
+            <td class="num">619.30 亿</td>
+            <td class="num up">+4.1%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">36.43%</td>
+            <td class="num">36.05%</td>
+            <td class="num up">+0.38pct</td>
+          </tr>
+          <tr>
+            <td>归母（表观）</td>
+            <td class="num down">57.59 亿</td>
+            <td class="num">72.00 亿</td>
+            <td class="num down">-20.0%</td>
+          </tr>
+          <tr>
+            <td>归母（剔除减值）</td>
+            <td class="num up">约 76 亿</td>
+            <td class="num">72.00 亿</td>
+            <td class="num up">+5.5%</td>
+          </tr>
+          <tr>
+            <td>经营现金流净额</td>
+            <td class="num up">97.59 亿</td>
+            <td class="num">—</td>
+            <td class="num up">健康</td>
+          </tr>
+        </table>
+        <p class="small">
+          原因拆解：Q2 归母崩塌完全由减值驱动（Q2 营业利润 10.86 亿 -
+          减值后所剩无几），且 Q2 实际税率高达 91%（澳优子公司亏损不可抵扣 +
+          递延所得税调整），少数股东损益 Q2 亦转亏 2.80
+          亿（澳优等并表子公司亏损）。剔除一次性因素后，液体乳基本盘 +
+          冷饮旺季支撑营收 温和增长，经营面并未恶化。
+        </p>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li>
+            <strong>利润含金量</strong>：经营现金流 97.59 亿 &gt; 表观归母 57.59
+            亿，现金流质量优秀，减值不影响现金流；
+          </li>
+          <li>
+            <strong>资产负债表</strong>：货币资金 166.17 亿；应收账款仅 40.78
+            亿（占营收低）、存货 95.05 亿（环比去化 8 亿）；
+          </li>
+          <li>
+            <strong>商誉</strong>：由 21.73 亿降至 6.33
+            亿，澳优包袱一次性出清，未来减值风险大幅下降；
+          </li>
+          <li>
+            <strong>杠杆</strong>：短期借款 646.77 亿（环比 +56 亿）、应付票据
+            57.98 亿，负债率 63.56% 偏高，依赖滚动短融与供应链占款。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 7. 行业与竞争格局 -->
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong>：液态奶 + 奶粉 +
+            冷饮，乳制品成熟市场，行业增速降至低个位数，竞争格局稳定（伊利 +
+            蒙牛双寡头）。
+          </li>
+          <li>
+            <strong>竞争地位</strong
+            >：液体乳龙头，全品类布局，品牌与渠道壁垒深。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：① 原奶成本回落带来毛利修复（毛利率
+            +0.38pct）；② 冷饮/奶酪等高毛利品类结构升级；③
+            澳优出清后奶粉板块轻装上阵；④ 高分红 + 回购提升股东回报。
+          </li>
+          <li>
+            <strong>风险</strong
+            >：原奶价格波动、奶粉行业竞争与渠道去库存、消费复苏疲弱、负债率上行。
+          </li>
+        </ul>
+        <p class="small">
+          结论：行业无爆发性故事，但格局稳定、龙头盈利确定性强，是典型的"格局稳定的现金牛行业里的
+          第一名"，赚效率钱和回报率钱；估值上限天然低于成长行业，主锚看股息率。
+        </p>
+      </div>
+
+      <!-- 8. 估值与安全边际 -->
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值（2026-08-27，现价 26.23 元，市值 1659 亿）</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">数值</th>
+            <th class="num">对应估值</th>
+          </tr>
+          <tr>
+            <td>2025A 静态 PE（EPS 1.83）</td>
+            <td class="num">14.3 倍</td>
+            <td class="num">便宜</td>
+          </tr>
+          <tr>
+            <td>TTM PE（TTM 归母 101.24 亿）</td>
+            <td class="num">16.4 倍</td>
+            <td class="num">合理偏低</td>
+          </tr>
+          <tr>
+            <td>2026E 正常化 PE（EPS 约 1.9）</td>
+            <td class="num">约 13.8 倍</td>
+            <td class="num">便宜</td>
+          </tr>
+          <tr>
+            <td>PB（归母权益约 537 亿）</td>
+            <td class="num">3.09 倍</td>
+            <td class="num">中性</td>
+          </tr>
+          <tr>
+            <td>TTM 股息率（每股 1.38 元）</td>
+            <td class="num">5.26%</td>
+            <td class="num up">高（现金牛锚）</td>
+          </tr>
+        </table>
+        <h3>估值锚交叉验证（现金牛/Stalwart 框架）</h3>
+        <table>
+          <tr>
+            <th>估值锚</th>
+            <th class="num">合理区间（元）</th>
+          </tr>
+          <tr>
+            <td>股息率 5.5% 反推（1.38÷0.055）</td>
+            <td class="num">25.1</td>
+          </tr>
+          <tr>
+            <td>股息率 5.0% 反推（1.38÷0.05）</td>
+            <td class="num">27.6</td>
+          </tr>
+          <tr>
+            <td>股息率 4.5% 反推（1.38÷0.045）</td>
+            <td class="num">30.7</td>
+          </tr>
+          <tr>
+            <td>2026E EPS 1.9 × 15-18 倍（Stalwart 合理倍数）</td>
+            <td class="num">28.5 - 34.2</td>
+          </tr>
+        </table>
+        <p>
+          <strong
+            >合理价值区间：约 28 - 34 元；现价 26.23 元，低于区间下沿约
+            6-7%，安全边际中等偏正。</strong
+          >
+        </p>
+        <div class="note">
+          估值判断：现金牛用股息率做主锚。现价 26.23 对应 TTM 股息率
+          5.26%，已高于多数 现金牛 4.5%-5% 的合理水平（即价格偏便宜）；PE
+          锚（2026E 正常化约 13.8 倍）处于 历史低位（伊利历史 PE 中枢 20-25
+          倍）。两锚交叉验证均指向现价有安全边际，且 10-20
+          亿回购注销提供额外托底。主要压制项是负债率偏高与澳优减值的不确定性。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          中等偏正。股息率 5.26% + PE 历史低位 + 回购注销托底，向下空间有限（25
+          元以下 股息率升破
+          5.5%，强支撑）；向上需盈利与估值修复双击，取决于澳优出清与负债率改善。
+        </p>
+      </div>
+
+      <!-- 9. 六维评分 -->
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">乳业双寡头、液体乳龙头，品牌渠道护城河深</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">
+              ROE 20%、现金流强、高分红；但负债率 63.6% 偏高
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">收入低个位数增长，靠分红回报；澳优出清中</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">现金牛故事平淡但确定性高，出清+回购是加分项</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">TTM PE 16.4、股息率 5.26%、现价低于合理价值</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">负债率上行、澳优拖累、消费复苏弱、原奶波动</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">40</span> / 60</div>
+      </div>
+
+      <!-- 10. 风险清单 -->
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>负债率偏高（核心）</strong>：63.56% 且持续上行，短期借款
+            646.77 亿依赖滚动续作，若信用环境收紧或利率上行将侵蚀利润；
+          </li>
+          <li>
+            <strong>澳优奶粉拖累</strong>：本次一次性减值 24.61
+            亿出清，但澳优经营仍亏损、渠道去库存未完成，H2 或仍拖累并表利润；
+          </li>
+          <li>
+            <strong>Q2 实际税率异常</strong>：Q2 税率高达
+            91%，涉及子公司亏损与递延税调整，若持续将压制净利率；
+          </li>
+          <li>
+            <strong>消费复苏疲弱</strong
+            >：液态奶需求低个位数增长，价格竞争与促销可能压制毛利弹性；
+          </li>
+          <li>
+            <strong>原奶/原材料波动</strong
+            >：原奶价格与包材成本回升将逆转当前毛利修复（+0.38pct）；
+          </li>
+          <li>
+            <strong>分红可持续性</strong
+            >：高分红率（75%）依赖现金流稳定，若利润持续受减值/税负拖累，分红率或承压。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 11. 建仓参考（无持仓） -->
+      <div class="card">
+        <h2>💼 建仓参考（当前无持仓）</h2>
+        <p class="muted">
+          持仓事实源：stocks/my/holder.json（未包含伊利股份）。以下为观察清单而非操作指令。
+        </p>
+        <h3>建仓点位参考（2026E 正常化归母约 120 亿、EPS 约 1.9 元）</h3>
+        <table>
+          <tr>
+            <th>区间</th>
+            <th class="num">价格</th>
+            <th>估值锚</th>
+          </tr>
+          <tr>
+            <td class="up">强买点 Strong Buy</td>
+            <td class="num">23 - 25 元</td>
+            <td>2026E EPS×12-13 倍；股息率 5.5%+（1.38÷0.055≈25.1）</td>
+          </tr>
+          <tr>
+            <td>买点 Buy Zone</td>
+            <td class="num">25 - 28 元</td>
+            <td>2026E EPS×13-15 倍；股息率 4.9%-5.5%</td>
+          </tr>
+          <tr>
+            <td>合理价值 Fair Value</td>
+            <td class="num">28 - 34 元</td>
+            <td>
+              2026E EPS×15-18 倍（Stalwart 合理倍数）＋股息率 4.0%-4.9%
+              反推交叉验证
+            </td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num hl">26.23 元</td>
+            <td>TTM PE 16.4、股息率 5.26%，买点区上部，安全边际中等偏正</td>
+          </tr>
+          <tr>
+            <td class="down">估值卖点（减仓）</td>
+            <td class="num">42 - 47 元</td>
+            <td>
+              2026E PE 22-25 倍（历史中枢）；股息率跌破 3.3%（1.38÷0.033）
+            </td>
+          </tr>
+          <tr>
+            <td class="down">无条件卖点</td>
+            <td class="num">不限价格</td>
+            <td>
+              液体乳份额/毛利率持续大幅下滑、澳优再度大额减值、分红大幅削减、负债率失控
+            </td>
+          </tr>
+        </table>
+        <div class="note">
+          建仓锚定 2026E 正常化归母（H1 剔除减值约 76 亿 + H2 参考约 45 亿 ≈ 120
+          亿、EPS 约 1.9
+          元），因表观利润含一次性减值必须用正常化口径；合理倍数按"成熟现金牛/Stalwart
+          + 高质量（ROE 20%、高分红、现金流强）但负债率偏高打折"确定为 15-18
+          倍，并用股息率 4%-5.5% 反推交叉验证；卖点用高估锚（股息率跌破
+          3.3%、历史 PE 中枢）而非机械乘数。
+        </div>
+        <h3>操作建议</h3>
+        <ul class="small">
+          <li>
+            <strong>当前（26.23 元）</strong>：可小步分批建仓（首仓约计划仓位的
+            1/3-1/2）；现价已处买点区，股息率 5.26% 提供底仓收益；
+          </li>
+          <li>
+            <strong>25 元下方</strong>：加大至计划仓位；<strong>23-25 元</strong
+            >：强买区，可满额；
+          </li>
+          <li>
+            <strong>28-34 元合理价值</strong>：持有，不加不减；<strong
+              >42 元以上</strong
+            >：分批兑现；
+          </li>
+          <li>
+            <strong>触发上修</strong>：三季报扣非回正 + 澳优减亏 + 负债率回落 →
+            合理倍数上修，买点上移；
+          </li>
+          <li>
+            <strong>跟踪项</strong>：澳优出清进度、H2
+            实际税率、负债率与有息负债、原奶价格、分红与回购实施。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 12. 总结 -->
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p><strong>结论：BUY ZONE · 可小步分批建仓。总分 40/60。</strong></p>
+        <h3>3 个持有的理由</h3>
+        <ol class="small">
+          <li>
+            ROE 连续 5 年 ≥15%（均值 20.34%），现金流强劲（H1 经营现金流 97.59
+            亿），高质量现金牛底色未变；
+          </li>
+          <li>
+            利润下滑是一次性出清（减值 24.61
+            亿，非现金、不伤现金流），剔除后经营面 +5.5%，且商誉从 21.73 亿降至
+            6.33 亿、未来包袱大减；
+          </li>
+          <li>
+            估值有吸引力：TTM PE 16.4 倍历史低位 + 股息率 5.26% + 10-20
+            亿回购注销托底。
+          </li>
+        </ol>
+        <h3>3 个不重仓的理由</h3>
+        <ol class="small">
+          <li>
+            负债率 63.56% 且上行，短贷 647 亿依赖滚动，财务结构是最大瑕疵；
+          </li>
+          <li>澳优奶粉仍亏损、渠道去库存未完成，H2 并表利润或继续承压；</li>
+          <li>
+            成长性不足（收入低个位数增长），收益更多依赖分红而非增长，估值弹性有限。
+          </li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          澳优一次性出清后，奶粉板块能否在 2026H2-2027
+          实现减亏/扭亏、负债率能否企稳回落？
+          若能，盈利与估值将修复；若澳优再度恶化或负债率失控，则压制逻辑证伪。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          负债率失控（短贷滚动断裂）+ 澳优再度大额减值 +
+          分红大幅削减三者叠加，将同时打击
+          资产负债表、利润与股东回报叙事——这是持有伊利需要持续监控的致命组合。
+        </p>
+        <div class="note">
+          数据充分性说明：基于 2026
+          半年报原文、计提减值公告、经营数据公告与回购公告（可交叉
+          验证）；"剔除减值归母"与 2026E
+          正常化盈利为推算口径并注明，不输出伪精确目标价；
+          未引用具体研报一致预期。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-27
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 伊利股份 ·
+        600887
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,973 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>蒙牛乳业（02319.HK）投资决策报告 · 2026-08-27</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>蒙牛乳业（02319.HK）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年中期业绩更新版 ｜ 生成日期：2026-08-27 ｜ 数据基准：2026
+          中期业绩 + 2026-08-27 港股行情快照
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：Stalwart（稳定增长）/ 修复期</span>
+          <span class="badge score">总分 36 / 60</span>
+        </div>
+      </div>
+
+      <!-- 1. 结论 -->
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">WATCHLIST · 修复期观察</span>
+          2026H1 营收 +7.8%、归母
+          +15.9%，营收企稳、利润修复方向正确；但毛利率下滑 0.99pct、盈利仍远低于
+          2021-2023 水平，TTM 盈利低位使 PE 虚高，今日股价大跌 5.67%
+          反映市场担忧。结论：观察，等盈利持续验证。
+        </div>
+        <p>
+          <strong>财报方向正确但强度不足</strong>：2026H1 营收 447.9
+          亿（+7.8%），归母 23.7 亿（+15.9%），毛利率 40.76%（同比
+          -0.99pct）。营收在 2024-2025 连续两年下滑后首次 回升，利润从 2024
+          年的崩塌（归母 1.0 亿）和 2025 年的修复（15.5 亿）继续上行——但 2026H1
+          的 23.7 亿仍明显低于 2021-2023 年同期的 30-37 亿，且 2025H2
+          蒙牛曾单季亏损 5 亿，说明盈利修复尚未稳固。
+        </p>
+        <p>
+          <strong>为何今天大跌 5.67%</strong>：中报"归母
+          +15.9%"看似不错，但市场关注毛利率 同比下滑（40.76% vs
+          41.75%，促销加大/成本扰动）、H2 指引的不确定性，以及 TTM 盈利
+          仍处低位（PE 虚高）——今日从 18.70 港元跌至 17.64 港元。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>无持仓。现价 17.64
+          港元处于合理价值区间（17-22 港元） 下沿，2026E 修复 PE 约 15.7
+          倍不算贵，但盈利恢复不确定 + 股息率低 + 毛利率下滑，
+          建议观察而非立即买入；15 港元下方为更好的买点。
+        </p>
+      </div>
+
+      <!-- 2. 关键指标速览 -->
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">17.64 港元 / 683 亿港元</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">TTM PE / PB</div>
+            <div class="num">约 34 / 约 1.6</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 归母</div>
+            <div class="num up">23.7 亿（+15.9%）</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 毛利率</div>
+            <div class="num down">40.76%（-0.99pct）</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目（2026H1，人民币）</th>
+            <th class="num">本期</th>
+            <th class="num">上期(2025H1)</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入</td>
+            <td class="num">447.90 亿</td>
+            <td class="num">415.70 亿</td>
+            <td class="num up">+7.8%</td>
+          </tr>
+          <tr>
+            <td>归母净利润</td>
+            <td class="num">23.70 亿</td>
+            <td class="num">20.50 亿</td>
+            <td class="num up">+15.9%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">40.76%</td>
+            <td class="num">41.75%</td>
+            <td class="num down">-0.99pct</td>
+          </tr>
+          <tr>
+            <td>净利率</td>
+            <td class="num">5.58%</td>
+            <td class="num">约 5.0%</td>
+            <td class="num up">+0.6pct</td>
+          </tr>
+          <tr>
+            <td>ROE(报告期累计)</td>
+            <td class="num">5.84%</td>
+            <td class="num">4.93%</td>
+            <td class="num up">+0.91pct</td>
+          </tr>
+          <tr>
+            <td>基本 EPS</td>
+            <td class="num">0.612 元</td>
+            <td class="num">0.523 元</td>
+            <td class="num up">+17.0%</td>
+          </tr>
+        </table>
+        <p class="muted">
+          数据来源：东方财富港股 F10
+          主要财务指标接口（币种人民币，国际会计准则）
+        </p>
+      </div>
+
+      <!-- 3. 数据来源与可信度 -->
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：2026 年中期业绩公告（2026-08-27 披露）
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富港股
+            F10（RPT_HKF10_FN_MAININDICATOR / INCOME / BALANCE，币种人民币）
+          </li>
+          <li>
+            <strong>行情与估值</strong>：腾讯港股行情 + 东方财富日 K
+            线接口（2026-08-27，股价为港元）
+          </li>
+          <li>
+            <strong>分红与股东</strong
+            >：港股派息记录暂未获取到接口数据，股息部分为估算口径，需以公司公告为准
+          </li>
+          <li><strong>研报观点</strong>：未引用（无一手研报原文）</li>
+        </ul>
+        <div class="note">
+          可信度说明：营收/归母/毛利率/ROE/负债率等核心财务数据来自东财港股
+          F10，可交叉验证； 2026 全年盈利为推算口径（H2 弱于 H1
+          的季节性假设）；股息率因接口不可用为估算， 不输出伪精确目标价。
+        </div>
+      </div>
+
+      <!-- 4. 硬阈值筛选 -->
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">14.40%</td>
+            <td class="num">13.79%</td>
+            <td class="num">11.39%</td>
+            <td class="num down">0.24%</td>
+            <td class="num down">3.77%</td>
+            <td class="num">8.72%</td>
+          </tr>
+        </table>
+        <p class="small">
+          <strong>不通过</strong>。近 5 年无一年 ≥15%，2024-2025 年因利润崩塌
+          ROE 骤降至 0.24%/3.77%。2026H1 累计 5.84%（年化约
+          12%），修复中但远未达标。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          <strong>通过</strong>。经营现金流 2021-2025 年分别为
+          75.4/83.3/83.5/83.3/87.5 亿元， 持续稳定在 80 亿+
+          量级，资本开支温和，自由现金流长期为正。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          <strong>边缘/不通过</strong>。2022-2023 年度分红率约 40%，但 2024
+          年利润崩塌后 2024 年度末期息仅每股 0.069 元（分红大幅收缩）；2025
+          年度末期息需以年报为准。 按现价估算股息率不足 1%，现金回报弱。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          <strong>通过</strong>。2026-06-30 负债率 53.44%；货币资金+理财约 259.8
+          亿，有息负债 约 307 亿（短贷 203.9 + 长贷 103.4），净有息负债约 47
+          亿，资产负债表健康。
+        </p>
+        <div class="warn-box">
+          <strong>硬阈值总判断：2/4 通过</strong>。现金流、负债率达标；ROE
+          不达标（2024-2025
+          崩塌），分红率边缘。公司处于盈利修复期，硬指标尚未回到高质量标准。
+        </div>
+      </div>
+
+      <!-- 5. 基本面研究 -->
+      <div class="card">
+        <h2>🥛 基本面研究</h2>
+        <h3>公司定位与主营</h3>
+        <table>
+          <tr>
+            <th>板块（2025 年报）</th>
+            <th class="num">营收(亿)</th>
+            <th class="num">占比</th>
+            <th class="num">毛利率</th>
+          </tr>
+          <tr>
+            <td>液态奶（特仑苏等核心）</td>
+            <td class="num">约 576</td>
+            <td class="num">约 70%</td>
+            <td class="num">约 30%+</td>
+          </tr>
+          <tr>
+            <td>冰淇淋</td>
+            <td class="num">约 85</td>
+            <td class="num">约 10%</td>
+            <td class="num">—</td>
+          </tr>
+          <tr>
+            <td>奶粉及其他（含贝拉米）</td>
+            <td class="num">约 161</td>
+            <td class="num">约 20%</td>
+            <td class="num down">低（减值重灾区）</td>
+          </tr>
+        </table>
+        <p class="small">
+          结构要点：液态奶是基本盘（特仑苏高端化领先，整体毛利率 40.76%
+          高于同业伊利约 36.4%）； 奶粉板块（含贝拉米）是 2024
+          年大额减值的重灾区，2025 年起主动去库存出清。
+        </p>
+        <h3>护城河</h3>
+        <ul class="small">
+          <li>乳业双寡头之一，特仑苏等高端品牌力强，全国冷链渠道网络完善；</li>
+          <li>整体毛利率 40%+ 行业领先，体现高端化与产品结构优势；</li>
+          <li>
+            经营现金流常年 80 亿+，资产负债表稳健（负债率 53%、净有息负债仅约 47
+            亿）。
+          </li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>大股东中粮集团（约 23%）背书，治理规范；</li>
+          <li>
+            需跟踪：贝拉米/奶粉板块出清进度、对妙可蓝多等并购资产的整合与减值风险。
+          </li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          归类：<strong>Stalwart（稳定增长）中的修复期标的</strong>。历史上是稳定现金牛，
+          但 2023-2025 经历营收下滑 + 2024
+          年利润崩塌（巨额减值），当前处于盈利修复轨道。
+          估值需用修复后正常化盈利，而非波动极大的 TTM 盈利。
+        </p>
+      </div>
+
+      <!-- 6. 财务质量分析 -->
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>2026H1：营收企稳、利润修复，但毛利率回落</h3>
+        <div class="warn-box">
+          <strong>⚠️ 毛利率 41.75% → 40.76%（-0.99pct）</strong>：促销投入加大 +
+          成本扰动，高端化红利有所回吐；需关注是否侵蚀盈利修复斜率。
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">变化</th>
+          </tr>
+          <tr>
+            <td>营收</td>
+            <td class="num">447.90 亿</td>
+            <td class="num">415.70 亿</td>
+            <td class="num up">+7.8%</td>
+          </tr>
+          <tr>
+            <td>归母净利</td>
+            <td class="num">23.70 亿</td>
+            <td class="num">20.50 亿</td>
+            <td class="num up">+15.9%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">40.76%</td>
+            <td class="num">41.75%</td>
+            <td class="num down">-0.99pct</td>
+          </tr>
+          <tr>
+            <td>净利率</td>
+            <td class="num">5.58%</td>
+            <td class="num">约 5.0%</td>
+            <td class="num up">+0.6pct</td>
+          </tr>
+          <tr>
+            <td>ROE(累计)</td>
+            <td class="num">5.84%</td>
+            <td class="num">4.93%</td>
+            <td class="num up">+0.91pct</td>
+          </tr>
+          <tr>
+            <td>EPS</td>
+            <td class="num">0.612 元</td>
+            <td class="num">0.523 元</td>
+            <td class="num up">+17.0%</td>
+          </tr>
+        </table>
+        <p class="small">
+          原因拆解：营收企稳（+7.8%）是积极信号，结束了 2024-2025
+          的连续下滑；归母 +15.9% 受益于营收回升 + 基数修复（2025H1
+          尚有减值拖累）。但毛利率回落反映行业竞争与促销 压力，且 2025H2
+          蒙牛曾单季亏损 5 亿，盈利修复的持续性仍需验证。
+        </p>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li>
+            <strong>盈利波动大</strong>：2024 年归母仅 1.0 亿（大额减值）、2025
+            年 15.5 亿、2026H1 23.7 亿，TTM 盈利仍处低位（约 18.7 亿）；
+          </li>
+          <li>
+            <strong>资产负债表健康</strong>：货币资金+理财 259.8 亿，存货 41.5
+            亿、应收仅 37.5 亿（占比低）；
+          </li>
+          <li>
+            <strong>商誉</strong>：76.4
+            亿（含贝拉米等并购资产），若奶粉业务继续恶化仍有减值风险；
+          </li>
+          <li>
+            <strong>杠杆</strong>：短贷 203.9 亿 + 长贷 103.4 亿，净有息负债约
+            47 亿，负债率 53.4%，可控。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 7. 行业与竞争格局 -->
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong>：液态奶 + 奶粉 + 冰淇淋 +
+            奶酪，乳制品成熟市场，行业低个位数增长，双寡头格局稳定。
+          </li>
+          <li>
+            <strong>竞争地位</strong
+            >：与伊利并列为乳业双雄，高端液态奶（特仑苏）份额领先，毛利率高于伊利。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：① 高端化 + 产品结构升级；②
+            原奶成本回落；③ 奶粉/奶酪板块出清后恢复；④ 冰淇淋与海外业务。
+          </li>
+          <li>
+            <strong>风险</strong
+            >：与伊利贴身竞争、促销拖累毛利率、奶粉（贝拉米）减值、原奶价格波动、港股流动性。
+          </li>
+        </ul>
+        <p class="small">
+          结论：双寡头格局下公司盈利确定性高于一般消费股，但 2024
+          年减值暴露了并购资产整合风险；
+          当前处于"营收企稳、利润修复、但毛利率回落"的中间状态，估值取决于修复能否延续。
+        </p>
+      </div>
+
+      <!-- 8. 估值与安全边际 -->
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>
+          当前估值（2026-08-27，现价 17.64 港元，市值 683 亿港元≈628 亿人民币）
+        </h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">数值</th>
+            <th class="num">对应估值</th>
+          </tr>
+          <tr>
+            <td>TTM PE（TTM 归母约 18.7 亿人民币）</td>
+            <td class="num">约 34 倍</td>
+            <td class="num down">虚高（盈利低位）</td>
+          </tr>
+          <tr>
+            <td>2026E 修复 PE（全年约 40 亿，EPS 约 1.03 元）</td>
+            <td class="num">约 15.7 倍</td>
+            <td class="num">合理</td>
+          </tr>
+          <tr>
+            <td>PB（BPS 10.50 元人民币）</td>
+            <td class="num">约 1.6 倍</td>
+            <td class="num">中性偏低</td>
+          </tr>
+          <tr>
+            <td>股息率（2024 年度末期息 0.069 元）</td>
+            <td class="num down">不足 1%</td>
+            <td class="num down">低</td>
+          </tr>
+        </table>
+        <h3>
+          估值锚交叉验证（Stalwart 修复期框架，2026E EPS 约 1.03 元人民币≈1.12
+          港元）
+        </h3>
+        <table>
+          <tr>
+            <th>估值锚</th>
+            <th class="num">合理区间（港元）</th>
+          </tr>
+          <tr>
+            <td>2026E EPS×11-13 倍（修复不确定折价）</td>
+            <td class="num">12.3 - 14.6</td>
+          </tr>
+          <tr>
+            <td>2026E EPS×13-15 倍（买点）</td>
+            <td class="num">14.6 - 16.8</td>
+          </tr>
+          <tr>
+            <td>2026E EPS×15-20 倍（Stalwart 合理倍数）</td>
+            <td class="num">16.8 - 22.4</td>
+          </tr>
+          <tr>
+            <td>2026E EPS×25-28 倍（高估锚）</td>
+            <td class="num">28 - 31</td>
+          </tr>
+        </table>
+        <p>
+          <strong
+            >合理价值区间：约 17 - 22 港元；现价 17.64
+            港元，处于区间下沿，安全边际中性。</strong
+          >
+        </p>
+        <div class="note">
+          估值判断：TTM PE 约 34 倍看似昂贵，但 TTM 盈利（18.7 亿）仍处 2024
+          年减值后的低位， 用 2026E 修复盈利（约 40 亿、EPS 1.03 元）测算，修复
+          PE 约 15.7 倍，处于合理区。 PB 约 1.6 倍（历史 2-4
+          倍）偏低。主要压制项：盈利修复不确定（2025H2 曾亏损）、
+          毛利率下滑、股息率极低、港股流动性折价。相比 A 股伊利（TTM PE
+          16.4、股息率 5.26%）， 蒙牛股息回报明显偏弱。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          中性。修复后 PE 15.7 倍不算贵、PB 1.6 倍偏低，下行空间有限（15
+          港元以下 PB 破 1.4 倍、PE 13 倍为强支撑）；但上行依赖盈利修复兑现，若
+          H2 再度亏损则估值承压。
+        </p>
+      </div>
+
+      <!-- 9. 六维评分 -->
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">
+              乳业双寡头，特仑苏高端品牌力强，毛利率 40%+ 领先
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">
+              负债率 53% 健康、现金流强；但 ROE 低、盈利波动大
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">
+              营收刚企稳 +7.8%，利润修复中但未回 2021-2023 水平
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">双寡头故事清晰，贝拉米出清后轻装上阵</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">
+              修复 PE 15.7 倍、PB 1.6 倍合理；TTM PE 虚高、股息率低
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">盈利波动、贝拉米减值、竞争促销、港股流动性</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">36</span> / 60</div>
+      </div>
+
+      <!-- 10. 风险清单 -->
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>盈利修复不持续（核心）</strong>：2024 年利润崩塌、2025H2
+            单季亏损 5 亿，若 2026H2 再度亏损，修复叙事证伪；
+          </li>
+          <li>
+            <strong>毛利率下滑</strong
+            >：与伊利竞争促销加大，高端化红利回吐（40.76% vs 41.75%）；
+          </li>
+          <li>
+            <strong>贝拉米/奶粉减值风险</strong>：商誉 76.4
+            亿，奶粉业务若继续恶化仍有减值压力；
+          </li>
+          <li>
+            <strong>TTM 盈利低位</strong>：当前 PE 34
+            倍是"假贵"，但若盈利不及预期，估值无支撑；
+          </li>
+          <li>
+            <strong>股息回报低</strong>：2024 年度末期息仅 0.069 元，股息率不足
+            1%，缺乏现金牛吸引力；
+          </li>
+          <li>
+            <strong>港股流动性</strong
+            >：港股通/外资情绪波动加大股价波动（今日单日 -5.67%）。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 11. 建仓参考（无持仓） -->
+      <div class="card">
+        <h2>💼 建仓参考（当前无持仓）</h2>
+        <p class="muted">
+          持仓事实源：stocks/my/holder.json（未包含蒙牛乳业）。以下为观察清单而非操作指令。股价单位为港元。
+        </p>
+        <h3>
+          建仓点位参考（2026E 正常化归母约 40 亿、EPS 约 1.03 元人民币≈1.12
+          港元）
+        </h3>
+        <table>
+          <tr>
+            <th>区间</th>
+            <th class="num">价格(港元)</th>
+            <th>估值锚</th>
+          </tr>
+          <tr>
+            <td class="up">强买点 Strong Buy</td>
+            <td class="num">12 - 15 元</td>
+            <td>2026E EPS×11-13 倍（修复不确定折价）；PB 破 1.4 倍</td>
+          </tr>
+          <tr>
+            <td>买点 Buy Zone</td>
+            <td class="num">15 - 17 元</td>
+            <td>2026E EPS×13-15 倍（修复验证后）</td>
+          </tr>
+          <tr>
+            <td>合理价值 Fair Value</td>
+            <td class="num">17 - 22 元</td>
+            <td>2026E EPS×15-20 倍（Stalwart 合理倍数，盈利修复兑现前提）</td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num hl">17.64 元</td>
+            <td>2026E PE 约 15.7 倍，合理区下沿，安全边际中性</td>
+          </tr>
+          <tr>
+            <td class="down">估值卖点（减仓）</td>
+            <td class="num">28 - 31 元</td>
+            <td>2026E PE 25-28 倍（高估锚，盈利修复充分后）</td>
+          </tr>
+          <tr>
+            <td class="down">无条件卖点</td>
+            <td class="num">不限价格</td>
+            <td>
+              盈利再度大幅恶化 / 贝拉米再度大额减值 /
+              液态奶份额与毛利率持续大幅下滑
+            </td>
+          </tr>
+        </table>
+        <div class="note">
+          建仓锚定 2026E 正常化归母（H1 23.7 亿 + H2 弱于 H1 假设约 16 亿 ≈ 40
+          亿、EPS 1.03 元）， 因 TTM 盈利受 2024
+          减值影响失真必须用修复口径；合理倍数按"Stalwart + 双寡头格局 +
+          毛利率领先，但盈利波动大 + 股息率低"确定为 15-20 倍；卖点用高估锚（PE
+          25-28 倍）而非 机械乘数。注意：H2 通常弱于 H1（2025H2 曾亏损），2026E
+          存在下修风险。
+        </div>
+        <h3>操作建议</h3>
+        <ul class="small">
+          <li>
+            <strong>当前（17.64 港元）</strong
+            >：观察为主，不急于建仓——盈利修复未充分验证、毛利率下滑、股息率低；
+          </li>
+          <li>
+            <strong>15-17 港元买点</strong>：若三季报确认盈利修复延续（H2
+            不亏损），可开始小步建仓；
+          </li>
+          <li>
+            <strong>12-15 港元强买区</strong>：加大（PB 1.4
+            倍以下，安全边际充分）；
+          </li>
+          <li>
+            <strong>触发上修</strong>：H2 业绩扭亏 + 毛利率企稳回升 + 贝拉米减亏
+            → 合理倍数上修；
+          </li>
+          <li>
+            <strong>对比提示</strong>：若在乳业中选择，A 股伊利（PE 16.4、股息率
+            5.26%、ROE 20%）在回报率与确定性上优于蒙牛。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 12. 总结 -->
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p><strong>结论：WATCHLIST · 修复期观察。总分 36/60。</strong></p>
+        <h3>3 个关注的理由</h3>
+        <ol class="small">
+          <li>
+            2026H1 营收 +7.8%，结束 2024-2025 连续下滑，企稳方向正确；归母
+            +15.9% 延续修复；
+          </li>
+          <li>双寡头格局 + 特仑苏高端品牌力，整体毛利率 40.76% 行业领先；</li>
+          <li>
+            资产负债表健康（负债率 53.4%、净有息负债约 47 亿、现金流 80
+            亿+/年），修复 PE 15.7 倍、PB 1.6 倍不算贵。
+          </li>
+        </ol>
+        <h3>3 个不买的理由</h3>
+        <ol class="small">
+          <li>
+            盈利修复未稳固：2024 年利润崩塌、2025H2 单季亏损，2026H1 归母 23.7
+            亿仍低于 2021-2023 同期；
+          </li>
+          <li>毛利率同比下滑 0.99pct，竞争促销压力显现，高端化红利回吐；</li>
+          <li>
+            股息率不足 1%
+            远低于伊利（5.26%），股东现金回报弱，且港股流动性折价。
+          </li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          盈利修复能否在 2026H2
+          延续（不再单季亏损）？毛利率能否企稳？贝拉米/奶粉出清何时完成？
+          这三个问题决定修复 PE 15.7 倍是"便宜"还是"陷阱"。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          2025H2 单季亏损 + 毛利率持续下滑 +
+          贝拉米再度大额减值叠加，将证伪修复叙事，TTM PE 34
+          倍的高位估值将大幅下修——这是蒙牛当前最大的下行路径。
+        </p>
+        <div class="note">
+          数据充分性说明：基于 2026 中期业绩与东财港股 F10
+          财务接口（核心数据可交叉验证）； 2026 全年盈利为推算口径（H2 弱于 H1
+          假设）；股息率为估算（接口不可用），需以公司
+          公告为准；不输出伪精确目标价。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-27
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 蒙牛乳业 ·
+        02319.HK
+      </footer>
+    </div>
+  </body>
+</html>

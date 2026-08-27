@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>三花智控（002050.SZ）投资决策报告 · 2026-08-26</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #fff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: auto;
+      }
+      .hero {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb 60%, #0ea5e9);
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: #ffffff2e;
+        border: 1px solid #ffffff59;
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px #0000000a;
+      }
+      .card h2 {
+        font-size: 18px;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+      }
+      .card h3 {
+        font-size: 15px;
+        color: var(--primary);
+        margin: 16px 0 8px;
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3 !important;
+        font-weight: 600;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      .note,
+      .warn-box,
+      .good-box {
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        padding: 4px 0 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+        table {
+          font-size: 13px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="hero">
+        <h1>三花智控（002050.SZ）完整投资决策报告</h1>
+        <div class="sub">
+          2026 中报更新版 ｜ 生成日期：2026-08-26 ｜ 数据基准：2026H1
+          正式财报、8/26 行情、中期利润分配预案
+        </div>
+        <div class="badges">
+          <span class="badge">巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          ><span class="badge">Stalwart / Fast Grower · 精密制造龙头</span
+          ><span class="badge score">WATCHLIST · 37 / 60</span>
+        </div>
+      </header>
+      <section class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">WATCHLIST · 观望，不买入</span>三花智控 2026H1
+          增长明显放缓：营收 168.99 亿元（+3.92%）、归母净利 20.44
+          亿元（-3.12%）。但扣非净利 21.47 亿元（+6.82%）、经营现金流 24.99
+          亿元（+95.98%）——主业仍有增长且现金质量好，归母下滑主要受非经常性损益拖累。
+        </div>
+        <p>
+          与旧报告（2026-04-29，44.82 元、PE
+          43.5、观望）相比，中报验证了"增长放缓"担忧：2025 年营收 +10.97%、归母
+          +31.1%，2026H1 降至 +3.92%、归母转负。股价已回落约 19% 至 36.14 元（PE
+          38.05），但对应 2026E 仍约 34-37 倍，安全边际依然不足。
+        </p>
+        <p>
+          <strong>核心矛盾：</strong>扣非（+6.82%）>
+          归母（-3.12%），说明主业盈利质量尚可，但表观利润被非经常项拖累；营收增速从双位数降至低个位数，机器人/热管理新业务的成长兑现仍需验证。
+        </p>
+        <div class="good-box">
+          <strong>建仓参考：</strong>无持仓（holder.json 未匹配）。现价 36.14
+          元不追买；26-30 元为首批建仓观察区，26
+          元以下且财报继续验证主业质量时，再考虑分批建仓。
+        </div>
+      </section>
+      <section class="card">
+        <h2>📊 关键财务指标</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">36.14 元<br />1521 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">H1 营收</div>
+            <div class="num up">168.99 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">H1 扣非净利</div>
+            <div class="num up">21.47 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">H1 经营现金流</div>
+            <div class="num up">24.99 亿</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>指标</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">同比</th>
+            <th>判断</th>
+          </tr>
+          <tr>
+            <td>营业收入</td>
+            <td class="num">168.99 亿</td>
+            <td class="num">162.63 亿</td>
+            <td class="num up">+3.92%</td>
+            <td>增速明显放缓</td>
+          </tr>
+          <tr>
+            <td>归母净利润</td>
+            <td class="num down">20.44 亿</td>
+            <td class="num">21.10 亿</td>
+            <td class="num down">-3.12%</td>
+            <td>首次转负</td>
+          </tr>
+          <tr>
+            <td>扣非净利润</td>
+            <td class="num">21.47 亿</td>
+            <td class="num">20.10 亿</td>
+            <td class="num up">+6.82%</td>
+            <td>主业仍有增长</td>
+          </tr>
+          <tr>
+            <td>经营现金流</td>
+            <td class="num">24.99 亿</td>
+            <td class="num">12.75 亿</td>
+            <td class="num up">+95.98%</td>
+            <td>现金质量大幅改善</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">28.06%</td>
+            <td class="num">约28.2%</td>
+            <td class="num down">-0.2pct</td>
+            <td>基本稳定</td>
+          </tr>
+          <tr>
+            <td>净利率</td>
+            <td class="num">12.32%</td>
+            <td class="num">约13.0%</td>
+            <td class="num down">-0.7pct</td>
+            <td>略降</td>
+          </tr>
+          <tr>
+            <td>ROE</td>
+            <td class="num down">6.25%</td>
+            <td class="num">10.39%</td>
+            <td class="num down">-4.14pct</td>
+            <td>半年口径下滑</td>
+          </tr>
+          <tr>
+            <td>资产负债率</td>
+            <td class="num">36.22%</td>
+            <td class="num">约37%</td>
+            <td class="num">基本持平</td>
+            <td>稳健</td>
+          </tr>
+          <tr>
+            <td>EPS</td>
+            <td class="num down">0.49 元</td>
+            <td class="num">0.57 元</td>
+            <td class="num down">-14.04%</td>
+            <td>摊薄影响</td>
+          </tr>
+        </table>
+        <p class="muted">
+          来源：三花智控《2026 年半年度报告》及摘要（8/26 晚间发布，公告日
+          8/27）、东方财富 F10；行情：腾讯接口，2026-08-26 16:14。
+        </p>
+      </section>
+      <section class="card">
+        <h2>🔍 中报核心变化</h2>
+        <table>
+          <tr>
+            <th>观察项</th>
+            <th>中报事实</th>
+            <th>结论</th>
+          </tr>
+          <tr>
+            <td>收入</td>
+            <td>H1 +3.92%（2025 全年 +10.97%）</td>
+            <td class="down">增速明显放缓</td>
+          </tr>
+          <tr>
+            <td>归母 vs 扣非</td>
+            <td>归母 -3.12%，扣非 +6.82%</td>
+            <td>非经常项拖累表观利润</td>
+          </tr>
+          <tr>
+            <td>现金流</td>
+            <td>经营现金流 24.99 亿，+95.98%</td>
+            <td class="up">现金质量优秀</td>
+          </tr>
+          <tr>
+            <td>隐含 Q2</td>
+            <td>
+              营收约 91.25 亿（环比+17.4%）、归母约 11.16 亿（环比+20.4%）
+            </td>
+            <td class="up">环比改善</td>
+          </tr>
+          <tr>
+            <td>中期分红</td>
+            <td>每 10 股派 1.2 元，合计 5.03 亿（待临时股东会）</td>
+            <td>有分红，延续</td>
+          </tr>
+        </table>
+        <div class="note">
+          <strong>判断：</strong>三花不是基本面崩坏，而是"增长降档 +
+          归母被非经常项拖累"。扣非 +6.8%、现金流 +96%
+          说明主业和现金质量仍健康；但增速从双位数降至低个位数，市场此前给予的高成长溢价需要时间消化。
+        </div>
+      </section>
+      <section class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <table>
+          <tr>
+            <th>门槛</th>
+            <th>结果</th>
+            <th>判断</th>
+          </tr>
+          <tr>
+            <td>近五年 ROE</td>
+            <td>2021-2025：15.98%/21.38%/19.18%/16.77%/15.80%，全部 ≥15%</td>
+            <td class="up">通过</td>
+          </tr>
+          <tr>
+            <td>三年自由现金流</td>
+            <td>2023-2025 约 9.79/10.76/19.38 亿，均为正</td>
+            <td class="up">通过</td>
+          </tr>
+          <tr>
+            <td>分红率</td>
+            <td>2023-2025 约 37-42%；2026 中期 10 派 1.2 元</td>
+            <td class="up">通过</td>
+          </tr>
+          <tr>
+            <td>资产负债率</td>
+            <td>2026H1 36.22%，远低于 60%</td>
+            <td class="up">通过</td>
+          </tr>
+        </table>
+        <p class="small">
+          硬阈值四项全部通过——公司质量仍达标，但硬阈值不解决"估值贵"问题，也不代表增速放缓已结束。
+        </p>
+      </section>
+      <section class="card">
+        <h2>🏭 基本面与护城河</h2>
+        <ul>
+          <li>
+            <strong>业务结构：</strong>制冷空调控制部件（基本盘）+
+            汽车热管理（新能源）+ 储能温控 + 机器人执行器（成长期权），A+H
+            两地上市。
+          </li>
+          <li>
+            <strong>护城河：</strong>B
+            端制造供应链的中上偏强壁垒——长期客户认证、全球化交付、精密控制部件工程能力、规模成本优势；非消费品牌型定价权，下游大客户仍有议价能力。
+          </li>
+          <li>
+            <strong>成长逻辑：</strong
+            >新能源车热管理复杂度提升、储能温控、机器人零部件国产化构成中长期跑道；但
+            2026H1 增速降至低个位数，成长兑现速度慢于市场此前预期。
+          </li>
+          <li>
+            <strong>周期位置：</strong
+            >汽车链存在价格年降压力，制造业资本开支周期影响订单节奏。
+          </li>
+        </ul>
+        <p>
+          林奇分类为
+          <strong>Stalwart / Fast Grower 之间</strong>：传统制冷部件更像
+          Stalwart，热管理和机器人预期让市场按 Fast Grower
+          给溢价。机器人等新业务仍需订单、收入占比和利润贡献数据验证。
+        </p>
+      </section>
+      <section class="card">
+        <h2>💰 估值与安全边际</h2>
+        <p>
+          以 H1 扣非 21.47 亿元为基础，假设 H2 扣非 22-26 亿元，2026E 扣非净利约
+          43-47 亿元、对应 EPS 约 1.02-1.12 元；归母口径约 42-46 亿元、EPS 约
+          1.00-1.09 元。因增长降档（营收低个位数、归母转负），合理 PE 从旧报告的
+          28-32 倍下修至 <strong>25-30 倍</strong>。
+        </p>
+        <table>
+          <tr>
+            <th>估值项目</th>
+            <th>数值</th>
+            <th>锚定依据</th>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td>36.14 元</td>
+            <td>8/26 收盘</td>
+          </tr>
+          <tr>
+            <td>PE / PB</td>
+            <td>38.05 倍 / 4.68 倍</td>
+            <td>行情接口</td>
+          </tr>
+          <tr>
+            <td>2026E 扣非净利</td>
+            <td>43-47 亿</td>
+            <td>H1 扣非 21.47 亿 + H2 情景</td>
+          </tr>
+          <tr>
+            <td>合理 PE</td>
+            <td>25-30 倍</td>
+            <td>增长降档折价，低于旧报告 28-32 倍</td>
+          </tr>
+          <tr>
+            <td>合理价值</td>
+            <td>26-33 元</td>
+            <td>2026E 扣非 EPS × 25-30 倍</td>
+          </tr>
+          <tr>
+            <td>Fair Value</td>
+            <td>约 29 元</td>
+            <td>中性扣非 EPS × 28 倍</td>
+          </tr>
+          <tr>
+            <td>Buy Zone</td>
+            <td>26-30 元</td>
+            <td>合理价值下方约 0.85-0.95 倍</td>
+          </tr>
+          <tr>
+            <td>Strong Buy Zone</td>
+            <td>26 元以下</td>
+            <td>约 23-25 倍扣非 PE，安全边际较厚</td>
+          </tr>
+        </table>
+        <p>
+          <strong>安全边际：</strong>现价 36.14 元高于 Fair Value（约 29 元）约
+          25%，对应 2026E 扣非约 32-35 倍，仍为"好公司贵价格"。股价已从 44.82
+          回落 19%，但估值压缩尚不充分。
+        </p>
+      </section>
+      <section class="card">
+        <h2>📦 建仓参考（无持仓）</h2>
+        <table>
+          <tr>
+            <th>价格区间</th>
+            <th>动作</th>
+            <th>估值锚与依据</th>
+          </tr>
+          <tr>
+            <td>26 元以下</td>
+            <td>强买复核，可分批建仓</td>
+            <td>约 23-25 倍扣非 PE，机器人/热管理成长期权免费</td>
+          </tr>
+          <tr>
+            <td>26-30 元</td>
+            <td>首批建仓观察区</td>
+            <td>约 25-28 倍扣非 PE，合理价值下方折价</td>
+          </tr>
+          <tr class="hl">
+            <td>36.14 元</td>
+            <td>不追买，继续观察</td>
+            <td>约 32-35 倍扣非 PE，高于合理价值约 25%</td>
+          </tr>
+          <tr>
+            <td>30-34 元</td>
+            <td>小仓位试探区</td>
+            <td>接近合理价值上沿，需 Q3 财报验证增速企稳</td>
+          </tr>
+        </table>
+        <p class="small">
+          <strong>暂停建仓条件：</strong>营收增速连续低于 5%、毛利率跌破
+          27%、经营现金流显著低于净利、机器人/热管理订单明显不及预期——任一出现则下调评级。
+        </p>
+      </section>
+      <section class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">业务质量</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">精密制造龙头，客户认证与工程能力壁垒中上</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">财务强度</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">现金流+96%、负债率 36%、硬阈值全过</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">成长质量</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">营收+3.9%、归母-3.1%，增速降档</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">分类与故事</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">Stalwart/Fast Grower，机器人故事待兑现</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">估值与安全边际</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">PE 38，现价高于合理价值约 25%</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">风险（反向）</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">估值压缩、增长放缓、机器人预期兑现风险</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">37</span> / 60</div>
+      </section>
+      <section class="card">
+        <h2>⚠️ 风险与关键跟踪</h2>
+        <ul>
+          <li>
+            <strong>估值压缩：</strong>PE 38
+            倍对低个位数增长仍偏高，任何预期落空都可能触发戴维斯双杀。
+          </li>
+          <li>
+            <strong>增长放缓：</strong>营收增速从 11% 降至 3.9%，若 H2
+            不回升，高成长溢价难维持。
+          </li>
+          <li>
+            <strong>非经常项：</strong>归母低于扣非约 1
+            亿，需关注汇兑、套保等损益波动。
+          </li>
+          <li>
+            <strong>汽车链价格压力：</strong>客户年降与竞争可能侵蚀毛利率。
+          </li>
+          <li>
+            <strong>机器人预期：</strong
+            >量产节奏、订单确认和收入占比尚待验证，不能全额折现。
+          </li>
+        </ul>
+        <table>
+          <tr>
+            <th>跟踪项</th>
+            <th>升级信号</th>
+            <th>降级信号</th>
+          </tr>
+          <tr>
+            <td>收入增速</td>
+            <td>Q3 重回双位数</td>
+            <td>连续低于 5%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td>保持 28%以上</td>
+            <td>跌破 27%</td>
+          </tr>
+          <tr>
+            <td>现金流</td>
+            <td>OCF/净利保持高位</td>
+            <td>显著低于净利</td>
+          </tr>
+          <tr>
+            <td>新业务</td>
+            <td>机器人/热管理订单放量</td>
+            <td>订单持续低于预期</td>
+          </tr>
+        </table>
+      </section>
+      <section class="card">
+        <h2>🎯 最终判断</h2>
+        <p>
+          <strong
+            >三花智控仍是高质量的精密制造龙头，但中报确认了增长降档，且 36.14
+            元估值仍不便宜。结论：WATCHLIST，37/60。</strong
+          >
+        </p>
+        <h3>3 个值得关注的理由</h3>
+        <ol class="small">
+          <li>扣非净利 +6.82%、经营现金流 +95.98%，主业和现金质量依然健康。</li>
+          <li>
+            硬阈值四项全过：ROE 连续 5 年 ≥15%、FCF 为正、分红延续（中期 10 派
+            1.2 元）、负债率 36%。
+          </li>
+          <li>热管理 + 储能温控 + 机器人构成中长期成长跑道，龙头地位稳固。</li>
+        </ol>
+        <h3>3 个不买入的理由</h3>
+        <ol class="small">
+          <li>营收增速从 11% 降至 3.9%、归母转负，成长明显降档。</li>
+          <li>
+            现价对应 2026E 约 32-35 倍扣非 PE，高于合理价值约
+            25%，安全边际不足。
+          </li>
+          <li>机器人等新业务仍处预期兑现阶段，高成长溢价脆弱。</li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          <strong
+            >Q3
+            营收增速能否重回双位数？机器人/热管理新业务何时在财务上兑现（订单→收入→利润）？</strong
+          >
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          若增速持续低于 5%、毛利率跌破 27%、机器人订单长期不落地，当前 38 倍 PE
+          将向 20-25 倍传统制造估值回归，存在显著估值压缩风险。
+        </p>
+        <div class="note">
+          <strong>Data Sufficiency Check：</strong
+          >营收、净利、扣非、现金流、ROE、负债率来自 2026H1 半年报及
+          F10；中期分红来自分配预案公告。未获取分业务（制冷/热管理/机器人）收入拆分、H2
+          指引和机器人订单明细，故不输出伪精确目标价。本报告仅作个人研究记录，不构成投资建议。
+        </div>
+      </section>
+      <footer>三花智控 · 002050.SZ ｜ 数据截至 2026-08-26</footer>
+    </div>
+  </body>
+</html>

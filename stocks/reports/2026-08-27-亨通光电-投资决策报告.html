@@ -1,0 +1,1004 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>亨通光电（600487）投资决策报告 · 2026-08-27</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>亨通光电（600487）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年半年报更新版 ｜ 生成日期：2026-08-27 ｜ 数据基准：2026 半年报 +
+          2026-08-27 行情快照
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：周期股 / 景气成长混合体</span>
+          <span class="badge score">总分 32 / 60</span>
+        </div>
+      </div>
+
+      <!-- 1. 结论 -->
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">WATCHLIST · 观察不追高</span>
+          2026 半年报利润爆发（归母 +93%、扣非 +100%、毛利率 +3.2pct），但 ROE
+          与现金流硬阈值仍未达标，且现价已计入大量景气预期，估值进入高估区。
+        </div>
+        <p>
+          <strong>财报本身非常强</strong>：2026H1 营收 420.26
+          亿（+31.1%），归母净利 31.20 亿（+93.4%），扣非 31.51
+          亿（+100.6%），毛利率 16.77%（2025H1 为 13.59%，+3.2pct）；Q2 单季归母
+          20.15 亿（+90.8%），创单季历史新高。 驱动来自光通信景气（光纤涨价）+
+          海缆高毛利业务放量（毛利率 33.7%）+
+          海洋能源/海底光缆交付改善，扣非高于归母说明无一次性收益注水，主营盈利扎实。
+        </p>
+        <p>
+          <strong>但结构性问题依旧</strong>：经营现金流净额 -8.65 亿（应收 +30
+          亿、存货 +14 亿）、财务费用 14.36 亿、ROE 近 5 年均值仅
+          8.49%、分红率边缘、股息率
+          0.39%。这仍是"景气/周期驱动的利润弹性"，而非已被验证的高
+          ROE、强现金创造、高分红复利模式—— 与 2026-04-28
+          旧报告"放弃"的核心判断一致，只是盈利弹性已开始兑现。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>当前无持仓，不追高。现价 69.86
+          元高于合理价值区间 （44-54 元）上沿约
+          30%，已进入减仓/高估区；等待回调至 44-54 元合理区，且 H2
+          经营现金流转正、ROE 站稳 15% 后再评估建仓。
+        </p>
+      </div>
+
+      <!-- 2. 关键指标速览 -->
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">69.86 元 / 1723 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">TTM PE / PB</div>
+            <div class="num">41.2 / 5.11</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 归母</div>
+            <div class="num up">31.20 亿（+93%）</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 毛利率</div>
+            <div class="num up">16.77%（+3.2pct）</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目（2026H1）</th>
+            <th class="num">本期</th>
+            <th class="num">上期(2025H1)</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入</td>
+            <td class="num">420.26 亿</td>
+            <td class="num">320.49 亿</td>
+            <td class="num up">+31.1%</td>
+          </tr>
+          <tr>
+            <td>归母净利润</td>
+            <td class="num">31.20 亿</td>
+            <td class="num">16.13 亿</td>
+            <td class="num up">+93.4%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num">31.51 亿</td>
+            <td class="num">15.71 亿</td>
+            <td class="num up">+100.6%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">16.77%</td>
+            <td class="num">13.59%</td>
+            <td class="num up">+3.2pct</td>
+          </tr>
+          <tr>
+            <td>ROE(报告期累计)</td>
+            <td class="num">9.43%</td>
+            <td class="num">5.47%</td>
+            <td class="num up">+3.96pct</td>
+          </tr>
+          <tr>
+            <td>经营现金流净额</td>
+            <td class="num down">-8.65 亿</td>
+            <td class="num">—</td>
+            <td class="num down">为负</td>
+          </tr>
+        </table>
+        <p class="muted">
+          数据来源：东方财富 F10 财务指标接口 + 新浪利润表/现金流量表（2026
+          半年报）
+        </p>
+      </div>
+
+      <!-- 3. 数据来源与可信度 -->
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：2026 年半年报（2026-08 披露）、2025
+            年报、2026Q1 季报
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10 财务指标接口 +
+            新浪利润表/资产负债表/现金流量表（单位万元）
+          </li>
+          <li>
+            <strong>行情与估值</strong>：东方财富日 K 线接口（前复权）+
+            腾讯行情快照（2026-08-27）
+          </li>
+          <li>
+            <strong>分红与股东</strong>：东方财富 RPT_SHAREBONUS_DET 分红接口
+          </li>
+          <li><strong>研报观点</strong>：未引用（无一手研报原文）</li>
+        </ul>
+        <div class="note">
+          可信度说明：营收/归母/扣非/毛利率/ROE/现金流等核心数据来自东方财富 F10
+          与新浪三张报表，可交叉验证； 2026E 全年盈利为推算口径（H2
+          海缆交付旺季假设），不输出伪精确目标价。
+        </div>
+      </div>
+
+      <!-- 4. 硬阈值筛选 -->
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">7.03%</td>
+            <td class="num">7.47%</td>
+            <td class="num">8.71%</td>
+            <td class="num">10.28%</td>
+            <td class="num down">8.96%</td>
+            <td class="num">8.49%</td>
+          </tr>
+        </table>
+        <p class="small">
+          <strong>不通过</strong>。近 5 年无一年 ≥15%，均值 8.49%
+          远低于标准。2026H1 累计 ROE 9.43%（年化约 19%），改善明显，但需至少 3
+          年验证能否站稳 15%。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          <strong>不通过</strong>。2023 年 FCF -2.48 亿、2024 年 +12.28 亿、2025
+          年 -0.30 亿（近 3 年仅 1 年为正）；2026H1 经营现金流净额 -8.65
+          亿，仍为负，且应收 +30 亿、存货 +14 亿，
+          营运资金持续占用。现金流稳定性未达标。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          <strong>边缘</strong>。2025 年度 10 派 2.75 元（分红率约
+          25.3%，2026-06-29 除息），但 2024 年 20.18%、2023 年 17.24%，3
+          年均值约 21%，低于 25% 标准；按现价股息率仅 0.39%。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          <strong>通过</strong>。2026-06-30 负债率 52.39%（<60%）。但有息负债约
+          173 亿（短期借款 133.88 亿 + 长期借款 39.20 亿），货币资金 128.96 亿 +
+          交易性金融资产 4.38 亿， 净有息负债约 40 亿（不含应付票据 71
+          亿），杠杆中性偏高，财务费用半年即 14.36 亿。
+        </p>
+        <div class="warn-box">
+          <strong>硬阈值总判断：未通过</strong>。仅负债率达标；ROE、FCF
+          不达标，分红率边缘。 盈利爆发目前是周期/景气驱动，尚未转化为稳定的高
+          ROE 与自由现金流。
+        </div>
+      </div>
+
+      <!-- 5. 基本面研究 -->
+      <div class="card">
+        <h2>🔌 基本面研究</h2>
+        <h3>公司定位与主营（2025 年报构成）</h3>
+        <table>
+          <tr>
+            <th>业务板块</th>
+            <th class="num">收入(亿)</th>
+            <th class="num">占比</th>
+            <th class="num">毛利率</th>
+          </tr>
+          <tr>
+            <td>智能电网</td>
+            <td class="num">248.0</td>
+            <td class="num">37.1%</td>
+            <td class="num">13.0%</td>
+          </tr>
+          <tr>
+            <td>铜导体</td>
+            <td class="num">200.8</td>
+            <td class="num">30.0%</td>
+            <td class="num down">1.4%</td>
+          </tr>
+          <tr>
+            <td>工业与新能源智能</td>
+            <td class="num">73.1</td>
+            <td class="num">10.9%</td>
+            <td class="num">14.0%</td>
+          </tr>
+          <tr>
+            <td>海洋能源与通信</td>
+            <td class="num">57.4</td>
+            <td class="num">8.6%</td>
+            <td class="num up">33.7%</td>
+          </tr>
+          <tr>
+            <td>光通信</td>
+            <td class="num">56.1</td>
+            <td class="num">8.4%</td>
+            <td class="num up">27.5%</td>
+          </tr>
+          <tr>
+            <td>服务业及其他</td>
+            <td class="num">33.2</td>
+            <td class="num">5.0%</td>
+            <td class="num">—</td>
+          </tr>
+        </table>
+        <p class="small">
+          结构要点：高毛利的海洋能源与通信（33.7%）与光通信（27.5%）合计仅占收入
+          17%， 却是利润核心；30% 收入的铜导体毛利率仅
+          1.4%，纯走量摊薄整体毛利率。H1 毛利率 从 13.59% 升至
+          16.77%，核心驱动正是高毛利业务占比提升与光纤/海缆价格上行。
+        </p>
+        <h3>护城河</h3>
+        <ul class="small">
+          <li>
+            国内少数具备"海底光缆 + 海缆系统 +
+            海洋工程"全链能力的厂商（海洋能源与通信毛利率
+            33.7%），产能与资质稀缺；
+          </li>
+          <li>光纤光缆龙头之一，受益光纤涨价与 AI 数据中心配套需求；</li>
+          <li>
+            智能电网/能源互联成熟业务提供稳定基本盘，境外收入占比约 22%
+            分散单一市场风险。
+          </li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>
+            公开数据未见显著增持/减持异常信号，本期不展开；需跟踪套期保值（H1
+            解释经营现金流为负部分与套保保证金有关）与资本开支纪律。
+          </li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          归类：<strong>周期股 / 景气成长混合体</strong
+          >。盈利弹性主要由光通信价格上行、海缆高毛利产品
+          放量、项目交付节奏驱动，现金流滞后于利润确认——是典型的项目/订单型制造龙头特征，
+          不是稳定复利型成长股。市场正用"AI 光通信 +
+          海缆"成长逻辑重新定价，但财务证据（ROE、FCF）
+          尚未支撑切换到稳定成长估值。
+        </p>
+      </div>
+
+      <!-- 6. 财务质量分析 -->
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>2026H1：毛利率大幅回升 + 利润爆发</h3>
+        <div class="good-box">
+          <strong>✅ 扣非 31.51 亿 &gt; 归母 31.20 亿，无一次性收益注水</strong
+          >，主营盈利扎实；毛利率 13.59% → 16.77%（+3.2pct），海缆 +
+          光通信高毛利放量与光纤涨价是主因，结构改善有财务证据。
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">变化</th>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">16.77%</td>
+            <td class="num">13.59%</td>
+            <td class="num up">+3.2pct</td>
+          </tr>
+          <tr>
+            <td>归母净利</td>
+            <td class="num">31.20 亿</td>
+            <td class="num">16.13 亿</td>
+            <td class="num up">+93.4%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num">31.51 亿</td>
+            <td class="num">15.71 亿</td>
+            <td class="num up">+100.6%</td>
+          </tr>
+          <tr>
+            <td>ROE(累计)</td>
+            <td class="num">9.43%</td>
+            <td class="num">5.47%</td>
+            <td class="num up">+3.96pct</td>
+          </tr>
+          <tr>
+            <td>EPS</td>
+            <td class="num">1.29 元</td>
+            <td class="num">0.65 元</td>
+            <td class="num up">+98%</td>
+          </tr>
+        </table>
+        <p class="small">
+          原因拆解：利润爆发 = 营收 +31% × 毛利率 +3.2pct 双驱动（Q2
+          单季毛利率更高，归母 20.15 亿创新高）。但财务费用半年 14.36
+          亿侵蚀利润（高杠杆）；经营现金流 -8.65 亿，销售收现 444.86 亿（收现比
+          1.06）良好，却被"购买商品付现 416 亿 + 应收 +30 亿 + 存货 +14 亿"
+          营运资金占用拖累为净流出。
+        </p>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li>
+            <strong>利润含金量</strong>：经营现金流 -8.65 亿 vs 归母 31.20
+            亿，含金量为负，与利润表背离——景气确认收入但回款滞后，是项目/订单型公司的典型特征；
+          </li>
+          <li>
+            <strong>营运资金</strong>：应收账款 217.55 亿（较 Q1 +30 亿）、存货
+            108.54 亿（+14 亿），占用明显；
+          </li>
+          <li>
+            <strong>杠杆</strong>：短借 133.88 亿 + 长借 39.20 亿，有息负债约
+            173 亿，净有息负债约 40 亿（不含应付票据 71 亿）；
+          </li>
+          <li>
+            <strong>其他</strong>：商誉 6.19 亿（占比小），未分配利润 200.81
+            亿，归母权益 337.07 亿。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 7. 行业与竞争格局 -->
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong>：光通信（光纤光缆、AI 数据中心配套）+
+            海洋能源/海缆 + 智能电网 + 铜导体，四大板块横跨通信与电力。
+          </li>
+          <li>
+            <strong>竞争地位</strong
+            >：光纤光缆龙头之一；海洋能源与通信具备全链稀缺能力（与中天科技等竞争海缆市场）。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：① 光纤价格回升 + AI 数据中心需求；②
+            海缆（海上风电、海底光缆、海洋能源）高毛利放量；③
+            海外出海（境外收入占比约 22%）。
+          </li>
+          <li>
+            <strong>风险</strong>：光通信/海缆价格周期波动；铜价波动（铜导体 30%
+            收入、1.4% 毛利，只赚加工费）；项目交付节奏与回款周期。
+          </li>
+        </ul>
+        <p class="small">
+          结论：行业处于景气上行期（AI 算力 +
+          海上风电双轮），公司是高弹性受益标的；但盈利质量受
+          项目制确认、营运资金占用与资本密集制约，周期性明显。
+        </p>
+      </div>
+
+      <!-- 8. 估值与安全边际 -->
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值（2026-08-27，现价 69.86 元，市值 1723 亿）</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">数值</th>
+            <th class="num">对应估值</th>
+          </tr>
+          <tr>
+            <td>2025A 静态 PE（EPS 1.087）</td>
+            <td class="num">64.3 倍</td>
+            <td class="num down">偏贵</td>
+          </tr>
+          <tr>
+            <td>TTM PE（TTM 归母 41.87 亿）</td>
+            <td class="num">41.2 倍</td>
+            <td class="num">中性偏高</td>
+          </tr>
+          <tr>
+            <td>2026E 前瞻 PE（全年约 60 亿，EPS 2.43）</td>
+            <td class="num">约 28.7 倍</td>
+            <td class="num">偏高</td>
+          </tr>
+          <tr>
+            <td>PB（归母权益 337 亿）</td>
+            <td class="num">5.11 倍</td>
+            <td class="num down">偏高</td>
+          </tr>
+          <tr>
+            <td>股息率（2025 年度每股 0.275 元）</td>
+            <td class="num">0.39%</td>
+            <td class="num down">极低</td>
+          </tr>
+        </table>
+        <h3>估值锚交叉验证（周期股/景气成长框架）</h3>
+        <table>
+          <tr>
+            <th>估值锚</th>
+            <th class="num">合理区间（元）</th>
+          </tr>
+          <tr>
+            <td>2026E EPS 2.43 × 12-14 倍（周期股严格折价）</td>
+            <td class="num">29 - 34</td>
+          </tr>
+          <tr>
+            <td>2026E EPS 2.43 × 15-17 倍（景气成长折价）</td>
+            <td class="num">37 - 41</td>
+          </tr>
+          <tr>
+            <td>
+              2026E EPS 2.43 × 18-22 倍（景气成长 + 海缆稀缺，盈利质量打折）
+            </td>
+            <td class="num">44 - 54</td>
+          </tr>
+          <tr>
+            <td>2026E EPS 2.43 × 28-32 倍（PEG&gt;1.5 高估锚）</td>
+            <td class="num">68 - 78</td>
+          </tr>
+        </table>
+        <p>
+          <strong
+            >合理价值区间：44 - 54 元；现价 69.86 元，高于区间上沿约
+            30%，已进入高估区。</strong
+          >
+        </p>
+        <div class="note">
+          估值判断：市场已按"AI 光通信 +
+          海缆"成长逻辑定价。若用严格周期股正常化盈利法（归母权益 337 亿 ×
+          正常化 ROE 10% ≈ 34 亿归母），现价隐含约 50 倍正常化
+          PE，明显偏贵；用景气成长 框架（2026E EPS 2.43 × 18-22 倍，因 ROE 历史
+          8-10%、现金流为负、高杠杆而大幅折价）， 合理价值 44-54 元，现价 69.86
+          仍偏高约 30%。反向校验：现价隐含 2027 年归母需约 78-86 亿
+          （+30~43%），依赖光纤/海缆价格与订单持续高景气，较为脆弱。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          负向。现价高于合理价值上沿约 30%，TTM PE 41 倍、PB 5.1 倍、股息率
+          0.39% 无安全垫；
+          硬阈值（ROE/FCF）未过，估值却已计入大量景气预期，属"好故事、贵价格"。
+        </p>
+      </div>
+
+      <!-- 9. 六维评分 -->
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">
+              海缆全链稀缺 + 光通信龙头，但铜导体低毛利稀释
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">4/10</div>
+            <div class="bar"><div class="fill" style="width: 40%"></div></div>
+            <div class="small">
+              ROE 历史 8-10%、现金流为负、高杠杆、财务费用高
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">
+              H1 归母+93%、扣非+100%，但靠周期/景气、现金流滞后
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">AI 光通信 + 海缆 + 出海，故事清晰可验证</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">3/10</div>
+            <div class="bar"><div class="fill" style="width: 30%"></div></div>
+            <div class="small">
+              TTM PE 41、PB 5.1、股息率 0.4%，高于合理区间 30%
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">4/10</div>
+            <div class="bar"><div class="fill" style="width: 40%"></div></div>
+            <div class="small">周期价格、铜价、项目交付、高杠杆、现金流</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">32</span> / 60</div>
+      </div>
+
+      <!-- 10. 风险清单 -->
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>周期价格回落（核心）</strong
+            >：光纤/海缆价格是本轮利润爆发的核心变量，价格回落将直接侵蚀毛利率与增长；
+          </li>
+          <li>
+            <strong>现金流持续为负</strong>：H1 经营现金流 -8.65 亿、应收 +30
+            亿、存货 +14 亿，若 H2 不能转正，利润含金量存疑；
+          </li>
+          <li>
+            <strong>高杠杆与财务费用</strong>：短期借款 133.88 亿，财务费用半年
+            14.36 亿，利率上行或发债成本上升侵蚀利润；
+          </li>
+          <li>
+            <strong>铜价与原材料</strong>：铜导体占收入 30% 但毛利仅
+            1.4%，铜价波动放大收入但不贡献利润；
+          </li>
+          <li>
+            <strong>项目制交付节奏</strong
+            >：海缆订单确认时点造成单季利润大幅波动，2026H1 的强势未必线性外推；
+          </li>
+          <li>
+            <strong>套期保值波动</strong>：公司披露 H1
+            现金流为负部分与套保保证金/商品期货波动有关，衍生品损益存在不确定性。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 11. 建仓参考（无持仓） -->
+      <div class="card">
+        <h2>💼 建仓参考（当前无持仓）</h2>
+        <p class="muted">
+          持仓事实源：stocks/my/holder.json（未包含亨通光电）。以下为观察清单而非操作指令。
+        </p>
+        <h3>建仓点位参考（2026E 归母约 60 亿、EPS 约 2.43 元，推算口径）</h3>
+        <table>
+          <tr>
+            <th>区间</th>
+            <th class="num">价格</th>
+            <th>估值锚</th>
+          </tr>
+          <tr>
+            <td class="up">强买点 Strong Buy</td>
+            <td class="num">29 - 34 元</td>
+            <td>2026E EPS×12-14 倍（周期股严格折价，需现金流转正验证）</td>
+          </tr>
+          <tr>
+            <td>买点 Buy Zone</td>
+            <td class="num">37 - 41 元</td>
+            <td>2026E EPS×15-17 倍（景气成长折价倍数）</td>
+          </tr>
+          <tr>
+            <td>合理价值 Fair Value</td>
+            <td class="num">44 - 54 元</td>
+            <td>
+              2026E EPS×18-22 倍（景气成长 + 海缆稀缺，因 ROE/现金流质量打折）
+            </td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num hl">69.86 元</td>
+            <td>2026E PE 约 28.7 倍，高于合理上沿约 30%，进入高估区</td>
+          </tr>
+          <tr>
+            <td class="down">估值卖点（减仓）</td>
+            <td class="num">68 - 78 元</td>
+            <td>
+              2026E PE 28-32 倍（PEG&gt;1.5 高估锚 + 反向估值：隐含 2027 需
+              78-86 亿净利）
+            </td>
+          </tr>
+          <tr>
+            <td class="down">无条件卖点</td>
+            <td class="num">不限价格</td>
+            <td>
+              光纤/海缆价格见顶回落 + 海缆订单断档 + 经营现金流连续两季大幅为负
+              + 负债率升破 60%
+            </td>
+          </tr>
+        </table>
+        <div class="note">
+          建仓锚定 2026E 归母（H1 31.2 亿 + H2 海缆旺季推算约 60 亿、EPS 2.43
+          元），为推算口径并注明；
+          合理倍数按"景气成长（海缆稀缺性、毛利率改善）但盈利质量打折（ROE 历史
+          8-10%、现金流为负、 高杠杆）"确定为 18-22 倍，周期股严格折价可到 12-14
+          倍；卖点用高估锚（PEG、反向估值）而非 机械乘数。
+        </div>
+        <h3>操作建议</h3>
+        <ul class="small">
+          <li>
+            <strong>现价（69.86 元）</strong>：不追高，不加仓。价格已透支
+            2026-2027 高景气预期，安全边际为负；
+          </li>
+          <li>
+            <strong>回调至 44-54 元合理区</strong>：开始小步观察建仓（前提：H2
+            经营现金流转正信号）；
+          </li>
+          <li>
+            <strong>37-41 元买点</strong>：分批建仓；<strong
+              >29-34 元强买点</strong
+            >：加大（需财务质量验证）；
+          </li>
+          <li>
+            <strong>验证触发上修</strong>：三季报/年报经营现金流转正 + ROE 站稳
+            15% + 海缆订单持续 → 合理倍数上修，买点同步上移；
+          </li>
+          <li>
+            <strong>跟踪项</strong
+            >：光纤/海缆价格、海缆订单与毛利率、经营现金流、负债率、套保损益。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 12. 总结 -->
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p><strong>结论：WATCHLIST · 观察不追高。总分 32/60。</strong></p>
+        <h3>3 个关注的理由</h3>
+        <ol class="small">
+          <li>
+            2026H1 利润爆发真实：归母 +93%、扣非 +100%，Q2 单季 20.15 亿创新高；
+          </li>
+          <li>
+            毛利率 13.59% → 16.77%，海缆（33.7%）+
+            光通信（27.5%）高毛利放量，结构改善有财务证据；
+          </li>
+          <li>
+            AI 数据中心 + 海上风电 + 出海三重赛道，故事清晰且处于景气上行期。
+          </li>
+        </ol>
+        <h3>3 个不买的理由</h3>
+        <ol class="small">
+          <li>
+            硬阈值未过：ROE 5 年均值 8.49%、FCF 2026H1 仍为负、分红率边缘；
+          </li>
+          <li>
+            估值贵：TTM PE 41 倍、PB 5.1 倍、股息率 0.39%，现价高于合理上沿约
+            30%；
+          </li>
+          <li>
+            盈利质量待验证：经营现金流 -8.65 亿、应收 +30 亿、财务费用 14.36
+            亿，高杠杆项目制经营。
+          </li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          这波毛利率与利润提升是<strong>可持续的结构性改善</strong>（海缆占比提升、AI
+          光通信长期需求）， 还是<strong>纯粹的光纤/海缆价格周期</strong>？H2
+          经营现金流能否转正、ROE 能否站稳 15% 是分水岭。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          光纤/海缆价格见顶回落 + 海缆订单断档 +
+          经营现金流持续为负三者叠加，将同时打击毛利率、
+          增长与现金流，高杠杆下估值将大幅下修——这是周期股在高景气、高估值位置最典型的下行路径。
+        </p>
+        <div class="note">
+          数据充分性说明：基于 2026 半年报原文（东方财富 F10 +
+          新浪三张报表，核心数据可交叉验证）； 2026E 全年盈利为推算口径（H2
+          海缆旺季假设），不输出伪精确目标价；未引用具体研报一致预期。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-27
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 亨通光电 ·
+        600487
+      </footer>
+    </div>
+  </body>
+</html>

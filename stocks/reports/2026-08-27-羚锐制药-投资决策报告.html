@@ -1,0 +1,968 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>羚锐制药（600285）投资决策报告 · 2026-08-27</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>羚锐制药（600285）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年半年报更新版 ｜ 生成日期：2026-08-27 ｜ 数据基准：2026 半年报 +
+          2026-08-27 行情快照
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：现金牛 / Stalwart（消费中药）</span>
+          <span class="badge score">总分 40 / 60</span>
+        </div>
+      </div>
+
+      <!-- 1. 结论 -->
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict buy">
+          <span class="tag">BUY ZONE · 可小步分批</span>
+          四维硬阈值全部通过的高质量中药现金牛：ROE 24%、毛利率
+          80%、现金流强、分红率 82%、低负债。2026H1 增长放缓至个位数（归母
+          +4.4%，Q2 单季小幅负增长）是唯一 明显瑕疵，但 PE 14.4 倍 + 股息率
+          5.56% 已较充分消化，并新增纳入国家基药目录催化。
+        </div>
+        <p>
+          <strong>财务质量优秀，增长暂时降速</strong>：2026H1 营收 21.48
+          亿（+2.3%），归母 4.95 亿（+4.4%），扣非 4.65 亿（+5.2%），经营现金流
+          7.23 亿（&gt; 归母，含金量高）， 毛利率 78.9%，ROE(H1) 13.96%（年化约
+          28%）。但 Q2 单季营收 10.22 亿（-5.2%）、归母 2.49
+          亿（-3.1%）出现小幅负增长，2021-2025 年年均 17% 的高增长斜率明显回落。
+        </p>
+        <p>
+          <strong>股东回报厚 + 政策催化</strong>：2025 年度每股分红 1.1
+          元（分红率约 82%）， 现价股息率 5.56%；2026 年 7
+          月公告核心产品纳入《国家基本药物目录（2026 年版）》，
+          中长期利好放量与渠道下沉。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>无持仓。现价 19.77
+          元处于合理价值区间（19-24 元）下沿， PE 14.5 倍 + 股息率 5.56%
+          提供安全垫，可小步分批建仓；18 元下方为更好买点，15-16
+          元为强买区。核心跟踪：Q3
+          增长能否重回正增长、销售费用率、商誉减值风险。
+        </p>
+      </div>
+
+      <!-- 2. 关键指标速览 -->
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">19.77 元 / 112 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">TTM PE / PB</div>
+            <div class="num">14.4 / 3.47</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">TTM 股息率</div>
+            <div class="num up">约 5.56%</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 归母</div>
+            <div class="num up">4.95 亿（+4.4%）</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目（2026H1）</th>
+            <th class="num">本期</th>
+            <th class="num">上期(2025H1)</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入</td>
+            <td class="num">21.48 亿</td>
+            <td class="num">20.99 亿</td>
+            <td class="num up">+2.3%</td>
+          </tr>
+          <tr>
+            <td>归母净利润</td>
+            <td class="num">4.95 亿</td>
+            <td class="num">4.74 亿</td>
+            <td class="num up">+4.4%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num">4.65 亿</td>
+            <td class="num">4.42 亿</td>
+            <td class="num up">+5.2%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">78.90%</td>
+            <td class="num">81.33%</td>
+            <td class="num down">-2.4pct</td>
+          </tr>
+          <tr>
+            <td>ROE(报告期累计)</td>
+            <td class="num">13.96%</td>
+            <td class="num">14.65%</td>
+            <td class="num down">-0.69pct</td>
+          </tr>
+          <tr>
+            <td>经营现金流净额</td>
+            <td class="num up">7.23 亿</td>
+            <td class="num">—</td>
+            <td class="num up">强</td>
+          </tr>
+        </table>
+        <p class="muted">
+          数据来源：东方财富 F10 财务指标接口 + 新浪利润表/现金流量表（2026
+          半年报）
+        </p>
+      </div>
+
+      <!-- 3. 数据来源与可信度 -->
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：2026
+            年半年度报告（2026-08-12）、纳入国家基本药物目录公告（2026-07-11）
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10 财务指标接口 +
+            新浪利润表/资产负债表/现金流量表（单位万元）
+          </li>
+          <li><strong>行情与估值</strong>：腾讯行情快照（2026-08-27）</li>
+          <li>
+            <strong>分红与股东</strong>：东方财富 RPT_SHAREBONUS_DET 分红接口
+          </li>
+          <li><strong>研报观点</strong>：未引用（无一手研报原文）</li>
+        </ul>
+        <div class="note">
+          可信度说明：营收/归母/扣非/毛利率/ROE/现金流等核心数据来自东财 F10
+          与新浪三表， 可交叉验证；2026E 全年盈利为推算口径（H2 弱于 H1
+          假设），不输出伪精确目标价。
+        </div>
+      </div>
+
+      <!-- 4. 硬阈值筛选 -->
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">15.92%</td>
+            <td class="num">19.28%</td>
+            <td class="num">21.28%</td>
+            <td class="num">24.80%</td>
+            <td class="num up">23.90%</td>
+            <td class="num">21.04%</td>
+          </tr>
+        </table>
+        <p class="small">
+          <strong>通过</strong>。近 5 年全部 ≥15%，均值
+          21.04%，且逐年抬升（2021-2024 连续改善）， 2026H1 累计 13.96%（年化约
+          28%）。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          <strong>通过</strong>。每股经营现金流 2021-2025 为
+          1.49/1.47/1.43/1.54/0.98 元； 2026H1 经营现金流 7.23 亿（&gt; 归母
+          4.95 亿，收现比 1.02），利润含金量高，现金流长期强劲。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          <strong>通过</strong>。2025 年度每股分红 1.1 元（10 派 11），分红率约
+          82%；2020-2025 年度分红每股 0.4/0.5/0.6/0.8/0.9/1.1
+          元，逐年递增，回报股东意愿强。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          <strong>通过</strong>。2026-06-30 负债率 43.19%；货币资金 7.44 亿 +
+          理财 1.30 亿，短期 借款仅 3.61 亿，财务费用为负（-715
+          万元），几乎无净有息负债，资产负债表干净。
+        </p>
+        <div class="good-box">
+          <strong>硬阈值总判断：4/4 全部通过</strong
+          >。ROE、FCF、分红率、负债率四项全部达标，
+          是框架下少见的"全绿"标的，盈利质量与股东回报俱佳。
+        </div>
+      </div>
+
+      <!-- 5. 基本面研究 -->
+      <div class="card">
+        <h2>🌿 基本面研究</h2>
+        <h3>公司定位与主营</h3>
+        <table>
+          <tr>
+            <th>业务板块</th>
+            <th class="num">特征</th>
+          </tr>
+          <tr>
+            <td>中药贴膏（核心）</td>
+            <td class="num">
+              通络祛痛膏、壮骨麝香止痛膏、伤湿止痛膏等，毛利率 80%+，OTC
+              品牌中药
+            </td>
+          </tr>
+          <tr>
+            <td>胶囊/口服制剂</td>
+            <td class="num">培元通脑胶囊等，补充品类</td>
+          </tr>
+          <tr>
+            <td>销售模式</td>
+            <td class="num">营销驱动（销售费用率约 46%），医院 + OTC 双渠道</td>
+          </tr>
+        </table>
+        <p class="small">
+          结构要点：以中药外用贴膏为核心，品牌 + 渠道（基药目录 + 药店
+          OTC）双壁垒，毛利率极高 （80% 左右）且稳定；2026-07
+          核心产品纳入国家基药目录（2026 年版），利好基层放量。
+        </p>
+        <h3>护城河</h3>
+        <ul class="small">
+          <li>
+            中药贴膏细分龙头，通络祛痛膏等品牌心智强，处方药 + OTC 双轮驱动；
+          </li>
+          <li>毛利率 78-81% 行业顶尖，ROE 连续 5 年 15%+ 且逐年抬升至 24%；</li>
+          <li>
+            现金流强（2026H1 经营现金流 7.23 亿 &gt;
+            归母）、负债低、财务费用为负，财务质量优秀。
+          </li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>
+            2024 年限制性股票激励 +
+            员工持股计划落地（首期已达成考核目标），管理层利益绑定；
+          </li>
+          <li>
+            需跟踪：大股东部分股份质押（2026-08 公告）、销售费用投放效率。
+          </li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          归类：<strong>现金牛 / Stalwart（稳定增长）</strong
+          >。历史上是"中药消费 + 老龄化"的稳定 成长股（2017-2025 归母 CAGR 约
+          17%），但 2026H1 增速降至个位数、Q2 单季负增长，正从
+          成长斜率切换为现金牛逻辑——估值主锚应转向股息率，成长弹性让位于分红回报。
+        </p>
+      </div>
+
+      <!-- 6. 财务质量分析 -->
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>2026H1：现金流强劲、利润率坚挺，但增长降速</h3>
+        <div class="warn-box">
+          <strong>⚠️ 增长降速是核心变化</strong>：Q2 单季营收 -5.2%、归母
+          -3.1%，为近年首次 单季负增长；毛利率 81.33% →
+          78.90%（-2.4pct），需区分是结构、促销还是成本因素。
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">变化</th>
+          </tr>
+          <tr>
+            <td>营收</td>
+            <td class="num">21.48 亿</td>
+            <td class="num">20.99 亿</td>
+            <td class="num up">+2.3%</td>
+          </tr>
+          <tr>
+            <td>归母净利</td>
+            <td class="num">4.95 亿</td>
+            <td class="num">4.74 亿</td>
+            <td class="num up">+4.4%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num">4.65 亿</td>
+            <td class="num">4.42 亿</td>
+            <td class="num up">+5.2%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">78.90%</td>
+            <td class="num">81.33%</td>
+            <td class="num down">-2.4pct</td>
+          </tr>
+          <tr>
+            <td>经营现金流</td>
+            <td class="num up">7.23 亿</td>
+            <td class="num">—</td>
+            <td class="num up">强</td>
+          </tr>
+          <tr>
+            <td>ROE(累计)</td>
+            <td class="num">13.96%</td>
+            <td class="num">14.65%</td>
+            <td class="num down">-0.69pct</td>
+          </tr>
+        </table>
+        <p class="small">
+          原因拆解：营收端 Q2 承压（渠道调整 + 高基数 +
+          行业性放缓），归母端靠费用控制与毛利率仍
+          高于行业维持正增长；经营现金流 7.23
+          亿远超归母，说明利润含金量高、无赊销虚增。毛利率 回落 2.4pct
+          需关注是否与基药渠道放量（低价放量）或原材料/包装成本相关。
+        </p>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li>
+            <strong>利润含金量</strong>：经营现金流 7.23 亿 &gt; 归母 4.95
+            亿，收现比 1.02，无应收堆积（应收账款 6.07 亿、存货 3.59
+            亿均健康）；
+          </li>
+          <li>
+            <strong>费用结构</strong>：销售费用 9.85 亿（费用率
+            45.9%）是最大支出，营销驱动模式；研发 0.53 亿、财务费用为负；
+          </li>
+          <li><strong>商誉</strong>：4.82 亿（并购遗留），需关注减值风险；</li>
+          <li>
+            <strong>资产负债表</strong>：货币资金 + 理财约 8.7 亿，短借 3.61
+            亿，净现金约 5 亿，负债率 43.19%，干净。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 7. 行业与竞争格局 -->
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong>：中药贴膏 / 外用镇痛（OTC
+            中药），受益老龄化与消费升级，行业低个位数稳定增长。
+          </li>
+          <li>
+            <strong>竞争地位</strong
+            >：中药贴膏细分龙头，通络祛痛膏等大单品品牌力强，与云南白药等错位竞争。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：① 纳入国家基药目录（2026
+            版）带动基层放量；② 老龄化带来的贴膏需求；③ 品牌 OTC
+            提价与渠道下沉；④ 高分红回报。
+          </li>
+          <li>
+            <strong>风险</strong
+            >：增长放缓、销售费用率高企、医保/集采降价、商誉减值、中药行业政策变化。
+          </li>
+        </ul>
+        <p class="small">
+          结论：细分龙头格局稳定、品牌壁垒深、盈利质量优秀，属于"赚效率钱 +
+          赚分红钱"的现金牛； 增长斜率放缓后，估值逻辑从成长切换为股息回报。
+        </p>
+      </div>
+
+      <!-- 8. 估值与安全边际 -->
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值（2026-08-27，现价 19.77 元，市值 112 亿）</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">数值</th>
+            <th class="num">对应估值</th>
+          </tr>
+          <tr>
+            <td>2025A 静态 PE（EPS 1.34）</td>
+            <td class="num">14.8 倍</td>
+            <td class="num">便宜</td>
+          </tr>
+          <tr>
+            <td>TTM PE（TTM 归母 7.81 亿）</td>
+            <td class="num">14.4 倍</td>
+            <td class="num">合理偏低</td>
+          </tr>
+          <tr>
+            <td>2026E 前瞻 PE（EPS 约 1.36）</td>
+            <td class="num">约 14.5 倍</td>
+            <td class="num">合理偏低</td>
+          </tr>
+          <tr>
+            <td>PB（归母权益约 32 亿）</td>
+            <td class="num">3.47 倍</td>
+            <td class="num">中性</td>
+          </tr>
+          <tr>
+            <td>TTM 股息率（每股 1.1 元）</td>
+            <td class="num">5.56%</td>
+            <td class="num up">高（现金牛锚）</td>
+          </tr>
+        </table>
+        <h3>估值锚交叉验证（现金牛/Stalwart 框架，2026E EPS 约 1.36 元）</h3>
+        <table>
+          <tr>
+            <th>估值锚</th>
+            <th class="num">合理区间（元）</th>
+          </tr>
+          <tr>
+            <td>股息率 5.5% 反推（1.1÷0.055）</td>
+            <td class="num">20.0</td>
+          </tr>
+          <tr>
+            <td>股息率 5.0% 反推（1.1÷0.05）</td>
+            <td class="num">22.0</td>
+          </tr>
+          <tr>
+            <td>股息率 4.5% 反推（1.1÷0.045）</td>
+            <td class="num">24.4</td>
+          </tr>
+          <tr>
+            <td>2026E EPS×14-18 倍（Stalwart 合理倍数）</td>
+            <td class="num">19.0 - 24.5</td>
+          </tr>
+        </table>
+        <p>
+          <strong
+            >合理价值区间：约 19 - 24 元；现价 19.77
+            元，处于区间下沿，安全边际中性偏正。</strong
+          >
+        </p>
+        <div class="note">
+          估值判断：现金牛用股息率做主锚。现价 19.77 对应股息率
+          5.56%，高于多数现金牛 4.5%-5% 的合理水平（即价格偏便宜）；PE 锚（TTM
+          14.4 倍、2026E 14.5 倍）对 ROE 24% 的公司处于
+          历史低位。两锚交叉验证指向现价有安全边际。主要压制项：增长降速（Q2
+          负增长）使市场 下调对高成长的溢价，但低估值 + 高股息 +
+          基药催化提供了向下保护。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          中性偏正。股息率 5.56% + PE 历史低位提供安全垫；若增长持续放缓至 0
+          附近，股息率 6%+ 的 18 元以下是强支撑；向上需 Q3 增长回正 +
+          基药放量兑现。
+        </p>
+      </div>
+
+      <!-- 9. 六维评分 -->
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">
+              中药贴膏龙头，毛利率 80%，品牌 OTC + 基药双壁垒
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">ROE 24%、现金流强、低负债、财务费用为负</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">2026H1 降至个位数，Q2 单季负增长，斜率回落</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">消费中药现金牛，基药目录 + 老龄化是看点</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">PE 14.4、股息率 5.56%，现价在合理区下沿</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">增长放缓、销售费用率高、商誉减值、医保降价</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">40</span> / 60</div>
+      </div>
+
+      <!-- 10. 风险清单 -->
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>增长持续降速（核心）</strong>：Q2 单季营收 -5.2%、归母
+            -3.1%，若 Q3-Q4 不能回正，现金牛逻辑下估值上限被压制；
+          </li>
+          <li>
+            <strong>销售费用率过高</strong>：费用率约
+            46%，营销驱动模式对费用投放效率敏感，增长放缓时费用刚性侵蚀利润；
+          </li>
+          <li>
+            <strong>商誉减值</strong>：商誉 4.82
+            亿，若并购标的业绩不达预期存在减值风险；
+          </li>
+          <li>
+            <strong>医保/集采降价</strong
+            >：纳入基药目录后存在降价放量的平衡问题，毛利率 -2.4pct 需持续跟踪；
+          </li>
+          <li>
+            <strong>大股东质押</strong>：2026-08
+            大股东部分股份质押，需关注质押比例与平仓风险；
+          </li>
+          <li>
+            <strong>中药政策</strong>：行业政策变化、原材料（中药材）价格波动。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 11. 建仓参考（无持仓） -->
+      <div class="card">
+        <h2>💼 建仓参考（当前无持仓）</h2>
+        <p class="muted">
+          持仓事实源：stocks/my/holder.json（未包含羚锐制药）。以下为观察清单而非操作指令。
+        </p>
+        <h3>建仓点位参考（2026E 正常化归母约 7.7 亿、EPS 约 1.36 元）</h3>
+        <table>
+          <tr>
+            <th>区间</th>
+            <th class="num">价格</th>
+            <th>估值锚</th>
+          </tr>
+          <tr>
+            <td class="up">强买点 Strong Buy</td>
+            <td class="num">15 - 16 元</td>
+            <td>2026E EPS×11-12 倍；股息率 6.9%（1.1÷0.069）</td>
+          </tr>
+          <tr>
+            <td>买点 Buy Zone</td>
+            <td class="num">16 - 18 元</td>
+            <td>2026E EPS×12-13.5 倍；股息率 6.1%-6.9%</td>
+          </tr>
+          <tr>
+            <td>合理价值 Fair Value</td>
+            <td class="num">19 - 24 元</td>
+            <td>
+              2026E EPS×14-18 倍（Stalwart）＋股息率 4.5%-5.5% 反推交叉验证
+            </td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num hl">19.77 元</td>
+            <td>TTM PE 14.4、股息率 5.56%，合理区下沿，安全边际中性偏正</td>
+          </tr>
+          <tr>
+            <td class="down">估值卖点（减仓）</td>
+            <td class="num">30 - 34 元</td>
+            <td>2026E PE 22-25 倍；股息率跌破 3.6%（1.1÷0.036）</td>
+          </tr>
+          <tr>
+            <td class="down">无条件卖点</td>
+            <td class="num">不限价格</td>
+            <td>
+              增长连续两季大幅负增长 / 毛利率跌破 70% / 商誉大幅减值 /
+              销售费用失控
+            </td>
+          </tr>
+        </table>
+        <div class="note">
+          建仓锚定 2026E 正常化归母（H1 4.95 亿 + H2 参考 2025H2 约 2.86 亿 ≈
+          7.7 亿、EPS 1.36 元）， 因 H2
+          为传统淡季需保守；合理倍数按"现金牛/Stalwart + 高质量（ROE
+          24%、现金流强、低负债） 但增长降速打折"确定为 14-18 倍，并用股息率
+          4.5%-5.5% 反推交叉验证；卖点用高估锚（股息率 跌破 3.6%、PE 22-25
+          倍）而非机械乘数。
+        </div>
+        <h3>操作建议</h3>
+        <ul class="small">
+          <li>
+            <strong>当前（19.77 元）</strong>：可小步分批建仓（首仓约计划仓位
+            1/3-1/2），股息率 5.56% 提供底仓收益；
+          </li>
+          <li>
+            <strong>18 元下方</strong>：加大至计划仓位；<strong
+              >15-16 元强买区</strong
+            >：可满额；
+          </li>
+          <li>
+            <strong>19-24 元合理价值</strong>：持有，不加不减；<strong
+              >30 元以上</strong
+            >：分批兑现；
+          </li>
+          <li>
+            <strong>触发上修</strong>：三季报增长回正 + 基药放量兑现 +
+            毛利率企稳 → 合理倍数上修；
+          </li>
+          <li>
+            <strong>跟踪项</strong>：Q3
+            营收/归母增速、销售费用率、毛利率走势、商誉减值、大股东质押比例。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 12. 总结 -->
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p><strong>结论：BUY ZONE · 可小步分批建仓。总分 40/60。</strong></p>
+        <h3>3 个持有的理由</h3>
+        <ol class="small">
+          <li>
+            硬阈值 4/4 全通过：ROE 连续 5 年 15%+（均值 21%）、现金流强（H1
+            经营现金流 7.23 亿 &gt; 归母）、分红率 82%、负债率 43%；
+          </li>
+          <li>
+            估值有安全边际：PE 14.4 倍历史低位 + 股息率
+            5.56%，高股息现金牛属性突出；
+          </li>
+          <li>
+            政策催化：核心产品纳入国家基药目录（2026
+            版），叠加老龄化长期需求，中长期成长有支撑。
+          </li>
+        </ol>
+        <h3>3 个不重仓的理由</h3>
+        <ol class="small">
+          <li>
+            2026H1 增长放缓至个位数，Q2 单季营收/归母负增长，成长斜率明显回落；
+          </li>
+          <li>
+            销售费用率高达 46%，营销驱动模式在增长放缓时费用刚性挤压利润；
+          </li>
+          <li>
+            毛利率 -2.4pct + 商誉 4.82 亿 +
+            大股东质押，存在估值与减值的不确定性。
+          </li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          2026H2
+          增长能否回正（基药目录放量能否对冲渠道调整）？毛利率能否企稳？若 Q3
+          回正， 低估值 + 高股息 +
+          成长重启将形成双击；若持续负增长，则更多是纯股息现金牛逻辑。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          增长持续负增长 + 毛利率跌破 70% +
+          商誉大额减值叠加，将同时打击盈利与估值——但当前
+          现金牛属性（高股息、低负债、强现金流）提供了较强缓冲，下行空间有限。
+        </p>
+        <div class="note">
+          数据充分性说明：基于 2026 半年报原文、基药目录公告与东财
+          F10、新浪三表（核心数据可 交叉验证）；2026E 全年盈利为推算口径（H2
+          淡季假设），不输出伪精确目标价。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-27
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 羚锐制药 ·
+        600285
+      </footer>
+    </div>
+  </body>
+</html>

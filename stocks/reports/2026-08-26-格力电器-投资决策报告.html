@@ -7,7 +7,7 @@
     <style>
       :root {
         --bg: #f7f8fa;
-        --card: #ffffff;
+        --card: #fff;
         --text: #1f2937;
         --muted: #6b7280;
         --primary: #1d4ed8;
@@ -28,35 +28,28 @@
         color: var(--text);
         font-family:
           -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
-          "Segoe UI", Roboto, sans-serif;
+          "Segoe UI", sans-serif;
         line-height: 1.7;
         padding: 24px 16px;
       }
       .wrap {
         max-width: 920px;
-        margin: 0 auto;
+        margin: auto;
       }
       .hero {
-        background: linear-gradient(
-          135deg,
-          #1e3a8a 0%,
-          #2563eb 60%,
-          #0ea5e9 100%
-        );
+        background: linear-gradient(135deg, #1e3a8a, #2563eb 60%, #0ea5e9);
         color: #fff;
         border-radius: var(--radius);
-        padding: 32px 32px 26px;
+        padding: 32px;
         margin-bottom: 22px;
       }
       .hero h1 {
         font-size: 26px;
-        font-weight: 700;
         margin-bottom: 6px;
       }
       .hero .sub {
         opacity: 0.92;
         font-size: 14px;
-        margin-bottom: 14px;
       }
       .badges {
         display: flex;
@@ -65,8 +58,8 @@
         margin-top: 14px;
       }
       .badge {
-        background: rgba(255, 255, 255, 0.18);
-        border: 1px solid rgba(255, 255, 255, 0.35);
+        background: #ffffff2e;
+        border: 1px solid #ffffff59;
         border-radius: 999px;
         padding: 4px 14px;
         font-size: 13px;
@@ -82,23 +75,18 @@
         border-radius: var(--radius);
         padding: 22px 24px;
         margin-bottom: 18px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        box-shadow: 0 1px 3px #0000000a;
       }
       .card h2 {
         font-size: 18px;
-        font-weight: 700;
         margin-bottom: 14px;
         padding-bottom: 10px;
         border-bottom: 2px solid var(--primary);
-        display: flex;
-        align-items: center;
-        gap: 8px;
       }
       .card h3 {
         font-size: 15px;
-        font-weight: 600;
-        margin: 16px 0 8px;
         color: var(--primary);
+        margin: 16px 0 8px;
       }
       p {
         margin-bottom: 10px;
@@ -120,14 +108,6 @@
         background: #fff7ed;
         border: 1px solid #fdba74;
       }
-      .verdict.buy {
-        background: #f0fdf4;
-        border: 1px solid #86efac;
-      }
-      .verdict.sell {
-        background: #fef2f2;
-        border: 1px solid #fca5a5;
-      }
       .verdict .tag {
         display: inline-block;
         background: var(--warn);
@@ -137,12 +117,6 @@
         font-weight: 700;
         font-size: 14px;
         margin-right: 8px;
-      }
-      .verdict.buy .tag {
-        background: var(--good);
-      }
-      .verdict.sell .tag {
-        background: var(--bad);
       }
       table {
         width: 100%;
@@ -178,8 +152,29 @@
         font-weight: 600;
       }
       .hl {
-        background: #fef9c3;
+        background: #fef9c3 !important;
         font-weight: 600;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
       }
       .score-grid {
         display: grid;
@@ -201,14 +196,14 @@
         font-weight: 700;
         color: var(--primary);
       }
-      .score-item .bar {
+      .bar {
         height: 6px;
         background: #e5e7eb;
         border-radius: 4px;
         margin-top: 6px;
         overflow: hidden;
       }
-      .score-item .fill {
+      .fill {
         height: 100%;
         background: linear-gradient(90deg, #2563eb, #0ea5e9);
         border-radius: 4px;
@@ -217,13 +212,33 @@
         background: linear-gradient(135deg, #1e3a8a, #2563eb);
         color: #fff;
         border-radius: 10px;
-        padding: 14px 18px;
+        padding: 14px;
         text-align: center;
         margin-top: 12px;
       }
       .total-score .big {
         font-size: 30px;
         font-weight: 800;
+      }
+      .note,
+      .warn-box,
+      .good-box {
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
       }
       ul,
       ol {
@@ -233,58 +248,11 @@
       li {
         margin-bottom: 6px;
       }
-      .kpi-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
-        margin: 14px 0;
-      }
-      .kpi {
-        background: #f8fafc;
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        padding: 10px 12px;
-        text-align: center;
-      }
-      .kpi .lbl {
-        font-size: 12px;
-        color: var(--muted);
-      }
-      .kpi .num {
-        font-size: 17px;
-        font-weight: 700;
-        margin-top: 2px;
-      }
-      .note {
-        background: #f0f9ff;
-        border-left: 4px solid var(--accent);
-        padding: 10px 14px;
-        border-radius: 6px;
-        font-size: 13px;
-        margin: 10px 0;
-      }
-      .warn-box {
-        background: #fef2f2;
-        border-left: 4px solid var(--bad);
-        padding: 10px 14px;
-        border-radius: 6px;
-        font-size: 13px;
-        margin: 10px 0;
-      }
-      .good-box {
-        background: #f0fdf4;
-        border-left: 4px solid var(--good);
-        padding: 10px 14px;
-        border-radius: 6px;
-        font-size: 13px;
-        margin: 10px 0;
-      }
       footer {
         text-align: center;
         color: var(--muted);
         font-size: 12px;
-        margin-top: 26px;
-        padding-bottom: 20px;
+        padding: 4px 0 20px;
       }
       @media (max-width: 640px) {
         .kpi-grid {
@@ -296,588 +264,515 @@
         .hero {
           padding: 24px;
         }
+        table {
+          font-size: 13px;
+        }
       }
     </style>
   </head>
   <body>
     <div class="wrap">
-      <div class="hero">
+      <header class="hero">
         <h1>格力电器（000651.SZ）完整投资决策报告</h1>
         <div class="sub">
-          2026 一季报版（中报未披露） ｜ 生成日期：2026-08-26 ｜ 数据基准：2026
-          一季报（4/29 披露）+ 2025 年报；中报预约 8/27 披露
+          2026 中报更新版 ｜ 生成日期：2026-08-26 ｜ 数据基准：2026H1
+          正式财报、8/26 行情、2025 年报与权益分派公告
         </div>
         <div class="badges">
-          <span class="badge"
-            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
-          >
-          <span class="badge">分类：Stalwart（成熟现金牛）</span>
-          <span class="badge score">总分 37 / 60</span>
+          <span class="badge">巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          ><span class="badge">Stalwart · 高股息家电龙头</span
+          ><span class="badge score">HOLD · 39 / 60</span>
         </div>
-      </div>
-
-      <div class="card">
+      </header>
+      <section class="card">
         <h2>🧭 先说结论</h2>
         <div class="verdict hold">
-          <span class="tag">HOLD · 高股息现金牛，持有观察不追高</span>
-          格力 2026Q1 营收 430.8 亿（+3.46%）、归母净利 60.8
-          亿（+3.01%）边际企稳，但扣非净利 57.0 亿仍微降（-0.27%）——2025
-          年量利双降（营收/净利均约 -10%）后的恢复还很脆弱。
+          <span class="tag">HOLD · 持有，暂不加仓</span>格力电器 2026H1
+          经营明显转弱：营收 893.98 亿元（-8.15%）、归母净利 132.78
+          亿元（-7.87%）、扣非净利 127.07 亿元（-8.89%），经营现金流 188.09
+          亿元（-33.60%）。资产负债表仍可控，但按中报总资产和归母净资产倒算资产负债率约
+          62.8%，业绩和现金流下滑，且公司 2026 年中期拟暂不派发现金红利（2025
+          年度每股 2.0 元分红正在实施：8/26 股权登记日、8/27
+          除权除息日），旧报告的高股息预期需要下修。
         </div>
         <p>
-          这是基于 <strong>2026 一季报 + 2025 年报</strong> 的研究（<span
-            class="hl"
-            >中报预约 8/27 披露，明天出炉</span
-          >）。格力的本质是"高股息现金牛"：2025 年 OCF 463.8 亿、FCF 446.7
-          亿远超净利 290 亿，全年每股分红约 3 元（股息率约 7.2%），回购 50-100
-          亿且 70% 注销——股东回报极厚。但主业萎缩（空调
-          -10%）、多元化与海外落后美的/海尔，成长性缺失。
+          Q1 营收和归母净利还分别增长 3.46% 和 3.01%，中报则回到负增长，说明 Q2
+          是本次更新的关键：上半年归母净利 132.78 亿，扣除 Q1 的 60.82
+          亿后，隐含 Q2 约 71.96 亿；2025Q1 归母净利 59.04 亿，对应 2025 年隐含
+          Q2 约 85.08 亿，即 2026Q2 同比约
+          -15.4%。收入、利润、扣非和现金流同步承压，不能只解释为一次性波动。
         </p>
-        <p class="small">
-          <strong>当前动作：</strong>现价 41.72 元，PE(动) 8.0 倍、PB 1.54，处于
-          Buy Zone（38-45 元）内。对现有 600 股（成本 40.757 元，微盈约
-          2.4%）继续持有、吃股息与回购，不加仓；等明天中报看主业是否真正企稳。
-        </p>
-      </div>
-
-      <div class="card">
-        <h2>📊 关键指标速览</h2>
+        <div class="warn-box">
+          <strong>持仓动作：</strong>600 股、成本 40.757 元继续持有；当前 41.58
+          元接近成本，不追买。新资金等待 36-38
+          元，若中报后续验证经营现金流和空调需求修复，再考虑分批加仓。注意区分两笔分红：2025
+          年度每股 2.0 元于 8/26 股权登记、8/27 除息（600 股约 1200
+          元税前，除息后现价参考约 39.58 元）；2026
+          年中期拟暂不派发，全年分红金额暂不可按旧报告每股约 3 元直接假设。
+        </div>
+      </section>
+      <section class="card">
+        <h2>📊 关键财务指标</h2>
         <div class="kpi-grid">
           <div class="kpi">
             <div class="lbl">现价 / 市值</div>
-            <div class="num">41.72 元<br />2337 亿</div>
+            <div class="num">41.58 元<br />2329 亿</div>
           </div>
           <div class="kpi">
-            <div class="lbl">2026Q1 归母净利</div>
-            <div class="num up">60.8 亿</div>
+            <div class="lbl">H1 营收</div>
+            <div class="num down">893.98 亿</div>
           </div>
           <div class="kpi">
-            <div class="lbl">股息率（约）</div>
-            <div class="num">7.2%</div>
+            <div class="lbl">H1 归母净利</div>
+            <div class="num down">132.78 亿</div>
           </div>
           <div class="kpi">
-            <div class="lbl">2025 全年归母净利</div>
-            <div class="num down">290.0 亿</div>
+            <div class="lbl">H1 经营现金流</div>
+            <div class="num down">188.09 亿</div>
           </div>
         </div>
         <table>
           <tr>
-            <th>项目</th>
-            <th class="num">2026Q1</th>
-            <th class="num">2025 年报</th>
+            <th>指标</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
             <th class="num">同比</th>
+            <th>判断</th>
           </tr>
           <tr>
-            <td>营业收入（亿元）</td>
-            <td class="num">430.8</td>
-            <td class="num">1711.2</td>
-            <td class="num up">+3.46%</td>
+            <td>营业收入</td>
+            <td class="num">893.98 亿</td>
+            <td class="num">973.25 亿</td>
+            <td class="num down">-8.15%</td>
+            <td>需求承压</td>
           </tr>
           <tr>
-            <td>归母净利润（亿元）</td>
-            <td class="num">60.8</td>
-            <td class="num">290.0</td>
-            <td class="num up">+3.01%</td>
+            <td>归母净利润</td>
+            <td class="num">132.78 亿</td>
+            <td class="num">144.12 亿</td>
+            <td class="num down">-7.87%</td>
+            <td>利润回落</td>
           </tr>
           <tr>
-            <td>扣非净利（亿元）</td>
-            <td class="num">57.0</td>
-            <td class="num">277.1</td>
-            <td class="num down">-0.27%</td>
+            <td>扣非净利润</td>
+            <td class="num">127.07 亿</td>
+            <td class="num">139.46 亿</td>
+            <td class="num down">-8.89%</td>
+            <td>主业承压</td>
           </tr>
           <tr>
             <td>毛利率</td>
-            <td class="num">27.42%</td>
-            <td class="num">29.81%</td>
-            <td class="num down">-2.4pct</td>
+            <td class="num">约 29.0%</td>
+            <td class="num">约 29.0%</td>
+            <td>基本稳定</td>
+            <td>未靠降价换量</td>
           </tr>
           <tr>
             <td>净利率</td>
-            <td class="num">14.19%</td>
-            <td class="num">16.93%</td>
-            <td class="num down">-2.7pct</td>
+            <td class="num">约 14.9%</td>
+            <td class="num">约 14.8%</td>
+            <td>略升</td>
+            <td>费用与结构支撑</td>
           </tr>
           <tr>
-            <td>ROE(加权)</td>
-            <td class="num">4.07%</td>
-            <td class="num">20.30%</td>
-            <td class="num">单季口径</td>
+            <td>经营现金流</td>
+            <td class="num down">188.09 亿</td>
+            <td class="num">283.29 亿</td>
+            <td class="num down">-33.60%</td>
+            <td>现金转弱</td>
           </tr>
           <tr>
-            <td>每股收益（元）</td>
-            <td class="num">1.09</td>
-            <td class="num">5.20</td>
-            <td class="num">—</td>
+            <td>ROE</td>
+            <td class="num">8.68%</td>
+            <td class="num">10.09%</td>
+            <td class="num down">-1.41pct</td>
+            <td>半年口径</td>
           </tr>
           <tr>
             <td>资产负债率</td>
-            <td class="num">59.15%</td>
-            <td class="num">61.73%</td>
-            <td class="num">—</td>
+            <td class="num down">约 62.8%</td>
+            <td class="num">约 61.7%</td>
+            <td class="num down">上升</td>
+            <td>超过观察线</td>
+          </tr>
+          <tr>
+            <td>EPS</td>
+            <td class="num">2.38 元</td>
+            <td class="num">2.60 元</td>
+            <td class="num down">-8.46%</td>
+            <td>盈利下行</td>
           </tr>
         </table>
         <p class="muted">
-          数据来源：东方财富 F10（格力电器 2026 年一季报 + 2025 年年报）
+          来源：格力电器《2026 年半年度报告》及摘要（8/26 晚间发布，公告日
+          8/27）、东方财富 F10；行情：腾讯接口，2026-08-26
+          16:14。负债率按总资产减归母净资产倒算，未取得完整资产负债表明细。
         </p>
-      </div>
-
-      <div class="card">
-        <h2>📋 数据来源与可信度</h2>
-        <ul class="small">
-          <li>
-            <strong>一手事实源</strong>：格力电器 2026 年一季报、2025 年年度报告
-          </li>
-          <li>
-            <strong>财务明细</strong>：东方财富 F10（ZYZBAjaxNew，A 股口径）
-          </li>
-          <li><strong>行情与估值</strong>：腾讯自有时效行情接口</li>
-          <li>
-            <strong>分红与回购</strong>：2025
-            年度权益分派实施公告（8/21）、回购进展公告
-          </li>
-          <li>
-            <strong>持仓</strong>：stocks/my/holder.json（600 股，成本 40.757
-            元）
-          </li>
-        </ul>
-        <div class="note">
-          可信度说明：营收/净利/毛利率/负债率来自一季报与年报；经营现金流 463.83
-          亿、FCF 446.66 亿、全年每股分红约 3 元（中期 1 元 + 年度 2
-          元）来自年报与公告。<strong>中报（8/27）尚未披露</strong>，2026H1
-          空调主业/海外/渠道数据未获取。
-        </div>
-      </div>
-
-      <div class="card">
-        <h2>✅ 硬阈值筛选</h2>
-        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+      </section>
+      <section class="card">
+        <h2>🔍 中报核心变化</h2>
         <table>
           <tr>
-            <th>年份</th>
-            <th class="num">2021</th>
-            <th class="num">2022</th>
-            <th class="num">2023</th>
-            <th class="num">2024</th>
-            <th class="num">2025</th>
-            <th class="num">5年均值</th>
+            <th>观察项</th>
+            <th>中报事实</th>
+            <th>结论</th>
           </tr>
           <tr>
-            <td>ROE(加权)</td>
-            <td class="num">21.3%</td>
-            <td class="num">24.2%</td>
-            <td class="num">26.5%</td>
-            <td class="num">25.4%</td>
-            <td class="num">20.3%</td>
-            <td class="num">约 23.5%</td>
+            <td>收入</td>
+            <td>H1 -8.15%，Q1 +3.46%，隐含 Q2 延续承压</td>
+            <td class="down">转弱</td>
+          </tr>
+          <tr>
+            <td>利润</td>
+            <td>归母 -7.87%，扣非 -8.89%</td>
+            <td class="down">主业并非一次性问题</td>
+          </tr>
+          <tr>
+            <td>现金流</td>
+            <td>经营现金流 188.09 亿，同比 -33.60%</td>
+            <td class="down">现金转化恶化</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td>约 29%，仍在高位</td>
+            <td>盈利韧性尚在</td>
+          </tr>
+          <tr>
+            <td>2026 中期分红</td>
+            <td>拟暂不派发；2025 年度每股 2.0 元已实施（8/27 除息）</td>
+            <td class="down">中期高股息预期下修</td>
           </tr>
         </table>
-        <p class="small">
-          5 年全部 ≥15%，均值约 23.5%——A 股制造业里最稳定的高 ROE
-          之一。<strong>通过（优秀）</strong>。
-        </p>
-        <h3>2. 自由现金流门槛</h3>
-        <p class="small">
-          2025 年 OCF 463.83 亿、FCF 约 446.66 亿，远超净利 290
-          亿——"利润含金量"极高（渠道占款 +
-          低资本开支）。<strong>通过（优秀）</strong>。
-        </p>
-        <h3>3. 分红率门槛</h3>
-        <p class="small">
-          2025 全年每股分红约 3 元（中期 1 元 + 年度 2 元），分红率约
-          58%；叠加回购 50-100 亿（70%
-          注销），股东回报极厚。<strong>通过</strong>。
-        </p>
-        <h3>4. 资产负债率门槛</h3>
-        <p class="small">
-          2025 年末 61.73%，略超 60%
-          门槛——但格力的负债主要是经营性负债（经销商预收款/应付款），有息负债低、现金储备厚，属"强占款"而非"高杠杆"。<strong>边界通过</strong>。
-        </p>
         <div class="warn-box">
-          <strong
-            >硬阈值总判断：3 项通过 + 1 项边界（负债率 61.73% 略超 60%）</strong
-          >。ROE/FCF/分红均为 A 股顶级；负债率按"经营负债 vs
-          有息负债"实质口径不构成风险，但按框架门槛需标注为边界案例。
+          <strong>判断：</strong>格力不是财务崩坏，而是“经营增长下滑 +
+          现金流回落 +
+          分红节奏不确定”。空调主业的品牌、渠道和盈利能力仍在，但收入增长和股东回报确定性下降。
         </div>
-      </div>
-
-      <div class="card">
-        <h2>🏭 基本面研究</h2>
-        <h3>公司定位与主营</h3>
-        <ul class="small">
-          <li>
-            <strong>空调龙头</strong>：格力是家用空调全球龙头（市占率约
-            30%+），品牌与渠道心智极强。
-          </li>
-          <li>
-            <strong>多元化布局</strong
-            >：工业制品、新能源（格力钛）、智能装备、生活电器等，但体量与贡献仍小。
-          </li>
-          <li>
-            <strong>渠道改革</strong>：近年推动线下渠道扁平化 +
-            新零售，阵痛期已过但仍未完全理顺。
-          </li>
-        </ul>
-        <h3>核心矛盾：主业萎缩 vs 股东回报</h3>
-        <ul class="small">
-          <li>
-            2025 年营收 -9.96%：消费电器收入 -10.43%、内销
-            -10.67%，空调主业受地产后周期与竞争挤压。
-          </li>
-          <li>
-            2026Q1 营收 +3.46%、净利 +3.01% 边际企稳，但扣非仍
-            -0.27%，恢复力度弱。
-          </li>
-          <li>多元化与海外均落后美的/海尔，增长第二曲线未验证。</li>
-        </ul>
-        <h3>费雪 / 林奇定位</h3>
-        <p class="small">
-          <strong>Stalwart（成熟现金牛）</strong>：不是成长股。格力赚的是"低估值
-          + 高股息 +
-          回购注销"的股东回报钱，而非成长钱。若错当成长股持有，会高估多元化兑现速度。
-        </p>
-      </div>
-
-      <div class="card">
-        <h2>🔬 财务质量分析</h2>
-        <h3>核心变化：Q1 边际企稳但未转强</h3>
-        <ul class="small">
-          <li>
-            2025 全年量利双降（营收 -9.96%、净利 -9.89%）——地产后周期 + 消费疲软
-            + 竞争加剧。
-          </li>
-          <li>
-            2026Q1 营收 +3.46%、归母净利 +3.01%，但扣非 -0.27%——恢复脆弱，毛利率
-            27.42% 同比降 2.4pct。
-          </li>
-          <li>净利率 14.19% vs 2025 全年 16.93%——费用与价格竞争侵蚀利润率。</li>
-        </ul>
-        <h3>盈利质量与资产负债表</h3>
-        <ul class="small">
-          <li>
-            <strong>现金流极强</strong>：OCF 463.8 亿是净利 290 亿的 1.6
-            倍，渠道占款能力强（合同负债高）。
-          </li>
-          <li>
-            <strong>低资本开支</strong>：成熟制造，FCF ≈
-            OCF，几乎没有再投资压力。
-          </li>
-          <li>
-            <strong>负债率 61.7%</strong
-            >：主要是经营负债（应付/预收），有息负债低，实质杠杆风险小。
-          </li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h2>🌐 行业与竞争格局</h2>
-        <ul class="small">
-          <li>
-            <strong>赛道</strong
-            >：白电（空调为主），受地产后周期、国补、天气、出口影响，行业增速低个位数。
-          </li>
-          <li>
-            <strong>竞争地位</strong>：空调全球龙头，但美的（多品类 +
-            海外更强）、海尔（高端 + 全球化）在多元化与全球化上领先。
-          </li>
-          <li>
-            <strong>成长驱动</strong
-            >：以旧换新国补、海外扩张、工业制品/新能源第二曲线。
-          </li>
-          <li>
-            <strong>风险</strong
-            >：地产周期、竞争加剧（价格战）、多元化不及预期、渠道改革反复。
-          </li>
-        </ul>
-        <p class="small">
-          结论：格力在空调主业的地位稳固，但行业低增长 +
-          竞争格局变化，决定了它是"稳定现金牛"而非"成长股"。
-        </p>
-      </div>
-
-      <div class="card">
-        <h2>💰 估值与安全边际</h2>
-        <h3>当前估值</h3>
+      </section>
+      <section class="card">
+        <h2>✅ 硬阈值筛选</h2>
         <table>
           <tr>
-            <th>估值指标</th>
-            <th class="num">数值</th>
+            <th>门槛</th>
+            <th>结果</th>
+            <th>判断</th>
           </tr>
           <tr>
-            <td>市盈率 PE(动态)</td>
-            <td class="num">8.01 倍</td>
+            <td>近五年 ROE</td>
+            <td>2021-2025 均高于 15%，2025 约 20.3%</td>
+            <td class="up">通过</td>
           </tr>
           <tr>
-            <td>市盈率 PE(TTM)</td>
-            <td class="num">约 8.0 倍</td>
+            <td>三年自由现金流</td>
+            <td>2023-2025 经营现金流均为正，资本开支后仍有现金结余</td>
+            <td class="up">通过，需更新</td>
           </tr>
           <tr>
-            <td>市净率 PB</td>
-            <td class="num">1.54 倍</td>
+            <td>分红能力</td>
+            <td>历史分红较高，但 2026H1 暂不派发中期股息</td>
+            <td>通过，确定性下降</td>
           </tr>
           <tr>
-            <td>总市值</td>
-            <td class="num">2337 亿</td>
-          </tr>
-          <tr>
-            <td>股息率（约）</td>
-            <td class="num">约 7.2%（全年每股分红约 3 元）</td>
-          </tr>
-        </table>
-        <h3>估值锚交叉验证（2026E 净利约 295 亿，EPS 约 5.25 元）</h3>
-        <table>
-          <tr>
-            <th>情景</th>
-            <th class="num">2026E 净利(亿)</th>
-            <th class="num">合理 PE</th>
-            <th class="num">对应价格(元)</th>
-          </tr>
-          <tr>
-            <td>保守（主业继续萎缩，全年 270 亿）</td>
-            <td class="num">270</td>
-            <td class="num">7-8 倍</td>
-            <td class="num">33.6-38.4</td>
-          </tr>
-          <tr>
-            <td>中性（Q1 企稳延续，全年 295 亿）</td>
-            <td class="num">295</td>
-            <td class="num">8-9 倍</td>
-            <td class="num">42.0-47.2</td>
-          </tr>
-          <tr>
-            <td>乐观（国补 + 海外起量，全年 320 亿）</td>
-            <td class="num">320</td>
-            <td class="num">9-10 倍</td>
-            <td class="num">51.2-56.9</td>
+            <td>负债率</td>
+            <td>H1 约 62.8%，高于 60%观察线</td>
+            <td class="down">不通过</td>
           </tr>
         </table>
         <p class="small">
-          按总股本约 56.1 亿股折算。格力历史 PE 区间 6-15 倍，当前 8
-          倍处于中低位（现金牛合理 8-10 倍）。
+          硬阈值中负债率已越过
+          60%观察线，叠加收入、扣非和现金流下降，不能按旧报告的“高股息现金牛”状态满分处理；后续需等待全年现金流、资产负债表和年度分红方案。
         </p>
+      </section>
+      <section class="card">
+        <h2>🏠 基本面与护城河</h2>
+        <ul>
+          <li>
+            <strong>业务质量：</strong
+            >空调品牌、制造规模、渠道网络和售后体系仍构成深护城河，核心品类盈利能力强。
+          </li>
+          <li>
+            <strong>竞争格局：</strong
+            >与美的、海尔竞争，国内空调需求受地产、消费和更新周期影响，渠道库存与价格竞争是主要变量。
+          </li>
+          <li>
+            <strong>多元化：</strong
+            >工业制品、绿色能源和生活电器提供第二曲线，但当前仍不足以完全抵消空调主业波动。
+          </li>
+          <li>
+            <strong>治理与回报：</strong
+            >回购计划与员工持股计划有助于股东回报，但中期暂不分红削弱了短期现金回报确定性。
+          </li>
+        </ul>
         <p>
-          <strong
-            >合理价值区间：约 42-47 元；Fair Value 约 45 元。现价 41.72 元低于
-            Fair Value 约 7%。</strong
-          >
+          林奇分类为
+          <strong>Stalwart / 高股息价值股</strong
+          >，不是高成长股。巴菲特视角关注品牌与现金流，格雷厄姆视角要求股息和估值留有安全边际，芒格反向检查则是：不要把过去高分红和空调利润当成永久不变。
         </p>
-        <h3>安全边际判断</h3>
-        <div class="note">
-          现价对应 2026E 约 7.9 倍 PE、PB 1.54，股息率约
-          7.2%——对高股息现金牛，估值具备中等偏上安全边际。Buy Zone：<strong
-            >38-45 元</strong
-          >（现价 41.72 处于区间内）；Strong Buy：<strong>&lt;38 元</strong
-          >。股息率锚：若股息率回落至 6%（对应 50 元），即到减仓观察区。
-        </div>
-        <p class="small muted">
-          旧报告（4/29）Fair Value 42 元、Buy Zone 34-38 元；本次 Q1
-          数据企稳，估值锚小幅上修。
+      </section>
+      <section class="card">
+        <h2>💰 估值与安全边际</h2>
+        <p>
+          当前 PE 约 7.98 倍、PB 约 1.53
+          倍。对成熟家电现金牛，估值主锚应为正常化扣非盈利、股息率和
+          PB，而不是单季利润。以 2026E 扣非净利 250-285 亿元、合理 PE 8-10
+          倍估算；因收入下滑和中期分红暂停，合理倍数取历史高股息估值的下沿。
         </p>
-      </div>
-
-      <div class="card">
-        <h2>📈 六维评分</h2>
-        <div class="score-grid">
-          <div class="score-item">
-            <div class="dim">1. 业务质量</div>
-            <div class="val">7/10</div>
-            <div class="bar"><div class="fill" style="width: 70%"></div></div>
-            <div class="small">空调龙头品牌强，但主业萎缩、多元化落后同行</div>
-          </div>
-          <div class="score-item">
-            <div class="dim">2. 财务强度</div>
-            <div class="val">7/10</div>
-            <div class="bar"><div class="fill" style="width: 70%"></div></div>
-            <div class="small">
-              ROE 23.5%、FCF 447 亿、分红每股 3 元，但负债率 61.7% 越线
-            </div>
-          </div>
-          <div class="score-item">
-            <div class="dim">3. 成长质量</div>
-            <div class="val">4/10</div>
-            <div class="bar"><div class="fill" style="width: 40%"></div></div>
-            <div class="small">
-              2025 年营收/净利双降 10%，Q1 微增但扣非仍降，缺乏成长
-            </div>
-          </div>
-          <div class="score-item">
-            <div class="dim">4. 分类与故事</div>
-            <div class="val">5/10</div>
-            <div class="bar"><div class="fill" style="width: 50%"></div></div>
-            <div class="small">Stalwart 现金牛，多元化/海外故事未验证</div>
-          </div>
-          <div class="score-item">
-            <div class="dim">5. 估值与安全边际</div>
-            <div class="val">8/10</div>
-            <div class="bar"><div class="fill" style="width: 80%"></div></div>
-            <div class="small">
-              PE 8 倍、PB 1.54、股息率 7.2%、回购注销，安全边际厚
-            </div>
-          </div>
-          <div class="score-item">
-            <div class="dim">6. 风险（反向）</div>
-            <div class="val">6/10</div>
-            <div class="bar"><div class="fill" style="width: 60%"></div></div>
-            <div class="small">主业萎缩、竞争价格战、渠道改革、多元化迟缓</div>
-          </div>
-        </div>
-        <div class="total-score">总分 <span class="big">37</span> / 60</div>
-      </div>
-
-      <div class="card">
+        <table>
+          <tr>
+            <th>估值项目</th>
+            <th>数值</th>
+            <th>锚定依据</th>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td>41.58 元</td>
+            <td>8/26 收盘</td>
+          </tr>
+          <tr>
+            <td>PE / PB</td>
+            <td>7.98 倍 / 1.53 倍</td>
+            <td>行情接口</td>
+          </tr>
+          <tr>
+            <td>2026E 扣非净利</td>
+            <td>250-285 亿</td>
+            <td>H1 扣非 127.1 亿 + H2 情景</td>
+          </tr>
+          <tr>
+            <td>合理 PE</td>
+            <td>8-10 倍</td>
+            <td>成熟现金牛，增长下滑与分红不确定性折价</td>
+          </tr>
+          <tr>
+            <td>合理价值</td>
+            <td>36-48 元</td>
+            <td>正常化扣非盈利 × 8-10 倍</td>
+          </tr>
+          <tr>
+            <td>Buy Zone</td>
+            <td>36-39 元</td>
+            <td>合理价值下方约 0.85-0.90 倍</td>
+          </tr>
+          <tr>
+            <td>Strong Buy Zone</td>
+            <td>33 元以下</td>
+            <td>约 7-8 倍正常化 PE，安全边际较厚</td>
+          </tr>
+        </table>
+        <p>
+          <strong>安全边际：</strong>41.58
+          元处于合理价值区间中上部，不属于明显低估。若全年分红恢复且现金流改善，估值可向
+          10 倍 PE 上沿靠近；若分红继续推迟、收入继续负增长，则合理 PE 应压向 8
+          倍。
+        </p>
+      </section>
+      <section class="card">
         <h2>💼 持仓分析与操作建议</h2>
         <table>
           <tr>
-            <th>项目</th>
-            <th class="num">数值</th>
+            <th>标的</th>
+            <th class="num">数量</th>
+            <th class="num">成本</th>
+            <th class="num">现价</th>
+            <th class="num">市值</th>
+            <th class="num">浮盈</th>
           </tr>
           <tr>
-            <td>当前持仓</td>
+            <td>格力电器</td>
             <td class="num">600 股</td>
-          </tr>
-          <tr>
-            <td>买入成本</td>
             <td class="num">40.757 元</td>
-          </tr>
-          <tr>
-            <td>当前价格</td>
-            <td class="num">41.72 元</td>
-          </tr>
-          <tr>
-            <td>当前市值</td>
-            <td class="num">25,032 元</td>
-          </tr>
-          <tr>
-            <td>账面浮盈</td>
-            <td class="num up">约 +578 元（+2.4%）</td>
+            <td class="num">41.58 元</td>
+            <td class="num">24948 元</td>
+            <td class="num up">493.80 元 / 2.0%</td>
           </tr>
         </table>
-        <h3>买卖点位参考（2026E 扣非口径，EPS 约 5.25 元）</h3>
         <table>
           <tr>
-            <th>区间</th>
-            <th class="num">价格</th>
-            <th>估值锚</th>
+            <th>价格区间</th>
+            <th>动作</th>
+            <th>估值锚与依据</th>
           </tr>
           <tr>
-            <td class="up">强买点 Strong Buy</td>
-            <td class="num">&lt;38 元</td>
-            <td>2026E PE 7 倍以内 + 股息率 7.9% 以上</td>
+            <td>33 元以下</td>
+            <td>强买复核，分批加仓</td>
+            <td>约 7-8 倍正常化扣非 PE，股息率需重新确认</td>
           </tr>
           <tr>
-            <td>买点 Buy Zone</td>
-            <td class="num">38-45 元</td>
-            <td>现金牛合理 PE 8-9 倍（历史中低位）</td>
+            <td>36-39 元</td>
+            <td>首选加仓区</td>
+            <td>约 8-9 倍正常化扣非 PE，合理价值下方折价</td>
+          </tr>
+          <tr class="hl">
+            <td>41.58 元</td>
+            <td>继续持有，不追买</td>
+            <td>约 8-9 倍正常化 PE，处于合理价值中上部</td>
           </tr>
           <tr>
-            <td>合理价值 Fair Value</td>
-            <td class="num">约 45 元</td>
-            <td>2026E 净利 295 亿 × 8.5 倍，股息率 6.7% 反推验证</td>
+            <td>48 元以上</td>
+            <td>估值观察 / 减仓评估</td>
+            <td>接近合理价值上沿，需盈利和分红同步恢复</td>
           </tr>
           <tr>
-            <td>当前价格</td>
-            <td class="num hl">41.72 元</td>
-            <td>PE 8.0 倍，Buy Zone 中下部</td>
-          </tr>
-          <tr>
-            <td class="down">估值卖点（减仓）</td>
-            <td class="num">50 元以上</td>
-            <td>股息率回落至 6% / PE 10 倍（现金牛高估锚）</td>
-          </tr>
-          <tr>
-            <td class="down">无条件卖点</td>
-            <td class="num">不限价格</td>
-            <td>空调主业份额持续丢失 / 分红政策逆转 / 大额减值</td>
+            <td>52 元以上</td>
+            <td>兑现卖点候选</td>
+            <td>超过 10 倍正常化 PE，需强劲增长重新支撑</td>
           </tr>
         </table>
-        <h3>操作建议</h3>
-        <ul class="small">
-          <li>600 股继续持有：吃股息（约 7.2%）+ 等回购注销增厚每股价值。</li>
+        <p class="small">
+          <strong>组合卖点：</strong
+          >当前接近成本且基本面尚未破坏，不因短期波动卖出；若需要降低家电与高股息风格集中度，可在
+          48 元以上减 100 股。<br /><strong>估值卖点：</strong>48-52
+          元观察，若分红仍未恢复或收入继续负增长，可分批兑现。<br /><strong
+            >无条件卖点：</strong
+          >经营现金流连续显著低于净利、空调主业份额和毛利率持续下滑、资产负债率升破
+          65%、年度分红政策出现结构性恶化。
+        </p>
+      </section>
+      <section class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">业务质量</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">空调品牌、制造和渠道护城河深</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">财务强度</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">现金流回落，负债率接近观察线</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">成长质量</div>
+            <div class="val">4/10</div>
+            <div class="bar"><div class="fill" style="width: 40%"></div></div>
+            <div class="small">H1 收入、扣非和利润均负增长</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">分类与故事</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">成熟现金牛，回购与多元化提供支撑</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">估值与安全边际</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">PE 低，但分红不确定性抵消部分优势</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">风险（反向）</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">行业成熟、需求、现金流和分红风险</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">39</span> / 60</div>
+      </section>
+      <section class="card">
+        <h2>⚠️ 风险与关键跟踪</h2>
+        <ul>
           <li>
-            不加仓：主业恢复（Q1 扣非仍 -0.27%）尚未确认，等 8/27 中报验证。
+            <strong>空调需求：</strong>地产和消费疲软会压制收入，Q2
+            转弱说明全年恢复仍不确定。
           </li>
-          <li>若回落至 38 元以下（Strong Buy）：可分批补仓至目标仓位。</li>
-          <li>若涨至 50 元以上（股息率跌破 6%）：分批止盈。</li>
+          <li>
+            <strong>现金流：</strong>H1 经营现金流同比下降
+            33.6%，需观察全年是否恢复覆盖净利。
+          </li>
+          <li>
+            <strong>分红：</strong>2026 年中期拟暂不派发现金红利（2025 年度每股
+            2.0 元分红正在实施，8/27 除息），
+            旧报告的全年股息率估算不能直接沿用。
+          </li>
+          <li>
+            <strong>竞争：</strong>美的、海尔等竞争和渠道促销可能侵蚀毛利率。
+          </li>
+          <li>
+            <strong>治理与杠杆：</strong
+            >大股东质押、回购和员工持股计划需持续关注，按中报数据倒算负债率约
+            62.8%，已高于 60%观察线。
+          </li>
         </ul>
-      </div>
-
-      <div class="card">
-        <h2>⚠️ 风险清单</h2>
-        <ul class="small">
-          <li>
-            <strong>主业持续萎缩</strong>：2025 年营收
-            -10%，若地产与消费持续低迷，空调主业可能继续下滑。
-          </li>
-          <li>
-            <strong>价格竞争</strong
-            >：美的/海尔与新兴品牌竞争加剧，毛利率持续承压（Q1 已 -2.4pct）。
-          </li>
-          <li>
-            <strong>多元化不及预期</strong
-            >：工业制品、新能源等第二曲线多年未放量。
-          </li>
-          <li>
-            <strong>海外差距</strong
-            >：海外收入占比与美的/海尔差距大，全球化进程慢。
-          </li>
-          <li>
-            <strong>渠道改革反复</strong
-            >：渠道扁平化与经销商利益平衡存在不确定性。
-          </li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h2>🎯 总结</h2>
+        <table>
+          <tr>
+            <th>跟踪项</th>
+            <th>升级信号</th>
+            <th>降级信号</th>
+          </tr>
+          <tr>
+            <td>收入</td>
+            <td>Q3/Q4 恢复正增长</td>
+            <td>连续两个季度负增长</td>
+          </tr>
+          <tr>
+            <td>现金流</td>
+            <td>OCF/净利回到 1.5 倍附近</td>
+            <td>连续低于 1 倍</td>
+          </tr>
+          <tr>
+            <td>分红</td>
+            <td>全年分红恢复并接近历史水平</td>
+            <td>年度分红继续大幅下降</td>
+          </tr>
+          <tr>
+            <td>负债率</td>
+            <td>回到 60%以下</td>
+            <td>升破 65%</td>
+          </tr>
+        </table>
+      </section>
+      <section class="card">
+        <h2>🎯 最终判断</h2>
         <p>
           <strong
-            >结论：HOLD（高股息现金牛，持有观察不追高）。总分 37/60。</strong
+            >格力电器仍是优质家电现金牛，但 2026H1
+            已进入“经营承压、分红待定”的观察期。结论：HOLD，39/60。</strong
           >
         </p>
-        <h3>3 个持有的理由</h3>
+        <h3>3 个继续持有理由</h3>
         <ol class="small">
           <li>
-            股东回报极厚：全年每股分红约 3 元（股息率 7.2%）+ 回购 50-100 亿且
-            70% 注销。
+            空调品牌、规模制造、渠道和售后体系仍是深护城河，毛利率保持约 29%。
           </li>
-          <li>
-            财务质量顶级：ROE 5 年均 23.5%、FCF 447 亿远超净利、低资本开支。
-          </li>
-          <li>
-            估值历史低位：PE 8 倍、PB 1.54，现金牛定价已充分反映悲观预期。
-          </li>
+          <li>PE 约 8 倍、PB 约 1.53 倍，估值不算昂贵，持仓成本接近当前价。</li>
+          <li>回购、员工持股和多元化业务为股东回报及长期修复提供支撑。</li>
         </ol>
-        <h3>3 个不加仓的理由</h3>
+        <h3>3 个不追买理由</h3>
         <ol class="small">
-          <li>2025 年量利双降 10%，Q1 扣非仍 -0.27%，主业恢复未确认。</li>
-          <li>多元化与海外落后美的/海尔，缺乏成长第二曲线。</li>
-          <li>负债率 61.7% 越线（边界案例），硬阈值不完全通过。</li>
+          <li>
+            H1 营收、归母、扣非和经营现金流同步下降，Q2
+            利润转弱不是单一指标问题。
+          </li>
+          <li>
+            2026 年中期拟暂不分红（2025 年度每股 2.0
+            元分红仍实施中），全年股息率和高股息逻辑暂时无法按旧报告确认。
+          </li>
+          <li>
+            家电需求成熟、竞争激烈，负债率接近 60%观察线，增长修复仍需验证。
+          </li>
         </ol>
         <h3>关键问题</h3>
         <p class="small">
           <strong
-            >空调主业能否在 2026
-            年真正企稳（扣非转正）？国补与海外扩张能否对冲地产下行？</strong
-          >若主业企稳 + 高分红延续，8 倍 PE
-          的现金牛估值有修复空间；若继续萎缩，股息率 7%
-          将成为唯一的持有理由（高股息陷阱风险）。
+            >Q3/Q4
+            空调收入和经营现金流能否恢复，同时全年分红能否回到可持续水平？</strong
+          >
         </p>
         <h3>致命缺陷检查</h3>
         <p class="small">
-          空调主业份额持续丢失 → 营收加速下滑，高股息不可持续；渠道改革失败 →
-          经销商体系崩塌；大额减值或多元化亏损（如格力钛）→
-          净利大幅下修。芒格式反向思考：高分红是否掩盖了主业份额和增长质量的下降？低估值到底是机会，还是成熟龙头进入低增长阶段的合理折价？
+          若空调主业连续负增长、毛利率持续跌破
+          27%、经营现金流连续低于净利且年度分红明显削弱，格力将从高股息现金牛降级为低增长价值陷阱，应无论价格离场或大幅降级。
         </p>
         <div class="note">
-          数据充分性说明：营收/净利/毛利率/现金流/分红来自一季报、年报与公告，可互相印证；<strong>中报（8/27）尚未披露</strong>，2026H1
-          分部收入与渠道改革进展未获取，中报后需正式更新。
+          <strong>Data Sufficiency Check：</strong
+          >中报营收、净利、扣非、现金流、ROE、资产和净资产来自公司 2026
+          半年度报告；行情来自腾讯接口；F10 已同步至
+          Q1，故中报核心财务数据以公司公告正文为准。未获取完整中报三表明细、分产品收入和最新机构一致预测，不输出伪精确目标价。本报告仅作个人研究记录，不构成投资建议。
         </div>
-      </div>
-
-      <footer>
-        本报告基于 2026-08-26
-        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 格力电器 ·
-        000651.SZ
-      </footer>
+      </section>
+      <footer>格力电器 · 000651.SZ ｜ 数据截至 2026-08-26</footer>
     </div>
   </body>
 </html>

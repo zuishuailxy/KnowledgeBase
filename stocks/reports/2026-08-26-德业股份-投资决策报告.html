@@ -1,0 +1,932 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>德业股份（605117）投资决策报告 · 2026-08-26</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>德业股份（605117）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年半年报更新版 ｜ 生成日期：2026-08-26 ｜
+          数据基准：2026 年半年度财务数据 + 8/26 行情 + 半年度分红公告
+        </div>
+        <div class="badges">
+          <span class="badge">框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span>
+          <span class="badge">分类：Fast Grower + 储能周期</span>
+          <span class="badge score">总分 45.5 / 60</span>
+        </div>
+      </div>
+
+      <!-- 1. 结论 -->
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">CORE HOLD · 持有</span>
+          2026H1 业绩与现金流兑现很强，但存货、应收和负债上升使安全边际收窄。现价
+          96.50 元接近合理价值中枢（约 97 元），不追涨；已有仓位继续持有，新增资金等待回撤。
+        </div>
+        <p>
+          2026H1 营收 106.41 亿元（+92.2%），归母净利 27.17 亿元（+78.5%），扣非净利 25.70
+          亿元（+75.8%），经营现金流 41.95 亿元（+176.7%）。扣非利润和现金流同步高增，海外储能放量目前不是单纯的利润表故事——现金含量（经营现金流/归母
+          1.54 倍）是本份中报最有力的证据。
+        </p>
+        <p>
+          <strong>核心矛盾：</strong>存货由年初 17.85 亿元升至 38.55 亿元（+116%），应收账款升至
+          25.18 亿元（+48.1%），资产负债率升至 53.86%（年初 48.11%）。三项经营性扩张指标全部快于利润兑现节奏，后续要用出货、回款和库存周转验证增长质量。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>700 股（成本 22.343 元）继续持有，浮盈约
+          +332%；现价 96.50 元不追买。新增资金首选 78-88 元，68-78 元为强买复核区，前提是现金流、毛利率和库存没有破坏性恶化；105-113
+          元进入减仓评估区，120 元以上为兑现卖点候选。
+        </p>
+      </div>
+
+      <!-- 2. 关键指标速览 -->
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 总市值</div>
+            <div class="num">96.50 元 / 1,228.67 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">PE(TTM) / PE(2026E)</div>
+            <div class="num">28.1 倍 / 20.4-23.6 倍</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">H1 营收 / 归母增速</div>
+            <div class="num">+92.2% / +78.5%</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">H1 ROE(加权) / 经营现金流</div>
+            <div class="num">24.31% / 41.95 亿</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目（2026 半年报）</th>
+            <th class="num">本期</th>
+            <th class="num">上年同期</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入（亿元）</td>
+            <td class="num">106.41</td>
+            <td class="num">55.35</td>
+            <td class="num up">+92.2%</td>
+          </tr>
+          <tr>
+            <td>归母净利润（亿元）</td>
+            <td class="num">27.17</td>
+            <td class="num">15.22</td>
+            <td class="num up">+78.5%</td>
+          </tr>
+          <tr>
+            <td>扣非归母净利润（亿元）</td>
+            <td class="num">25.70</td>
+            <td class="num">14.62</td>
+            <td class="num up">+75.8%</td>
+          </tr>
+          <tr>
+            <td>经营现金流净额（亿元）</td>
+            <td class="num">41.95</td>
+            <td class="num">15.16</td>
+            <td class="num up">+176.7%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">37.65%</td>
+            <td class="num">37.48%</td>
+            <td class="num up">+0.17pct</td>
+          </tr>
+          <tr>
+            <td>加权 ROE（半年）</td>
+            <td class="num">24.31%</td>
+            <td class="num">15.21%</td>
+            <td class="num up">+9.10pct</td>
+          </tr>
+          <tr>
+            <td>资产负债率</td>
+            <td class="num">53.86%</td>
+            <td class="num">约 43.2%</td>
+            <td class="num down">明显上升</td>
+          </tr>
+        </table>
+        <p class="muted">
+          数据来源：公司 2026 年半年度财务数据、东方财富 F10、8/26 行情。PE(TTM)
+          为自算值（TTM 归母约 43.66 亿 ÷ 总市值），2026E 为情景推演口径（见估值章节）。
+        </p>
+      </div>
+
+      <!-- 3. 数据来源与可信度 -->
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：公司 2026 年半年度财务数据（营收、归母、扣非、经营现金流、资产负债表明细）、2026
+            年半年度利润分配公告（拟每股派 1.60 元，约占 H1 归母净利 75%）。
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10 主要财务指标接口（2021-2025 年度 ROE、毛利率、负债率，2025
+            年末与 2026H1 资产负债表项目）。
+          </li>
+          <li><strong>行情与估值</strong>：8/26 行情（现价 96.50 元、总市值约 1,228.67 亿元）；PE(TTM) 为自算。</li>
+          <li><strong>分红与股东</strong>：半年度利润分配公告；2025 年度分红明细本次未纳入。</li>
+          <li>
+            <strong>盈利预测</strong>：不引用机构一致预期；2026E 归母净利 52-60 亿元为自算情景（H1 实绩 27.17 亿 +
+            H2 假设 25-33 亿），方法见估值章节。
+          </li>
+        </ul>
+        <div class="note">
+          可信度说明：营收 / 净利 / 扣非 / 现金流 / 资产负债表来自 H1
+          财报与 F10，可信度高；接口显示半年度报告公告日为 2026-08-27，本报告生成于 8/26，正式披露日期以公司公告为准；未获取分客户订单、H2
+          指引和存货细分，故不输出伪精确目标价，估值给区间不给点位。
+        </div>
+      </div>
+
+      <!-- 4. 硬阈值筛选 -->
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5 年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">29.29%</td>
+            <td class="num">45.50%</td>
+            <td class="num">38.60%</td>
+            <td class="num">39.24%</td>
+            <td class="num down">32.66%</td>
+            <td class="num">37.06%</td>
+          </tr>
+        </table>
+        <p class="small">
+          2021-2025 年全部高于 15%，5 年均值 37.06%，远超门槛，强通过。2025 年 ROE
+          从高点回落（39.24% → 32.66%），但 2026H1 半年即达 24.31%，年化回到 40%+
+          水平——资本回报在储能放量周期中重新抬升。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          2023-2025 年 FCF 均为正，三年累计约 69 亿元，通过。2026H1：经营现金流 41.95 亿 - 资本开支约 4.92 亿
+          = 简化 FCF 约 37.03 亿元——半年即接近过去三年累计的一半，且现金流增速（+176.7%）远超利润增速（+78.5%），现金转化优秀。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          2026 年半年度拟每股派 1.60 元（含税），分红总额约 20.4 亿元，约占 H1 归母净利的
+          75%，分红意愿强；按现价计算该笔中期分红对应股息率约 1.66%（仅半年口径）。通过。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          2026H1 资产负债率 53.86%（年初 48.11%、2025H1 约 43.2%），低于 60%
+          门槛但半年上升 5.75pct，主要伴随存货与应收的扩张。通过，但边际转弱，需持续跟踪。
+        </p>
+        <div class="good-box">
+          <strong>硬阈值总判断：四项全部通过。</strong
+          >德业是高 ROE、高现金流、高分红的成长制造企业；但存货 +116%、应收
+          +48.1%、负债率上升三项同时出现，阈值"通过"不等于质量"无虞"，库存与回款是下半年验证重点。
+        </div>
+      </div>
+
+      <!-- 5. 基本面研究 -->
+      <div class="card">
+        <h2>🔋 基本面研究</h2>
+        <h3>公司定位与主营（2025 年报口径）</h3>
+        <table>
+          <tr>
+            <th>业务板块</th>
+            <th class="num">收入(亿)</th>
+            <th class="num">占比</th>
+          </tr>
+          <tr>
+            <td>新能源业务（储能逆变器 / 储能电池包 / 微逆等）</td>
+            <td class="num">101.81</td>
+            <td class="num">83.3%</td>
+          </tr>
+          <tr>
+            <td>其他业务（环境电器等）</td>
+            <td class="num">20.43</td>
+            <td class="num">16.7%</td>
+          </tr>
+        </table>
+        <p class="small">
+          渠道结构：外销约 97.47 亿元（占比约 79.7%）、内销约 24.77 亿元（占比约
+          20.3%）——收入基本盘在海外，汇率、海运与海外政策是系统性变量。2026H1 营收 106.41 亿元已接近 2025
+          全年（122.24 亿元）的九成，放量速度罕见。
+        </p>
+        <h3>护城河</h3>
+        <ul class="small">
+          <li><strong>海外渠道</strong>：深耕南非、巴基斯坦、印度等新兴市场，经销网络与本地化服务构成先发优势。</li>
+          <li><strong>产品认证</strong>：逆变器与电池包进入多个国家并网认证体系，认证壁垒拉长追赶周期。</li>
+          <li><strong>产品矩阵</strong>：储能逆变器、电池包、微逆、环境电器协同，单一品类波动被组合平滑。</li>
+          <li>整体强度：中上。属于"渠道 + 认证 + 矩阵"型护城河，弱于品牌心智型垄断，需持续投入维护。</li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>分红政策积极：H1 中期即派 1.60 元/股（约 75% 分红率），成长期仍维持高分红，治理友好。</li>
+          <li>推进 A+H 发行：发行规模、定价与募资用途尚未确定，落地前存在 EPS 摊薄的不确定性。</li>
+          <li>财务费用由 2025 年全年净收益 1.29 亿元转为 2026H1 净费用 1.74 亿元，汇率对海外业务的拖累已在报表显现，管理层对冲能力待观察。</li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          费雪视角：管理层执行力已验证（H1 出货、利润、现金流三线兑现），海外储能是真实的长坡赛道；但不能用 H1 的 78%
+          增速机械外推 2027 年。林奇分类：<strong>Fast Grower + 储能周期</strong>——买点看 PEG
+          与正常化增长，而非当期增速；且带周期属性，需在景气高位对"低 PE 陷阱"保持警惕（周期股低 PE 常是顶部信号）。
+        </p>
+      </div>
+
+      <!-- 6. 财务质量分析 -->
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>本期核心变化：经营性扩张指标全面走高</h3>
+        <div class="warn-box">
+          <strong>⚠️ 存货 +116%、应收 +48.1%、负债率 +5.75pct，三项同时上行。</strong
+          >存货增速（+116%）已明显超过收入增速（+92.2%），可能包含主动备货与产能扩张，但暂不能全部解释为增长信号；若
+          H2 出货不及预期，库存将成为利润表的减值风险源。
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2025 年末</th>
+            <th class="num">2026H1</th>
+            <th class="num">变化</th>
+          </tr>
+          <tr>
+            <td>总资产（亿元）</td>
+            <td class="num">199.07</td>
+            <td class="num">249.32</td>
+            <td class="num">+25.2%</td>
+          </tr>
+          <tr>
+            <td>总负债（亿元）</td>
+            <td class="num">95.77</td>
+            <td class="num">134.29</td>
+            <td class="num down">+40.2%</td>
+          </tr>
+          <tr>
+            <td>货币资金（亿元）</td>
+            <td class="num">66.09</td>
+            <td class="num">60.38</td>
+            <td class="num down">-8.6%</td>
+          </tr>
+          <tr>
+            <td>应收账款（亿元）</td>
+            <td class="num">17.00</td>
+            <td class="num">25.18</td>
+            <td class="num down">+48.1%</td>
+          </tr>
+          <tr>
+            <td>存货（亿元）</td>
+            <td class="num">17.85</td>
+            <td class="num">38.55</td>
+            <td class="num down hl">+116.0%</td>
+          </tr>
+        </table>
+        <p class="small">
+          拆解：① <strong>现金转化</strong>——H1 经营现金流为归母净利润的 1.54 倍，简化自由现金流约 37.03
+          亿元，回款质量强，海外销售的收款纪律目前没有恶化证据；② <strong>存货</strong
+          >——38.55 亿的库存对应 H2 出货储备，若渠道承接顺利则转化为收入，否则形成减值压力；③
+          <strong>负债与资金</strong>——总负债 +40.2% 快于总资产 +25.2%，货币资金微降 8.6%，扩张部分依赖经营性负债与应付款项；④
+          <strong>费用端</strong>——财务费用转负为正（H1 费用 1.74 亿 vs 2025 全年收益 1.29 亿），汇率敞口是下半年利润的重要变量。
+        </p>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li>扣非 / 归母净利润 = 94.6%，利润几乎全部来自主业，非经常性损益占比低。</li>
+          <li>经营现金流 / 归母净利润 = 1.54 倍，H1 现金含量优秀。</li>
+          <li>毛利率 37.65%（同比 +0.17pct），在高基数与竞争环境下暂稳，未出现以价换量的明显信号。</li>
+          <li>ROE 24.31%（半年，同比 +9.10pct），若 H2 维持，全年 ROE 有望重回 35%+。</li>
+        </ul>
+      </div>
+
+      <!-- 7. 行业与竞争格局 -->
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li><strong>赛道</strong>：全球户用与工商业储能，受能源转型、电价波动、断电备用需求驱动；行业兼具成长与周期属性——补贴政策、能源价格与渠道库存会造成订单的年度间波动。</li>
+          <li><strong>竞争地位</strong>：全球户储逆变器与电池包主要供应商之一，新兴市场份额领先；面对华为、阳光电源等头部厂商的竞争，德业以新兴市场渠道与性价比立足。</li>
+          <li><strong>成长驱动</strong>：海外户储及工商储需求释放、逆变器与电池包协同放量（H1 已验证）、新兴市场电网薄弱地区的刚性备用需求。</li>
+          <li><strong>风险</strong>：渠道去库存、补贴退坡与能源价格回落、竞争加剧压毛利、汇率波动、潜在 A+H 发行摊薄。</li>
+        </ul>
+        <p class="small">
+          结论：公司质量优于一般周期制造企业，但行业属性决定了订单波动不可避免——估值应锚定正常化增长（而非当期
+          78% 增速），并持续用库存和回款数据验证景气真实性。
+        </p>
+      </div>
+
+      <!-- 8. 估值与安全边际 -->
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">数值</th>
+            <th class="num">判断</th>
+          </tr>
+          <tr>
+            <td>总市值（8/26 行情）</td>
+            <td class="num">约 1,228.67 亿元</td>
+            <td class="num">—</td>
+          </tr>
+          <tr>
+            <td>PE(TTM)（TTM 归母约 43.66 亿）</td>
+            <td class="num">28.1 倍</td>
+            <td class="num">中性</td>
+          </tr>
+          <tr>
+            <td>PE(2026E)（归母 52-60 亿情景）</td>
+            <td class="num">20.4-23.6 倍</td>
+            <td class="num">接近合理</td>
+          </tr>
+          <tr>
+            <td>中期分红股息率（1.60 元/股）</td>
+            <td class="num">约 1.66%（仅半年）</td>
+            <td class="num">成长股口径尚可</td>
+          </tr>
+        </table>
+        <h3>估值锚交叉验证（2026E 情景口径，EPS 约 4.1-4.7 元）</h3>
+        <p class="small">
+          测算依据：H1 归母 27.17 亿元 + H2 情景 25-33 亿元 → 2026E 归母约 52-60 亿元，按当前总股本约 12.73
+          亿股折算 EPS 约 4.08-4.71 元。合理 PE 确定依据：Fast Grower 通常可用 PEG 25-40 倍，但储能行业带周期属性、库存与应收扩张、汇率风险、潜在
+          H 股摊薄四项折价，主锚给予 <strong>20-24 倍</strong>（对正常化增长折价）。
+        </p>
+        <table>
+          <tr>
+            <th>估值锚</th>
+            <th class="num">合理区间（元）</th>
+          </tr>
+          <tr>
+            <td>PE 锚（主）：2026E 归母 52-60 亿 × 20-24 倍</td>
+            <td class="num">82 - 113</td>
+          </tr>
+          <tr>
+            <td>中枢：中性盈利 56 亿 × 22 倍</td>
+            <td class="num">约 97</td>
+          </tr>
+          <tr>
+            <td>悲观情景：52 亿 × 18-20 倍（库存恶化压估值）</td>
+            <td class="num">74 - 82</td>
+          </tr>
+          <tr>
+            <td>乐观情景：60 亿 × 24-26 倍（现金流与库存双改善）</td>
+            <td class="num">113 - 123</td>
+          </tr>
+        </table>
+        <p>
+          <strong
+            >合理价值区间：82-113 元，中枢约 97 元；现价 96.50
+            元几乎正好落在中枢上，不贵也不便宜。</strong
+          >
+        </p>
+        <div class="note">
+          买卖区间推导：Buy Zone 78-88 元 ≈ 中性盈利 56 亿的 17-20 倍 PE（中枢下方
+          10-20%）；Strong Buy 68-78 元 ≈ 15-18 倍正常化 PE，接近悲观情景估值区。现价对应 2026E
+          20.4-23.6 倍，处于主锚区间内——这意味着当前价格买入的回报主要依赖盈利继续兑现，而非估值修复。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          <strong>安全边际：薄。</strong
+          >现价接近合理价值中枢，向上需要盈利上修（H2 超 33 亿）或估值扩张（市场接受 25 倍+），向下若库存去化受阻则先杀估值后杀盈利（悲观情景对应
+          74-82 元，下行约 15-23%）。格雷厄姆式复核：28.1 倍 TTM PE 远超防御型标准；巴菲特式复核：高 ROE
+          高现金流是真，但周期属性与库存风险使其不满足"确定性"要求，不宜给中枢以上价格。
+        </p>
+      </div>
+
+      <!-- 9. 六维评分 -->
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">8.5/10</div>
+            <div class="bar"><div class="fill" style="width: 85%"></div></div>
+            <div class="small">产品矩阵与海外渠道较强，护城河强度中上。</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">8.0/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">高 ROE、高现金流；扣分项：库存、应收与负债上升。</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">8.0/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">H1 高增长已兑现且现金流佐证，持续性待 H2 验证。</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">8.0/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">Fast Grower 逻辑清晰，但带储能周期属性。</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">6.5/10</div>
+            <div class="bar"><div class="fill" style="width: 65%"></div></div>
+            <div class="small">现价贴近价值中枢，非深度低估，安全边际薄。</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">6.5/10</div>
+            <div class="bar"><div class="fill" style="width: 65%"></div></div>
+            <div class="small">库存、应收、汇率、摊薄四类风险均真实存在。</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">45.5</span> / 60</div>
+      </div>
+
+      <!-- 10. 风险清单 -->
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>存货风险（最高）</strong>：H1 存货 38.55 亿元，较年初 +116%，增速超过营收；若 H2
+            出货放缓，库存将同时压制增长与毛利，并可能计提减值。
+          </li>
+          <li>
+            <strong>应收与汇率风险</strong>：外销占比约 79.7%，应收 +48.1%，财务费用已由收益转费用（H1 费用 1.74
+            亿）；新兴市场货币与回款周期是持续变量。
+          </li>
+          <li><strong>储能周期风险</strong>：补贴、能源价格、渠道库存和竞争格局变化会造成订单波动，高增速年份之后常有回落年。</li>
+          <li><strong>A+H 发行摊薄</strong>：发行规模、定价与募资用途尚未确定，落地将摊薄 EPS 并可能压制短期股价。</li>
+          <li><strong>竞争加剧</strong>：头部厂商进入新兴市场、价格战压制毛利率（当前 37.65% 暂稳，跌破 35% 为降级信号）。</li>
+        </ul>
+        <h3>关键跟踪信号</h3>
+        <table>
+          <tr>
+            <th>跟踪项</th>
+            <th>乐观信号</th>
+            <th>降级信号</th>
+          </tr>
+          <tr>
+            <td>存货</td>
+            <td>H2 下降或周转改善</td>
+            <td>继续快于收入增长</td>
+          </tr>
+          <tr>
+            <td>现金流</td>
+            <td>经营现金流/归母持续大于 1</td>
+            <td>连续低于 1</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td>保持 35% 以上</td>
+            <td>跌破 35%</td>
+          </tr>
+          <tr>
+            <td>订单回款</td>
+            <td>海外多区域持续放量</td>
+            <td>去库存、取消订单增加</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- 11. 持仓分析与操作建议 -->
+      <div class="card">
+        <h2>💼 持仓分析与操作建议</h2>
+        <p class="muted">持仓事实源：stocks/my/holder.json（700 股，买入成本 22.343 元）。</p>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">数值</th>
+          </tr>
+          <tr>
+            <td>当前持仓</td>
+            <td class="num">700 股</td>
+          </tr>
+          <tr>
+            <td>买入成本</td>
+            <td class="num">22.343 元</td>
+          </tr>
+          <tr>
+            <td>持仓成本</td>
+            <td class="num">15,640.10 元</td>
+          </tr>
+          <tr>
+            <td>当前价格（8/26）</td>
+            <td class="num">96.50 元</td>
+          </tr>
+          <tr>
+            <td>当前市值</td>
+            <td class="num">67,550.00 元</td>
+          </tr>
+          <tr>
+            <td>账面浮盈</td>
+            <td class="num up">+51,909.90 元（+331.9%）</td>
+          </tr>
+          <tr>
+            <td>2026 中期分红（拟 10 派 16 元）</td>
+            <td class="num">约 1,120 元（税前，按 700 股）</td>
+          </tr>
+        </table>
+        <h3>买卖点位参考（2026E 情景口径：归母 52-60 亿，EPS 约 4.1-4.7 元）</h3>
+        <table>
+          <tr>
+            <th>区间</th>
+            <th class="num">价格</th>
+            <th>估值锚</th>
+          </tr>
+          <tr>
+            <td class="up">强买点 Strong Buy</td>
+            <td class="num">68 - 78 元</td>
+            <td>约 15-18 倍正常化 PE（56 亿口径），接近悲观情景区；需库存与现金流未恶化</td>
+          </tr>
+          <tr>
+            <td>买点 Buy Zone</td>
+            <td class="num">78 - 88 元</td>
+            <td>约 17-20 倍 2026E PE（中性盈利），合理中枢下方 10-20%</td>
+          </tr>
+          <tr>
+            <td>合理价值 Fair Value</td>
+            <td class="num">82 - 113 元（中枢约 97 元）</td>
+            <td>2026E 归母 52-60 亿 × 20-24 倍（Fast Grower 周期折价后的主锚）</td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num hl">96.50 元</td>
+            <td>2026E PE 20.4-23.6 倍——落在合理区间内、贴近中枢，不贵不便宜</td>
+          </tr>
+          <tr>
+            <td class="down">估值卖点（减仓）</td>
+            <td class="num">105 - 113 元</td>
+            <td>约 24 倍 2026E PE，触及合理区间上沿；需盈利同步上修才能站稳</td>
+          </tr>
+          <tr>
+            <td class="down">兑现卖点</td>
+            <td class="num">120 元以上</td>
+            <td>约 27 倍以上，PEG 依赖高增长延续；接近乐观情景估值区上沿（113-123 元）</td>
+          </tr>
+          <tr>
+            <td class="down">无条件卖点</td>
+            <td class="num">不限价格</td>
+            <td>经营现金流/归母连续低于 1、毛利率跌破 35%、库存持续快于收入并出现减值、海外回款显著恶化、H
+              股发行摊薄明显超预期</td>
+          </tr>
+        </table>
+        <div class="note">
+          买点锚定<strong>2026E 情景盈利与正常化增长</strong>（H1 实绩 + H2
+          假设），因当期 78% 增速含储能周期景气成分，不可机械外推；合理倍数按 Fast Grower 基准（PEG 25-40 倍）叠加周期、库存、汇率、摊薄四项折价后定为
+          20-24 倍，不套固定值；卖点用高估锚（PE 上沿 + PEG）而非机械乘数。独立组合规则：本仓位已大幅盈利（+332%），不因短期波动卖出；若基本面未改善且价格进入高估区，再按组合集中度决定减仓。A
+          股交易按 100 股整数倍执行。
+        </div>
+        <h3>分批操作建议</h3>
+        <ul class="small">
+          <li><strong>当前（96.50 元）</strong>：700 股继续持有，不加仓、不减仓。现价贴着合理中枢，加仓的安全边际不足；浮盈巨大也无需防守性动作。</li>
+          <li><strong>回落至 78-88 元</strong>：首选加仓区，可分批加 100-200 股（前提：库存、现金流、毛利率无恶化）。</li>
+          <li><strong>回落至 68-78 元</strong>：强买复核区，加仓前先确认是"估值回落"而非"景气证伪"——若库存仍在攀升则只复核不加仓。</li>
+          <li><strong>冲高至 105-113 元</strong>：进入减仓评估区，若 Q3 盈利未同步上修，减 100-200 股。</li>
+          <li><strong>120 元以上</strong>：兑现卖点候选，分批减至底仓 300 股。</li>
+          <li><strong>触发无条件卖点</strong>（现金流/归母连续低于 1、毛利率破 35%、库存减值、回款恶化、摊薄超预期）：无论价格离场，不等回本。</li>
+          <li><strong>上修触发条件</strong>：三季报存货回落且经营现金流/归母维持大于 1，则合理 PE 可上移至 24-26 倍，买点同步上移约 5 元。</li>
+        </ul>
+      </div>
+
+      <!-- 12. 总结 -->
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p>
+          <strong>结论：CORE HOLD——700 股继续持有，现价不追买。总分 45.5/60。</strong
+          >德业股份是好公司，但 96.50 元不是明显便宜的价格：2026H1 强化了成长和现金流证据，也暴露了库存、应收、汇率和负债上升。已有仓位靠盈利兑现继续赚钱，新增仓位等待
+          78-88 元（强买复核 68-78 元）；只有当库存和现金流继续改善，才上调估值上限。
+        </p>
+        <h3>3 个持有的理由</h3>
+        <ol class="small">
+          <li>业绩兑现质量高：H1 扣非 +75.8%、经营现金流 +176.7%（现金流/归母 1.54 倍），放量不是利润表粉饰。</li>
+          <li>资本回报顶级：5 年 ROE 均值 37.06%，2026H1 半年 ROE 24.31%；中期分红即达 75% 分红率，成长与回报兼得。</li>
+          <li>持仓成本 22.343 元极低（浮盈 +332%），下行有巨大利润垫，时间站在持有者一边。</li>
+        </ol>
+        <h3>3 个不追买/卖出的理由</h3>
+        <ol class="small">
+          <li>现价 96.50 元贴着合理价值中枢（约 97 元），2026E PE 20.4-23.6 倍落在主锚区间内，没有安全边际。</li>
+          <li>存货 +116%、应收 +48.1%、负债率 +5.75pct，三项扩张指标快于利润节奏，H2 验证前增长质量存疑。</li>
+          <li>储能周期属性 + 汇率敞口 + A+H 摊薄三重不确定性，当期 78% 增速不可外推，估值上限受压制。</li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          H2 出货能否消化 38.55 亿存货——若库存回落且经营现金流/归母维持大于 1，"成长兑现"成立、估值可上修；若收入放缓而库存继续上升，需下修盈利和估值，届时
+          82 元以下的悲观情景会被激活。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          什么会彻底证伪这笔投资：① 经营现金流/归母连续两个季度低于 1（回款恶化，收入注水信号）；②
+          毛利率跌破 35%（竞争或以价换量失控）；③ 库存持续快于收入并出现减值计提（景气见顶确认）；④
+          海外回款显著恶化或大额坏账；⑤ H 股发行摊薄明显超预期。目前五项均未触发。
+        </p>
+        <div class="note">
+          数据充分性说明：营收、净利、扣非、现金流、负债率、库存和应收来自 H1 财报/F10，为一手或近一手数据；未获取完整分客户订单、H2
+          指引和存货细分，故估值只给区间不给伪精确目标价；PE(TTM) 与 2026E 为自算口径。本报告仅作个人研究记录，不构成投资建议。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-26 公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 德业股份 ·
+        605117
+      </footer>
+    </div>
+  </body>
+</html>
