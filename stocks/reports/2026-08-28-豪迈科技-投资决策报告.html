@@ -1,0 +1,959 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>豪迈科技（002595）投资决策报告 · 2026-08-28</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>豪迈科技（002595）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年半年报版 ｜ 生成日期：2026-08-28 ｜ 数据基准：2026 半年报 +
+          2026-08-28 行情快照
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：Stalwart（制造隐形冠军）</span>
+          <span class="badge score">总分 41 / 60</span>
+        </div>
+      </div>
+
+      <!-- 1. 结论 -->
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">HOLD · 持有观望，合理估值</span
+          >豪迈科技是高质量制造隐形冠军（轮胎模具全球龙头 + 数控机床 +
+          燃气轮机零部件），但 2026H1 出现"量增利减"：营收 60.16
+          亿（+14.27%）、归母 11.34 亿（-5.28%）、扣非 10.95
+          亿（-5.72%），毛利率 32.4%（-2.1pct）是主因。现价 47.41 元对应 2026E
+          PE 约 23-24 倍，处于合理区间，安全边际中性。
+        </div>
+        <p>
+          一句话：<strong
+            >豪迈"营收高增长 +
+            利润小幅下滑"的结构分化——轮胎模具主业稳健，新业务（数控机床、
+            燃气轮机零部件）放量拉低整体毛利率。</strong
+          >2026H1 营收 +14.27% 延续高增长，但归母 -5.28%、Q2 单季
+          -8.6%，毛利率从 34.5% 降至
+          32.4%（-2.1pct），主要受新业务占比提升与产能爬坡拖累。
+        </p>
+        <p>
+          估值与回报：现价 47.41 元对应静态 PE 23.0 倍（2025A 归母 23.93
+          亿）、动态 PE 23.6 倍、 PB 4.45 倍、<strong>股息率约 1.46%</strong
+          >（2025 年度拆股后每股分红约 0.69 元）。作为 ROE 20%+ 的优质成长股，PE
+          23 倍处于合理区间（历史 15-30 倍）。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>无持仓。现价 47.41
+          处于合理区中部，安全边际中性；42 元以下 可开始小步分批，38-42 元 Buy
+          Zone 加大，34-38 元强买区。跟踪 H2 毛利率能否企稳、燃气
+          轮机/数控机床放量节奏。
+        </p>
+      </div>
+
+      <!-- 2. 关键指标速览 -->
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">47.41 元<br />550 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">动态 PE / PB</div>
+            <div class="num">23.6 / 4.45</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">TTM 股息率</div>
+            <div class="num">约 1.46%</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 归母</div>
+            <div class="num down">11.34 亿（-5.28%）</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目（2026H1）</th>
+            <th class="num">本期</th>
+            <th class="num">上期(2025H1)</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入</td>
+            <td class="num">60.16 亿</td>
+            <td class="num">52.65 亿</td>
+            <td class="num up">+14.27%</td>
+          </tr>
+          <tr>
+            <td>归母净利润</td>
+            <td class="num">11.34 亿</td>
+            <td class="num">11.97 亿</td>
+            <td class="num down">-5.28%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num">10.95 亿</td>
+            <td class="num">11.61 亿</td>
+            <td class="num down">-5.72%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">32.4%</td>
+            <td class="num">34.5%</td>
+            <td class="num down">-2.1pct</td>
+          </tr>
+          <tr>
+            <td>ROE(报告期累计)</td>
+            <td class="num">9.20%</td>
+            <td class="num">11.40%</td>
+            <td class="num down">-2.2pct</td>
+          </tr>
+          <tr>
+            <td>资产负债率</td>
+            <td class="num">19.87%</td>
+            <td class="num">15.01%</td>
+            <td class="num">低，健康</td>
+          </tr>
+        </table>
+        <div class="warn-box">
+          <strong>⚠️ 核心变化：量增利减。</strong>营收 +14.27%（轮胎模具 +
+          数控机床 + 燃气轮机零部件放量），但归母 -5.28%、Q2 单季 -8.6%；毛利率
+          34.5% → 32.4%（-2.1pct），主因新业务占比提升与产能爬坡，需跟踪 H2
+          能否企稳。
+        </div>
+        <p class="muted">
+          数据来源：2026 半年报（2026-08-28 披露）、东方财富 F10、腾讯行情快照
+        </p>
+      </div>
+
+      <!-- 3. 数据来源与可信度 -->
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：2026 年半年度报告（2026-08-28
+            披露）、2025 年年报
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10
+            主要财务指标接口（营收/归母/扣非/ROE/毛利/负债）
+          </li>
+          <li>
+            <strong>行情与估值</strong>：腾讯行情快照（2026-08-28，现价 47.41
+            元）
+          </li>
+          <li>
+            <strong>分红</strong>：东方财富 RPT_SHAREBONUS_DET 分红接口（2025
+            年度 10 转 4.5 派 10）
+          </li>
+          <li><strong>研报观点</strong>：未引用（无一手研报原文）</li>
+        </ul>
+        <div class="note">
+          可信度说明：核心财务数字取自公司中报与东财 F10，可交叉验证；2025 年度
+          10 转 4.5 拆股， 历史每股数据已按转股后股本（约 11.6
+          亿股）统一；分业务毛利率拆分未在简讯中披露，新业务
+          拖累毛利率为推断、需以中报原文复核；2026E
+          盈利为推算口径，不输出伪精确目标价。
+        </div>
+      </div>
+
+      <!-- 4. 硬阈值筛选 -->
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">16.93%</td>
+            <td class="num">17.35%</td>
+            <td class="num">20.22%</td>
+            <td class="num">21.44%</td>
+            <td class="num up">21.80%</td>
+            <td class="num">19.55%</td>
+          </tr>
+        </table>
+        <p class="small">
+          <strong>通过</strong>。近 5 年全部 ≥16.9%，均值 19.55%，ROE 逐年抬升至
+          21.8%；2026H1 累计 9.2%（年化约 18%），高质量延续。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          <strong>观察/通过</strong>。经营现金流 2022-2025 年每股
+          0.69/2.01/1.42/1.29 元，持续为正； 旧报告提示精确
+          FCF（扣资本开支）需以年报现金流量表补核，属"观察偏通过"。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          <strong>通过</strong>。2025 年度 10 转 4.5 派 10 元（拆股后每股约 0.69
+          元），分红率约 33-42%；近年持续分红（2022-2025 每年派息）。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          <strong>通过（优秀）</strong>。负债率仅 19.87%（2021-2025 均在
+          18%-22%），几乎无有息 负债压力，资产负债表极干净。
+        </p>
+        <div class="good-box">
+          <strong>硬阈值总判断：通过（观察偏通过）。</strong
+          >ROE、分红、负债率三项优秀；精确 FCF
+          待年报补核，但经营现金流持续为正、低负债、利润
+          质量稳定，可进入基本面和估值层。
+        </div>
+      </div>
+
+      <!-- 5. 基本面研究 -->
+      <div class="card">
+        <h2>⚙️ 基本面研究</h2>
+        <h3>公司定位与主营</h3>
+        <table>
+          <tr>
+            <th>业务板块</th>
+            <th class="num">特征</th>
+          </tr>
+          <tr>
+            <td>轮胎模具（核心主业）</td>
+            <td class="num">
+              全球技术领先、产能最大的轮胎模具制造商，市占率全球第一
+            </td>
+          </tr>
+          <tr>
+            <td>大型零部件机械（第二曲线）</td>
+            <td class="num">
+              燃气轮机/风电/核电等大型零部件，客户含 GE、西门子等
+            </td>
+          </tr>
+          <tr>
+            <td>数控机床</td>
+            <td class="num">从 0 到 1 放量期，未来弹性大</td>
+          </tr>
+        </table>
+        <p class="small">
+          结构要点：轮胎模具是稳增长现金牛（全球升级 +
+          新能源轮胎需求）；大型零部件（燃气轮机） 与数控机床是第二曲线，2026H1
+          营收 +14% 主要来自新业务放量，但也拉低了整体毛利率。
+        </p>
+        <h3>护城河（强度：强）</h3>
+        <ul class="small">
+          <li>
+            轮胎模具全球龙头：技术 + 产能 + 客户绑定（全球轮胎巨头）壁垒深厚；
+          </li>
+          <li>大型精密零部件制造能力（燃气轮机等）国内稀缺；</li>
+          <li>高 ROE（20%+）、低负债、强现金流，盈利质量优秀。</li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>管理层稳健，持续高分红 + 转增，股东回报友好；</li>
+          <li>2026 年日常关联交易总额上调（公告），业务扩张积极；</li>
+          <li>需跟踪：新业务（数控机床/燃气轮机）毛利率爬坡、产能利用率。</li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          归类：<strong>Stalwart / 制造隐形冠军</strong>。轮胎模具细分稳增长 +
+          大型零部件/数控机床
+          第二曲线，具备全球竞争力与长期复利能力；2026H1"量增利减"是新业务占比提升的正常现象，
+          关键看 H2 毛利率能否随产能爬坡修复。
+        </p>
+      </div>
+
+      <!-- 6. 财务质量分析 -->
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>2026H1：营收高增、利润小幅下滑（新业务拖累毛利）</h3>
+        <div class="warn-box">
+          <strong>⚠️ 毛利率 34.5% → 32.4%（-2.1pct）</strong
+          >：主因数控机床/大型零部件等新业务占比提升与产能爬坡，需确认是"结构性"还是"趋势性"。
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">变化</th>
+          </tr>
+          <tr>
+            <td>营收</td>
+            <td class="num">60.16 亿</td>
+            <td class="num">52.65 亿</td>
+            <td class="num up">+14.27%</td>
+          </tr>
+          <tr>
+            <td>归母净利</td>
+            <td class="num">11.34 亿</td>
+            <td class="num">11.97 亿</td>
+            <td class="num down">-5.28%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num">10.95 亿</td>
+            <td class="num">11.61 亿</td>
+            <td class="num down">-5.72%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">32.4%</td>
+            <td class="num">34.5%</td>
+            <td class="num down">-2.1pct</td>
+          </tr>
+          <tr>
+            <td>ROE(累计)</td>
+            <td class="num">9.20%</td>
+            <td class="num">11.40%</td>
+            <td class="num down">-2.2pct</td>
+          </tr>
+          <tr>
+            <td>EPS</td>
+            <td class="num">0.98 元</td>
+            <td class="num">1.03 元</td>
+            <td class="num down">-5.28%</td>
+          </tr>
+        </table>
+        <p class="small">
+          原因拆解：① 营收 +14%
+          来自新业务（数控机床/燃气轮机零部件/轮胎模具）放量；② 归母 -5.3%
+          主因毛利率 -2.1pct（新业务低毛利 + 产能爬坡 + 原材料）；③ Q2 单季归母
+          -8.6%（较 Q1 -0.83% 下滑扩大），毛利率压力持续；④ 扣非 ≥
+          归母略（无注水），盈利质量本身扎实。
+        </p>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li>
+            <strong>利润含金量</strong>：扣非 10.95 亿（-5.72%）≈ 归母 11.34
+            亿，无一次性收益注水；
+          </li>
+          <li>
+            <strong>资产负债表干净</strong>：负债率 19.87%，几乎无有息负债；
+          </li>
+          <li>
+            <strong>现金流</strong>：经营现金流持续为正（2022-2025 每股
+            0.69-2.01 元）；
+          </li>
+          <li>
+            <strong>关注</strong>：精确
+            FCF（扣资本开支）待年报补核，新业务扩产资本开支需跟踪。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 7. 行业与竞争格局 -->
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong>：轮胎模具细分稳增长市场（全球轮胎升级 +
+            新能源/绿色轮胎需求）；大型零部件受高端装备景气影响；数控机床处于国产替代放量期。
+          </li>
+          <li>
+            <strong>竞争地位</strong>：轮胎模具全球第一，技术 + 产能 +
+            客户绑定壁垒深；大型燃气轮机零部件国内稀缺供应商。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：① 轮胎模具随全球轮胎产业升级稳增长；②
+            燃气轮机/核电等大型零部件放量；③ 数控机床从 0 到 1 国产替代弹性大。
+          </li>
+          <li>
+            <strong>风险</strong
+            >：新业务毛利率爬坡不及预期、行业周期、原材料、产能利用率。
+          </li>
+        </ul>
+        <p class="small">
+          结论：细分龙头 + 第二曲线清晰，行业不像 AI
+          硬件拥挤、也不像白电高度成熟，豪迈是"制造
+          隐形冠军"的典型代表；短期核心矛盾是毛利率与新业务爬坡节奏。
+        </p>
+      </div>
+
+      <!-- 8. 估值与安全边际 -->
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值（2026-08-28，现价 47.41 元，市值 550 亿）</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">数值</th>
+            <th class="num">对应估值</th>
+          </tr>
+          <tr>
+            <td>2025A 静态 PE（归母 23.93 亿）</td>
+            <td class="num">23.0 倍</td>
+            <td class="num">合理</td>
+          </tr>
+          <tr>
+            <td>动态 PE（行情口径）</td>
+            <td class="num">23.6 倍</td>
+            <td class="num">合理</td>
+          </tr>
+          <tr>
+            <td>2026E 前瞻 PE（EPS 约 2.0 元）</td>
+            <td class="num">约 23.7 倍</td>
+            <td class="num">合理</td>
+          </tr>
+          <tr>
+            <td>PB</td>
+            <td class="num">4.45 倍</td>
+            <td class="num">偏高（高 ROE 支撑）</td>
+          </tr>
+          <tr>
+            <td>TTM 股息率（每股约 0.69 元）</td>
+            <td class="num">约 1.46%</td>
+            <td class="num">低</td>
+          </tr>
+        </table>
+        <h3>估值锚交叉验证（Stalwart 成长框架，2026E EPS 约 2.0 元）</h3>
+        <table>
+          <tr>
+            <th>估值锚</th>
+            <th class="num">合理区间（元）</th>
+          </tr>
+          <tr>
+            <td>2026E EPS 2.0 × 17-19 倍（毛利承压折价）</td>
+            <td class="num">34 - 38</td>
+          </tr>
+          <tr>
+            <td>2026E EPS 2.0 × 19-21 倍</td>
+            <td class="num">38 - 42</td>
+          </tr>
+          <tr>
+            <td>2026E EPS 2.0 × 21-26 倍（历史中枢）</td>
+            <td class="num">42 - 52</td>
+          </tr>
+          <tr>
+            <td>2026E EPS 2.0 × 28-30 倍（成长乐观）</td>
+            <td class="num">56 - 60</td>
+          </tr>
+        </table>
+        <p>
+          <strong
+            >合理价值区间：约 42 - 52 元（FV 约 47 元）；现价 47.41
+            元，处于合理区间中部， 安全边际中性。</strong
+          >
+        </p>
+        <div class="note">
+          判断：豪迈历史 PE 中枢 21-26
+          倍（优质成长溢价）。2026H1"量增利减"、毛利率 -2.1pct， 合理倍数取中枢
+          21-26 倍（42-52 元）；若 H2 毛利率企稳 + 新业务放量，可向上沿靠近；若
+          毛利继续下滑，则下修至 19-21 倍（38-42 元）。现价 47.41 对应 2026E PE
+          23.7 倍，处于 中枢中部，安全边际中性。股息率 1.46%
+          偏低，现金回报保护有限。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          中性。现价处于合理区中部，PE 23.7 倍对 ROE 20%+
+          龙头可接受但不算便宜；股息率 1.46% 提供有限保护。更厚安全边际需等 42
+          元以下（PE 21 倍）或 H2 毛利率企稳确认。
+        </p>
+      </div>
+
+      <!-- 9. 六维评分 -->
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">
+              轮胎模具全球龙头，大型零部件/数控机床第二曲线
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">ROE 20%、负债率 20%、现金流强</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">营收 +14% 强，但归母 -5.3%、毛利率 -2.1pct</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">制造隐形冠军，第二曲线清晰</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">PE 23.7 倍合理区中部，股息率 1.46% 低</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">毛利率下滑、新业务爬坡、行业周期</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">41</span> / 60</div>
+      </div>
+
+      <!-- 10. 风险清单 -->
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>毛利率持续下滑（核心）</strong>：H1
+            -2.1pct，若新业务（数控机床/燃气轮机）爬坡不及预期，H2
+            毛利继续承压；
+          </li>
+          <li>
+            <strong>新业务放量稀释</strong>：营收高增但利润未同步，数控机床从 0
+            到 1 的盈利兑现节奏不确定；
+          </li>
+          <li><strong>行业周期</strong>：轮胎/高端装备景气波动影响订单；</li>
+          <li><strong>原材料成本</strong>：钢材等原材料价格波动；</li>
+          <li>
+            <strong>精确 FCF 待核</strong
+            >：新业务扩产资本开支，自由现金流需以年报补核；
+          </li>
+          <li>
+            <strong>估值与股息</strong>：PB 4.45 倍偏高、股息率 1.46%
+            低，现金回报保护有限。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 11. 建仓参考（无持仓） -->
+      <div class="card">
+        <h2>💼 建仓参考（当前无持仓）</h2>
+        <p class="muted">
+          持仓事实源：stocks/my/holder.json（未包含豪迈科技）。以下为观察清单而非操作指令。
+        </p>
+        <h3>建仓点位参考（2026E 归母约 23 亿、EPS 约 2.0 元，推算口径）</h3>
+        <table>
+          <tr>
+            <th>区间</th>
+            <th class="num">价格</th>
+            <th>估值锚</th>
+          </tr>
+          <tr>
+            <td class="up">强买点 Strong Buy</td>
+            <td class="num">34 - 38 元</td>
+            <td>2026E PE 17-19 倍（毛利承压折价）</td>
+          </tr>
+          <tr>
+            <td>买点 Buy Zone</td>
+            <td class="num">38 - 42 元</td>
+            <td>2026E PE 19-21 倍</td>
+          </tr>
+          <tr>
+            <td>合理价值 Fair Value</td>
+            <td class="num">42 - 52 元（FV 47）</td>
+            <td>2026E EPS×21-26 倍（历史中枢，毛利率企稳前提）</td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num hl">47.41 元</td>
+            <td>2026E PE 约 23.7 倍，合理区中部，安全边际中性</td>
+          </tr>
+          <tr>
+            <td class="down">估值卖点（减仓）</td>
+            <td class="num">56 - 60 元</td>
+            <td>2026E PE 28-30 倍（成长乐观定价）</td>
+          </tr>
+          <tr>
+            <td class="down">无条件卖点</td>
+            <td class="num">不限价格</td>
+            <td>毛利率持续大幅下滑 / 增长证伪 / 核心客户流失 / 应收账款恶化</td>
+          </tr>
+        </table>
+        <div class="note">
+          建仓锚定 2026E 归母（H1 11.34 亿 + H2 参考 2025H2 约 12 亿 ≈ 23
+          亿、EPS 2.0 元，为推算 口径）；合理倍数按"Stalwart 隐形冠军 + 高
+          ROE/低负债，但 H1 量增利减打折"确定为 21-26 倍（历史中枢），H2
+          毛利率企稳为前提；卖点用高估锚（PE 28-30 倍）而非机械乘数。
+        </div>
+        <h3>操作建议</h3>
+        <ul class="small">
+          <li>
+            <strong>当前（47.41 元）</strong
+            >：处于合理区中部，安全边际中性，不追高；
+          </li>
+          <li>
+            <strong>42 元以下</strong>：可开始小步分批；<strong
+              >38-42 Buy Zone</strong
+            >：分批建仓；
+          </li>
+          <li>
+            <strong>34-38 元强买区</strong>：加大（PE 17-19 倍，安全边际厚）；
+          </li>
+          <li>
+            <strong>触发上修</strong>：三季报毛利率企稳 + 归母转正 + 新业务放量
+            → 合理倍数上修；
+          </li>
+          <li>
+            <strong>跟踪项</strong>：H2
+            毛利率、数控机床/燃气轮机订单、产能利用率、FCF、分红政策。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 12. 总结 -->
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p><strong>结论：HOLD · 持有观望，合理估值。总分 41/60。</strong></p>
+        <h3>3 个关注的理由</h3>
+        <ol class="small">
+          <li>
+            硬阈值通过：ROE 5 年均值 19.55%、负债率仅
+            19.87%、分红稳定，盈利质量优秀；
+          </li>
+          <li>
+            营收 +14.27% 高增长延续，轮胎模具全球龙头 +
+            数控机床/燃气轮机第二曲线清晰；
+          </li>
+          <li>
+            估值合理：2026E PE 23.7 倍处于历史中枢，对 ROE 20%+ 龙头可接受。
+          </li>
+        </ol>
+        <h3>3 个不追买的理由</h3>
+        <ol class="small">
+          <li>
+            2026H1"量增利减"：归母 -5.28%、Q2 单季 -8.6%，毛利率 -2.1pct
+            是关键；
+          </li>
+          <li>
+            新业务（数控机床/燃气轮机）爬坡期的盈利兑现节奏不确定，拖累毛利；
+          </li>
+          <li>
+            现价 47.41 处于合理区中部、安全边际中性，股息率 1.46% 保护有限。
+          </li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          H2 毛利率能否企稳回升（新业务爬坡 +
+          产能利用率提升）？数控机床/燃气轮机能否从"放量 增收"走向"贡献利润"？若
+          H2 归母转正、毛利企稳，估值可向上沿修复；若继续下滑则需下修。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          新业务毛利率持续低于预期 + 轮胎模具主业增速放缓 + 精确 FCF
+          恶化叠加，将同时压制盈利
+          与估值——这是持有/关注豪迈最需监控的组合风险。当前低负债、强现金流提供了较强缓冲。
+        </p>
+        <div class="note">
+          数据充分性说明：基于 2026 半年报与东财
+          F10（核心数据可交叉验证）；分业务毛利率与精确 FCF
+          未完整披露，相关判断作保守处理；2026E 盈利为推算口径；历史每股数据已按
+          2025 年度 10 转 4.5 拆股统一；不输出伪精确目标价。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-28
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 豪迈科技 ·
+        002595
+      </footer>
+    </div>
+  </body>
+</html>

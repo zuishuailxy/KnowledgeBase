@@ -1,0 +1,955 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>药明康德（603259）投资决策报告 · 2026-08-28</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--good);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>药明康德（603259）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年半年报版 ｜ 生成日期：2026-08-28 ｜ 数据基准：2026 半年报 +
+          2026-08-28 行情快照
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：Stalwart 转 Fast Grower（CXO 反转）</span>
+          <span class="badge score">总分 46 / 60</span>
+        </div>
+      </div>
+
+      <!-- 1. 结论 -->
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict buy">
+          <span class="tag">BUY ZONE · 主业反转验证，可分批建仓</span>药明康德
+          2026H1 主业强劲反转：营收 289.0 亿（+38.9%）、归母 110.8
+          亿（+29.4%）、 扣非 105.7 亿（+89.4%）、毛利率
+          53.9%（+9.5pct）——在投资收益大幅回落后扣非仍大增， 说明 CXO
+          主业恢复扎实。现价 157.40 元对应 2026E PE 约 21 倍、PEG
+          &lt;0.7，进入买点区。
+        </div>
+        <p>
+          一句话：<strong
+            >药明康德是全球 CXO 一体化龙头，2026 上半年用"扣非 +89%、毛利率
+            +9.5pct"证明了 主业反转，而非靠出售资产撑利润。</strong
+          >2026H1 归母 110.8 亿中非经常项仅约 5 亿（对比 2025A 归母 191.5 亿 vs
+          扣非 132.4 亿， 含约 59 亿一次性投资收益），盈利质量大幅提升。
+        </p>
+        <p>
+          估值与回报：现价 157.40 元、总市值约 4696 亿、PE(TTM) 21.7 倍、PB 5.64
+          倍、股息率约 1.3%。按 2026E 扣非 EPS 约 7.2 元，前瞻 PE 约 21.9
+          倍，处历史中低位；但外部监管 （美国 BIOSECURE
+          法案）是压制估值的主要折价项。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>无持仓。现价 157.40 处于 Buy Zone（150-165
+          元）内，可按 仓位纪律小步分批（首笔不超过计划仓位的 1/3）；135-150
+          元强买区加码；密切关注美国 生物安全法案进展作为最大变量。9 月 4
+          日除息（中期 10 派 5.10 元）。
+        </p>
+      </div>
+
+      <!-- 2. 关键指标速览 -->
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 总市值</div>
+            <div class="num">157.40 元<br />4696 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">PE(TTM) / PB</div>
+            <div class="num">21.7 / 5.64</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">TTM 股息率</div>
+            <div class="num">约 1.3%</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 扣非</div>
+            <div class="num up">105.7 亿（+89.4%）</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目（2026H1）</th>
+            <th class="num">本期</th>
+            <th class="num">上期(2025H1)</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入</td>
+            <td class="num">289.0 亿</td>
+            <td class="num">208.0 亿</td>
+            <td class="num up">+38.9%</td>
+          </tr>
+          <tr>
+            <td>归母净利润</td>
+            <td class="num">110.8 亿</td>
+            <td class="num">85.6 亿</td>
+            <td class="num up">+29.4%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num">105.7 亿</td>
+            <td class="num">55.8 亿</td>
+            <td class="num up">+89.4%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">53.9%</td>
+            <td class="num">44.4%</td>
+            <td class="num up">+9.5pct</td>
+          </tr>
+          <tr>
+            <td>ROE(报告期累计)</td>
+            <td class="num">13.19%</td>
+            <td class="num">13.93%</td>
+            <td class="num">相当（年化 &gt;20%）</td>
+          </tr>
+          <tr>
+            <td>资产负债率</td>
+            <td class="num">27.85%</td>
+            <td class="num">27.93%</td>
+            <td class="num">低，健康</td>
+          </tr>
+        </table>
+        <div class="good-box">
+          <strong>✅ 核心变化：主业反转确认。</strong>营收 +38.9%、扣非
+          +89.4%（2025H1 扣非仅 55.8 亿被一次性收益压制，2026H1 主业真实
+          恢复）、毛利率 53.9%（+9.5pct）反映产能利用率与订单景气度双升；Q2
+          单季倒算营收 164.6 亿、归母 64.3 亿、扣非 62.9 亿，环比继续走强。
+        </div>
+        <p class="muted">
+          数据来源：2026 半年报（东财 F10）、腾讯行情快照（2026-08-28）；Q2
+          单季为累计倒算口径
+        </p>
+      </div>
+
+      <!-- 3. 数据来源与可信度 -->
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：2026 年半年度报告（2026-08 披露）、2025
+            年年报
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10
+            主要财务指标接口（营收/归母/扣非/ROE/毛利/负债，2018-2026H1）
+          </li>
+          <li>
+            <strong>行情与估值</strong>：腾讯行情快照（2026-08-28，现价 157.40
+            元，总市值 4696 亿）
+          </li>
+          <li>
+            <strong>分红</strong>：东方财富 RPT_SHAREBONUS_DET 分红接口（2025
+            年度 10 派 15.79 元、2026 中期 10 派 5.10 元）
+          </li>
+          <li><strong>研报观点</strong>：未引用（无一手研报原文）</li>
+        </ul>
+        <div class="note">
+          可信度说明：核心财务数字取自公司中报与东财 F10，可交叉验证；Q2
+          单季为累计数据倒算 口径；2026E 盈利为推算口径（H1 扣非 105.7
+          亿，下半年 CXO 通常环比走强，全年按扣非 约 210-220 亿、归母约 220-230
+          亿推算），不输出伪精确目标价。美国 BIOSECURE 法案
+          进展为重大外部变量，未在财务数字中体现。
+        </div>
+      </div>
+
+      <!-- 4. 硬阈值筛选 -->
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">14.05%</td>
+            <td class="num">20.62%</td>
+            <td class="num">18.99%</td>
+            <td class="num">16.78%</td>
+            <td class="num">28.56%</td>
+            <td class="num">19.80%</td>
+          </tr>
+        </table>
+        <p class="small">
+          <strong>通过</strong>。5 年均值约 19.8%，4 年高于 15%。注意 2025 年
+          ROE 28.56% 含 出售资产等一次性收益（归母 191.5 亿 vs 扣非 132.4
+          亿），剔除后正常化约 17-18%， 仍通过。2026H1 累计 13.19%（年化约
+          25%+），主业 ROE 显著修复。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          <strong>强通过</strong>。2023-2025 年自由现金流约 78.7 / 84.0 / 116.7
+          亿元，三年累计 约 279 亿；经营现金流持续强（2025 年每股 5.77
+          元）。2026H1 每股经营现金流 3.25 元。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          <strong>通过</strong>。2025 年度 10 派 15.79 元（分红约 47 亿，占扣非
+          35%），另派 2026 中期 10 派 5.10 元（9/4 除息），分红率稳定在 30%
+          上下（扣非口径）。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          <strong>通过</strong>。负债率 22%-28%，低杠杆、资产负债表干净。
+        </p>
+        <div class="good-box">
+          <strong>硬阈值总判断：全部通过。</strong
+          >ROE、FCF、分红率、负债率四项达标；这是少见的"质量门槛 +
+          成长反转"同时成立的标的。
+          主要矛盾不在财务，而在外部监管风险与买入价格。
+        </div>
+      </div>
+
+      <!-- 5. 基本面研究 -->
+      <div class="card">
+        <h2>🪙 基本面研究</h2>
+        <h3>公司定位与主营</h3>
+        <table>
+          <tr>
+            <th>业务板块</th>
+            <th class="num">特征</th>
+          </tr>
+          <tr>
+            <td>WuXi Chemistry（小分子 CDMO）</td>
+            <td class="num">核心现金牛，TIDES/多肽需求爆发</td>
+          </tr>
+          <tr>
+            <td>WuXi Testing（测试）</td>
+            <td class="num">药物安评/临床 CRO，稳定增长</td>
+          </tr>
+          <tr>
+            <td>WuXi Biology / ATU / DDSU</td>
+            <td class="num">生物学、细胞基因治疗、国内新药服务</td>
+          </tr>
+        </table>
+        <p class="small">
+          结构要点：小分子 CDMO +
+          测试是基本盘；TIDES（多肽/寡核苷酸）是最大增长引擎（全球 减肥药 GLP-1
+          产业链受益）；一体化"跟随分子、跟随客户"模式提供长生命周期收入。
+        </p>
+        <h3>护城河（强度：强）</h3>
+        <ul class="small">
+          <li>全球最大药物研发外包平台之一，客户覆盖全球 Top20 药企；</li>
+          <li>一体化 CRDMO 全流程能力（发现→开发→商业化），客户粘性极高；</li>
+          <li>产能规模 + 工程师红利 + 数据积累，成本与效率领先；</li>
+          <li>全球多基地布局（中国+海外），分散地缘风险（能力部分对冲）。</li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>创始人李革团队长期经营，股权与利益绑定清晰；</li>
+          <li>2025 年出售药明合联等资产，聚焦主业、提升回报；</li>
+          <li>需跟踪：地缘政治应对、海外产能扩张节奏、大客户订单持续性。</li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          归类：<strong>Stalwart 转 Fast Grower</strong>（CXO 周期反转 + TIDES
+          高景气）。2024- 2025 经历生物科技投融资低谷 + 美国法案扰动，2026
+          上半年订单与毛利率双修复，成长属性
+          重新占优；但外部监管风险使其估值不能按纯成长股给满，需在 25-30
+          倍区间内打折。
+        </p>
+      </div>
+
+      <!-- 6. 财务质量分析 -->
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>2026H1：量价齐升，主业反转确认</h3>
+        <div class="good-box">
+          <strong>✅ 扣非 +89.4%、毛利率 +9.5pct</strong>：2025H1
+          扣非被大额投资收益/一次性项压制（归母 85.6 vs 扣非 55.8），2026H1 扣非
+          105.7 亿 vs 归母 110.8 亿（非经常项仅约 5
+          亿），说明增长来自真实主业而非资产处置。
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">变化</th>
+          </tr>
+          <tr>
+            <td>营收</td>
+            <td class="num">289.0 亿</td>
+            <td class="num">208.0 亿</td>
+            <td class="num up">+38.9%</td>
+          </tr>
+          <tr>
+            <td>归母净利</td>
+            <td class="num">110.8 亿</td>
+            <td class="num">85.6 亿</td>
+            <td class="num up">+29.4%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num">105.7 亿</td>
+            <td class="num">55.8 亿</td>
+            <td class="num up">+89.4%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">53.9%</td>
+            <td class="num">44.4%</td>
+            <td class="num up">+9.5pct</td>
+          </tr>
+          <tr>
+            <td>ROE(累计)</td>
+            <td class="num">13.19%</td>
+            <td class="num">13.93%</td>
+            <td class="num">相当</td>
+          </tr>
+          <tr>
+            <td>每股经营现金流</td>
+            <td class="num">3.25 元</td>
+            <td class="num">2.59 元</td>
+            <td class="num up">+25.6%</td>
+          </tr>
+        </table>
+        <p class="small">
+          原因拆解：① 营收 +38.9%（TIDES/小分子订单放量、海外需求回暖）；②
+          毛利率 44.4% → 53.9%（产能利用率回升 + 高景气业务占比提升 +
+          成本优化）；③ Q2 单季倒算营收 164.6 亿、 归母 64.3 亿、扣非 62.9
+          亿，环比 Q1（扣非 42.8 亿）继续走强；④ 扣非 ≈ 归母，无注水。
+        </p>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li>
+            <strong>利润含金量高</strong>：扣非 105.7 亿 ≈ 归母 110.8
+            亿，一次性项占比极低；
+          </li>
+          <li>
+            <strong>现金流强劲</strong>：2026H1 每股经营现金流 3.25
+            元（+25.6%）；
+          </li>
+          <li><strong>负债率健康</strong>：27.85%，低杠杆；</li>
+          <li>
+            <strong>资本配置转优</strong>：2025 出售药明合联等聚焦主业，ROE 与
+            FCF 双升。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 7. 行业与竞争格局 -->
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong>：全球 CXO
+            需求复苏，生物科技投融资回暖；GLP-1（减肥药）产业链带动多肽/寡核苷酸（TIDES）产能与订单爆发。
+          </li>
+          <li>
+            <strong>竞争地位</strong>：全球 CRDMO 一体化龙头，与
+            Lonza、三星生物、ICON、IQVIA 等错位竞争；小分子外包市占率全球领先。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：① TIDES 产能扩张 + 在手订单放量；②
+            海外客户回流与新分子实体管线；③ 全球化多基地布局承接供应链重构订单。
+          </li>
+          <li>
+            <strong>风险</strong>：美国 BIOSECURE
+            法案（核心）、中美地缘、生物科技投融资波动、大客户订单集中度、汇兑。
+          </li>
+        </ul>
+        <p class="small">
+          结论：行业景气反转 +
+          龙头地位巩固，成长逻辑清晰；但美国监管是悬顶之剑，是估值无法给
+          满的直接原因。若法案尘埃落定且未实质制裁，估值有望系统性修复；若落地制裁，基本面将
+          受实质冲击。
+        </p>
+      </div>
+
+      <!-- 8. 估值与安全边际 -->
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值（2026-08-28，现价 157.40 元，总市值约 4696 亿）</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">数值</th>
+            <th class="num">对应估值</th>
+          </tr>
+          <tr>
+            <td>PE(TTM)（行情口径）</td>
+            <td class="num">21.7 倍</td>
+            <td class="num">历史中低位</td>
+          </tr>
+          <tr>
+            <td>2025A 静态 PE（EPS 6.70，含一次性收益）</td>
+            <td class="num">23.5 倍</td>
+            <td class="num">失真（非经常项大）</td>
+          </tr>
+          <tr>
+            <td>2026E 归母 PE（EPS 约 7.5）</td>
+            <td class="num">约 21 倍</td>
+            <td class="num">偏低</td>
+          </tr>
+          <tr>
+            <td>2026E 扣非 PE（EPS 约 7.2）</td>
+            <td class="num">约 21.9 倍</td>
+            <td class="num">偏低</td>
+          </tr>
+          <tr>
+            <td>PB（BPS 约 27.9 元）</td>
+            <td class="num">5.64 倍</td>
+            <td class="num">偏高（成长资产）</td>
+          </tr>
+          <tr>
+            <td>TTM 股息率（全年约 2.09 元）</td>
+            <td class="num">约 1.3%</td>
+            <td class="num">低（成长股正常）</td>
+          </tr>
+        </table>
+        <h3>估值锚交叉验证（成长股：扣非 PE 主锚 + PEG）</h3>
+        <table>
+          <tr>
+            <th>估值锚</th>
+            <th class="num">价格（元）</th>
+          </tr>
+          <tr>
+            <td>2026E 扣非 EPS 7.2 × 20 倍</td>
+            <td class="num">144</td>
+          </tr>
+          <tr>
+            <td>2026E 扣非 EPS 7.2 × 23 倍</td>
+            <td class="num">165</td>
+          </tr>
+          <tr>
+            <td>2026E 扣非 EPS 7.2 × 25 倍</td>
+            <td class="num">180</td>
+          </tr>
+          <tr>
+            <td>2026E 扣非 EPS 7.2 × 28 倍</td>
+            <td class="num">202</td>
+          </tr>
+          <tr>
+            <td>2026E 扣非 EPS 7.2 × 30 倍</td>
+            <td class="num">216</td>
+          </tr>
+        </table>
+        <p>
+          <strong
+            >合理价值区间：约 175 - 200 元（FV 约 185 元）；现价 157.40
+            元，低于合理价值下沿， 处于 Buy Zone。</strong
+          >
+        </p>
+        <div class="note">
+          判断：成长股用扣非 PE 主锚 + PEG 校验。2026E 扣非约 210-220 亿（H1 已
+          105.7 亿，下半年 环比走强），EPS 约 7.2 元；考虑 BIOSECURE 折价给
+          24-28 倍 → 175-200 元；PEG 校验 （扣非增速 50-60%，PEG 约 0.45）支持
+          25 倍以上。历史分位：TTM 21.7 倍处于上市以来 中低位（2021 年曾 100+
+          倍）。股息率 1.3% 偏低，不作为主锚。旧报告（2026-05-13，108 元、FV 105
+          元）未充分计入 H1 主业反转，本次显著上修。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          中等偏厚。现价较 FV 185 元折价约 15%；但 BIOSECURE
+          不确定性要求更高安全边际，故 建议按 150-165 元小步分批、135-150
+          元强买区加码，而非一次性满仓。
+        </p>
+      </div>
+
+      <!-- 9. 六维评分 -->
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">9/10</div>
+            <div class="bar"><div class="fill" style="width: 90%"></div></div>
+            <div class="small">全球 CRDMO 龙头，护城河强、客户粘性极高</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">ROE 20%+、FCF 强、负债率低、现金流充沛</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">9/10</div>
+            <div class="bar"><div class="fill" style="width: 90%"></div></div>
+            <div class="small">H1 扣非 +89%、毛利率 +9.5pct，TIDES 高景气</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">Stalwart 转 Fast Grower，CXO 反转故事清晰</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">
+              PE 22 倍中低位，PB 5.6 高、股息率低，折价约 15%
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">BIOSECURE 法案、地缘、投融资周期、订单集中</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">46</span> / 60</div>
+      </div>
+
+      <!-- 10. 风险清单 -->
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>美国 BIOSECURE 法案（核心风险）</strong
+            >：若实质制裁落地，美国订单将受冲击，估值与业绩双杀；
+          </li>
+          <li><strong>中美地缘政治</strong>：供应链重构、客户观望情绪反复；</li>
+          <li>
+            <strong>生物科技投融资周期</strong>：客户研发预算波动影响订单增速；
+          </li>
+          <li>
+            <strong>大客户订单集中度</strong
+            >：少数大药企订单占比高，订单转移风险；
+          </li>
+          <li>
+            <strong>估值波动</strong>：PB 5.6 倍偏高，情绪与政策消息驱动波动大；
+          </li>
+          <li>
+            <strong>汇兑与海外产能爬坡</strong>：海外新产能投放初期拖累利润率。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 11. 建仓参考（无持仓） -->
+      <div class="card">
+        <h2>💼 建仓参考（当前无持仓）</h2>
+        <p class="muted">
+          持仓事实源：stocks/my/holder.json（未包含药明康德）。以下为操作参考而非投资指令。
+        </p>
+        <h3>建仓点位参考（扣非 EPS 主锚，2026E 扣非 EPS 约 7.2 元）</h3>
+        <table>
+          <tr>
+            <th>区间</th>
+            <th class="num">价格</th>
+            <th>估值锚</th>
+          </tr>
+          <tr>
+            <td class="up">强买点 Strong Buy</td>
+            <td class="num">135 - 150 元</td>
+            <td>2026E 扣非 PE 18.8-20.8 倍（含 BIOSECURE 深度折价）</td>
+          </tr>
+          <tr>
+            <td>买点 Buy Zone</td>
+            <td class="num">150 - 165 元</td>
+            <td>2026E 扣非 PE 20.8-22.9 倍</td>
+          </tr>
+          <tr>
+            <td>合理价值 Fair Value</td>
+            <td class="num">175 - 200 元（FV 185）</td>
+            <td>2026E 扣非 PE 24-28 倍 + PEG &lt;1 交叉验证</td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num hl">157.40 元</td>
+            <td>2026E 扣非 PE 21.9 倍，Buy Zone 内</td>
+          </tr>
+          <tr>
+            <td class="down">估值卖点（减仓）</td>
+            <td class="num">225 - 250 元</td>
+            <td>2026E 扣非 PE 31-35 倍 / PEG &gt;1.5；或监管解除后情绪高点</td>
+          </tr>
+          <tr>
+            <td class="down">无条件卖点</td>
+            <td class="num">不限价格</td>
+            <td>BIOSECURE 实质制裁 / 大客户订单大规模流失 / 主业增速转负</td>
+          </tr>
+        </table>
+        <div class="note">
+          建仓锚定扣非 EPS（2025 年归母含约 59 亿一次性投资收益，表观 PE
+          失真，必须用扣非）。 PEG 校验：2026E 扣非增速 50-60%，PEG 约
+          0.45-0.5，支持 24-28 倍合理估值；因 BIOSECURE
+          不确定性，买点折扣加大（Buy Zone 对应 21-23
+          倍），分批而非一次性建仓。9 月 4 日中期 除息（10 派 5.10
+          元），分红率约 30%（扣非口径）。
+        </div>
+        <h3>操作建议</h3>
+        <ul class="small">
+          <li>
+            <strong>当前（157.40 元）</strong>：Buy Zone
+            内，可小步分批建仓（首笔 ≤ 计划仓位 1/3）；
+          </li>
+          <li>
+            <strong>135-150 元强买区</strong>：加码（深度折价 +
+            监管利空情绪释放）；
+          </li>
+          <li>
+            <strong>触发上修</strong>：BIOSECURE 明朗化未制裁 + H1
+            后订单持续高增 → 合理估值上调至 200+ 元；
+          </li>
+          <li>
+            <strong>跟踪项</strong>：美国法案进展、新签订单/TIDES 产能、Q3
+            毛利率、海外产能爬坡、大客户订单。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 12. 总结 -->
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p>
+          <strong
+            >结论：BUY ZONE · 主业反转验证，可分批建仓。总分 46/60。</strong
+          >
+        </p>
+        <h3>3 个关注的理由</h3>
+        <ol class="small">
+          <li>
+            2026H1 扣非 +89.4%、毛利率
+            +9.5pct，主业反转被中报实证（非靠出售资产）；
+          </li>
+          <li>
+            全球 CRDMO 龙头护城河 + TIDES（GLP-1 产业链）高景气，成长逻辑清晰；
+          </li>
+          <li>
+            估值合理：2026E 扣非 PE 约 22 倍、PEG &lt;0.7，处历史中低位，现价较
+            FV 折价约 15%。
+          </li>
+        </ol>
+        <h3>3 个不买的理由</h3>
+        <ol class="small">
+          <li>美国 BIOSECURE 法案是悬顶之剑，实质制裁将冲击美国订单与估值；</li>
+          <li>PB 5.64 倍偏高、股息率仅 1.3%，估值缺乏股息与净资产保护；</li>
+          <li>生物科技投融资周期与订单集中度决定增速持续性，波动大。</li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          BIOSECURE 法案最终如何落地？TIDES 在手订单能否支撑 2027
+          年继续高增？毛利率 53.9% 的 高景气能否维持？若监管明朗 +
+          订单持续，估值中枢有望上修至 200+ 元；若制裁落地，需
+          果断执行无条件卖点纪律。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          最大致命风险是单一外部事件（美国法案）可瞬间改变基本面与估值——这是本标的不能重仓、
+          必须分批、并预设无条件卖点的根本原因。财务与业务质量本身无重大缺陷。
+        </p>
+        <div class="note">
+          数据充分性说明：基于 2026 半年报与东财 F10（核心数据可交叉验证）；Q2
+          单季为倒算口径， 2026E
+          盈利为推算口径（不输出伪精确目标价）；美国法案进展为外部变量需持续跟踪。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-28
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 药明康德 ·
+        603259
+      </footer>
+    </div>
+  </body>
+</html>

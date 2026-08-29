@@ -1,0 +1,850 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>南山铝业（600219）投资决策报告 · 2026-08-28</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>南山铝业（600219）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年半年报版 ｜ 生成日期：2026-08-28 ｜ 数据基准：2026 半年报 +
+          2026-08-28 行情快照
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：Cyclical（电解铝周期股）</span>
+          <span class="badge score">总分 31 / 60</span>
+        </div>
+      </div>
+
+      <!-- 1. 结论 -->
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">WATCHLIST · 周期股，观望维持</span
+          >南山铝业是电解铝 + 高端铝加工龙头，但 2026H1 盈利明显下滑：营收 185.7 亿（+7.5%）、
+          归母 22.5 亿（-14.5%）、扣非 21.9 亿（-16.1%），毛利率 21.3%（-7.2pct）大幅回落；
+          Q1 归母 -35%、Q2 单季 +24%。ROE 5 年均值仅 8.55%，硬阈值不通过，现价 4.88 元处于
+          合理价值上沿，安全边际不足。
+        </div>
+        <p>
+          一句话：<strong
+            >南山铝业是典型的周期材料股——盈利波动受电解铝/氧化铝价格与海外项目投放影响，不是
+            符合高质量复利要求的标的。</strong
+          >2026H1 营收 +7.5%（电解铝 + 高端铝加工放量），但归母 -14.5%、毛利率 21.3%（-7.2pct，
+          铝价/成本周期主导）；Q1 归母 -35.3% 大跌、Q2 单季 +23.7% 反弹，周期波动特征明显。
+        </p>
+        <p>
+          估值与回报：现价 4.88 元对应静态 PE 11.9 倍（2025A EPS 0.41）、动态 PE 12.9 倍、PB
+          1.12 倍、<strong>股息率约 3.61%</strong>（2025 年度每股分红 0.176 元）。按周期股 PB 口径
+          不算贵，但 ROE 仅 8.5% 支撑不起高溢价，现价处于合理区上沿。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>无持仓。现价 4.88 处于合理价值上沿、安全边际不足，观望；
+          4.4 元以下（PB 1.0 倍、股息率 4%）可小步分批，3.7-4.0 元强买区。跟踪铝价、H2 毛利率
+          与海外项目盈利。
+        </p>
+      </div>
+
+      <!-- 2. 关键指标速览 -->
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">4.88 元<br />560 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">动态 PE / PB</div>
+            <div class="num">12.9 / 1.12</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">TTM 股息率</div>
+            <div class="num">约 3.61%</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 归母</div>
+            <div class="num down">22.5 亿（-14.5%）</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目（2026H1）</th>
+            <th class="num">本期</th>
+            <th class="num">上期(2025H1)</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入</td>
+            <td class="num">185.7 亿</td>
+            <td class="num">172.7 亿</td>
+            <td class="num up">+7.5%</td>
+          </tr>
+          <tr>
+            <td>归母净利润</td>
+            <td class="num">22.5 亿</td>
+            <td class="num">26.3 亿</td>
+            <td class="num down">-14.5%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num">21.9 亿</td>
+            <td class="num">26.1 亿</td>
+            <td class="num down">-16.1%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">21.3%</td>
+            <td class="num">28.5%</td>
+            <td class="num down">-7.2pct</td>
+          </tr>
+          <tr>
+            <td>ROE(报告期累计)</td>
+            <td class="num">4.41%</td>
+            <td class="num">5.13%</td>
+            <td class="num down">-0.72pct</td>
+          </tr>
+          <tr>
+            <td>资产负债率</td>
+            <td class="num">20.26%</td>
+            <td class="num">17.44%</td>
+            <td class="num">低，健康</td>
+          </tr>
+        </table>
+        <div class="warn-box">
+          <strong>⚠️ 核心变化：毛利率 -7.2pct、利润下滑。</strong
+          >营收 +7.5% 但归母 -14.5%，毛利率从 28.5% 降至 21.3%（电解铝/氧化铝价差收窄 + 成本
+          周期）；Q1 归母 -35.3% 大跌、Q2 单季 +23.7% 反弹，周期波动特征明显。
+        </div>
+        <p class="muted">
+          数据来源：2026 半年报（2026-08-28 披露）、东方财富 F10、腾讯行情快照
+        </p>
+      </div>
+
+      <!-- 3. 数据来源与可信度 -->
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li><strong>一手事实源</strong>：2026 年半年度报告（2026-08-28 披露）、2025 年年报</li>
+          <li><strong>财务明细</strong>：东方财富 F10 主要财务指标接口（营收/归母/扣非/ROE/毛利/负债）</li>
+          <li><strong>行情与估值</strong>：腾讯行情快照（2026-08-28，现价 4.88 元）</li>
+          <li><strong>分红</strong>：东方财富 RPT_SHAREBONUS_DET 分红接口（2025 年度全年 0.176 元/股）</li>
+          <li><strong>研报观点</strong>：未引用（无一手研报原文）</li>
+        </ul>
+        <div class="note">
+          可信度说明：核心财务数字取自公司中报与东财 F10，可交叉验证；Q1/Q2 单季拆分为累计数据
+          倒算口径；铝价/氧化铝成本对毛利率的具体影响未在简讯中量化披露，判断作保守处理；
+          2026E 盈利为推算口径，不输出伪精确目标价。
+        </div>
+      </div>
+
+      <!-- 4. 硬阈值筛选 -->
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">8.18%</td>
+            <td class="num">7.97%</td>
+            <td class="num">7.44%</td>
+            <td class="num">9.90%</td>
+            <td class="num down">9.25%</td>
+            <td class="num">8.55%</td>
+          </tr>
+        </table>
+        <p class="small">
+          <strong>不通过</strong>。近 5 年全部低于 10%（均值 8.55%），远低于 15% 门槛；2026H1
+          累计 4.41%（年化约 9%）。这是电解铝周期股的典型特征——盈利受价格周期主导。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          <strong>观察</strong>。经营现金流 2021-2025 年每股 0.37/0.57/0.36/0.66/0.65 元，持续为正
+          但偏弱；海外项目（印尼/几内亚）资本开支需跟踪，精确 FCF 待年报补核。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          <strong>通过（边缘）</strong>。2025 年度每股分红 0.176 元、分红率约 43%；股息率 3.61%，
+          对周期股属正常但不算慷慨。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          <strong>通过</strong>。负债率 20.26%（2021-2025 均在 17%-20%），低负债、资产负债表稳健。
+        </p>
+        <div class="warn-box">
+          <strong>硬阈值总判断：不通过（1/4 勉强）。</strong
+          >仅负债率达标；ROE 五年全部 &lt;10%、分红率边缘、现金流偏弱。延续旧报告"放弃/观望"的
+          判断——优质资产，但不满足高质量复利标准。
+        </div>
+      </div>
+
+      <!-- 5. 基本面研究 -->
+      <div class="card">
+        <h2>🪙 基本面研究</h2>
+        <h3>公司定位与主营</h3>
+        <table>
+          <tr>
+            <th>业务板块</th>
+            <th class="num">特征</th>
+          </tr>
+          <tr>
+            <td>电解铝</td>
+            <td class="num">产能规模大，盈利随铝价/氧化铝价差波动</td>
+          </tr>
+          <tr>
+            <td>高端铝加工（航空/汽车板）</td>
+            <td class="num">航空铝材、汽车轻量化铝板，高附加值亮点</td>
+          </tr>
+          <tr>
+            <td>海外项目</td>
+            <td class="num">印尼/几内亚等海外产能布局</td>
+          </tr>
+        </table>
+        <p class="small">
+          结构要点：电解铝是盈利基本盘（价格周期主导）；高端铝加工（航空铝材、汽车板）是结构性
+          亮点，占比提升可平滑周期；海外项目贡献增量但投放节奏影响盈利。
+        </p>
+        <h3>护城河（强度：中）</h3>
+        <ul class="small">
+          <li>电解铝一体化（电力/氧化铝自给）+ 规模优势；</li>
+          <li>高端铝加工资质壁垒（航空认证等），客户绑定强；</li>
+          <li>低负债、资产负债表稳健；但 ROE 长期偏低是短板。</li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>国企背景（南山集团），治理稳健；</li>
+          <li>持续分红 + 海外扩张，资本配置较积极；</li>
+          <li>需跟踪：海外项目资本开支与盈利兑现、铝价周期。</li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          归类：<strong>Cyclical（周期股）</strong>。盈利波动受电解铝/氧化铝价格、海外项目投放
+          影响，不能按成长白马或稳定高股息公用事业估值；高端铝加工是亮点，但周期属性主导估值，
+          应采用正常化盈利 + PB 锚。
+        </p>
+      </div>
+
+      <!-- 6. 财务质量分析 -->
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>2026H1：量增利减，毛利率大幅回落</h3>
+        <div class="warn-box">
+          <strong>⚠️ 毛利率 28.5% → 21.3%（-7.2pct）</strong
+          >：电解铝/氧化铝价差收窄 + 成本周期，是利润下滑主因；Q1 归母 -35%、Q2 +24%，周期波动大。
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">变化</th>
+          </tr>
+          <tr>
+            <td>营收</td>
+            <td class="num">185.7 亿</td>
+            <td class="num">172.7 亿</td>
+            <td class="num up">+7.5%</td>
+          </tr>
+          <tr>
+            <td>归母净利</td>
+            <td class="num">22.5 亿</td>
+            <td class="num">26.3 亿</td>
+            <td class="num down">-14.5%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num">21.9 亿</td>
+            <td class="num">26.1 亿</td>
+            <td class="num down">-16.1%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">21.3%</td>
+            <td class="num">28.5%</td>
+            <td class="num down">-7.2pct</td>
+          </tr>
+          <tr>
+            <td>ROE(累计)</td>
+            <td class="num">4.41%</td>
+            <td class="num">5.13%</td>
+            <td class="num down">-0.72pct</td>
+          </tr>
+        </table>
+        <p class="small">
+          原因拆解：① 营收 +7.5%（电解铝 + 高端铝加工放量）；② 毛利率 -7.2pct 是利润下滑主因
+          （铝价/氧化铝价差收窄、成本上行）；③ Q1 归母 -35.3%、Q2 +23.7%，价差波动主导的单季
+          弹性；④ 扣非 ≈ 归母（无注水），盈利质量本身稳定。
+        </p>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li><strong>利润含金量</strong>：扣非 21.9 亿 ≈ 归母 22.5 亿，无一次性注水；</li>
+          <li><strong>资产负债表稳健</strong>：负债率 20.26%，低杠杆；</li>
+          <li><strong>现金流偏弱</strong>：每股经营现金流 0.65 元（2025），海外资本开支需跟踪；</li>
+          <li><strong>周期属性</strong>：盈利随铝价/氧化铝价差波动，ROE 长期 8-10% 中枢。</li>
+        </ul>
+      </div>
+
+      <!-- 7. 行业与竞争格局 -->
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li><strong>赛道</strong>：电解铝供给受限（产能天花板）、需求受地产/新能源车/光伏拉动；铝加工高端化（航空/汽车板）有结构性机会。</li>
+          <li><strong>竞争地位</strong>：电解铝一体化龙头之一，高端铝加工（航空铝材）资质稀缺。</li>
+          <li><strong>成长驱动</strong>：① 电解铝价差修复；② 高端铝加工（航空/汽车板）占比提升；③ 海外项目（印尼/几内亚）投产放量。</li>
+          <li><strong>风险</strong>：铝价/氧化铝成本波动、地产链需求弱、海外项目投放节奏、环保与电力成本。</li>
+        </ul>
+        <p class="small">
+          结论：电解铝供给受限提供中期支撑，高端铝加工是结构性亮点；但短期毛利率 -7.2pct 显示
+          价差压力，周期底部特征尚不明显，需跟踪铝价与 H2 盈利。
+        </p>
+      </div>
+
+      <!-- 8. 估值与安全边际 -->
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值（2026-08-28，现价 4.88 元，市值 560 亿）</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">数值</th>
+            <th class="num">对应估值</th>
+          </tr>
+          <tr>
+            <td>2025A 静态 PE（EPS 0.41）</td>
+            <td class="num">11.9 倍</td>
+            <td class="num">中性</td>
+          </tr>
+          <tr>
+            <td>动态 PE（行情口径）</td>
+            <td class="num">12.9 倍</td>
+            <td class="num">中性</td>
+          </tr>
+          <tr>
+            <td>2026E 前瞻 PE（EPS 约 0.38）</td>
+            <td class="num">约 12.8 倍</td>
+            <td class="num">中性</td>
+          </tr>
+          <tr>
+            <td>PB（BPS 约 4.36 元）</td>
+            <td class="num">1.12 倍</td>
+            <td class="num">中性偏高</td>
+          </tr>
+          <tr>
+            <td>TTM 股息率（全年 0.176 元）</td>
+            <td class="num">3.61%</td>
+            <td class="num">中性</td>
+          </tr>
+        </table>
+        <h3>估值锚交叉验证（周期股：PB + 正常化盈利）</h3>
+        <table>
+          <tr>
+            <th>估值锚</th>
+            <th class="num">合理区间（元）</th>
+          </tr>
+          <tr>
+            <td>PB 0.85 倍（BPS 4.36）</td>
+            <td class="num">3.7</td>
+          </tr>
+          <tr>
+            <td>PB 0.95 倍</td>
+            <td class="num">4.1</td>
+          </tr>
+          <tr>
+            <td>PB 1.05 倍</td>
+            <td class="num">4.6</td>
+          </tr>
+          <tr>
+            <td>股息率 4.5% 反推（0.176÷0.045）</td>
+            <td class="num">3.9</td>
+          </tr>
+          <tr>
+            <td>股息率 4.0% 反推（0.176÷0.04）</td>
+            <td class="num">4.4</td>
+          </tr>
+          <tr>
+            <td>股息率 3.5% 反推（0.176÷0.035）</td>
+            <td class="num">5.0</td>
+          </tr>
+        </table>
+        <p>
+          <strong
+            >合理价值区间：约 4.0 - 5.0 元（FV 约 4.5 元）；现价 4.88 元，处于合理价值上沿，
+            安全边际不足。</strong
+          >
+        </p>
+        <div class="note">
+          判断：周期股用 PB + 正常化盈利。归母权益约 500 亿，ROE 中枢 8-10%，周期股合理 PB
+          0.9-1.15 倍 → 合理价 4.0-5.0 元；股息率 3.5%-4.5% 反推 3.9-5.0 元。现价 4.88 对应
+          PB 1.12、股息率 3.61%，处于合理区上沿——对 ROE 仅 8.5% 的周期股，1.1 倍 PB 不算便宜。
+          旧报告（4 月）时股价 5.40 元处放弃区，现回落至合理区上沿，但仍无厚安全边际。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          不足。现价 4.88 处于合理区上沿，ROE 低 + 毛利率下滑下估值缺乏支撑；更厚安全边际需等
+          4.4 元以下（PB 1.0 倍、股息率 4%）或铝价周期见底信号。
+        </p>
+      </div>
+
+      <!-- 9. 六维评分 -->
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width:60%"></div></div>
+            <div class="small">电解铝一体化+高端铝加工龙头，但周期属性强</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width:50%"></div></div>
+            <div class="small">负债率 20% 健康，但 ROE 8.5%、现金流偏弱</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">4/10</div>
+            <div class="bar"><div class="fill" style="width:40%"></div></div>
+            <div class="small">H1 归母 -14.5%、毛利率 -7.2pct，Q2 反弹待确认</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width:50%"></div></div>
+            <div class="small">周期股，高端铝加工是亮点但周期主导</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width:50%"></div></div>
+            <div class="small">PE 12 倍、PB 1.12，合理区上沿，安全边际不足</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width:60%"></div></div>
+            <div class="small">铝价波动、成本周期、海外项目、地产需求</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">31</span> / 60</div>
+      </div>
+
+      <!-- 10. 风险清单 -->
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li><strong>铝价/氧化铝价差收窄（核心）</strong>：毛利率 -7.2pct，若价差继续恶化，盈利与估值双承压；</li>
+          <li><strong>周期下行</strong>：电解铝价格受供需与宏观影响，盈利波动大（Q1 -35% 已显现）；</li>
+          <li><strong>ROE 长期偏低</strong>：5 年均值 8.55%，不符合高质量复利标准；</li>
+          <li><strong>海外项目资本开支</strong>：印尼/几内亚投放吞噬现金流，盈利兑现节奏不确定；</li>
+          <li><strong>地产链需求弱</strong>：建筑铝材需求疲软；</li>
+          <li><strong>估值无安全边际</strong>：PB 1.12 对 ROE 8.5% 偏贵，股息率 3.61% 保护有限。</li>
+        </ul>
+      </div>
+
+      <!-- 11. 建仓参考（无持仓） -->
+      <div class="card">
+        <h2>💼 建仓参考（当前无持仓）</h2>
+        <p class="muted">持仓事实源：stocks/my/holder.json（未包含南山铝业）。以下为观察清单而非操作指令。</p>
+        <h3>建仓点位参考（周期股 PB 主锚，BPS 约 4.36 元、每股分红约 0.176 元）</h3>
+        <table>
+          <tr>
+            <th>区间</th>
+            <th class="num">价格</th>
+            <th>估值锚</th>
+          </tr>
+          <tr>
+            <td class="up">强买点 Strong Buy</td>
+            <td class="num">3.7 - 4.0 元</td>
+            <td>PB 0.85-0.92 倍；股息率 4.4%-4.8%</td>
+          </tr>
+          <tr>
+            <td>买点 Buy Zone</td>
+            <td class="num">4.0 - 4.4 元</td>
+            <td>PB 0.92-1.0 倍；股息率 4.0%-4.4%</td>
+          </tr>
+          <tr>
+            <td>合理价值 Fair Value</td>
+            <td class="num">4.0 - 5.0 元（FV 4.5）</td>
+            <td>PB 0.92-1.15 倍 + 股息率 3.5%-4.4% 交叉验证</td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num hl">4.88 元</td>
+            <td>PB 1.12、股息率 3.61%，合理区上沿，安全边际不足</td>
+          </tr>
+          <tr>
+            <td class="down">估值卖点（减仓）</td>
+            <td class="num">5.5 - 6.0 元</td>
+            <td>PB 1.26-1.38 倍（周期高分位）；股息率跌破 2.9%</td>
+          </tr>
+          <tr>
+            <td class="down">无条件卖点</td>
+            <td class="num">不限价格</td>
+            <td>铝价持续下行 / 盈利大幅恶化 / 海外项目失败 / 分红削减</td>
+          </tr>
+        </table>
+        <div class="note">
+          建仓锚定周期股 PB 主锚（归母权益约 500 亿、BPS 4.36 元），因 ROE 8.5% 的周期股 PE 失真
+          （低 PE 是周期陷阱）；合理 PB 0.92-1.15 倍（ROE 中枢 8-10% 对应），股息率 3.5%-4.4%
+          反推交叉验证；卖点用高估锚（PB 1.26 倍+、股息率跌破 2.9%）而非机械乘数。注意：周期股
+          高 PE 低点时往往是买入机会、低 PE 高点时反而是卖出——当前属于盈利回落期，需等周期信号。
+        </div>
+        <h3>操作建议</h3>
+        <ul class="small">
+          <li><strong>当前（4.88 元）</strong>：处于合理区上沿，安全边际不足，观望；</li>
+          <li><strong>4.4 元以下</strong>：可开始小步分批（PB 1.0 倍、股息率 4%）；</li>
+          <li><strong>3.7-4.0 元强买区</strong>：加大（PB 0.85-0.92 倍，安全边际厚）；</li>
+          <li><strong>触发上修</strong>：铝价/氧化铝价差修复 + H2 毛利率企稳 + 海外项目放量 → 合理 PB 上修；</li>
+          <li><strong>跟踪项</strong>：电解铝价格、氧化铝成本、H2 毛利率、海外项目盈利、地产铝材需求。</li>
+        </ul>
+      </div>
+
+      <!-- 12. 总结 -->
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p><strong>结论：WATCHLIST · 周期股，观望维持。总分 31/60。</strong></p>
+        <h3>3 个关注的理由</h3>
+        <ol class="small">
+          <li>电解铝一体化龙头 + 高端铝加工（航空铝材/汽车板）结构性亮点，低负债（20.26%）；</li>
+          <li>营收 +7.5% 延续增长，Q2 单季归母 +23.7% 显示周期压力边际缓解；</li>
+          <li>估值不高：PE 12 倍、PB 1.12 倍，股息率 3.61%，价格已从 5.40 回落至合理区。</li>
+        </ol>
+        <h3>3 个不买的理由</h3>
+        <ol class="small">
+          <li>ROE 5 年均值仅 8.55%（全部 &lt;10%），硬阈值不通过，不符合高质量复利标准；</li>
+          <li>2026H1 归母 -14.5%、毛利率 -7.2pct，铝价/成本周期压制盈利；</li>
+          <li>现价 4.88 处于合理区上沿（PB 1.12），对 ROE 8.5% 的周期股不便宜，安全边际不足。</li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          铝价/氧化铝价差何时修复？H2 毛利率能否企稳？海外项目（印尼/几内亚）投产能否带来盈利
+          弹性？若价差修复 + 高端铝加工占比提升，ROE 有望向 10%+ 修复，估值上移；否则维持低位。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          铝价持续下行 + 氧化铝成本上升 + 海外项目资本开支吞噬现金流叠加，将同时压制盈利与估值
+          ——周期股在价差收缩期的高 PE 是陷阱而非机会，需严格按 PB 纪律等待更便宜的买点。
+        </p>
+        <div class="note">
+          数据充分性说明：基于 2026 半年报与东财 F10（核心数据可交叉验证）；Q1/Q2 拆分为倒算口径，
+          铝价/成本对毛利率的影响未量化披露，判断作保守处理；2026E 盈利为推算口径；不输出伪精确
+          目标价。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-28
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 南山铝业 · 600219
+      </footer>
+    </div>
+  </body>
+</html>

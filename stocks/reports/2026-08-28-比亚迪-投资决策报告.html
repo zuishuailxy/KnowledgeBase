@@ -1,0 +1,998 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>比亚迪（002594）投资决策报告 · 2026-08-28</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>比亚迪（002594）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年半年报版 ｜ 生成日期：2026-08-28 ｜ 数据基准：2026 半年报 +
+          2026-08-28 行情快照
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：Fast Grower（转型期）/ 周期成长</span>
+          <span class="badge score">总分 36 / 60</span>
+        </div>
+      </div>
+
+      <!-- 1. 结论 -->
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">WATCHLIST · 估值偏贵，减仓评估</span
+          >比亚迪仍是新能源车全球龙头，但 2026H1 价格战下利润明显下滑：营收
+          3448.2 亿（-7.1%）、归母 123.3 亿（-20.5%）、扣非 123.7
+          亿（-9.0%）；Q1 归母 -55%、Q2 单季 +30% 反弹。现价 92.32 元对应 2026E
+          PE 约 30 倍，估值偏贵且 股息率仅 0.39%，性价比一般。
+        </div>
+        <p>
+          一句话：<strong
+            >比亚迪"量增价跌"的转型期特征明显——行业价格战压制盈利，Q2
+            已现改善迹象，但当前 估值没有为利润下滑留出足够折价。</strong
+          >2026H1 营收 -7.1%（销量增长但单车均价下降），归母 -20.5%（价格战 +
+          促销），毛利率 18.8%（+0.8pct，成本/高端化对冲部分压力）；Q2 单季归母
+          82.5 亿（+29.7%）、扣非 +51.4%，较 Q1（归母 -55.4%）明显修复。
+        </p>
+        <p>
+          估值与回报：现价 92.32 元对应静态 PE 25.8 倍（2025A EPS 3.58）、动态
+          PE 28.6 倍、 PB 3.51 倍、<strong>股息率仅约 0.39%</strong>（2025
+          年度每股分红 0.358 元）。作为 Fast
+          Grower，市场仍给成长溢价，但利润下滑期 PE 30 倍并不便宜。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>持仓 700 股（成本 97.256 元、现价
+          92.32、浮亏 -5.1%）—— 浮亏不大但估值偏贵，建议反弹至 100 元附近减仓
+          200-300 股降低敞口；剩余持有观察， 等价格战见底 / Q3
+          利润确认再评估。不加仓。
+        </p>
+      </div>
+
+      <!-- 2. 关键指标速览 -->
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">92.32 元<br />8417 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">动态 PE / PB</div>
+            <div class="num">28.6 / 3.51</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">TTM 股息率</div>
+            <div class="num down">约 0.39%</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 归母</div>
+            <div class="num down">123.3 亿（-20.5%）</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目（2026H1）</th>
+            <th class="num">本期</th>
+            <th class="num">上期(2025H1)</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入</td>
+            <td class="num">3448.2 亿</td>
+            <td class="num">3712.8 亿</td>
+            <td class="num down">-7.1%</td>
+          </tr>
+          <tr>
+            <td>归母净利润</td>
+            <td class="num">123.3 亿</td>
+            <td class="num">155.1 亿</td>
+            <td class="num down">-20.5%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num">123.7 亿</td>
+            <td class="num">136.0 亿</td>
+            <td class="num down">-9.0%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">18.8%</td>
+            <td class="num">18.0%</td>
+            <td class="num up">+0.8pct</td>
+          </tr>
+          <tr>
+            <td>ROE(报告期累计)</td>
+            <td class="num">4.86%</td>
+            <td class="num">7.43%</td>
+            <td class="num down">-2.57pct</td>
+          </tr>
+          <tr>
+            <td>资产负债率</td>
+            <td class="num">70.96%</td>
+            <td class="num">71.08%</td>
+            <td class="num">持平（偏高）</td>
+          </tr>
+        </table>
+        <div class="note">
+          季度拆分：Q1 营收 1502.3 亿（-11.8%）、归母 40.8 亿（-55.4%）；Q2
+          单季营收 1945.9 亿 （-3.2%）、归母 82.5 亿（+29.7%）、扣非 +51.4%——Q2
+          明显修复，价格战压力边际缓解。 2025 年度每股分红 0.358 元（10 派
+          3.58，2026-07-31 除息），分红率约 10%，股息率低。
+        </div>
+        <p class="muted">
+          数据来源：东方财富 F10 财务指标接口 + 腾讯行情快照（2026-08-28）+
+          分红接口
+        </p>
+      </div>
+
+      <!-- 3. 数据来源与可信度 -->
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：2026 年半年度报告（2026-08-28
+            披露）、2025 年年报
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10
+            主要财务指标接口（营收/归母/扣非/ROE/毛利/负债）
+          </li>
+          <li>
+            <strong>行情与估值</strong>：腾讯行情快照（2026-08-28，现价 92.32
+            元）
+          </li>
+          <li>
+            <strong>分红</strong>：东方财富 RPT_SHAREBONUS_DET 分红接口（2025
+            年度每股 0.358 元）
+          </li>
+          <li><strong>研报观点</strong>：未引用（无一手研报原文）</li>
+        </ul>
+        <div class="note">
+          可信度说明：核心财务数字取自公司中报与东财 F10，可交叉验证；Q1/Q2
+          单季拆分为累计数据 倒算口径；2024 年度 10 送 8 转 12 拆股，历史
+          EPS/每股数据已按拆股后股本口径统一；销量
+          与单车均价拆分未在简讯中完整披露，判断作保守处理；2026E
+          盈利为推算口径，不输出伪精确 目标价。
+        </div>
+      </div>
+
+      <!-- 4. 硬阈值筛选 -->
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num down">3.73%</td>
+            <td class="num">16.14%</td>
+            <td class="num">24.40%</td>
+            <td class="num">26.05%</td>
+            <td class="num">15.31%</td>
+            <td class="num">17.13%</td>
+          </tr>
+        </table>
+        <p class="small">
+          <strong>边缘/不通过（按严格标准）</strong>。2022-2025 连续 4 年
+          ≥15%，但 2021 年仅 3.73%（&lt;10%），且 2025 年降至 15.31%、2026H1
+          累计 4.86%（年化约 10%）——高 ROE 是 2022-2024
+          行业景气期的产物，当前盈利中枢明显下移。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          <strong>关注</strong>。经营现金流强（2025 年每股 6.49 元、2024
+          年拆股前每股 45.87 元）， 但资本开支重（扩产/电池/海外建厂），2025 年
+          FCF 承压——旧报告"现金流与资本开支是压制 估值第一变量"的判断仍适用。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          <strong>不通过</strong>。2025 年度每股分红 0.358 元、分红率约
+          10%（2024 年度拆股前 10 派 39.74 属高基数特殊分红），股息率仅
+          0.39%，缺乏现金回报吸引力。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          <strong>不通过</strong>。负债率 70.96%（2021-2025 为
+          64%-78%），持续高于 60% 观察线， 重资产扩张模式。
+        </p>
+        <div class="warn-box">
+          <strong>硬阈值总判断：不通过（1/4 勉强）。</strong>ROE
+          边缘、分红率低、负债率高；仅现金流强。延续旧报告"硬阈值淘汰"的判断，当前属于
+          "优质公司 + 高估值 + 低现金回报"的观察型标的。
+        </div>
+      </div>
+
+      <!-- 5. 基本面研究 -->
+      <div class="card">
+        <h2>🚗 基本面研究</h2>
+        <h3>公司定位与主营</h3>
+        <table>
+          <tr>
+            <th>业务板块</th>
+            <th class="num">特征</th>
+          </tr>
+          <tr>
+            <td>汽车/新能源车（核心）</td>
+            <td class="num">
+              全球新能源车销量龙头，王朝/海洋/腾势/仰望多品牌，海外扩张
+            </td>
+          </tr>
+          <tr>
+            <td>电池（弗迪电池）</td>
+            <td class="num">刀片电池自供 + 外供，垂直一体化</td>
+          </tr>
+          <tr>
+            <td>电子/半导体</td>
+            <td class="num">弗迪电子、半导体等配套业务</td>
+          </tr>
+        </table>
+        <p class="small">
+          结构要点：新能源车是绝对核心，垂直一体化（电池/电机/电控自研）是成本优势来源；多品牌
+          + 海外（东南亚/欧洲/拉美）扩张提供增量；2026H1 营收 -7.1%
+          主因单车均价下降（量增价跌）。
+        </p>
+        <h3>护城河（强度：强）</h3>
+        <ul class="small">
+          <li>新能源车全球销量龙头，垂直一体化成本优势显著；</li>
+          <li>刀片电池、DM-i 等核心技术自研，供应链自主可控；</li>
+          <li>多品牌覆盖（10-100 万+ 全价格带）+ 海外工厂布局。</li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>管理层执行力强，战略聚焦新能源与全球化；</li>
+          <li>资本开支重（扩产/海外建厂），需跟踪 FCF；</li>
+          <li>机器人/智能驾驶等新叙事提供期权价值，但尚无正式商业化数据。</li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          归类：<strong>Fast Grower（转型期）/ 周期成长</strong
+          >。历史上高成长（2022-2024 归母 CAGR 高），但 2025-2026H1
+          利润连续下滑，进入"行业价格战 + 公司增速换挡"的转型期。
+          估值逻辑从"高成长 PEG"转向"龙头溢价 +
+          周期底部预期"，需等待价格战见底信号。
+        </p>
+      </div>
+
+      <!-- 6. 财务质量分析 -->
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>2026H1：价格战压制利润，Q2 现修复迹象</h3>
+        <div class="warn-box">
+          <strong>⚠️ 核心变化：营收 -7.1%、归母 -20.5%</strong>，Q1 归母 -55.4%
+          大跌、Q2 单季 +29.7% 反弹；毛利率 18.8%（+0.8pct）改善。
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">变化</th>
+          </tr>
+          <tr>
+            <td>营收</td>
+            <td class="num">3448.2 亿</td>
+            <td class="num">3712.8 亿</td>
+            <td class="num down">-7.1%</td>
+          </tr>
+          <tr>
+            <td>归母净利</td>
+            <td class="num">123.3 亿</td>
+            <td class="num">155.1 亿</td>
+            <td class="num down">-20.5%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num">123.7 亿</td>
+            <td class="num">136.0 亿</td>
+            <td class="num down">-9.0%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">18.8%</td>
+            <td class="num">18.0%</td>
+            <td class="num up">+0.8pct</td>
+          </tr>
+          <tr>
+            <td>ROE(累计)</td>
+            <td class="num">4.86%</td>
+            <td class="num">7.43%</td>
+            <td class="num down">-2.57pct</td>
+          </tr>
+        </table>
+        <p class="small">
+          原因拆解：① 营收下滑 = 销量增长但单车均价下降（价格战 +
+          低端占比提升）；② 归母 -20.5% 受价格战与促销侵蚀，但毛利率 +0.8pct
+          显示成本下降与高端化（腾势/仰望）部分对冲；③ Q2 单季归母 +29.7%、扣非
+          +51.4%，价格战压力边际缓解是积极信号；④ 扣非（123.7）略高于
+          归母（123.3），无一次性收益注水，盈利质量本身扎实。
+        </p>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li>
+            <strong>利润含金量</strong>：扣非 ≥
+            归母，无注水；经营现金流历史强劲；
+          </li>
+          <li>
+            <strong>负债率</strong
+            >：70.96%，重资产扩张模式，但流动性与融资渠道通畅；
+          </li>
+          <li>
+            <strong>资本开支重</strong>：扩产/电池/海外建厂，FCF
+            承压是估值压制因素；
+          </li>
+          <li>
+            <strong>分红低</strong>：分红率约 10%、股息率 0.39%，现金回报弱。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 7. 行业与竞争格局 -->
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong
+            >：新能源车渗透率持续提升但增速放缓，行业进入"价格战 + 淘汰赛"阶段。
+          </li>
+          <li>
+            <strong>竞争地位</strong
+            >：全球新能源车销量龙头，垂直一体化成本优势领先，对垒特斯拉及国内新势力/传统车企。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：① 海外扩张（东南亚/欧洲/拉美）；②
+            高端化（腾势/仰望）改善单车盈利；③
+            智能化（天神之眼/智驾）与机器人新叙事；④ 价格战出清后的份额集中。
+          </li>
+          <li>
+            <strong>风险</strong
+            >：价格战持续、单车盈利下滑、海外贸易壁垒与关税、资本开支吞噬现金流。
+          </li>
+        </ul>
+        <p class="small">
+          结论：行业竞争激烈但比亚迪成本与规模优势仍在，价格战终将出清对手；核心观察变量是"单车
+          盈利何时企稳"——Q2 的 +30% 是边际改善信号，但需确认可持续性。
+        </p>
+      </div>
+
+      <!-- 8. 估值与安全边际 -->
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值（2026-08-28，现价 92.32 元，市值 8417 亿）</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">数值</th>
+            <th class="num">对应估值</th>
+          </tr>
+          <tr>
+            <td>2025A 静态 PE（EPS 3.58）</td>
+            <td class="num">25.8 倍</td>
+            <td class="num">偏高</td>
+          </tr>
+          <tr>
+            <td>TTM PE（TTM 归母约 294 亿）</td>
+            <td class="num">28.6 倍</td>
+            <td class="num">偏高</td>
+          </tr>
+          <tr>
+            <td>2026E 前瞻 PE（EPS 约 3.1）</td>
+            <td class="num">约 29.8 倍</td>
+            <td class="num down">偏贵</td>
+          </tr>
+          <tr>
+            <td>PB</td>
+            <td class="num">3.51 倍</td>
+            <td class="num">偏高</td>
+          </tr>
+          <tr>
+            <td>TTM 股息率（每股 0.358 元）</td>
+            <td class="num down">0.39%</td>
+            <td class="num down">极低</td>
+          </tr>
+        </table>
+        <h3>估值锚交叉验证（Fast Grower 转型期，2026E EPS 约 3.1 元）</h3>
+        <table>
+          <tr>
+            <th>估值锚</th>
+            <th class="num">合理区间（元）</th>
+          </tr>
+          <tr>
+            <td>2026E EPS 3.1 × 16-18 倍（利润下滑期折价）</td>
+            <td class="num">50 - 56</td>
+          </tr>
+          <tr>
+            <td>2026E EPS 3.1 × 18-21 倍</td>
+            <td class="num">56 - 65</td>
+          </tr>
+          <tr>
+            <td>2026E EPS 3.1 × 21-25 倍（龙头溢价）</td>
+            <td class="num">65 - 78</td>
+          </tr>
+          <tr>
+            <td>2026E EPS 3.1 × 25-30 倍（成长乐观）</td>
+            <td class="num">78 - 93</td>
+          </tr>
+        </table>
+        <p>
+          <strong
+            >合理价值区间：约 65 - 85 元（FV 约 75 元）；现价 92.32
+            元，高于合理价值上沿，偏贵。</strong
+          >
+        </p>
+        <div class="note">
+          判断：比亚迪历史 PE 中枢 25-35 倍（成长溢价），但 2026H1 利润
+          -20.5%、价格战未完全出清， 合理 PE 应折价至 21-25
+          倍（龙头溢价但利润下滑），对应 65-78 元；乐观情形（价格战快速见底 +
+          出海放量）可给 25-30 倍（78-93 元）。现价 92.32 对应 2026E PE 约 30
+          倍，已透支乐观预期， 且股息率仅 0.39%
+          无现金回报支撑——估值处于"成长乐观定价"，安全边际不足。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          不足。现价高于合理价值上沿，PE 30 倍对利润下滑的公司偏贵；股息率 0.39%
+          无法提供"现金
+          回报下限"。安全边际需等价格战见底（利润环比连续改善）或股价回落至
+          65-75 元（PE 21-24 倍）。
+        </p>
+      </div>
+
+      <!-- 9. 六维评分 -->
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">新能源车全球龙头，垂直一体化成本优势</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">现金流强，但负债率 71%、分红率低、FCF 承压</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">H1 营收 -7%、归母 -20.5%，Q2 反弹 +30%</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">出海+高端化+智能化+机器人，故事强但待验证</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">4/10</div>
+            <div class="bar"><div class="fill" style="width: 40%"></div></div>
+            <div class="small">
+              PE 30 倍偏贵、股息率 0.39%，高于合理价值上沿
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">价格战、竞争、资本开支、海外贸易</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">36</span> / 60</div>
+      </div>
+
+      <!-- 10. 风险清单 -->
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>价格战持续（核心）</strong
+            >：行业降价竞争侵蚀单车盈利，若出清不及预期，利润继续承压；
+          </li>
+          <li>
+            <strong>单车均价下行</strong>：营收 -7.1%
+            反映量增价跌，低端占比提升拖累盈利结构；
+          </li>
+          <li>
+            <strong>资本开支重</strong>：扩产/电池/海外建厂吞噬现金流，FCF
+            承压压制估值；
+          </li>
+          <li>
+            <strong>负债率高</strong>：70.96%，重资产模式对利率与融资环境敏感；
+          </li>
+          <li>
+            <strong>海外贸易壁垒</strong>：关税、反补贴调查等影响海外盈利；
+          </li>
+          <li>
+            <strong>估值与股息</strong>：PE 30 倍 + 股息率
+            0.39%，无现金回报保护。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 11. 持仓分析与操作建议 -->
+      <div class="card">
+        <h2>💼 持仓分析与操作建议</h2>
+        <p class="muted">
+          持仓事实源：stocks/my/holder.json（比亚迪 700 股）。
+        </p>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">数值</th>
+          </tr>
+          <tr>
+            <td>当前持仓</td>
+            <td class="num">700 股</td>
+          </tr>
+          <tr>
+            <td>买入成本</td>
+            <td class="num">97.256 元</td>
+          </tr>
+          <tr>
+            <td>当前价格（2026-08-28）</td>
+            <td class="num">92.32 元</td>
+          </tr>
+          <tr>
+            <td>当前市值</td>
+            <td class="num">约 64,624 元</td>
+          </tr>
+          <tr>
+            <td>账面浮亏</td>
+            <td class="num down">约 -3,455 元（-5.07%）</td>
+          </tr>
+          <tr>
+            <td>全年分红（每股 0.358 元）</td>
+            <td class="num">约 251 元 / 年（股息率 0.39%）</td>
+          </tr>
+        </table>
+        <h3>买卖点位参考（2026E 归母约 280 亿、EPS 约 3.1 元）</h3>
+        <table>
+          <tr>
+            <th>区间</th>
+            <th class="num">价格</th>
+            <th>估值锚</th>
+          </tr>
+          <tr>
+            <td class="up">强买点 Strong Buy</td>
+            <td class="num">48 - 55 元</td>
+            <td>2026E PE 15.5-17.7 倍（利润下滑深度折价）</td>
+          </tr>
+          <tr>
+            <td>买点 Buy Zone</td>
+            <td class="num">55 - 65 元</td>
+            <td>2026E PE 17.7-21 倍</td>
+          </tr>
+          <tr>
+            <td>合理价值 Fair Value</td>
+            <td class="num">65 - 85 元（FV 75）</td>
+            <td>2026E PE 21-27 倍（龙头溢价，价格战出清前提）</td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num hl">92.32 元</td>
+            <td>2026E PE 约 30 倍，高于合理上沿，偏贵</td>
+          </tr>
+          <tr>
+            <td class="down">估值卖点（减仓）</td>
+            <td class="num">96 - 100 元</td>
+            <td>2026E PE 31-32 倍（乐观透支）；股息率不足 0.4%</td>
+          </tr>
+          <tr>
+            <td class="down">无条件卖点</td>
+            <td class="num">不限价格</td>
+            <td>
+              价格战导致利润持续崩塌 / 销量大幅下滑 / 现金流显著恶化 / 出海受阻
+            </td>
+          </tr>
+        </table>
+        <div class="note">
+          建仓/减仓锚定 2026E 归母（H1 123.3 亿 + H2 参考 2025H2 约 171
+          亿但需考虑 Q2 修复 → 全年 约 280 亿、EPS 3.1
+          元），为推算口径并注明；合理倍数按"Fast Grower 龙头但利润下滑期折价"
+          确定为 21-27 倍（历史 25-35
+          倍打折），乐观情形（价格战快速见底）可上修；卖点用高估锚 （PE 31
+          倍+、股息率不足 0.4%）而非机械乘数。组合纪律：浮亏 -5%
+          且估值偏贵，反弹逢高 减仓降低敞口。
+        </div>
+        <h3>操作建议</h3>
+        <ul class="small">
+          <li>
+            <strong>当前（92.32 元）</strong>：浮亏 -5.1%，估值偏贵，不加仓；
+          </li>
+          <li>
+            <strong>反弹至 100 元附近</strong>：建议减仓 200-300
+            股降低敞口（估值卖点区）；
+          </li>
+          <li>
+            <strong>剩余持仓</strong>：持有观察，跟踪 Q3 利润是否延续 Q2 修复；
+          </li>
+          <li>
+            <strong>回落至 65-75 元合理区下沿</strong>：可评估回补；<strong
+              >55-65 元 Buy Zone</strong
+            >：加大；
+          </li>
+          <li>
+            <strong>触发上修</strong>：连续两季利润环比改善（价格战见底）+
+            出海放量 + FCF 改善 → 合理倍数上修；
+          </li>
+          <li>
+            <strong>跟踪项</strong>：月度销量与单车均价、Q3
+            毛利率、价格战态势、海外销量、资本开支与 FCF、智驾/机器人进展。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 12. 总结 -->
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p>
+          <strong>结论：WATCHLIST · 估值偏贵，减仓评估。总分 36/60。</strong>
+        </p>
+        <h3>3 个关注的理由</h3>
+        <ol class="small">
+          <li>
+            新能源车全球龙头，垂直一体化成本优势 + 多品牌 +
+            海外扩张，护城河依然深厚；
+          </li>
+          <li>
+            Q2 单季归母 +29.7%、扣非 +51.4%，毛利率
+            +0.8pct，价格战压力边际缓解；
+          </li>
+          <li>
+            扣非 ≥
+            归母（无注水），盈利质量扎实，出海/高端化/智驾/机器人提供长期期权。
+          </li>
+        </ol>
+        <h3>3 个减仓/不追的理由</h3>
+        <ol class="small">
+          <li>
+            2026H1 营收 -7.1%、归母 -20.5%，价格战压制盈利，ROE 年化降至约 10%；
+          </li>
+          <li>
+            估值偏贵：2026E PE 约 30 倍、高于合理价值上沿（85 元），且股息率仅
+            0.39% 无现金回报保护；
+          </li>
+          <li>
+            硬阈值不过：ROE 边缘（2021 年 3.73%）、负债率 71%、分红率
+            10%，资本开支重 FCF 承压。
+          </li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          价格战何时见底？Q2 的利润修复（+30%）能否延续到
+          H2，单车盈利能否企稳回升？若连续两季
+          改善，估值可上修；若价格战再起，30 倍 PE 将面临下修压力。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          价格战持续 + 单车盈利继续下滑 + 资本开支吞噬现金流 +
+          海外贸易受阻叠加，将同时打击 盈利、估值与现金流——高 PE +
+          低股息下，一旦利润证伪，估值回落空间大。这是持有比亚迪
+          最需监控的组合风险。
+        </p>
+        <div class="note">
+          数据充分性说明：基于 2026 半年报与东财
+          F10（核心数据可交叉验证）；Q1/Q2 拆分为倒算口径，
+          销量与单车均价拆分未完整披露，判断作保守处理；2026E
+          盈利为推算口径；历史每股数据已按 2024 年度拆股（10 送 8 转
+          12）统一；不输出伪精确目标价。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-28
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 比亚迪 · 002594
+      </footer>
+    </div>
+  </body>
+</html>

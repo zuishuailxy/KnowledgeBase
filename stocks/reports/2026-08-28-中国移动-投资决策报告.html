@@ -1,0 +1,1011 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>中国移动（600941）投资决策报告 · 2026-08-28</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>中国移动（600941）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年半年报版（新格式） ｜ 生成日期：2026-08-28 ｜ 数据基准：2026
+          半年报 + 2026-08-28 行情快照
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：Stalwart（高股息央企现金牛）</span>
+          <span class="badge score">总分 37 / 60</span>
+        </div>
+      </div>
+
+      <!-- 1. 结论 -->
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">HOLD · 持有收息，不加仓</span>
+          高质量高股息央企现金牛底色未变，但 2026H1 归母 -6.3%、Q2 单季 -7.5%
+          加速下滑， 传统通信业务承压、AI/云算力对冲尚不充分；现价 97.28
+          元处合理价值上沿，安全边际不足。
+          结论：持有收息、不加仓，等回调或基本面拐点。
+        </div>
+        <p>
+          一句话：<strong
+            >中国移动是"体量巨大 + 网络垄断 + 高分红 +
+            现金流极强"的央企现金牛，但正处于传统
+            业务增速转负、第二曲线尚未兑现的转型阵痛期。</strong
+          >2026H1 营收 5380.4 亿（-1.05%）、归母 789.3 亿（-6.3%）、扣非 697.3
+          亿（-11.0%）， Q2 单季营收 -3.0%、归母 -7.5%、扣非 -15.4%，下滑幅度较
+          Q1 进一步扩大。
+        </p>
+        <p>
+          估值与回报：现价 97.28 元对应静态 PE 15.4 倍、TTM PE 16.0 倍、PB 1.48
+          倍、<strong>股息率约 4.83%</strong>（2025 年度全年每股分红 4.70
+          元）。作为"高股息 + 中特估 + AI 第二曲线"资产已被市场
+          充分定价，当前位置无新增安全边际。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>持仓 400 股（成本 91.92 元、现价
+          97.28、浮盈 +5.8%）—— 继续持有收息，不加仓；严格按"组合规则"（已回本 +
+          基本面未改善）可在 97-100 元 减仓 100 股锁定，剩余继续收息。未持有者等
+          86 元以下（Better）/ 78-86 元 Buy Zone。
+        </p>
+      </div>
+
+      <!-- 2. 关键指标速览 -->
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">97.28 元 / 21097 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">静态 PE / PB</div>
+            <div class="num">15.4 / 1.48</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">TTM 股息率</div>
+            <div class="num up">约 4.83%</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 归母</div>
+            <div class="num down">789.3 亿（-6.3%）</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目（2026H1）</th>
+            <th class="num">本期</th>
+            <th class="num">上期(2025H1)</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入</td>
+            <td class="num">5380.4 亿</td>
+            <td class="num">5437.7 亿</td>
+            <td class="num down">-1.05%</td>
+          </tr>
+          <tr>
+            <td>归母净利润</td>
+            <td class="num">789.3 亿</td>
+            <td class="num">842.4 亿</td>
+            <td class="num down">-6.3%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num">697.3 亿</td>
+            <td class="num">783.7 亿</td>
+            <td class="num down">-11.0%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">29.5%</td>
+            <td class="num">31.6%</td>
+            <td class="num down">-2.1pct</td>
+          </tr>
+          <tr>
+            <td>ROE(报告期累计)</td>
+            <td class="num">5.6%</td>
+            <td class="num">6.1%</td>
+            <td class="num down">-0.5pct</td>
+          </tr>
+          <tr>
+            <td>资产负债率</td>
+            <td class="num">32.79%</td>
+            <td class="num">33.15%</td>
+            <td class="num">稳健</td>
+          </tr>
+        </table>
+        <div class="note">
+          季度拆分：Q1 归母 293.4 亿（-4.2%）、Q2 单季 495.9 亿（-7.5%），Q2
+          扣非单季 -15.4%， 下滑加速。2025 年度全年分红 4.70 元/股（末期 10 派
+          22.012 + 中期 10 派 25.025）， 分红率约 74%。
+        </div>
+        <p class="muted">
+          数据来源：东方财富 F10 财务指标接口 + 腾讯行情快照（2026-08-28）+
+          分红接口
+        </p>
+      </div>
+
+      <!-- 3. 数据来源与可信度 -->
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：2026 年半年度报告（2026-08 披露）、2025
+            年年报
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10
+            主要财务指标接口（营收/归母/扣非/ROE/毛利/负债）
+          </li>
+          <li>
+            <strong>行情与估值</strong>：腾讯行情快照（2026-08-28，现价 97.28
+            元）
+          </li>
+          <li>
+            <strong>分红</strong>：东方财富 RPT_SHAREBONUS_DET 分红接口（2025
+            年度全年 4.70 元）
+          </li>
+          <li><strong>研报观点</strong>：未引用（无一手研报原文）</li>
+        </ul>
+        <div class="note">
+          可信度说明：核心财务数字与分红取自公告原文与东财 F10，可交叉验证；2026
+          全年盈利与 分红为推算口径；分业务（通信服务 vs
+          云算力/AIDC）利润拆分未完整披露，相关判断作保守 处理；本报告按 A
+          股口径（中国移动为 A+H 两地上市）。
+        </div>
+      </div>
+
+      <!-- 4. 硬阈值筛选 -->
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">10.10%</td>
+            <td class="num">10.10%</td>
+            <td class="num">10.20%</td>
+            <td class="num">10.40%</td>
+            <td class="num down">9.94%</td>
+            <td class="num">10.15%</td>
+          </tr>
+        </table>
+        <p class="small">
+          <strong>不通过（按央企公用事业口径放宽）</strong>。ROE 常年 10%
+          左右、2025 年跌破 10%， 显著低于 15%
+          门槛；但电信运营商属重资产公用事业，ROE 10% 为行业常态，不构成淘汰项。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          <strong>通过（极强）</strong>。每股经营现金流 2022-2025 年为
+          13.14/14.20/14.67/10.76 元，2025 年经营现金流约 2330
+          亿量级、自由现金流约 820 亿元，现金流与资本开支承受能力 极强。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          <strong>通过（强）</strong>。2025 年度全年每股分红 4.70 元（中期 +
+          末期），分红率约 74%，且承诺分红率不低于 70%
+          并逐年提升，股东回报导向明确。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          <strong>通过</strong>。负债率仅 32.79%（2021-2025 均在
+          33-35%），有息负债低、资产负债表 极稳健，是央企高信用等级的典型特征。
+        </p>
+        <div class="good-box">
+          <strong>硬阈值总判断：3/4 通过（ROE 按行业属性放宽）。</strong
+          >现金流、分红、负债率三项均优秀，是典型的高质量高股息央企资产；短板在
+          ROE 偏低与 盈利增速转负。
+        </div>
+      </div>
+
+      <!-- 5. 基本面研究 -->
+      <div class="card">
+        <h2>📶 基本面研究</h2>
+        <h3>公司定位与主营</h3>
+        <table>
+          <tr>
+            <th>业务板块</th>
+            <th class="num">特征</th>
+          </tr>
+          <tr>
+            <td>个人/家庭移动通信（基本盘）</td>
+            <td class="num">移动用户规模行业第一，5G 渗透率高位，ARPU 承压</td>
+          </tr>
+          <tr>
+            <td>政企/云/算力（第二曲线）</td>
+            <td class="num">
+              移动云、数据中心、AIDC、AI 应用，增速高但对冲利润不足
+            </td>
+          </tr>
+          <tr>
+            <td>宽带/新兴市场</td>
+            <td class="num">固移融合，家庭市场稳定</td>
+          </tr>
+        </table>
+        <p class="small">
+          结构要点：传统通信服务仍是利润基本盘，但已转入负增长（2026H1 营收
+          -1.05%）；云、算力、 AIDC 构成第二增长曲线，但 2026H1
+          数据显示其对冲传统业务下滑的利润贡献仍不充分。
+        </p>
+        <h3>护城河（强度：强）</h3>
+        <ul class="small">
+          <li>
+            全国性通信网络基础设施 + 超 10
+            亿移动客户规模，网络规模与客户黏性构成强护城河；
+          </li>
+          <li>
+            央企信用 + 低负债 + 稳定现金流，资本配置与股东回报纪律优秀（分红率
+            74%）；
+          </li>
+          <li>
+            政企/云/算力资源禀赋（数据中心、牌照、客户关系）为第二曲线提供基础。
+          </li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>央企治理规范，分红政策透明（承诺分红率 ≥70% 且逐年提升）；</li>
+          <li>
+            资本开支进入优化期（5G 高峰期过后 Capex 增速放缓），自由现金流改善；
+          </li>
+          <li>需跟踪：AI/算力投入的回报兑现、ARPU 与用户结构变化。</li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          归类：<strong>Stalwart（稳健增长型 / 现金牛）</strong>而非 Fast
+          Grower。体量极大、格局
+          稳固、利润与分红稳定，但缺少高增速；当前处于传统业务下滑 +
+          第二曲线培育的转型期， 估值逻辑以"股息率 + 中特估"为主轴。
+        </p>
+      </div>
+
+      <!-- 6. 财务质量分析 -->
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>2026H1：传统业务承压、盈利下滑加速</h3>
+        <div class="warn-box">
+          <strong>⚠️ 核心变化：营收 -1.05%、归母 -6.3%、扣非 -11.0%</strong>，Q2
+          单季扣非 -15.4%，下滑较 Q1（-4.2%）进一步扩大；毛利率
+          29.5%（-2.1pct）。
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">变化</th>
+          </tr>
+          <tr>
+            <td>营收</td>
+            <td class="num">5380.4 亿</td>
+            <td class="num">5437.7 亿</td>
+            <td class="num down">-1.05%</td>
+          </tr>
+          <tr>
+            <td>归母净利</td>
+            <td class="num">789.3 亿</td>
+            <td class="num">842.4 亿</td>
+            <td class="num down">-6.3%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num">697.3 亿</td>
+            <td class="num">783.7 亿</td>
+            <td class="num down">-11.0%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">29.5%</td>
+            <td class="num">31.6%</td>
+            <td class="num down">-2.1pct</td>
+          </tr>
+          <tr>
+            <td>ROE(累计)</td>
+            <td class="num">5.6%</td>
+            <td class="num">6.1%</td>
+            <td class="num down">-0.5pct</td>
+          </tr>
+        </table>
+        <p class="small">
+          原因拆解：① 传统通信业务（ARPU 承压、5G 红利消退）增速转负；②
+          云/算力等新业务增速 高但对冲利润贡献不足；③
+          毛利率下滑反映成本与竞争压力。盈利质量本身仍高（现金流极强、
+          无应收风险），问题在"量价齐降"的成长性，而非财务健康度。
+        </p>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li>
+            <strong>现金流极强</strong>：每股经营现金流 10.76 元（2025），远超
+            EPS 6.35 元，利润含金量高；
+          </li>
+          <li>
+            <strong>负债率仅 32.8%</strong
+            >：资产负债表极稳健，有息负债低、央企信用等级高；
+          </li>
+          <li>
+            <strong>分红可持续</strong>：分红率 74%、承诺
+            ≥70%，现金流足以支撑高分红；
+          </li>
+          <li>
+            <strong>资本开支优化</strong>：5G 高峰期过后 Capex
+            增速放缓，自由现金流改善空间大。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 7. 行业与竞争格局 -->
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong
+            >：电信运营商成熟市场，移动/宽带渗透率高，传统业务进入存量竞争与负增长阶段。
+          </li>
+          <li>
+            <strong>竞争地位</strong
+            >：三大运营商之首，移动用户规模第一、网络质量与政企资源领先，竞争格局稳定。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：① 移动云 / 算力 / AIDC / AI
+            应用（第二曲线）；② 5G-A 与万物互联；③
+            资本开支下行带来的自由现金流改善；④ 高分红 + 中特估估值修复。
+          </li>
+          <li>
+            <strong>风险</strong>：传统业务 ARPU
+            与量价持续下滑、云算力投入回报滞后、监管与提速降费政策、高股息资产整体重定价。
+          </li>
+        </ul>
+        <p class="small">
+          结论：行业成熟、格局稳固、龙头现金流与分红确定性强；但短期处于"传统下滑
+          + 新业务培育"
+          的转型期，成长叙事尚未被利润验证，估值支撑主要来自股息率而非增长。
+        </p>
+      </div>
+
+      <!-- 8. 估值与安全边际 -->
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值（2026-08-28，现价 97.28 元，市值 21097 亿）</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">数值</th>
+            <th class="num">对应估值</th>
+          </tr>
+          <tr>
+            <td>2025A 静态 PE（EPS 6.35）</td>
+            <td class="num">15.4 倍</td>
+            <td class="num">中性</td>
+          </tr>
+          <tr>
+            <td>TTM PE（TTM 归母约 1318 亿）</td>
+            <td class="num">16.0 倍</td>
+            <td class="num">中性偏高</td>
+          </tr>
+          <tr>
+            <td>2026E 前瞻 PE（EPS 约 5.9-6.0）</td>
+            <td class="num">约 16.2-16.5 倍</td>
+            <td class="num">中性偏高</td>
+          </tr>
+          <tr>
+            <td>PB（BPS 约 65.7 元）</td>
+            <td class="num">1.48 倍</td>
+            <td class="num">中性</td>
+          </tr>
+          <tr>
+            <td>TTM 股息率（全年 4.70 元）</td>
+            <td class="num">4.83%</td>
+            <td class="num">中性（央企现金牛锚）</td>
+          </tr>
+        </table>
+        <h3>估值锚交叉验证（高股息央企框架，2026E 分红约 4.7-4.8 元）</h3>
+        <table>
+          <tr>
+            <th>估值锚</th>
+            <th class="num">合理区间（元）</th>
+          </tr>
+          <tr>
+            <td>股息率 6.0% 反推（4.7÷0.06）</td>
+            <td class="num">78</td>
+          </tr>
+          <tr>
+            <td>股息率 5.5% 反推（4.7÷0.055）</td>
+            <td class="num">85</td>
+          </tr>
+          <tr>
+            <td>股息率 5.0% 反推（4.7÷0.05）</td>
+            <td class="num">94</td>
+          </tr>
+          <tr>
+            <td>股息率 4.8% 反推（4.7÷0.048）</td>
+            <td class="num">98（现价附近）</td>
+          </tr>
+          <tr>
+            <td>2026E EPS 5.95 × 14-16 倍（同业合理 PE）</td>
+            <td class="num">83 - 95</td>
+          </tr>
+        </table>
+        <p>
+          <strong
+            >合理价值区间：约 86 - 96 元（Fair Value 约 91 元）；现价 97.28
+            元，高于合理价值上沿， 安全边际不足。</strong
+          >
+        </p>
+        <div class="note">
+          判断：中国移动作为"高股息 + 中特估 + AI 第二曲线"资产，当前 4.83%
+          股息率相对十年期国债 （约 2%）有约 2.8
+          个点的超额，具备配置价值但不便宜。股息率 5% 反推 94 元、PE 锚 83-95
+          元，交叉验证合理价值 86-96
+          元；现价已充分反映预期，无新增安全边际。更舒服的加仓区在 86
+          元以下（股息率 5.5%+）、强买区 78 元（股息率 6%）。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          不足。现价高于合理价值上沿，股息率 4.83%
+          提供"现金回报下限"但无估值保护；盈利短期向下 （Q2 扣非 -15.4%）+
+          股价处高位，当前买入是在为确定性付费而非低赔率保护。安全边际要更厚
+          需等股息率 5.5%+（约 86 元以下）。
+        </p>
+      </div>
+
+      <!-- 9. 六维评分 -->
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">通信央企龙头、网络垄断、客户规模第一</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">现金流极强、负债率 33%、分红率 74%</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">4/10</div>
+            <div class="bar"><div class="fill" style="width: 40%"></div></div>
+            <div class="small">营收 -1%、归母 -6.3%、扣非 -11%，加速下滑</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">
+              高股息 + 中特估 + AI 第二曲线，故事清晰待验证
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">PE 15.4、股息率 4.83%，现价高于合理价值上沿</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">传统下滑、AI 回报不确定、监管、高股息重定价</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">37</span> / 60</div>
+      </div>
+
+      <!-- 10. 风险清单 -->
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>传统业务加速下滑（核心）</strong>：营收 -1.05%、归母
+            -6.3%、扣非 -11.0%，Q2 单季扣非 -15.4%，ARPU 与量价齐跌；
+          </li>
+          <li>
+            <strong>第二曲线兑现滞后</strong>：云/算力/AIDC
+            增速虽高，但对冲传统利润下滑仍不充分，AI 投入回报不确定；
+          </li>
+          <li>
+            <strong>毛利率下行</strong>：毛利率 -2.1pct，反映成本与竞争压力；
+          </li>
+          <li>
+            <strong>高股息资产重定价</strong
+            >：若市场对"中特估/高股息"预期回落，或利率环境变化，估值可能从 15-16
+            倍压缩；
+          </li>
+          <li>
+            <strong>监管与政策</strong>：提速降费、资费监管、行业政策变化；
+          </li>
+          <li>
+            <strong>激励与行为误判</strong
+            >：把"稳定分红"外推成"估值持续扩张"，把"有 AI 布局"误判为"AI
+            已验证高盈利模式"。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 11. 持仓分析与操作建议 -->
+      <div class="card">
+        <h2>💼 持仓分析与操作建议</h2>
+        <p class="muted">
+          持仓事实源：stocks/my/holder.json（中国移动 400 股）。
+        </p>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">数值</th>
+          </tr>
+          <tr>
+            <td>当前持仓</td>
+            <td class="num">400 股</td>
+          </tr>
+          <tr>
+            <td>买入成本</td>
+            <td class="num">91.92 元</td>
+          </tr>
+          <tr>
+            <td>当前价格（2026-08-28）</td>
+            <td class="num">97.28 元</td>
+          </tr>
+          <tr>
+            <td>当前市值</td>
+            <td class="num">约 38,912 元</td>
+          </tr>
+          <tr>
+            <td>账面浮盈</td>
+            <td class="num up">约 +2,144 元（+5.83%）</td>
+          </tr>
+          <tr>
+            <td>全年分红（每股 4.70 元）</td>
+            <td class="num up">约 1,880 元 / 年（股息率 4.83%）</td>
+          </tr>
+        </table>
+        <h3>买卖点位参考（2026E EPS 约 5.95 元、全年分红约 4.7-4.8 元）</h3>
+        <table>
+          <tr>
+            <th>区间</th>
+            <th class="num">价格</th>
+            <th>估值锚</th>
+          </tr>
+          <tr>
+            <td class="up">强买点 Strong Buy</td>
+            <td class="num">70 - 78 元</td>
+            <td>股息率 6.0%-6.7%；PE 11.8-13.1 倍</td>
+          </tr>
+          <tr>
+            <td>买点 Buy Zone</td>
+            <td class="num">78 - 86 元</td>
+            <td>股息率 5.5%-6.0%；PE 13.1-14.5 倍</td>
+          </tr>
+          <tr>
+            <td>合理价值 Fair Value</td>
+            <td class="num">86 - 96 元</td>
+            <td>股息率 4.9%-5.5%；PE 14.5-16.1 倍（同业交叉验证）</td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num hl">97.28 元</td>
+            <td>高于合理价值上沿，股息率 4.83%，无安全边际</td>
+          </tr>
+          <tr>
+            <td class="down">估值卖点（减仓）</td>
+            <td class="num">110 - 115 元</td>
+            <td>PE 18 倍+；股息率跌破 4.3%（4.7÷0.043）</td>
+          </tr>
+          <tr>
+            <td class="down">无条件卖点</td>
+            <td class="num">不限价格</td>
+            <td>
+              分红率大幅削减 / AI 转型证伪 / 传统业务加速恶化 / 现金流显著恶化
+            </td>
+          </tr>
+        </table>
+        <div class="note">
+          买点锚定 2026E 正常化盈利（H1 789.3 亿 + H2 保守约 500 亿 ≈ 1290
+          亿、EPS 5.95 元），
+          因表观利润受传统业务下滑影响，用正常化口径；合理倍数按"Stalwart
+          央企现金牛 + 现金流 极强 + 高分红（74%）但成长转负打折"确定为 14-16
+          倍，股息率 4.8%-6% 反推交叉验证； 卖点用高估锚（股息率跌破 4.3%、PE 18
+          倍）而非机械乘数。独立组合规则：已回本（91.92 元）+ 2026H1
+          基本面未改善（归母 -6.3%）→ 可减仓锁定。
+        </div>
+        <h3>操作建议</h3>
+        <ul class="small">
+          <li>
+            <strong>当前（97.28 元）</strong>：400 股继续持有收息（股息率
+            4.83%、年分红约 1,880 元），不加仓；
+          </li>
+          <li>
+            <strong>组合纪律</strong>：已浮盈 +5.8% 且 H1
+            基本面未改善，若严格执行"回本 + 未改善 → 减仓"规则，可在 97-100 元减
+            100 股锁定，剩余 300 股继续收息；
+          </li>
+          <li>
+            <strong>向下等买点</strong>：86 元以下（股息率
+            5.5%+）可回补/加仓，78-86 元 Buy Zone 加大；
+          </li>
+          <li>
+            <strong>向上等卖点</strong>：110-115 元（股息率跌破 4.3%）分批兑现；
+          </li>
+          <li>
+            <strong>触发上修</strong
+            >：三季报营收/净利降幅收窄或转正（云算力对冲见效）→ 合理价值上修；
+          </li>
+          <li>
+            <strong>跟踪项</strong>：季度营收/归母同比、云算力 AIDC
+            收入与利润、派息政策、资本开支与自由现金流、ARPU 与用户结构。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 12. 总结 -->
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p><strong>结论：HOLD · 持有收息，不加仓。总分 37/60。</strong></p>
+        <h3>3 个持有的理由</h3>
+        <ol class="small">
+          <li>
+            通信央企龙头，网络垄断 + 超 10
+            亿客户规模，护城河与现金流（每股经营现金流 10.76 元）极强；
+          </li>
+          <li>
+            高分红可持续：分红率 74%、承诺 ≥70%，现价股息率
+            4.83%，类债券属性提供回报下限；
+          </li>
+          <li>
+            资产负债表极稳健（负债率
+            32.8%），资本开支下行期自由现金流有望持续改善，中特估背景下估值有支撑。
+          </li>
+        </ol>
+        <h3>3 个不加仓的理由</h3>
+        <ol class="small">
+          <li>
+            2026H1 归母 -6.3%、扣非 -11.0%，Q2 单季扣非
+            -15.4%，传统业务加速下滑；
+          </li>
+          <li>云/算力/AI 第二曲线增速高但对冲利润不足，成长叙事尚未被验证；</li>
+          <li>
+            现价 97.28 元高于合理价值上沿（86-96 元），股息率 4.83%
+            已充分定价，无新增安全边际。
+          </li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          云、算力、AI 与 AIDC
+          业务能否在传统通信收入加速承压的背景下，尽快形成可量化的利润对冲？
+          三季报（10
+          月）营收/净利同比能否收窄或转正，是判断第二曲线是否兑现的分水岭。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          传统业务量价持续下滑 + 云算力投入回报滞后 +
+          高股息资产整体重定价三者叠加，将同时压制
+          盈利、现金流与估值——这是持有中国移动最需要监控的组合风险。目前现金流与分红仍稳健，
+          但成长性证伪会侵蚀"高股息 + 中特估"溢价。
+        </p>
+        <div class="note">
+          数据充分性说明：基于 2026 半年报与东财
+          F10（核心数据可交叉验证）；2026E 盈利与分红为 推算口径（H2
+          保守假设）；云算力分业务利润拆分未完整披露，相关判断作保守处理；不输出
+          伪精确目标价。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-28
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 中国移动 ·
+        600941
+      </footer>
+    </div>
+  </body>
+</html>

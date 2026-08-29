@@ -1,0 +1,1008 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>美的集团（000333）投资决策报告 · 2026-08-28</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>美的集团（000333）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年半年报版（覆盖 Q1 版） ｜ 生成日期：2026-08-28 ｜
+          数据基准：2026 半年报 + 2026-08-28 行情快照
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：Stalwart（全球家电龙头）</span>
+          <span class="badge score">总分 37 / 60</span>
+        </div>
+      </div>
+
+      <!-- 1. 结论 -->
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">HOLD · 减仓评估，暂不加仓</span>美的仍是全球家电 +
+          工业技术龙头，但 2026H1 中报揭示主业明显承压：营收 2600.42
+          亿（+3.55%）、归母 264.46 亿（+1.66%），但<strong
+            >扣非 195.95 亿（-25.31%）</strong
+          >，归母增长全靠约 68.5 亿非经常性收益（非主营）支撑，Q2 单季扣非
+          -36%。
+        </div>
+        <p>
+          一句话：<strong
+            >美的的中报"表面平稳、实质走弱"——归母 +1.7% 掩盖了扣非 -25%
+            的主业下滑，需警惕 非经常收益的不可持续性。</strong
+          >2026H1 营收 +3.55% 温和增长，经营现金流 375.52 亿（+0.73%）仍强，ROE
+          11.33% （年化约 22%）；但扣非大幅下滑且 Q2 加速（Q1 -14% → Q2
+          -36%），显示主业盈利斜率 明显恶化，这是比营收更重要的警示信号。
+        </p>
+        <p>
+          估值与回报：现价 86.23 元对应静态 PE 14.9 倍（2025A EPS 5.8）、动态 PE
+          14.8 倍、 PB 3.11 倍、<strong>股息率约 4.99%</strong>（2025
+          年度每股分红 4.3 元）。考虑扣非下滑，
+          估值处于合理区中上部，安全边际不足。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>持仓 1300 股（成本 73.4 元、现价
+          86.23、浮盈 +17.5%）—— 浮盈较大 + 主业扣非明显下滑，建议在 86-90
+          元减仓 300-500 股锁定利润；剩余继续持有
+          收息。不加仓，等扣非企稳或回落至 75-80 元 Buy Zone 再评估。
+        </p>
+      </div>
+
+      <!-- 2. 关键指标速览 -->
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">86.23 元<br />6578 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">静态 PE / PB</div>
+            <div class="num">14.9 / 3.11</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">TTM 股息率</div>
+            <div class="num up">约 4.99%</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 扣非</div>
+            <div class="num down">195.95 亿（-25.3%）</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目（2026H1）</th>
+            <th class="num">本期</th>
+            <th class="num">上期(2025H1)</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入</td>
+            <td class="num">2600.42 亿</td>
+            <td class="num">2523.30 亿</td>
+            <td class="num up">+3.55%</td>
+          </tr>
+          <tr>
+            <td>归母净利润</td>
+            <td class="num">264.46 亿</td>
+            <td class="num">260.10 亿</td>
+            <td class="num up">+1.66%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num down">195.95 亿</td>
+            <td class="num">262.40 亿</td>
+            <td class="num down">-25.31%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">25.3%</td>
+            <td class="num">25.6%</td>
+            <td class="num down">-0.3pct</td>
+          </tr>
+          <tr>
+            <td>ROE(报告期累计)</td>
+            <td class="num">11.33%</td>
+            <td class="num">11.29%</td>
+            <td class="num">持平</td>
+          </tr>
+          <tr>
+            <td>经营现金流</td>
+            <td class="num up">375.52 亿</td>
+            <td class="num">372.80 亿</td>
+            <td class="num up">+0.73%</td>
+          </tr>
+          <tr>
+            <td>资产负债率</td>
+            <td class="num down">64.89%</td>
+            <td class="num">64.04%</td>
+            <td class="num down">偏高</td>
+          </tr>
+        </table>
+        <div class="warn-box">
+          <strong>⚠️ 核心警示：归母增长是"虚"的。</strong>2026H1 扣非 195.95
+          亿（-25.31%）&lt; 归母 264.46 亿，差额约 68.5 亿为非经常性收益
+          （处置资产/政府补助/公允价值变动等），不可持续；Q2 单季扣非约 86
+          亿（-36%），主业 盈利斜率明显恶化。2025H1 扣非（262.4 亿）&gt;
+          归母（260.1 亿）形成高基数，加剧了同比下滑。
+        </div>
+        <p class="muted">
+          数据来源：2026 半年报（2026-08-28 披露）、东方财富 F10、腾讯行情快照
+        </p>
+      </div>
+
+      <!-- 3. 数据来源与可信度 -->
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：2026 年半年度报告（2026-08-28
+            披露）、2025 年年报
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10
+            主要财务指标接口（营收/归母/扣非/ROE/毛利/负债）
+          </li>
+          <li>
+            <strong>行情与估值</strong>：腾讯行情快照（2026-08-28，现价 86.23
+            元）
+          </li>
+          <li>
+            <strong>分红</strong>：东方财富 RPT_SHAREBONUS_DET 分红接口（2025
+            年度全年 4.3 元/股）
+          </li>
+          <li><strong>研报观点</strong>：未引用（无一手研报原文）</li>
+        </ul>
+        <div class="note">
+          可信度说明：核心财务数字取自公司中报与东财 F10，可交叉验证；Q2
+          单季扣非为季度累计倒算 口径；非经常收益 68.5
+          亿的具体构成（处置/补助/公允价值）未在简讯中完整披露，相关判断作
+          保守处理；2026 全年盈利为推算口径，不输出伪精确目标价。
+        </div>
+      </div>
+
+      <!-- 4. 硬阈值筛选 -->
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">24.09%</td>
+            <td class="num">22.21%</td>
+            <td class="num">22.23%</td>
+            <td class="num">21.29%</td>
+            <td class="num up">19.70%</td>
+            <td class="num">21.90%</td>
+          </tr>
+        </table>
+        <p class="small">
+          <strong>通过</strong>。近 5 年全部 &gt;19.7%，均值 21.9%；2026H1 累计
+          11.33%（年化约 22%），高 ROE 延续。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          <strong>通过</strong>。每股经营现金流 2021-2025 为
+          5.02/4.95/8.24/7.90/7.02 元；2026H1 经营现金流 375.52
+          亿（+0.73%）仍强，2025 年 FCF 约 422 亿，现金流质量优秀。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          <strong>通过</strong>。2025 年度每股分红 4.3 元（10 派 38 + 中期 10 派
+          5），分红率约 74%，逐年提升。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          <strong>未通过</strong>。2026H1 负债率 64.89%（2025A 61.17%），超过
+          60% 观察线，且趋势 上升；短期借款等有息负债规模需关注。
+        </p>
+        <div class="warn-box">
+          <strong>硬阈值总判断：3/4 通过。</strong
+          >ROE、FCF、分红通过；负债率（64.9%）超 60% 观察线。叠加扣非 -25%
+          的主业下滑，中报 质量较 2025 年明显下降。
+        </div>
+      </div>
+
+      <!-- 5. 基本面研究 -->
+      <div class="card">
+        <h2>🌍 基本面研究</h2>
+        <h3>公司定位与主营</h3>
+        <table>
+          <tr>
+            <th>业务板块</th>
+            <th class="num">特征</th>
+          </tr>
+          <tr>
+            <td>智能家居（家电基本盘）</td>
+            <td class="num">
+              空调/冰箱/洗衣机/小家电，国内龙头 + 海外 OBM 放量
+            </td>
+          </tr>
+          <tr>
+            <td>工业技术（第二曲线）</td>
+            <td class="num">压缩机、电机、机器人（库卡 KUKA）、楼宇科技</td>
+          </tr>
+          <tr>
+            <td>新能源与智能交通</td>
+            <td class="num">汽车零部件等新兴业务</td>
+          </tr>
+        </table>
+        <p class="small">
+          结构要点：家电仍是基本盘，海外自主品牌（OBM）持续提升是增长点；工业技术（库卡机器人）
+          与楼宇科技提供第二曲线；2026H1 营收 +3.55%，海外与多品类贡献为主。
+        </p>
+        <h3>护城河（强度：强）</h3>
+        <ul class="small">
+          <li>
+            全球家电龙头：多品牌矩阵（美的/小天鹅/东芝/COLMO），规模与供应链效率领先；
+          </li>
+          <li>海外 OBM 占比提升，渠道本地化能力强；</li>
+          <li>工业技术（库卡机器人）、楼宇科技构成多元第二曲线。</li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>管理层优秀，全球化与多元化战略执行能力强；</li>
+          <li>高分红（分红率 74%）+ 中期分红机制，股东回报导向明确；</li>
+          <li>
+            需跟踪：扣非下滑的具体原因（费用投放、原材料、海外盈利）、负债率趋势。
+          </li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          归类：<strong>Stalwart（稳定增长 / 现金牛）</strong>。全球家电龙头 +
+          工业技术第二曲线， 历史上高质量增长（2025 归母 +14%）；但 2026H1 扣非
+          -25% 显示主业增速明显降档，当前 处于"增长下修 +
+          非经常收益支撑报表"的观察期，估值逻辑需从成长切换到质量+股息。
+        </p>
+      </div>
+
+      <!-- 6. 财务质量分析 -->
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>2026H1：表观平稳、实质走弱</h3>
+        <div class="warn-box">
+          <strong>⚠️ 扣非 -25.31%、Q2 单季扣非 -36%</strong>：归母 +1.66% 全靠约
+          68.5 亿非经常收益（非主营），主业盈利斜率明显恶化，是本期最
+          重要的财务信号。
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">变化</th>
+          </tr>
+          <tr>
+            <td>营收</td>
+            <td class="num">2600.42 亿</td>
+            <td class="num">2523.30 亿</td>
+            <td class="num up">+3.55%</td>
+          </tr>
+          <tr>
+            <td>归母净利</td>
+            <td class="num">264.46 亿</td>
+            <td class="num">260.10 亿</td>
+            <td class="num up">+1.66%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num down">195.95 亿</td>
+            <td class="num">262.40 亿</td>
+            <td class="num down">-25.31%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">25.3%</td>
+            <td class="num">25.6%</td>
+            <td class="num down">-0.3pct</td>
+          </tr>
+          <tr>
+            <td>经营现金流</td>
+            <td class="num up">375.52 亿</td>
+            <td class="num">372.80 亿</td>
+            <td class="num up">+0.73%</td>
+          </tr>
+          <tr>
+            <td>ROE(累计)</td>
+            <td class="num">11.33%</td>
+            <td class="num">11.29%</td>
+            <td class="num">持平</td>
+          </tr>
+        </table>
+        <p class="small">
+          原因拆解：①
+          营收温和增长（+3.55%）但扣非大幅下滑，主因费用投放加大、原材料/汇率/竞争
+          压力，以及 2025H1 扣非高基数（262.4 亿，高于当年归母）；② Q2
+          单季扣非约 86 亿（-36%）， 恶化加速；③ 归母靠非经常收益（约 68.5
+          亿）支撑，不可持续；④ 经营现金流 375.52 亿仍 强，利润含金量尚未恶化。
+        </p>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li>
+            <strong>利润含金量下降</strong>：扣非/归母仅约
+            74%（196/264.5），非经常收益占比高，主业盈利质量下滑；
+          </li>
+          <li>
+            <strong>现金流仍强</strong>：经营现金流 375.52 亿，覆盖利润无压力；
+          </li>
+          <li>
+            <strong>负债率偏高</strong>：64.89%（超 60%
+            观察线），有息负债规模需关注；
+          </li>
+          <li>
+            <strong>毛利率承压</strong
+            >：25.3%（-0.3pct），原材料与竞争压力显现。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 7. 行业与竞争格局 -->
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong
+            >：家电行业成熟，国内地产链需求弱、更新周期主导；海外市场（尤其新兴市场）仍有空间。
+          </li>
+          <li>
+            <strong>竞争地位</strong>：与格力、海尔并列为国内家电三强，海外 OBM
+            布局领先，全球份额靠前。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：① 海外自主品牌（OBM）放量；②
+            工业技术（库卡机器人）/楼宇科技/新能源车零部件第二曲线；③
+            高端化（COLMO 等）产品结构升级。
+          </li>
+          <li>
+            <strong>风险</strong
+            >：国内需求疲弱、海外贸易与汇率、原材料（铜/钢）价格、费用投放侵蚀利润。
+          </li>
+        </ul>
+        <p class="small">
+          结论：行业格局稳定、公司全球化执行力强，但 2026H1
+          扣非下滑说明短期面临"国内需求弱 +
+          费用/成本压力"的双重挤压，第二曲线尚未对冲到位。
+        </p>
+      </div>
+
+      <!-- 8. 估值与安全边际 -->
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值（2026-08-28，现价 86.23 元，市值 6578 亿）</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">数值</th>
+            <th class="num">对应估值</th>
+          </tr>
+          <tr>
+            <td>2025A 静态 PE（EPS 5.80）</td>
+            <td class="num">14.9 倍</td>
+            <td class="num">合理</td>
+          </tr>
+          <tr>
+            <td>动态 PE（行情口径）</td>
+            <td class="num">14.8 倍</td>
+            <td class="num">合理</td>
+          </tr>
+          <tr>
+            <td>2026E 扣非 PE（EPS 约 5.4）</td>
+            <td class="num">约 16.0 倍</td>
+            <td class="num">偏高（主业下滑）</td>
+          </tr>
+          <tr>
+            <td>PB（BPS 约 27.7 元）</td>
+            <td class="num">3.11 倍</td>
+            <td class="num">中性</td>
+          </tr>
+          <tr>
+            <td>TTM 股息率（全年 4.3 元）</td>
+            <td class="num">4.99%</td>
+            <td class="num">中性偏高</td>
+          </tr>
+        </table>
+        <h3>
+          估值锚交叉验证（Stalwart 框架，2026E 扣非 EPS 约 5.4 元 / 归母 EPS 约
+          5.8 元）
+        </h3>
+        <table>
+          <tr>
+            <th>估值锚</th>
+            <th class="num">合理区间（元）</th>
+          </tr>
+          <tr>
+            <td>扣非 EPS 5.4 × 13-14 倍（主业承压折价）</td>
+            <td class="num">70 - 76</td>
+          </tr>
+          <tr>
+            <td>扣非 EPS 5.4 × 14-16 倍</td>
+            <td class="num">76 - 86</td>
+          </tr>
+          <tr>
+            <td>归母 EPS 5.8 × 13-16 倍</td>
+            <td class="num">75 - 93</td>
+          </tr>
+          <tr>
+            <td>股息率 5.5% 反推（4.3÷0.055）</td>
+            <td class="num">78</td>
+          </tr>
+          <tr>
+            <td>股息率 5.0% 反推（4.3÷0.05）</td>
+            <td class="num">86</td>
+          </tr>
+        </table>
+        <p>
+          <strong
+            >合理价值区间：约 75 - 90 元（FV 约 82 元）；现价 86.23
+            元，处于合理区中上部， 安全边际不足。</strong
+          >
+        </p>
+        <div class="note">
+          判断：美的作为全球龙头，历史 PE 中枢 15-20 倍；但 2026H1 扣非 -25%（Q2
+          -36%）要求估值 打折，合理 PE 下修至 13-16 倍（扣非口径），对应 70-86
+          元；归母口径（含非经常收益）5.8× 13-16 = 75-93 元。股息率 5% 反推 86
+          元、5.5% 反推 78 元。综合合理价值 75-90 元，现价 86.23
+          处于中上部，安全边际不足——尤其考虑扣非下滑，当前价并未给"主业走弱"足够折价。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          不足。现价 86.23 接近合理价值上沿，扣非 -25% 下估值缺乏支撑；股息率
+          4.99% 提供一定 "现金回报下限"，但更厚的安全边际需等 75-80 元 Buy
+          Zone（股息率 5.4%+）或扣非企稳信号。
+        </p>
+      </div>
+
+      <!-- 9. 六维评分 -->
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">全球家电龙头，多品牌+海外 OBM+工业技术</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">现金流强、ROE 19.7%，但负债率 64.9% 偏高</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">4/10</div>
+            <div class="bar"><div class="fill" style="width: 40%"></div></div>
+            <div class="small">扣非 -25%（Q2 -36%），主业明显承压</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">Stalwart，海外+机器人+楼宇第二曲线</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">PE 14.9、股息率 4.99%，现价接近合理上沿</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">扣非下滑、负债率高、海外贸易汇率、费用投放</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">37</span> / 60</div>
+      </div>
+
+      <!-- 10. 风险清单 -->
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>主业扣非持续下滑（核心）</strong>：H1 -25.3%、Q2 单季
+            -36%，若 H2 不能修复，盈利逻辑需大幅下修；
+          </li>
+          <li>
+            <strong>归母依赖非经常收益</strong>：约 68.5
+            亿非经常收益（处置/补助/公允价值）不可持续，剔除后主业盈利明显下滑；
+          </li>
+          <li>
+            <strong>负债率偏高</strong>：64.89% 超 60% 观察线，且趋势上升；
+          </li>
+          <li>
+            <strong>海外贸易与汇率</strong
+            >：关税政策、人民币汇率波动影响海外盈利；
+          </li>
+          <li>
+            <strong>国内需求疲弱</strong
+            >：地产链弱、消费复苏不及预期压制家电主业；
+          </li>
+          <li>
+            <strong>费用与原材料</strong>：营销投放加大 +
+            原材料价格波动侵蚀毛利。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 11. 持仓分析与操作建议 -->
+      <div class="card">
+        <h2>💼 持仓分析与操作建议</h2>
+        <p class="muted">
+          持仓事实源：stocks/my/holder.json（美的集团 1300 股）。
+        </p>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">数值</th>
+          </tr>
+          <tr>
+            <td>当前持仓</td>
+            <td class="num">1300 股</td>
+          </tr>
+          <tr>
+            <td>买入成本</td>
+            <td class="num">73.40 元</td>
+          </tr>
+          <tr>
+            <td>当前价格（2026-08-28）</td>
+            <td class="num">86.23 元</td>
+          </tr>
+          <tr>
+            <td>当前市值</td>
+            <td class="num">约 112,099 元</td>
+          </tr>
+          <tr>
+            <td>账面浮盈</td>
+            <td class="num up">约 +16,679 元（+17.5%）</td>
+          </tr>
+          <tr>
+            <td>全年分红（每股 4.3 元）</td>
+            <td class="num up">约 5,590 元 / 年（股息率 4.99%）</td>
+          </tr>
+        </table>
+        <h3>买卖点位参考（2026E 扣非 EPS 约 5.4 元 / 归母 EPS 约 5.8 元）</h3>
+        <table>
+          <tr>
+            <th>区间</th>
+            <th class="num">价格</th>
+            <th>估值锚</th>
+          </tr>
+          <tr>
+            <td class="up">强买点 Strong Buy</td>
+            <td class="num">68 - 72 元</td>
+            <td>扣非 PE 12.6-13.3 倍；股息率 6.0%-6.3%</td>
+          </tr>
+          <tr>
+            <td>买点 Buy Zone</td>
+            <td class="num">75 - 80 元</td>
+            <td>扣非 PE 13.9-14.8 倍；股息率 5.4%-5.7%</td>
+          </tr>
+          <tr>
+            <td>合理价值 Fair Value</td>
+            <td class="num">75 - 90 元（FV 82）</td>
+            <td>
+              扣非 EPS×13-16 倍 + 归母 EPS×13-16 倍 + 股息率 4.8%-5.7% 交叉验证
+            </td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num hl">86.23 元</td>
+            <td>2026E 扣非 PE 约 16 倍，合理区中上部，安全边际不足</td>
+          </tr>
+          <tr>
+            <td class="down">估值卖点（减仓）</td>
+            <td class="num">95 - 100 元</td>
+            <td>扣非 PE 17.6-18.5 倍；股息率跌破 4.3%</td>
+          </tr>
+          <tr>
+            <td class="down">无条件卖点</td>
+            <td class="num">不限价格</td>
+            <td>
+              扣非连续两季大幅下滑 / 海外业务恶化 / 负债率失控 / 分红大幅削减
+            </td>
+          </tr>
+        </table>
+        <div class="note">
+          建仓/减仓锚定 2026E 扣非口径（H1 扣非 196 亿 + H2 若恢复约 210-220 亿
+          ≈ 全年 410-420 亿、 扣非 EPS 约 5.4 元），因表观归母含约 68.5
+          亿非经常收益必须用扣非口径；合理倍数按 "Stalwart 龙头 + 高
+          ROE/强现金流/高分红，但扣非 -25% 打折"确定为 13-16 倍；卖点用高估锚
+          （扣非 PE 17.6 倍+、股息率跌破 4.3%）而非机械乘数。组合纪律：浮盈
+          +17.5% 且扣非大幅下滑 → 可减仓锁定。
+        </div>
+        <h3>操作建议</h3>
+        <ul class="small">
+          <li>
+            <strong>当前（86.23 元）</strong>：浮盈 +17.5% 且主业扣非
+            -25%，建议在 86-90 元减仓 300-500 股锁定利润；
+          </li>
+          <li>
+            <strong>剩余持仓</strong>：继续持有收息（股息率 4.99%、年分红约
+            5,590 元）；
+          </li>
+          <li>
+            <strong>不加仓</strong>：现价处于合理区中上部，扣非下滑未给足折价；
+          </li>
+          <li>
+            <strong>回落至 75-80 元 Buy Zone</strong>：可评估回补；<strong
+              >68-72 元强买区</strong
+            >：加大；
+          </li>
+          <li>
+            <strong>触发上修</strong>：三季报扣非增速回正 + 负债率回落 →
+            合理倍数上修；
+          </li>
+          <li>
+            <strong>跟踪项</strong>：Q3 扣非增速、非经常收益构成、海外 OBM
+            盈利、负债率、原材料价格。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 12. 总结 -->
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p><strong>结论：HOLD · 减仓评估，暂不加仓。总分 37/60。</strong></p>
+        <h3>3 个持有的理由</h3>
+        <ol class="small">
+          <li>
+            全球家电龙头，护城河（多品牌 + 海外 OBM + 供应链效率）依然深厚，ROE
+            5 年均值 21.9%；
+          </li>
+          <li>
+            现金流强（H1 经营现金流 375.52 亿）+ 高分红（股息率 4.99%、分红率
+            74%）；
+          </li>
+          <li>工业技术（库卡）/楼宇科技第二曲线提供长期想象空间。</li>
+        </ol>
+        <h3>3 个减仓/不追的理由</h3>
+        <ol class="small">
+          <li>
+            扣非 -25.31%、Q2 单季 -36%，主业盈利明显承压，归母靠 68.5
+            亿非经常收益"虚增"；
+          </li>
+          <li>负债率 64.89% 超 60% 观察线且上升；</li>
+          <li>
+            现价 86.23 处于合理区中上部，浮盈 +17.5% 提供了锁定利润的良机。
+          </li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          扣非下滑是短期费用/成本扰动，还是主业趋势性走弱？H2
+          扣非能否修复、非经常收益能否持续？ 三季报（10
+          月）是验证分水岭——若扣非回正，当前估值可接受；若继续下滑，合理估值需下修。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          扣非持续负增长 + 负债率失控 + 海外贸易/汇率恶化 +
+          分红承压叠加，将同时打击盈利、估值
+          与股东回报叙事——这是持有美的需重点监控的组合风险。当前现金流与分红仍稳，但主业斜率
+          是最关键的观察变量。
+        </p>
+        <div class="note">
+          数据充分性说明：基于 2026 半年报与东财 F10（核心数据可交叉验证）；Q2
+          单季扣非为倒算口径， 非经常收益构成未完整披露，判断作保守处理；2026E
+          盈利为推算口径；不输出伪精确目标价。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-28
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 美的集团 ·
+        000333
+      </footer>
+    </div>
+  </body>
+</html>

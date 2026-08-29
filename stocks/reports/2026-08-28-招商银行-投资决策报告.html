@@ -1,0 +1,1012 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>招商银行（600036）投资决策报告 · 2026-08-28</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>招商银行（600036）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年半年报版（覆盖 Q1 版，专项指标已用中报正文） ｜ 生成日期：
+          2026-08-28（数据更新 2026-08-29） ｜ 数据基准：2026 半年报 +
+          2026-08-28 行情快照
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：银行价值股 · 高股息</span>
+          <span class="badge score">总分 43 / 60</span>
+        </div>
+      </div>
+
+      <!-- 1. 结论 -->
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">HOLD · 可小步分批，接近 Buy Zone</span
+          >招商银行是"高质量零售银行 + 低估值 + 高股息"的价值型标的。2026H1 营收
+          1781.81 亿（+4.83%）、归母 764.45 亿（+2.02%）、扣非 763.39
+          亿（+2.03%）， 营收增速较 2025 年明显改善；资产质量仍强（不良率 0.94%
+          持平、拨备覆盖率 385.10%），PB 0.87-0.94 倍处历史低位、股息率约 5.1%。
+        </div>
+        <p>
+          一句话：<strong
+            >招行是银行业里"资产质量最优 + 零售护城河最深 +
+            分红慷慨"的标杆，但净息差 仍在压力区间、利润增速偏慢。</strong
+          >2026H1 营收 +4.83%（2025 全年仅 +0.01%）、归母 +2.02%、EPS 2.98
+          元，营收
+          端明显回暖，主要来自财富管理与非息收入贡献；利润增速温和，受净息差下行压制。
+        </p>
+        <p>
+          估值与回报：现价 39.35 元对应 PB 0.87 倍（BPS 45.4 元）、PE_TTM 约 7.2
+          倍、<strong>股息率约 5.12%</strong>（2025 年度全年每股分红 2.016
+          元，分红率约 34%）。作为优质银行，PB 历史低位 + 高股息提供较强安全垫。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>持仓 1500 股（成本 37.505 元、现价
+          39.35、浮盈 +4.9%）—— 继续持有收息；现价处于 Buy
+          Zone（36-39）上沿，回落至 37 元以下可小额分批，35 元
+          以下优先加仓。未持有者 39 元以下可小步建仓，36 元以下加大。
+        </p>
+      </div>
+
+      <!-- 2. 关键指标速览 -->
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">39.35 元<br />9924 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">PB / PE_TTM</div>
+            <div class="num">0.87 / 7.2</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">TTM 股息率</div>
+            <div class="num up">约 5.12%</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 归母</div>
+            <div class="num up">764.45 亿（+2.02%）</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目（2026H1）</th>
+            <th class="num">本期</th>
+            <th class="num">上期(2025H1)</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入</td>
+            <td class="num">1781.81 亿</td>
+            <td class="num">1699.69 亿</td>
+            <td class="num up">+4.83%</td>
+          </tr>
+          <tr>
+            <td>归母净利润</td>
+            <td class="num">764.45 亿</td>
+            <td class="num">749.30 亿</td>
+            <td class="num up">+2.02%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num">763.39 亿</td>
+            <td class="num">—</td>
+            <td class="num up">+2.03%</td>
+          </tr>
+          <tr>
+            <td>基本 EPS</td>
+            <td class="num">2.98 元</td>
+            <td class="num">2.89 元</td>
+            <td class="num up">+3.11%</td>
+          </tr>
+          <tr>
+            <td>每股净资产 BPS</td>
+            <td class="num">45.40 元</td>
+            <td class="num">42.10 元</td>
+            <td class="num up">+7.8%</td>
+          </tr>
+          <tr>
+            <td>ROE(报告期累计)</td>
+            <td class="num">6.71%</td>
+            <td class="num">6.93%</td>
+            <td class="num down">-0.22pct</td>
+          </tr>
+          <tr>
+            <td>每股经营现金流</td>
+            <td class="num up">12.08 元</td>
+            <td class="num">—</td>
+            <td class="num up">强</td>
+          </tr>
+        </table>
+        <div class="note">
+          资产质量（2026 中报口径，2026-06-30）：不良率 0.94%（持平）、拨备
+          覆盖率 385.10%（较上年末 -6.69pct）、核心一级资本充足率 14.07%、净息差
+          1.83%（同比 -5bp）。中报营收 +4.8% 显著好于 2025 全年
+          （+0.01%），财富管理与非息收入回暖是主因。
+        </div>
+        <p class="muted">
+          数据来源：2026 半年报（2026-08-29 披露）、东方财富
+          F10/港股接口、腾讯行情（2026-08-28）
+        </p>
+      </div>
+
+      <!-- 3. 数据来源与可信度 -->
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：2026 年半年度报告（2026-08-29
+            公告披露）
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10 主要财务指标（A股+港股 03968
+            双接口交叉验证）、新浪资产负债表
+          </li>
+          <li>
+            <strong>银行专项指标</strong>：招商银行 2026 半年度报告 PDF 正文
+            （PyMuPDF 解析，不良率/拨备/净息差/资本充足率/逾期/关注类）
+          </li>
+          <li>
+            <strong>行情与估值</strong>：腾讯行情快照（2026-08-28，现价 39.35
+            元）
+          </li>
+          <li>
+            <strong>分红</strong>：东方财富 RPT_SHAREBONUS_DET 分红接口（2025
+            年度全年 2.016 元/股）
+          </li>
+          <li><strong>研报观点</strong>：未引用（无一手研报原文）</li>
+        </ul>
+        <div class="note">
+          可信度说明：营收/归母/扣非/ROE/EPS/BPS 等核心数据来自公司中报与东财
+          F10、港股接口，可交叉验证；不良率/拨备/净息差/资本充足率等银行专项指标
+          已通过 PyMuPDF 解析中报 PDF 正文获取（2026-06-30 口径），较旧 Q1 口径
+          已更新；2026 全年盈利为推算口径，不输出伪精确目标价。
+        </div>
+      </div>
+
+      <!-- 4. 硬阈值筛选（银行专项复核） -->
+      <div class="card">
+        <h2>✅ 硬阈值筛选（银行专项复核）</h2>
+        <table>
+          <tr>
+            <th>门槛</th>
+            <th>结果</th>
+            <th>判断</th>
+          </tr>
+          <tr>
+            <td>资产质量（不良率）</td>
+            <td>不良率 0.94%（持平）</td>
+            <td class="up">通过（行业最优梯队）</td>
+          </tr>
+          <tr>
+            <td>风险抵补（拨备覆盖率）</td>
+            <td>拨备覆盖率 385.10%（-6.69pct）</td>
+            <td class="up">通过（缓冲厚）</td>
+          </tr>
+          <tr>
+            <td>资本充足</td>
+            <td>核心一级 14.07%、资本充足率 18.33%</td>
+            <td class="up">通过</td>
+          </tr>
+          <tr>
+            <td>盈利与息差</td>
+            <td>净息差 1.83%（-5bp），利润 +2.0%</td>
+            <td class="down">息差承压（关注）</td>
+          </tr>
+          <tr>
+            <td>分红</td>
+            <td>2025 年度每股 2.016 元，分红率约 34%</td>
+            <td class="up">通过（股息率 5.1%）</td>
+          </tr>
+        </table>
+        <div class="good-box">
+          <strong>硬阈值总判断：通过（银行口径）。</strong
+          >资产质量、资本充足、分红三项优秀；净息差是主要压力项，但拨备缓冲足以覆盖，属
+          行业共性而非招行个体恶化。
+        </div>
+      </div>
+
+      <!-- 5. 基本面研究 -->
+      <div class="card">
+        <h2>🏦 基本面研究</h2>
+        <h3>公司定位与主营</h3>
+        <table>
+          <tr>
+            <th>业务板块</th>
+            <th class="num">特征</th>
+          </tr>
+          <tr>
+            <td>零售银行（核心优势）</td>
+            <td class="num">
+              零售客户基础庞大，财富管理（AUM）、信用卡、私人银行行业领先
+            </td>
+          </tr>
+          <tr>
+            <td>公司金融</td>
+            <td class="num">对公业务稳健，聚焦优质客户</td>
+          </tr>
+          <tr>
+            <td>同业/其他</td>
+            <td class="num">补充业务</td>
+          </tr>
+        </table>
+        <p class="small">
+          结构要点：零售金融是招行的核心护城河（高
+          ROE、低成本负债、高客户黏性）；2026H1 营收 +4.8%
+          回暖，财富管理与非息收入贡献明显。
+        </p>
+        <h3>护城河（强度：强）</h3>
+        <ul class="small">
+          <li>
+            零售银行标杆：财富管理 AUM
+            行业领先，低成本活期存款占比高（负债端优势）；
+          </li>
+          <li>
+            资产质量行业最优：不良率 0.94%、拨备覆盖率
+            385.10%，风险抵补能力突出；
+          </li>
+          <li>品牌与渠道：网点+App 协同，零售客户黏性强。</li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>管理团队稳定，战略延续"零售为王"；</li>
+          <li>
+            高分红 + 中期分红机制，股东回报导向明确（2026 年度中期分红已获批）；
+          </li>
+          <li>需跟踪：净息差走势、零售信贷需求、地产风险暴露。</li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          归类：<strong>银行价值股 / 高股息</strong>。银行业用 PB 估值（而非
+          PE），招行是其中 资产质量最好、最值得给溢价的标的；成长性温和（营收
+          +4.8%、利润 +2%），核心价值来自 "低估值 + 高股息 + 资产质量溢价"。
+        </p>
+      </div>
+
+      <!-- 6. 财务质量分析 -->
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>2026H1：营收明显回暖，利润温和增长</h3>
+        <div class="good-box">
+          <strong>✅ 营收 +4.83%（2025 全年仅 +0.01%）</strong
+          >，财富管理与非息收入回暖是主因；归母 +2.02%、EPS
+          +3.11%，盈利质量依然扎实。
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">变化</th>
+          </tr>
+          <tr>
+            <td>营收</td>
+            <td class="num">1781.81 亿</td>
+            <td class="num">1699.69 亿</td>
+            <td class="num up">+4.83%</td>
+          </tr>
+          <tr>
+            <td>归母净利</td>
+            <td class="num">764.45 亿</td>
+            <td class="num">749.30 亿</td>
+            <td class="num up">+2.02%</td>
+          </tr>
+          <tr>
+            <td>EPS</td>
+            <td class="num">2.98 元</td>
+            <td class="num">2.89 元</td>
+            <td class="num up">+3.11%</td>
+          </tr>
+          <tr>
+            <td>BPS</td>
+            <td class="num">45.40 元</td>
+            <td class="num">42.10 元</td>
+            <td class="num up">+7.8%</td>
+          </tr>
+          <tr>
+            <td>ROE(累计)</td>
+            <td class="num">6.71%</td>
+            <td class="num">6.93%</td>
+            <td class="num down">-0.22pct</td>
+          </tr>
+          <tr>
+            <td>净息差（净利息收益率）</td>
+            <td class="num">1.83%</td>
+            <td class="num">1.88%</td>
+            <td class="num down">-5bp</td>
+          </tr>
+        </table>
+        <p class="small">
+          原因拆解：① 营收 +4.83%，净利息收入 +5.60%、非利息净收入 +3.56%
+          （财富管理回暖）；② 净息差 1.83%（同比 -5bp）——生息资产收益率 2.82%
+          （-32bp）下降快于计息负债成本率 1.05%（-30bp），净利息收入靠规模
+          （总资产 +5.47%）对冲；③ ROAA 1.14%（-0.07pct）、年化 ROAE 13.42%
+          （-0.43pct）、成本收入比 29.70%（-0.41pct）改善，盈利质量依然一流。
+        </p>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li>
+            <strong>资产质量</strong>：不良率 0.94%（持平）、拨备覆盖率 385.10%
+            （-6.69pct），风险抵补充足；逾期贷款占比 1.31%（+0.06pct）、关注类
+            1.53%（+0.10pct）略升；公司贷款不良率 0.78%（-0.11pct）与个人住房
+            0.48%（-0.03pct）改善，零售贷款不良 1.16%（+0.10pct，信用卡 1.90%）
+            需关注；
+          </li>
+          <li>
+            <strong>资产负债表</strong>：总资产 137,852.80 亿（+5.47%）、存款
+            101,624.98 亿（+3.32%）、贷款 74,530.33 亿（+2.69%），负债率 90.2%
+            （银行特征）；
+          </li>
+          <li>
+            <strong>资本</strong>：核心一级资本充足率 14.07%、一级 16.59%、资本
+            充足率 18.33%（高级法），资本缓冲厚；
+          </li>
+          <li>
+            <strong>现金流</strong>：每股经营现金流 12.08 元（2025H1 5.33 元），
+            经营现金流非常充裕。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 7. 行业与竞争格局 -->
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong>：银行业净息差处于历史低位（行业约
+            1.5%），资产质量分化，零售银行相对受益。
+          </li>
+          <li>
+            <strong>竞争地位</strong>：零售银行龙头，财富管理 AUM
+            与资产质量显著优于同业，PB 溢价合理。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：① 净息差企稳预期；②
+            财富管理/非息收入回暖；③ 零售信贷需求修复；④ 高股息 +
+            中特估估值修复。
+          </li>
+          <li>
+            <strong>风险</strong
+            >：净息差持续下行、地产与零售信贷风险、经济复苏不及预期、存款定期化。
+          </li>
+        </ul>
+        <p class="small">
+          结论：银行业整体承压（息差历史低位），但招行凭借最优资产质量与零售护城河，是行业内
+          确定性最高的标的；估值（PB 0.87 倍）已计入悲观预期，高股息提供安全垫。
+        </p>
+      </div>
+
+      <!-- 8. 估值与安全边际 -->
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值（2026-08-28，现价 39.35 元，市值 9924 亿）</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">数值</th>
+            <th class="num">对应估值</th>
+          </tr>
+          <tr>
+            <td>PB（BPS 45.40 元）</td>
+            <td class="num">0.87 倍</td>
+            <td class="num">偏低（历史低位）</td>
+          </tr>
+          <tr>
+            <td>PB（行情口径）</td>
+            <td class="num">0.94 倍</td>
+            <td class="num">偏低</td>
+          </tr>
+          <tr>
+            <td>PE_TTM（TTM 归母约 1517 亿）</td>
+            <td class="num">约 7.2 倍</td>
+            <td class="num">偏低</td>
+          </tr>
+          <tr>
+            <td>TTM 股息率（全年 2.016 元）</td>
+            <td class="num up">约 5.12%</td>
+            <td class="num up">高（银行价值锚）</td>
+          </tr>
+        </table>
+        <h3>估值锚交叉验证（银行：PB 主锚 + 股息率辅锚）</h3>
+        <table>
+          <tr>
+            <th>估值锚</th>
+            <th class="num">合理区间（元）</th>
+          </tr>
+          <tr>
+            <td>PB 0.75 倍（悲观）</td>
+            <td class="num">34.1</td>
+          </tr>
+          <tr>
+            <td>PB 0.90 倍（BPS 45.4）</td>
+            <td class="num">40.9</td>
+          </tr>
+          <tr>
+            <td>PB 1.05 倍（历史中枢下沿）</td>
+            <td class="num">47.7</td>
+          </tr>
+          <tr>
+            <td>股息率 5.5% 反推（2.016÷0.055）</td>
+            <td class="num">36.7</td>
+          </tr>
+          <tr>
+            <td>股息率 5.0% 反推（2.016÷0.05）</td>
+            <td class="num">40.3</td>
+          </tr>
+          <tr>
+            <td>股息率 4.5% 反推（2.016÷0.045）</td>
+            <td class="num">44.8</td>
+          </tr>
+        </table>
+        <p>
+          <strong
+            >合理价值区间：约 38 - 44 元（FV 约 41 元）；现价 39.35
+            元，处于合理区间中下部， 安全边际中性偏正。</strong
+          >
+        </p>
+        <div class="note">
+          判断：银行用 PB 主锚。招行 BPS 45.4 元、现价 PB 0.87
+          倍，处于历史低位（招行历史 PB 中枢 1.0-1.5 倍）；股息率 5.12%
+          相对十年期国债（约 2%）有约 3 个点超额。PB 锚 （40.9-47.7 对应
+          0.9-1.05 倍）与股息率锚（36.7-44.8 对应 4.5%-5.5%）交叉验证，合理 价值
+          38-44 元。现价 39.35 接近 FV 下沿，处于 Buy
+          Zone（36-39）上沿附近，安全边际中性 偏正——作为优质银行，向下有 PB 0.75
+          倍（34 元）的极值支撑。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          中性偏正。PB 0.87 倍历史低位 + 股息率 5.12%
+          提供强"现金回报下限"；下行极值看 PB 0.75 倍（约 34
+          元），上行需净息差企稳 + 零售修复双击。要更厚安全边际可等 36-37 元
+          （股息率 5.5%+）。
+        </p>
+      </div>
+
+      <!-- 9. 六维评分 -->
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">9/10</div>
+            <div class="bar"><div class="fill" style="width: 90%"></div></div>
+            <div class="small">零售银行标杆，财富管理+低成本负债护城河深</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">不良率 0.94%、拨备 385%、资本充足 14.07%</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">营收 +4.8% 回暖、利润 +2%，净息差承压</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">银行价值股+高股息，零售优势清晰</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">
+              PB 0.87 历史低位、股息率 5.12%，安全边际中性偏正
+            </div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">净息差压力、地产零售风险、经济复苏不及预期</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">43</span> / 60</div>
+      </div>
+
+      <!-- 10. 风险清单 -->
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>净息差持续下行（核心）</strong>：净息差
+            1.83%（-5bp）仍在压力区间，若继续收窄将压制净利息收入与利润；
+          </li>
+          <li>
+            <strong>零售信贷风险（上升信号）</strong>：零售贷款不良率
+            1.16%（+0.10pct，信用卡 1.90%）、零售金融税前利润 428.88
+            亿（-17.58%，占集团税前利润 47.27%，-11.26pct），消费信贷风险
+            需重点监控；
+          </li>
+          <li>
+            <strong>逾期与关注类上升</strong>：逾期贷款占比
+            1.31%（+0.06pct）、关注类 1.53%（+0.10pct）、关注类 迁徙率年化
+            39.94%，需跟踪向不良的转化；
+          </li>
+          <li>
+            <strong>财富管理波动</strong
+            >：中收依赖市场行情，权益市场波动影响代销与财富管理收入；
+          </li>
+          <li><strong>存款定期化</strong>：负债端成本上行压力；</li>
+          <li>
+            <strong>宏观与政策</strong>：经济复苏不及预期、LPR
+            下行、监管政策变化。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 11. 持仓分析与操作建议 -->
+      <div class="card">
+        <h2>💼 持仓分析与操作建议</h2>
+        <p class="muted">
+          持仓事实源：stocks/my/holder.json（招商银行 1500 股）。
+        </p>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">数值</th>
+          </tr>
+          <tr>
+            <td>当前持仓</td>
+            <td class="num">1500 股</td>
+          </tr>
+          <tr>
+            <td>买入成本</td>
+            <td class="num">37.505 元</td>
+          </tr>
+          <tr>
+            <td>当前价格（2026-08-28）</td>
+            <td class="num">39.35 元</td>
+          </tr>
+          <tr>
+            <td>当前市值</td>
+            <td class="num">约 59,025 元</td>
+          </tr>
+          <tr>
+            <td>账面浮盈</td>
+            <td class="num up">约 +2,767 元（+4.92%）</td>
+          </tr>
+          <tr>
+            <td>全年分红（每股 2.016 元）</td>
+            <td class="num up">约 3,024 元 / 年（股息率 5.12%）</td>
+          </tr>
+        </table>
+        <h3>买卖点位参考（银行 PB 主锚，BPS 45.4 元、每股分红约 2.0 元）</h3>
+        <table>
+          <tr>
+            <th>区间</th>
+            <th class="num">价格</th>
+            <th>估值锚</th>
+          </tr>
+          <tr>
+            <td class="up">强买点 Strong Buy</td>
+            <td class="num">33 - 36 元</td>
+            <td>PB 0.73-0.79 倍；股息率 5.6%-6.1%</td>
+          </tr>
+          <tr>
+            <td>买点 Buy Zone</td>
+            <td class="num">36 - 39 元</td>
+            <td>PB 0.79-0.86 倍；股息率 5.2%-5.6%</td>
+          </tr>
+          <tr>
+            <td>合理价值 Fair Value</td>
+            <td class="num">38 - 44 元（FV 41）</td>
+            <td>PB 0.84-0.97 倍 + 股息率 4.6%-5.3% 交叉验证</td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num hl">39.35 元</td>
+            <td>PB 0.87、股息率 5.12%，合理区中下部 / Buy Zone 上沿</td>
+          </tr>
+          <tr>
+            <td class="down">估值卖点（减仓）</td>
+            <td class="num">48 - 52 元</td>
+            <td>PB 1.06-1.15 倍（历史中枢上沿）；股息率跌破 4.0%</td>
+          </tr>
+          <tr>
+            <td class="down">无条件卖点</td>
+            <td class="num">不限价格</td>
+            <td>不良率大幅上升 / 拨备快速消耗 / 净息差崩塌 / 分红大幅削减</td>
+          </tr>
+        </table>
+        <div class="note">
+          银行用 PB 主锚 + 股息率辅锚。BPS 45.4 元（2026H1），合理 PB 0.84-0.97
+          倍（优质零售银行 溢价但净息差压力打折）；股息率锚按全年分红约 2.0
+          元（2025 年度 2.016 元）反推 4.6%-5.3%； 卖点用高估锚（PB 1.06
+          倍+、股息率跌破 4%）而非机械乘数。独立组合规则：已浮盈 +4.9% 且
+          中报基本面稳健，无减仓理由，持有收息。
+        </div>
+        <h3>操作建议</h3>
+        <ul class="small">
+          <li>
+            <strong>当前（39.35 元）</strong>：1500 股继续持有收息（股息率
+            5.12%、年分红约 3,024 元），不加不减；
+          </li>
+          <li>
+            <strong>37 元以下</strong>：可小额分批加仓；<strong
+              >35 元以下（Buy Zone 下沿）</strong
+            >：优先加仓；
+          </li>
+          <li>
+            <strong>33-36 元强买区</strong>：加大（股息率 5.6%+、PB 0.79
+            倍以下，安全边际厚）；
+          </li>
+          <li>
+            <strong>48-52 元</strong>：分批兑现（PB 1.06 倍+、股息率跌破 4%）；
+          </li>
+          <li>
+            <strong>触发上修</strong>：净息差企稳回升 + 零售信贷需求修复 +
+            中收持续回暖 → 合理 PB 上修；
+          </li>
+          <li>
+            <strong>跟踪项</strong>：Q3
+            不良率/拨备/净息差趋势、零售不良生成与关注类迁徙、零售金融
+            利润、财富管理 AUM、地产风险、LPR 走势。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 12. 总结 -->
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p>
+          <strong>结论：HOLD · 可小步分批，接近 Buy Zone。总分 43/60。</strong>
+        </p>
+        <h3>3 个持有的理由</h3>
+        <ol class="small">
+          <li>
+            资产质量行业最优（不良率 0.94%、拨备 385.10%、核心一级资本
+            14.07%），风险抵补充足；
+          </li>
+          <li>
+            2026H1 营收 +4.83% 明显回暖（2025 全年
+            +0.01%），财富管理与非息收入改善，盈利质量扎实；
+          </li>
+          <li>
+            估值低 + 股息高：PB 0.87 倍历史低位、股息率
+            5.12%，作为优质银行安全边际中性偏正。
+          </li>
+        </ol>
+        <h3>3 个不重仓的理由</h3>
+        <ol class="small">
+          <li>净息差 1.83%（-5bp）仍在压力区间，利润增速仅 +2%；</li>
+          <li>地产与零售信贷风险、财富管理中收波动需持续监控；</li>
+          <li>
+            现价 39.35 处于合理区中下部，安全边际中性偏正但未到"明显低估"（36
+            元以下更佳）。
+          </li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          净息差能否企稳、零售信贷需求能否修复、财富管理中收能否延续回暖？若三者在
+          H2 验证改善， 招行"低估值 +
+          高股息"将叠加盈利修复双击；若息差继续下行，则维持"收息为主、等待更便宜"。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          净息差崩塌 + 零售/地产不良大幅上升 +
+          财富管理收入持续下滑叠加，将同时冲击盈利、资产
+          质量与估值——这是持有招行最需要监控的组合风险。当前拨备缓冲厚（385.10%），短期无虞，
+          但需季度跟踪不良生成率与零售资产质量。
+        </p>
+        <div class="note">
+          数据充分性说明：基于 2026 半年报（2026-08-29 披露）与东财
+          F10/港股接口（核心数据可交叉验证）；不良率/拨备/净息差/资本充足率等
+          专项指标已用 PyMuPDF 解析中报 PDF 正文获取并更新（2026-06-30 口径）；
+          2026 全年盈利为推算口径；不输出伪精确目标价。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-28
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 招商银行 ·
+        600036
+      </footer>
+    </div>
+  </body>
+</html>
