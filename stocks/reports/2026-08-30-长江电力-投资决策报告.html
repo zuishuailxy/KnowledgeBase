@@ -1,0 +1,993 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>长江电力（600900）投资决策报告 · 2026-08-30</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>长江电力（600900）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年半年报版 ｜ 生成日期：2026-08-30 ｜ 数据基准：2026 半年报 +
+          2026H1 发电量公告 + 2026-08-28 行情快照
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：Slow Grower / 高质量公用事业现金牛</span>
+          <span class="badge score">总分 38 / 60</span>
+        </div>
+      </div>
+
+      <!-- 1. 结论 -->
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">WATCHLIST · 资产极优，估值偏贵，观望</span>长江电力
+          2026H1 经营创新高：营收 379.3 亿（+3.35%）、归母 147.6
+          亿（+13.0%）、扣非 142.9 亿（+8.3%），六座梯级电站发电量 1327.44 亿
+          千瓦时（+4.81%）、利润总额与净利润均创新高。但现价 28.05 元对应 PE
+          19、PB 3.29、股息率仅 3.57%，高于合理价值上沿，红利资产安全边际不足。
+        </div>
+        <p>
+          一句话：<strong
+            >长江电力是"不可复制的世界级水电资产"，基本面继续走强（三峡来水偏丰
+            + 分红创新高），但作为 Slow Grower，28 元的估值已把"低折现率 + 高
+            确定性"定价得很满。</strong
+          >2026H1 归母 +13.0% 主因三峡来水偏丰 28.7%（发电量 +31.6%），乌东德
+          来水偏枯 16.9%（-16.8%）形成对冲；全年 2025 分红总额 244.68
+          亿创历史新高，股东回报持续兑现。
+        </p>
+        <p>
+          估值与回报：现价 28.05 元对应 PE(TTM) 19.02、PB 3.29、<strong
+            >股息率约 3.57%</strong
+          >（2025 全年每股分红 1.00 元，分红率约 71%）。水电资产的估值主要锚定
+          股息率与 PE——当前股息率处历史偏低分位，3.6% 相对十年期国债（约 2%）
+          利差尚可，但价格已反映较多乐观预期。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>无持仓（holder.json 未包含；旧报告曾记录
+          100 股成本 26.91 元，现未在持仓中）。现价 28.05
+          高于合理价值上沿，观望； 回落至 26 元以下（股息率
+          3.85%+）可小步分批，24-25 元（股息率 4.0%+）优先，22.5-24
+          元强买区。核心跟踪：来水、电价、利率、 分红政策。
+        </p>
+      </div>
+
+      <!-- 2. 关键指标速览 -->
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">28.05 元<br />6863 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">PE(TTM) / PB</div>
+            <div class="num">19.0 / 3.29</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">TTM 股息率</div>
+            <div class="num">约 3.57%</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 归母</div>
+            <div class="num up">147.6 亿（+13.0%）</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目（2026H1）</th>
+            <th class="num">本期</th>
+            <th class="num">上期(2025H1)</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入</td>
+            <td class="num">379.3 亿</td>
+            <td class="num">367.0 亿</td>
+            <td class="num up">+3.35%</td>
+          </tr>
+          <tr>
+            <td>归母净利润</td>
+            <td class="num">147.6 亿</td>
+            <td class="num">130.6 亿</td>
+            <td class="num up">+13.0%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num">142.9 亿</td>
+            <td class="num">131.9 亿</td>
+            <td class="num up">+8.3%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">57.9%</td>
+            <td class="num">56.1%</td>
+            <td class="num up">+1.8pct</td>
+          </tr>
+          <tr>
+            <td>ROE(报告期累计)</td>
+            <td class="num">6.55%</td>
+            <td class="num">6.09%</td>
+            <td class="num up">+0.46pct</td>
+          </tr>
+          <tr>
+            <td>资产负债率</td>
+            <td class="num">59.4%</td>
+            <td class="num">61.5%</td>
+            <td class="num up">-2.1pct 改善</td>
+          </tr>
+          <tr>
+            <td>发电量(亿千瓦时)</td>
+            <td class="num up">1327.44</td>
+            <td class="num">1266.5</td>
+            <td class="num up">+4.81%</td>
+          </tr>
+        </table>
+        <div class="good-box">
+          <strong>✅ 2026H1 核心：经营全面创新高。</strong>六站发电量 1327.44
+          亿千瓦时（+4.81%）、利润总额 181.09 亿、净利润 150.34
+          亿均创历史同期新高；三峡来水偏丰 28.74%（发电量 +31.62%）是
+          主要增量，乌东德来水偏枯 16.94%（-16.76%）形成对冲；Q2 单季发电量
+          709.19 亿千瓦时（+2.82%）。全年分红总额 244.68 亿元创历史新高。
+        </div>
+        <p class="muted">
+          数据来源：2026 半年报（2026-08-31 披露）、2026H1 发电量公告、东财
+          F10、腾讯行情（2026-08-28）；Q2 单季为累计倒算口径
+        </p>
+      </div>
+
+      <!-- 3. 数据来源与可信度 -->
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：2026 年半年度报告（2026-08-31 披露）
+          </li>
+          <li>
+            <strong>发电量</strong>：2026
+            年半年度发电量完成情况公告（六站分电站数据）
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10
+            主要财务指标接口（营收/归母/扣非/ROE/毛利/负债）
+          </li>
+          <li>
+            <strong>行情与估值</strong>：腾讯行情快照（2026-08-28，现价 28.05
+            元，市值 6863 亿）
+          </li>
+          <li>
+            <strong>分红</strong>：东方财富 RPT_SHAREBONUS_DET 分红接口 +
+            中报正文（2025 全年 244.68 亿创新高）
+          </li>
+          <li><strong>研报观点</strong>：未引用（无一手研报原文）</li>
+        </ul>
+        <div class="note">
+          可信度说明：营收/归母/扣非/ROE/发电量等核心数据取自公司中报与东财
+          F10、 发电量公告，可交叉验证；Q2 单季发电量为累计倒算口径；2026E
+          盈利为推算 口径（H1 归母 147.6 亿，H2 依来水与 Q3
+          丰水期），不输出伪精确目标价；
+          电价市场化对平均电价的边际影响未量化，判断作保守处理。
+        </div>
+      </div>
+
+      <!-- 4. 硬阈值筛选 -->
+      <div class="card">
+        <h2>✅ 硬阈值筛选（边界例外）</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">14.92%</td>
+            <td class="num down">9.32%</td>
+            <td class="num">13.52%</td>
+            <td class="num">15.71%</td>
+            <td class="num">15.90%</td>
+            <td class="num">13.87%</td>
+          </tr>
+        </table>
+        <p class="small">
+          <strong>不通过（严格口径）</strong>。仅 2024-2025 两年 ≥15%，2022 年仅
+          9.32%（乌白注入后股本扩张 + 来水偏枯 + 权益基数抬升），5 年均值
+          13.87%。这是重资产公用事业的 ROE 特征，2026H1 累计 6.55%（年化约
+          13%）。旧报告已允许"边界例外进入估值层"，本次延续——但不算硬阈值通过。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          <strong>强通过</strong>。2023-2025 年自由现金流约 523/450/421 亿，三年
+          累计约 1394 亿；2026H1 经营现金流约 241 亿（+0.6%）、资本开支 44.35 亿
+          （-29.7%），FCF 依旧充沛。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          <strong>强通过</strong>。2025 全年每股分红 1.00 元（末期 0.79 + 中期
+          0.21），总额 244.68 亿创历史新高，分红率约 71%；连续多年高分红。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          <strong>边缘</strong>。负债率 59.4%（2026H1），较 2025 末 58.3% 略升、
+          较 2025H1 的 61.5% 明显改善，回到 60% 观察线附近。
+        </p>
+        <div class="note">
+          <strong>硬阈值总判断：不通过（边界例外进入估值层）。</strong>ROE
+          口径被重资产/公用事业属性拖累，但 FCF、分红、负债率三项优秀；
+          作为"世界级水电现金流资产"允许例外评估，但核心结论是"好资产不等于当前
+          价格便宜"。
+        </div>
+      </div>
+
+      <!-- 5. 基本面研究 -->
+      <div class="card">
+        <h2>💧 基本面研究</h2>
+        <h3>公司定位与主营</h3>
+        <table>
+          <tr>
+            <th>资产</th>
+            <th class="num">特征</th>
+          </tr>
+          <tr>
+            <td>六座梯级电站</td>
+            <td class="num">
+              三峡/葛洲坝/溪洛渡/向家坝/乌东德/白鹤滩，总装机 7179.5 万千瓦
+            </td>
+          </tr>
+          <tr>
+            <td>抽水蓄能 + 新能源</td>
+            <td class="num">
+              河南巩义/江西寻乌/甘肃张掖/重庆奉节/湖南攸县等在建
+            </td>
+          </tr>
+          <tr>
+            <td>境外与参股</td>
+            <td class="num">
+              秘鲁路德斯配电（境外资产 538 亿）+ 国投电力 17.39%、川投 9.94%
+            </td>
+          </tr>
+        </table>
+        <p class="small">
+          结构要点：全球最大水电上市公司（国内装机占全国 15.77%），六座电站
+          流域调度协同，边际发电成本极低；抽蓄/新能源/境外配电提供第二曲线；
+          上半年投资收益约 24.76 亿元（参股电力公司分红）。
+        </p>
+        <h3>护城河（强度：极强）</h3>
+        <ul class="small">
+          <li>不可复制的长江干流梯级水电资产，资源稀缺性极强；</li>
+          <li>流域联合调度 + 大库容调节，来水丰枯对冲能力优于单一电站；</li>
+          <li>边际发电成本极低、机组寿命长（50-100 年），现金流稳定。</li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>央企平台，融资成本低、调度与资本配置能力强；</li>
+          <li>
+            分红承诺明确：2025 全年分红 244.68 亿创历史新高，中期+末期双分红；
+          </li>
+          <li>需跟踪：抽蓄/新能源投资回报、电价市场化、来水波动。</li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          归类：<strong>Slow Grower / 高质量公用事业现金牛</strong>。成长来自
+          来水中枢、电价、抽蓄与新能源边际扩展，而非爆发式增长；核心价值是
+          "稳定现金流 + 高分红复利 + 稀缺资产"，估值应锚定股息率与低折现率，
+          不能按成长股给高溢价。
+        </p>
+      </div>
+
+      <!-- 6. 财务质量分析 -->
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>2026H1：来水分化下仍创新高</h3>
+        <div class="good-box">
+          <strong>✅ 归母 +13.0%、发电量 +4.81%</strong>：三峡来水偏丰
+          28.7%（发电量 +31.6%）是主增量，乌东德来水偏枯 16.9%
+          （-16.8%）形成对冲，六站合计仍 +4.81%；利润总额 181.09 亿、净利润
+          150.34 亿均创新高。
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">变化</th>
+          </tr>
+          <tr>
+            <td>营收</td>
+            <td class="num">379.3 亿</td>
+            <td class="num">367.0 亿</td>
+            <td class="num up">+3.35%</td>
+          </tr>
+          <tr>
+            <td>归母净利</td>
+            <td class="num">147.6 亿</td>
+            <td class="num">130.6 亿</td>
+            <td class="num up">+13.0%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num">142.9 亿</td>
+            <td class="num">131.9 亿</td>
+            <td class="num up">+8.3%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num">57.9%</td>
+            <td class="num">56.1%</td>
+            <td class="num up">+1.8pct</td>
+          </tr>
+          <tr>
+            <td>发电量(亿千瓦时)</td>
+            <td class="num">1327.44</td>
+            <td class="num">1266.5</td>
+            <td class="num up">+4.81%</td>
+          </tr>
+          <tr>
+            <td>ROE(累计)</td>
+            <td class="num">6.55%</td>
+            <td class="num">6.09%</td>
+            <td class="num up">+0.46pct</td>
+          </tr>
+        </table>
+        <p class="small">
+          原因拆解：① 发电量 +4.81%（三峡偏丰对冲乌东德偏枯）；② 毛利率 +1.8pct
+          （来水结构 + 电价韧性）；③
+          归母增速（+13%）高于营收（+3.35%），体现水电 高经营杠杆；④ 扣非 142.9
+          ≈ 归母 147.6（非经常项主要为投资收益 24.76 亿 +
+          相关抵扣），盈利质量稳定。
+        </p>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li><strong>利润含金量高</strong>：扣非 ≈ 归母，无一次性注水；</li>
+          <li>
+            <strong>现金流充沛</strong>：2026H1 经营现金流约 241 亿（+0.6%）；
+          </li>
+          <li>
+            <strong>资本开支可控</strong>：H1 购建资产 44.35 亿（-29.7%），FCF
+            强；
+          </li>
+          <li>
+            <strong>负债率改善</strong>：59.4%（2025H1 61.5%），仍在 60%
+            观察线附近。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 7. 行业与竞争格局 -->
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong
+            >：水电为清洁能源压舱石，来水决定短期、电价与政策决定中期；市场化交易推进带来电价波动。
+          </li>
+          <li>
+            <strong>竞争地位</strong>：全球最大水电上市公司，六站梯级 +
+            大库容调节，来水对冲能力与资产质量行业无可比。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：① 来水中枢正常化；②
+            抽水蓄能/新能源项目投产；③ 参股电力公司投资收益；④
+            电价机制与红利重估。
+          </li>
+          <li>
+            <strong>风险</strong
+            >：来水大幅波动、电价市场化下行、利率上行压制红利估值、资本开支再抬升。
+          </li>
+        </ul>
+        <p class="small">
+          结论：资产与竞争格局无可挑剔；核心矛盾始终在"估值"——当市场用低折现率
+          给红利资产定价时，长江电力往往"好而不便宜"，需要在来水/利率/风格三重
+          变量中等待更好的买入点。
+        </p>
+      </div>
+
+      <!-- 8. 估值与安全边际 -->
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值（2026-08-28，现价 28.05 元，市值 6863 亿）</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">数值</th>
+            <th class="num">对应估值</th>
+          </tr>
+          <tr>
+            <td>PE(TTM)（行情口径）</td>
+            <td class="num">19.02 倍</td>
+            <td class="num">历史中枢偏上</td>
+          </tr>
+          <tr>
+            <td>2025A 静态 PE（EPS 1.41）</td>
+            <td class="num">19.9 倍</td>
+            <td class="num">偏高</td>
+          </tr>
+          <tr>
+            <td>2026E 前瞻 PE（EPS 约 1.49）</td>
+            <td class="num">约 18.8 倍</td>
+            <td class="num">偏高</td>
+          </tr>
+          <tr>
+            <td>PB（行情口径）</td>
+            <td class="num">3.29 倍</td>
+            <td class="num">偏高</td>
+          </tr>
+          <tr>
+            <td>TTM 股息率（2025 全年每股 1.00 元）</td>
+            <td class="num">约 3.57%</td>
+            <td class="num">历史偏低分位</td>
+          </tr>
+        </table>
+        <h3>估值锚交叉验证（公用事业：股息率主锚 + PE 辅锚）</h3>
+        <table>
+          <tr>
+            <th>估值锚</th>
+            <th class="num">价格（元）</th>
+          </tr>
+          <tr>
+            <td>股息率 4.2% 反推（1.00÷0.042）</td>
+            <td class="num">23.8</td>
+          </tr>
+          <tr>
+            <td>股息率 3.9% 反推（1.00÷0.039）</td>
+            <td class="num">25.6</td>
+          </tr>
+          <tr>
+            <td>股息率 3.7% 反推（1.00÷0.037）</td>
+            <td class="num">27.0</td>
+          </tr>
+          <tr>
+            <td>股息率 3.5% 反推（1.00÷0.035）</td>
+            <td class="num">28.6</td>
+          </tr>
+          <tr>
+            <td>2026E EPS 1.49 × 18 倍</td>
+            <td class="num">26.8</td>
+          </tr>
+          <tr>
+            <td>2026E EPS 1.49 × 20 倍</td>
+            <td class="num">29.8</td>
+          </tr>
+        </table>
+        <p>
+          <strong
+            >合理价值区间：约 25.5 - 29 元（FV 约 27 元）；现价 28.05
+            元，处于合理区上沿，安全边际不足。</strong
+          >
+        </p>
+        <div class="note">
+          判断：水电现金牛用股息率主锚。2025 全年每股分红 1.00
+          元，历史股息率中枢 3.4%-4.2%；股息率 3.7%-3.9% 对应 25.6-27 元，3.5%
+          对应 28.6 元。PE 辅锚：2026E EPS 1.49 × 17-19 倍（历史中枢 18-22
+          倍打折，因股息率保护 不足）对应 25.3-28.3 元。综合合理价值 25.5-29
+          元、FV 27 元。现价 28.05 高于 FV 约 4%，股息率 3.57%
+          处历史偏低分位——红利资产"贵了"的信号已 明确。旧报告（4 月，27.27
+          元）判断"高于 FV 25.5 元"，本次股价更高、 基本面更强，但估值矛盾未解。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          不足。现价对应股息率 3.57%（历史偏低）、PE 19 倍（偏高），"好资产 +
+          贵价格"的组合；安全边际需等股价回落至 26 元以下（股息率 3.85%+）或 25
+          元附近（股息率 4%）。
+        </p>
+      </div>
+
+      <!-- 9. 六维评分 -->
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">9/10</div>
+            <div class="bar"><div class="fill" style="width: 90%"></div></div>
+            <div class="small">世界级水电资产，护城河不可复制</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">FCF 强、负债率改善，ROE 13.9% 中规中矩</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">4/10</div>
+            <div class="bar"><div class="fill" style="width: 40%"></div></div>
+            <div class="small">Slow Grower，H1 +13% 但依赖来水，长期斜率低</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">现金牛红利公用事业，故事清晰可验证</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">4/10</div>
+            <div class="bar"><div class="fill" style="width: 40%"></div></div>
+            <div class="small">PE 19、PB 3.29、股息率 3.57%，高于合理上沿</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">来水、利率上行、红利风格切换、电价</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">38</span> / 60</div>
+      </div>
+
+      <!-- 10. 风险清单 -->
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>来水波动（核心）</strong>：2026H1
+            三峡偏丰、乌东德偏枯对冲，若全流域转枯，盈利与估值双承压；
+          </li>
+          <li>
+            <strong>利率上行</strong
+            >：红利资产对利率最敏感，利率抬升将压缩估值中枢（股息率吸引力下降）；
+          </li>
+          <li>
+            <strong>红利风格切换</strong
+            >：若市场风格从高股息转向成长，估值面临系统性回撤；
+          </li>
+          <li>
+            <strong>电价市场化下行</strong>：市场化交易推进或压低平均上网电价；
+          </li>
+          <li>
+            <strong>资本开支再抬升</strong>：抽蓄/新能源项目若集中投入，负债率与
+            FCF 承压；
+          </li>
+          <li>
+            <strong>估值无安全边际</strong>：PE 19、PB 3.29、股息率 3.57%
+            处历史偏低分位。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 11. 建仓参考（无持仓） -->
+      <div class="card">
+        <h2>💼 建仓参考（当前无持仓）</h2>
+        <p class="muted">
+          持仓事实源：stocks/my/holder.json（未包含长江电力；旧报告曾记录 100
+          股成本 26.91 元，现不在持仓中）。以下为观察清单而非操作指令。
+        </p>
+        <h3>建仓点位参考（股息率主锚，2025 全年每股分红 1.00 元）</h3>
+        <table>
+          <tr>
+            <th>区间</th>
+            <th class="num">价格</th>
+            <th>估值锚</th>
+          </tr>
+          <tr>
+            <td class="up">强买点 Strong Buy</td>
+            <td class="num">22.5 - 24.5 元</td>
+            <td>股息率 4.1%-4.4%；2026E PE 15-16.5 倍</td>
+          </tr>
+          <tr>
+            <td>买点 Buy Zone</td>
+            <td class="num">25 - 26.5 元</td>
+            <td>股息率 3.8%-4.0%；2026E PE 16.8-17.8 倍</td>
+          </tr>
+          <tr>
+            <td>合理价值 Fair Value</td>
+            <td class="num">25.5 - 29 元（FV 27）</td>
+            <td>股息率 3.5%-3.9% + 2026E PE 17-19 倍交叉验证</td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num hl">28.05 元</td>
+            <td>股息率 3.57%、PE 19，合理区上沿，安全边际不足</td>
+          </tr>
+          <tr>
+            <td class="down">估值卖点（减仓）</td>
+            <td class="num">30.5 - 32 元</td>
+            <td>股息率跌破 3.1%-3.3%；2026E PE 20.5-21.5 倍（历史高分位）</td>
+          </tr>
+          <tr>
+            <td class="down">无条件卖点</td>
+            <td class="num">不限价格</td>
+            <td>
+              来水持续大幅偏枯致利润崩塌 / 分红大幅削减 / 电价机制重大恶化
+            </td>
+          </tr>
+        </table>
+        <div class="note">
+          建仓锚定股息率（分红是长江电力最硬的价值锚）。2025 全年每股 1.00 元
+          （末期 0.79 + 中期 0.21），历史股息率中枢 3.4%-4.2%；买点对应
+          3.8%-4.0% 提供相对十年期国债（约 2%）约 1.8-2 个点的超额。PE
+          辅锚交叉验证 （2026E EPS 1.49）。卖点用高估锚（股息率跌破
+          3.1%-3.3%）而非机械乘数。 注意：长江电力是 Slow
+          Grower，不能为追求"好公司"支付过高溢价——当前 28
+          元附近只适合持有者，不适合新资金追高。
+        </div>
+        <h3>操作建议</h3>
+        <ul class="small">
+          <li>
+            <strong>当前（28.05 元）</strong>：高于合理上沿，观望，不追高；
+          </li>
+          <li>
+            <strong>回落至 26 元以下</strong>：可小步分批（股息率 3.85%+）；
+          </li>
+          <li>
+            <strong>25-26.5 元 Buy Zone</strong>：优先（股息率 3.8%-4.0%）；
+          </li>
+          <li><strong>22.5-24.5 元强买区</strong>：加大（股息率 4.1%+）；</li>
+          <li>
+            <strong>触发上修</strong>：来水持续偏丰 + 分红提升 + 利率下行 →
+            合理估值上修；
+          </li>
+          <li>
+            <strong>跟踪项</strong>：月度发电量、来水情况、Q3
+            电量、电价市场化、10 年期国债收益率、分红政策。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 12. 总结 -->
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p>
+          <strong
+            >结论：WATCHLIST · 资产极优，估值偏贵，观望。总分 38/60。</strong
+          >
+        </p>
+        <h3>3 个关注的理由</h3>
+        <ol class="small">
+          <li>
+            不可复制的世界级水电资产（六站 7179.5 万千瓦），2026H1
+            发电量/利润总额/净利润均创历史新高；
+          </li>
+          <li>
+            现金流与分红极强：2026H1 经营现金流约 241 亿、FCF 充沛，2025
+            全年分红 244.68 亿创历史新高（分红率 71%）；
+          </li>
+          <li>
+            抽蓄/新能源/境外配电 + 参股（国投/川投）提供多元第二曲线与投资收益。
+          </li>
+        </ol>
+        <h3>3 个不买的理由</h3>
+        <ol class="small">
+          <li>
+            估值偏贵：PE 19、PB 3.29、股息率
+            3.57%（历史偏低分位），现价高于合理价值上沿约 4%；
+          </li>
+          <li>
+            ROE 5 年均值仅 13.87%（2022 年
+            9.32%），重资产公用事业属性不符合高质量复利标准；
+          </li>
+          <li>来水依赖 + 利率/红利风格/电价三重变量，价格对负面因素敏感。</li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          来水能否延续偏丰？10 年期国债收益率走向如何（决定红利估值中枢）？抽蓄/
+          新能源项目投产能否带来第二增长曲线？若利率下行 +
+          来水稳，当前估值可消化； 若利率上行或全流域转枯，28 元的估值缺乏缓冲。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          长江电力最大风险不是资产质量，而是"好资产被贵价格 +
+          利率上行双杀"——当前 股息率 3.57%
+          保护有限，一旦利率回升或来水转枯，估值压缩可能先于基本面
+          恶化。必须等更厚的安全边际（股息率 3.8%+）再介入。
+        </p>
+        <div class="note">
+          数据充分性说明：基于 2026 半年报（2026-08-31 披露）、2026H1 发电量公告
+          与东财 F10（核心数据可交叉验证）；Q2 单季为倒算口径；2026E 盈利为推算
+          口径；电价市场化影响未量化，判断作保守处理；不输出伪精确目标价。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-30
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 长江电力 ·
+        600900
+      </footer>
+    </div>
+  </body>
+</html>

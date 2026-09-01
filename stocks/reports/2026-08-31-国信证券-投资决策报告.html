@@ -1,0 +1,972 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>国信证券（002736）投资决策报告 · 2026-08-31</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>国信证券（002736）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年半年报版 ｜ 生成日期：2026-08-31 ｜ 数据基准：2026 半年报 +
+          2026-08-31 行情快照
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：券商（周期金融）· PB 估值</span>
+          <span class="badge score">总分 36 / 60</span>
+        </div>
+      </div>
+
+      <!-- 1. 结论 -->
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">WATCHLIST · PB 低位 + 高股息，市场依赖，观望</span
+          >国信证券 2026H1 稳健增长：营收 125.6 亿（+13.4%）、归母 57.3 亿
+          （+6.8%）、扣非 57.2 亿（+6.4%），市场回暖驱动经纪与自营改善。现价
+          10.26 元对应 PB 1.08（历史低位）、PE 9.2、<strong
+            >股息率约 4.4%</strong
+          >，估值不高且有配置价值；但券商强周期 + 其他综合收益 -243
+          亿（自营浮亏） 是关注点。
+        </div>
+        <p>
+          一句话：<strong
+            >国信证券是深圳国资背景的中大型券商，经纪/投行/资管/自营均衡，2026H1
+            随市场回暖稳健增长；PB 1.08 处历史低位 + 股息率 4.4%
+            提供防守价值，但 盈利本质上是"市场行情"的函数。</strong
+          >2026H1 营收 +13.4%（经纪/自营受益于市场活跃），归母 +6.8%，ROE 5.25%
+          （年化约 10.5%）；风险控制优秀（风险覆盖率 354%、资本杠杆率 21.5%），
+          中期分红 10 派 1.00 元。
+        </p>
+        <p>
+          估值与回报：现价 10.26 元对应 PB 1.08（BPS 9.5 元）、PE(TTM)
+          9.19、<strong>股息率约 4.4%</strong>（2025 全年每股 0.45 元 + 2026
+          中期 0.10 元）。券商用 PB 估值，1.08
+          倍处历史中低位，高股息提供"现金回报下限"。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>无持仓。现价 10.26 处于合理区中部，作为券商
+          防守品种可小步配置收息（PB 1.08 + 股息率 4.4%）；9.8 元以下 Buy Zone
+          优先、8.8 元以下加大；警惕市场回调对券商盈利的冲击。
+        </p>
+      </div>
+
+      <!-- 2. 关键指标速览 -->
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">10.26 元<br />1051 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">PE(TTM) / PB</div>
+            <div class="num">9.2 / 1.08</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">TTM 股息率</div>
+            <div class="num up">约 4.4%</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 归母</div>
+            <div class="num up">57.3 亿（+6.8%）</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目（2026H1）</th>
+            <th class="num">本期</th>
+            <th class="num">上期(2025H1)</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业总收入</td>
+            <td class="num">125.6 亿</td>
+            <td class="num">110.8 亿</td>
+            <td class="num up">+13.4%</td>
+          </tr>
+          <tr>
+            <td>归母净利润</td>
+            <td class="num">57.3 亿</td>
+            <td class="num">53.7 亿</td>
+            <td class="num up">+6.8%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num">57.2 亿</td>
+            <td class="num">53.7 亿</td>
+            <td class="num up">+6.4%</td>
+          </tr>
+          <tr>
+            <td>ROE(加权累计)</td>
+            <td class="num">5.25%</td>
+            <td class="num">5.26%</td>
+            <td class="num">持平</td>
+          </tr>
+          <tr>
+            <td>每股净资产 BPS</td>
+            <td class="num">9.50 元</td>
+            <td class="num">9.24 元</td>
+            <td class="num up">+2.8%</td>
+          </tr>
+          <tr>
+            <td>资产负债率</td>
+            <td class="num">78.9%</td>
+            <td class="num">75.9%</td>
+            <td class="num">券商特征</td>
+          </tr>
+          <tr>
+            <td>经营现金流</td>
+            <td class="num up">282.3 亿</td>
+            <td class="num">322.6 亿</td>
+            <td class="num down">-12.5%</td>
+          </tr>
+        </table>
+        <div class="good-box">
+          <strong>✅ 核心变化：随市场回暖稳健增长。</strong>营收 +13.4%、归母
+          +6.8%，经纪与自营受益于市场活跃；ROE 5.25%（年化约 10.5%）；中期分红
+          10 派 1.00 元，风险控制指标大幅优于监管（风险覆盖率 354% vs 100%
+          线、资本杠杆率 21.5% vs 8% 线）。
+        </div>
+        <div class="warn-box">
+          <strong>⚠️ 关注：其他综合收益 -243 亿。</strong>2026H1 其他综合收益
+          -243 亿（主要来自债券/其他债权投资公允价值变动），
+          虽不计入当期净利润，但拖累净资产（净资产 -3.14%），反映利率上行下自营
+          债券浮亏——需关注利率走势对净资产的持续影响。
+        </div>
+        <p class="muted">
+          数据来源：2026 半年报摘要（2026-08-26 披露）、东财 F10、腾讯行情
+          （2026-08-31）；Q2 单季为累计倒算口径
+        </p>
+      </div>
+
+      <!-- 3. 数据来源与可信度 -->
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：2026 年半年度报告（2026-08-26 披露）
+          </li>
+          <li>
+            <strong>资本与风控</strong>：中报摘要正文（PyMuPDF
+            解析，净资本/风险覆盖率/资本杠杆率/中期分红）
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10
+            主要财务指标接口（营收/归母/扣非/ROE/BPS/负债）
+          </li>
+          <li>
+            <strong>行情与估值</strong>：腾讯行情快照（2026-08-31，现价 10.26
+            元，市值 1051 亿）
+          </li>
+          <li>
+            <strong>分红</strong>：东方财富 RPT_SHAREBONUS_DET 分红接口（2025
+            全年 0.45 元 + 2026 中期 0.10 元）
+          </li>
+          <li><strong>研报观点</strong>：未引用（无一手研报原文）</li>
+        </ul>
+        <div class="note">
+          可信度说明：营收/归母/扣非/ROE/BPS 等核心数据取自公司中报与东财
+          F10，可 交叉验证；净资本与风控指标取自中报摘要正文；Q2
+          单季为累计倒算口径；2026E
+          盈利为推算口径（受市场行情影响大）；其他综合收益 -243 亿为会计口径，不
+          直接计入净利润；不输出伪精确目标价。
+        </div>
+      </div>
+
+      <!-- 4. 硬阈值筛选（券商口径） -->
+      <div class="card">
+        <h2>✅ 硬阈值筛选（券商口径）</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">12.71%</td>
+            <td class="num">6.50%</td>
+            <td class="num">6.57%</td>
+            <td class="num">8.23%</td>
+            <td class="num">10.69%</td>
+            <td class="num">8.94%</td>
+          </tr>
+        </table>
+        <p class="small">
+          <strong>不通过（券商普遍特征）</strong>。5 年均值 8.94%，从未达
+          15%——券商 高杠杆低 ROE，盈利随市场波动（2022 年低至
+          6.5%）。券商不适用高 ROE 门槛， 应用 PB + ROE 综合评估，国信 ROE
+          在券商中属中上。
+        </p>
+        <h3>2. 资本充足与风控</h3>
+        <p class="small">
+          <strong>强通过</strong>。净资本 838.8 亿、风险覆盖率 354%（监管
+          ≥100%）、 资本杠杆率 21.5%（≥8%）、流动性覆盖率 288%、净稳定资金率
+          186%——风控指标 大幅优于监管，资本实力稳健。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          <strong>通过</strong>。2025 全年每股 0.45 元 + 2026 中期 0.10
+          元，分红率 约 45%，股息率约 4.4%，对券商属较高水平。
+        </p>
+        <h3>4. 资产负债率</h3>
+        <p class="small">
+          <strong>券商特征（不适用通用线）</strong>。负债率 78.9% 是券商经营杠杆
+          （两融/自营/债券），非通用企业口径；以净资本与风控指标衡量更合适。
+        </p>
+        <div class="note">
+          <strong>硬阈值总判断：券商口径下基本通过。</strong>ROE
+          不高但属券商常态；资本充足、分红、风控均强。主要矛盾不在财务质量，
+          而在"市场行情周期"——券商盈利与估值均随市场波动。
+        </div>
+      </div>
+
+      <!-- 5. 基本面研究 -->
+      <div class="card">
+        <h2>🏦 基本面研究</h2>
+        <h3>公司定位与主营</h3>
+        <table>
+          <tr>
+            <th>业务板块</th>
+            <th class="num">特征</th>
+          </tr>
+          <tr>
+            <td>证券经纪</td>
+            <td class="num">财富管理转型，客户基础庞大（佣金收入）</td>
+          </tr>
+          <tr>
+            <td>投资银行</td>
+            <td class="num">IPO/再融资/债券承销</td>
+          </tr>
+          <tr>
+            <td>自营 + 资管</td>
+            <td class="num">投资业务（含债券，其他综合收益波动）</td>
+          </tr>
+          <tr>
+            <td>信用（两融/股票质押）</td>
+            <td class="num">资本中介业务</td>
+          </tr>
+        </table>
+        <p class="small">
+          结构要点：经纪与自营是主要利润来源，随市场活跃度波动；投行受 IPO
+          节奏影响； 深圳国资背景（深投控 31.47% + 华润深国投
+          20.57%）提供股东与资源支持。
+        </p>
+        <h3>护城河（强度：中）</h3>
+        <ul class="small">
+          <li>深圳国资背景，区域与牌照资源；</li>
+          <li>经纪客户基础与财富管理能力；</li>
+          <li>风控稳健（风险覆盖率 354%），净资本充足（838.8 亿）；</li>
+          <li>但券商同质化竞争，费率下行（佣金/两融利率）侵蚀盈利。</li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>深圳国资治理稳健，分红持续（分红率约 45%）；</li>
+          <li>需跟踪：市场成交量、IPO 节奏、自营投资（债券浮亏）、佣金率。</li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          归类：<strong>券商（强周期金融）</strong>。盈利由市场行情驱动（经纪量、
+          自营收益、两融规模），本质是"市场 Beta + 杠杆"；估值用
+          PB（净资产锚）， ROE 决定合理 PB。当前 PB 1.08 处于历史中低位，股息率
+          4.4% 提供防守。
+        </p>
+      </div>
+
+      <!-- 6. 财务质量分析 -->
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>2026H1：随市场回暖稳健增长</h3>
+        <div class="good-box">
+          <strong>✅ 营收 +13.4%、归母 +6.8%</strong
+          >：市场回暖驱动经纪与自营改善；扣非 ≈ 归母，盈利质量扎实；ROE 5.25%
+          （年化约 10.5%）在券商中属中上。
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">变化</th>
+          </tr>
+          <tr>
+            <td>营业总收入</td>
+            <td class="num">125.6 亿</td>
+            <td class="num">110.8 亿</td>
+            <td class="num up">+13.4%</td>
+          </tr>
+          <tr>
+            <td>归母净利</td>
+            <td class="num">57.3 亿</td>
+            <td class="num">53.7 亿</td>
+            <td class="num up">+6.8%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num">57.2 亿</td>
+            <td class="num">53.7 亿</td>
+            <td class="num up">+6.4%</td>
+          </tr>
+          <tr>
+            <td>BPS</td>
+            <td class="num">9.50 元</td>
+            <td class="num">9.24 元</td>
+            <td class="num up">+2.8%</td>
+          </tr>
+          <tr>
+            <td>ROE(累计)</td>
+            <td class="num">5.25%</td>
+            <td class="num">5.26%</td>
+            <td class="num">持平</td>
+          </tr>
+          <tr>
+            <td>经营现金流</td>
+            <td class="num">282.3 亿</td>
+            <td class="num">322.6 亿</td>
+            <td class="num down">-12.5%</td>
+          </tr>
+        </table>
+        <p class="small">
+          原因拆解：① 营收 +13.4% 来自市场活跃（经纪佣金 + 自营收益）；② 归母
+          +6.8% 低于营收，因自营波动与费率下行；③ 其他综合收益 -243
+          亿（债券浮亏， 不计入净利但拖累净资产 -3.14%）；④ 中期分红 10 派 1.00
+          元，股东回报持续。
+        </p>
+        <h3>资本与风控</h3>
+        <ul class="small">
+          <li><strong>净资本</strong>：838.8 亿，核心净资本 613.8 亿；</li>
+          <li>
+            <strong>风控大幅达标</strong>：风险覆盖率 354%、资本杠杆率
+            21.5%、流动性覆盖率 288%；
+          </li>
+          <li><strong>净资产</strong>：普通股 BPS 9.5 元（扣永续债）；</li>
+          <li>
+            <strong>关注</strong>：其他综合收益 -243
+            亿（利率上行债券浮亏），需跟踪利率走势。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 7. 行业与竞争格局 -->
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong>：券商盈利与市场行情强相关，2026H1
+            市场活跃度回暖但佣金率/两融利率下行；行业整合（并购重组）持续推进。
+          </li>
+          <li>
+            <strong>竞争地位</strong
+            >：深圳国资中大型券商，经纪/投行/资管/自营均衡，区域资源强；对垒中信、华泰等头部及同区域券商。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：① 市场成交量与活跃度；② 财富管理转型；③
+            IPO/再融资回暖；④ 行业并购整合。
+          </li>
+          <li>
+            <strong>风险</strong
+            >：市场大幅回调、自营投资亏损、佣金率下行、监管政策、两融风险。
+          </li>
+        </ul>
+        <p class="small">
+          结论：券商是"市场
+          Beta"资产，行业格局稳定但盈利随行情波动；国信作为深圳 国资券商，PB
+          1.08 处低位 + 股息率 4.4% 有防守价值，但上行需市场持续活跃。
+        </p>
+      </div>
+
+      <!-- 8. 估值与安全边际 -->
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值（2026-08-31，现价 10.26 元，市值 1051 亿）</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">数值</th>
+            <th class="num">对应估值</th>
+          </tr>
+          <tr>
+            <td>PB（BPS 9.50 元，主锚）</td>
+            <td class="num">1.08 倍</td>
+            <td class="num">历史中低位</td>
+          </tr>
+          <tr>
+            <td>PE(TTM)（行情口径）</td>
+            <td class="num">9.19 倍</td>
+            <td class="num">合理</td>
+          </tr>
+          <tr>
+            <td>2026E 归母 PE（EPS 约 1.08）</td>
+            <td class="num">约 9.5 倍</td>
+            <td class="num">合理</td>
+          </tr>
+          <tr>
+            <td>TTM 股息率（每股约 0.55 元）</td>
+            <td class="num up">约 4.4%</td>
+            <td class="num up">较高（防守锚）</td>
+          </tr>
+        </table>
+        <h3>估值锚交叉验证（券商：PB 主锚 + 股息率辅锚）</h3>
+        <table>
+          <tr>
+            <th>估值锚</th>
+            <th class="num">价格（元）</th>
+          </tr>
+          <tr>
+            <td>PB 0.90 倍（BPS 9.5）</td>
+            <td class="num">8.55</td>
+          </tr>
+          <tr>
+            <td>PB 1.00 倍</td>
+            <td class="num">9.50</td>
+          </tr>
+          <tr>
+            <td>PB 1.10 倍</td>
+            <td class="num">10.45</td>
+          </tr>
+          <tr>
+            <td>PB 1.20 倍（历史中枢）</td>
+            <td class="num">11.40</td>
+          </tr>
+          <tr>
+            <td>股息率 5.0% 反推（0.50÷0.05）</td>
+            <td class="num">10.0</td>
+          </tr>
+          <tr>
+            <td>股息率 4.0% 反推（0.50÷0.04）</td>
+            <td class="num">12.5</td>
+          </tr>
+        </table>
+        <p>
+          <strong
+            >合理价值区间：约 9 - 12 元（FV 约 10.5 元）；现价 10.26
+            元，处于合理区中部，安全边际中性。</strong
+          >
+        </p>
+        <div class="note">
+          判断：券商用 PB 主锚。BPS 9.5 元、现价 PB 1.08
+          倍处于历史中低位（国信历史 PB 中枢约 1.1-1.4 倍）；合理 PB 0.95-1.26
+          倍（ROE 8-10% 对应）→ 9-12 元。 股息率锚：2025 全年 0.45 + 2026 中期
+          0.10 ≈ 0.50-0.55 元，4.0%-5.0% 反推 10-12.5 元。综合合理价值 9-12
+          元、FV 10.5 元。现价 10.26 对应 PB 1.08、 股息率
+          4.4%，处于合理区中部——作为"市场 Beta + 高股息"防守品种可配置，
+          但券商上行依赖市场行情，需控制仓位。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          中性。PB 1.08 历史低位 + 股息率 4.4% 提供"净资产 +
+          现金回报"双下限；下行 极值看 PB 0.9 倍（约 8.6
+          元）；上行需市场持续活跃 + 自营浮亏回补。
+        </p>
+      </div>
+
+      <!-- 9. 六维评分 -->
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">7/10</div>
+            <div class="bar"><div class="fill" style="width: 70%"></div></div>
+            <div class="small">深圳国资中大型券商，业务均衡，区域资源强</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">净资本足、风控优秀，但其他综合收益 -243 亿</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">5/10</div>
+            <div class="bar"><div class="fill" style="width: 50%"></div></div>
+            <div class="small">营收 +13.4%、归母 +6.8%，市场依赖</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">券商周期，市场行情驱动，无独特故事</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">PB 1.08 低位、股息率 4.4%，合理区中部</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">市场回调、自营浮亏、佣金率下行</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">36</span> / 60</div>
+      </div>
+
+      <!-- 10. 风险清单 -->
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>市场行情回调（核心）</strong
+            >：券商盈利与市场强相关，市场转弱则经纪/自营/两融全面承压；
+          </li>
+          <li>
+            <strong>自营投资风险</strong>：其他综合收益 -243
+            亿（债券浮亏），利率上行继续侵蚀净资产；
+          </li>
+          <li>
+            <strong>佣金率/两融利率下行</strong
+            >：行业费率竞争压缩经纪与信用业务利差；
+          </li>
+          <li><strong>投行业务波动</strong>：IPO 节奏放缓影响承销收入；</li>
+          <li><strong>监管与合规</strong>：券商监管趋严，处罚风险；</li>
+          <li>
+            <strong>高负债经营</strong>：78.9% 负债率为券商杠杆，流动性需监控。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 11. 建仓参考（无持仓） -->
+      <div class="card">
+        <h2>💼 建仓参考（当前无持仓）</h2>
+        <p class="muted">
+          持仓事实源：stocks/my/holder.json（未包含国信证券；注：用户持有创业板
+          ETF， 若配置券商注意与大盘 Beta 的叠加）。以下为观察清单而非操作指令。
+        </p>
+        <h3>建仓点位参考（券商 PB 主锚，BPS 9.5 元 / 每股分红约 0.50 元）</h3>
+        <table>
+          <tr>
+            <th>区间</th>
+            <th class="num">价格</th>
+            <th>估值锚</th>
+          </tr>
+          <tr>
+            <td class="up">强买点 Strong Buy</td>
+            <td class="num">8.0 - 8.8 元</td>
+            <td>PB 0.84-0.93 倍；股息率 5.7%-6.3%（深度折价）</td>
+          </tr>
+          <tr>
+            <td>买点 Buy Zone</td>
+            <td class="num">8.8 - 9.8 元</td>
+            <td>PB 0.93-1.03 倍；股息率 5.1%-5.7%</td>
+          </tr>
+          <tr>
+            <td>合理价值 Fair Value</td>
+            <td class="num">9 - 12 元（FV 10.5）</td>
+            <td>PB 0.95-1.26 倍 + 股息率 4.2%-5.6% 交叉验证</td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num hl">10.26 元</td>
+            <td>PB 1.08、股息率 4.4%，合理区中部</td>
+          </tr>
+          <tr>
+            <td class="down">估值卖点（减仓）</td>
+            <td class="num">11.5 - 12.5 元</td>
+            <td>PB 1.21-1.32 倍（历史中枢上沿）；股息率跌破 4.0%</td>
+          </tr>
+          <tr>
+            <td class="down">无条件卖点</td>
+            <td class="num">不限价格</td>
+            <td>市场长期低迷 / 重大自营亏损 / 监管处罚 / 分红削减</td>
+          </tr>
+        </table>
+        <div class="note">
+          建仓锚定券商 PB（净资产是券商价值锚）。BPS 9.5 元，合理 PB 0.95-1.26
+          倍 （ROE 8-10% 对应）；股息率辅锚按 2025 全年 0.45 + 2026 中期 0.10 ≈
+          0.50 元反推 4.0%-5.6%。券商是"市场 Beta"资产，现价 10.26
+          处于合理区中部，可 防守型小步配置收息，但需在 9.8 元以下（PB
+          1.03）留足安全边际；若看多市场 行情可作 Beta
+          配置，否则等待更便宜买点。注意与大盘 Beta（创业板 ETF）敞口 叠加。
+        </div>
+        <h3>操作建议</h3>
+        <ul class="small">
+          <li>
+            <strong>当前（10.26 元）</strong
+            >：合理区中部，防守型可小步配置收息（股息率 4.4%）；
+          </li>
+          <li><strong>9.8 元以下 Buy Zone</strong>：优先（PB 1.03 倍内）；</li>
+          <li>
+            <strong>8.8 元以下</strong>：加大；<strong>8.0-8.8 元强买区</strong
+            >：深度折价；
+          </li>
+          <li>
+            <strong>11.5-12.5 元</strong>：分批兑现（PB 1.21 倍+、股息率跌破
+            4%）；
+          </li>
+          <li>
+            <strong>触发上修</strong>：市场成交持续放大 + 自营浮亏回补 +
+            并购整合落地；
+          </li>
+          <li>
+            <strong>跟踪项</strong>：两市成交额、市场指数、自营债券浮亏、IPO
+            节奏、两融规模、中期分红实施。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 12. 总结 -->
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p>
+          <strong
+            >结论：WATCHLIST · PB 低位 + 高股息，市场依赖，观望。总分
+            36/60。</strong
+          >
+        </p>
+        <h3>3 个关注的理由</h3>
+        <ol class="small">
+          <li>2026H1 营收 +13.4%、归母 +6.8%，随市场回暖稳健增长；</li>
+          <li>
+            估值低 + 股息高：PB 1.08（历史低位）、PE 9.2、股息率
+            4.4%，防守价值明显；
+          </li>
+          <li>
+            风控优秀：净资本 838.8 亿、风险覆盖率 354%、资本杠杆率
+            21.5%，财务稳健。
+          </li>
+        </ol>
+        <h3>3 个不追高的理由</h3>
+        <ol class="small">
+          <li>券商强周期：盈利本质是市场行情的函数，市场回调则全面承压；</li>
+          <li>其他综合收益 -243 亿（债券浮亏）拖累净资产，利率上行风险；</li>
+          <li>ROE 5 年均值 8.94%（券商常态但不高），无差异化成长故事。</li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          市场成交能否持续活跃？自营债券浮亏能否随利率企稳回补？IPO/两融是否回暖？
+          券商上行依赖市场行情——若市场维持活跃，PB 1.08 有修复空间；若回调，估值
+          随盈利同步承压。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          市场大幅回调 + 自营亏损扩大 +
+          佣金率下行叠加，将同时打击经纪、自营与估值 ——券商高 Beta
+          属性下，盈利与净资产（其他综合收益）双承压。这是持有国信
+          证券最需监控的组合风险；当前 PB 1.08 + 股息率 4.4%
+          提供防守，但不宜重仓 追高。
+        </p>
+        <div class="note">
+          数据充分性说明：基于 2026 半年报（2026-08-26 披露）与东财
+          F10（核心数据可 交叉验证）；净资本与风控指标取自中报摘要（PyMuPDF
+          解析）；Q2 单季为倒算 口径；2026E
+          盈利为推算口径（受市场行情影响大）；其他综合收益为会计口径；
+          不输出伪精确目标价。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-31
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 国信证券 ·
+        002736
+      </footer>
+    </div>
+  </body>
+</html>

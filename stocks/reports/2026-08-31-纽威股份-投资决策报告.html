@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>纽威股份（603699）投资决策报告 · 2026-08-31</title>
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --accent: #0ea5e9;
+        --good: #059669;
+        --warn: #d97706;
+        --bad: #dc2626;
+        --border: #e5e7eb;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        padding: 24px 16px;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #2563eb 60%,
+          #0ea5e9 100%
+        );
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 32px 32px 26px;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hero .sub {
+        opacity: 0.92;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 13px;
+      }
+      .badge.score {
+        background: #fff;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--primary);
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+      }
+      .verdict {
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+      .verdict.hold {
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+      }
+      .verdict.buy {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .verdict.sell {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .verdict .tag {
+        display: inline-block;
+        background: var(--warn);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      .verdict.buy .tag {
+        background: var(--good);
+      }
+      .verdict.sell .tag {
+        background: var(--bad);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th {
+        background: #eff6ff;
+        color: #1e3a8a;
+        font-weight: 600;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .up {
+        color: var(--good);
+        font-weight: 600;
+      }
+      .down {
+        color: var(--bad);
+        font-weight: 600;
+      }
+      .hl {
+        background: #fef9c3;
+        font-weight: 600;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .score-item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .score-item .dim {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score-item .val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .score-item .bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .score-item .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #0ea5e9);
+        border-radius: 4px;
+      }
+      .total-score {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+        margin-top: 12px;
+      }
+      .total-score .big {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 14px 0;
+      }
+      .kpi {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+      }
+      .kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi .num {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .note {
+        background: #f0f9ff;
+        border-left: 4px solid var(--accent);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .warn-box {
+        background: #fef2f2;
+        border-left: 4px solid var(--bad);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      .good-box {
+        background: #f0fdf4;
+        border-left: 4px solid var(--good);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 10px 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 26px;
+        padding-bottom: 20px;
+      }
+      @media (max-width: 640px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>纽威股份（603699）完整投资决策报告</h1>
+        <div class="sub">
+          2026 年半年报版 ｜ 生成日期：2026-08-31 ｜ 数据基准：2026 半年报 +
+          2026-08-31 行情快照
+        </div>
+        <div class="badges">
+          <span class="badge"
+            >框架：巴菲特 · 费雪 · 林奇 · 格雷厄姆 · 芒格</span
+          >
+          <span class="badge">分类：Fast Grower（工业阀门龙头）</span>
+          <span class="badge score">总分 43 / 60</span>
+        </div>
+      </div>
+
+      <!-- 1. 结论 -->
+      <div class="card">
+        <h2>🧭 先说结论</h2>
+        <div class="verdict hold">
+          <span class="tag">HOLD · 高成长延续，估值合理，持有</span>纽威股份
+          2026H1 强劲增长：营收 39.0 亿（+14.7%）、归母 7.3 亿 （+14.1%）、扣非
+          7.2 亿（+16.1%），毛利率 38.1%（+2.3pct），ROE 半年 15.86%（年化超
+          30%）。工业阀门龙头受益油气资本开支 + 核电/氢能/LNG
+          新赛道，成长质量优异。现价 50.90 元对应 2026E PE 约 20.8 倍，处合理区
+          中部。
+        </div>
+        <p>
+          一句话：<strong
+            >纽威是国内工业阀门龙头，产品覆盖油气/化工/核电/氢能等全场景，2026H1
+            在海外油气资本开支高位 + 新能源新赛道驱动下量价齐升（营收 +14.7%、
+            毛利率 +2.3pct），ROE 34% 的高质量成长。</strong
+          >2026H1 亮点：工业材料事业部（特种合金/铸锻件）高端工艺突破、安全阀获
+          DNV 海工认证、海外电站安全阀订单突破、页岩气气举撬装设备首发——高端化
+          与全球化持续兑现。
+        </p>
+        <p>
+          估值与回报：现价 50.90 元对应 PE(TTM) 23.24、2026E 前瞻 PE 约 20.8、PB
+          8.56、<strong>股息率约 3.16%</strong>（2025 全年每股分红 1.61
+          元，分红率 约 77%）。成长与回报兼备，估值处于合理区中部。
+        </p>
+        <p class="small">
+          <strong>当前动作：</strong>无持仓。现价 50.90
+          处于合理区中部，高成长标的 可小步分批建仓；50 元以下 Buy Zone 优先、45
+          元以下加大；警惕 PB 8.56 偏高与油气周期波动。
+        </p>
+      </div>
+
+      <!-- 2. 关键指标速览 -->
+      <div class="card">
+        <h2>📊 关键指标速览</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="lbl">现价 / 市值</div>
+            <div class="num">50.90 元<br />395 亿</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">PE(TTM) / PB</div>
+            <div class="num">23.2 / 8.56</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">TTM 股息率</div>
+            <div class="num">约 3.16%</div>
+          </div>
+          <div class="kpi">
+            <div class="lbl">2026H1 归母</div>
+            <div class="num up">7.3 亿（+14.1%）</div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>项目（2026H1）</th>
+            <th class="num">本期</th>
+            <th class="num">上期(2025H1)</th>
+            <th class="num">同比</th>
+          </tr>
+          <tr>
+            <td>营业收入</td>
+            <td class="num">39.0 亿</td>
+            <td class="num">34.0 亿</td>
+            <td class="num up">+14.7%</td>
+          </tr>
+          <tr>
+            <td>归母净利润</td>
+            <td class="num">7.3 亿</td>
+            <td class="num">6.4 亿</td>
+            <td class="num up">+14.1%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num">7.2 亿</td>
+            <td class="num">6.2 亿</td>
+            <td class="num up">+16.1%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num up">38.1%</td>
+            <td class="num">35.8%</td>
+            <td class="num up">+2.3pct</td>
+          </tr>
+          <tr>
+            <td>ROE(报告期累计)</td>
+            <td class="num up">15.86%</td>
+            <td class="num">13.66%</td>
+            <td class="num up">+2.2pct</td>
+          </tr>
+          <tr>
+            <td>资产负债率</td>
+            <td class="num">56.2%</td>
+            <td class="num">52.5%</td>
+            <td class="num">尚可</td>
+          </tr>
+          <tr>
+            <td>每股经营现金流</td>
+            <td class="num">0.70 元</td>
+            <td class="num">1.19 元</td>
+            <td class="num down">-41%（季节性）</td>
+          </tr>
+        </table>
+        <div class="good-box">
+          <strong>✅ 核心变化：量价齐升，高成长延续。</strong>营收 +14.7%、扣非
+          +16.1%、毛利率 38.1%（+2.3pct）——高端产品占比提升 +
+          海外油气资本开支高位；ROE 半年 15.86%（年化超 30%），2025 全年 ROE
+          34.45% 处行业顶尖。
+        </div>
+        <p class="muted">
+          数据来源：2026 半年报（2026-08-22 披露）、东财 F10、腾讯行情
+          （2026-08-31）；Q2 单季为累计倒算口径
+        </p>
+      </div>
+
+      <!-- 3. 数据来源与可信度 -->
+      <div class="card">
+        <h2>📋 数据来源与可信度</h2>
+        <ul class="small">
+          <li>
+            <strong>一手事实源</strong>：2026 年半年度报告（2026-08-22 披露）
+          </li>
+          <li>
+            <strong>业务与订单</strong>：中报 PDF 正文（PyMuPDF
+            解析，产品/下游/事业部进展）
+          </li>
+          <li>
+            <strong>财务明细</strong>：东方财富 F10
+            主要财务指标接口（营收/归母/扣非/ROE/毛利/负债）
+          </li>
+          <li>
+            <strong>行情与估值</strong>：腾讯行情快照（2026-08-31，现价 50.90
+            元，市值 395 亿）
+          </li>
+          <li>
+            <strong>分红</strong>：东方财富 RPT_SHAREBONUS_DET 分红接口（2025
+            全年每股 1.61 元）
+          </li>
+          <li><strong>研报观点</strong>：未引用（无一手研报原文）</li>
+        </ul>
+        <div class="note">
+          可信度说明：营收/归母/扣非/ROE/毛利率等核心数据取自公司中报与东财
+          F10，可 交叉验证；Q2
+          单季为累计倒算口径；每股经营现金流波动受收款季节性影响；2026E
+          盈利为推算口径；不输出伪精确目标价。
+        </div>
+      </div>
+
+      <!-- 4. 硬阈值筛选 -->
+      <div class="card">
+        <h2>✅ 硬阈值筛选</h2>
+        <h3>1. ROE 门槛（≥15%，至少 4 年）</h3>
+        <table>
+          <tr>
+            <th>年份</th>
+            <th class="num">2021</th>
+            <th class="num">2022</th>
+            <th class="num">2023</th>
+            <th class="num">2024</th>
+            <th class="num">2025</th>
+            <th class="num">5年均值</th>
+          </tr>
+          <tr>
+            <td>ROE(加权)</td>
+            <td class="num">13.06%</td>
+            <td class="num">15.09%</td>
+            <td class="num">20.65%</td>
+            <td class="num">28.66%</td>
+            <td class="num up">34.45%</td>
+            <td class="num up">22.38%</td>
+          </tr>
+        </table>
+        <p class="small">
+          <strong>通过</strong>。2022-2025 连续 4 年 ≥15%，5 年均值 22.38%，2025
+          年 高达 34.45%；2026H1 半年 15.86%（年化超 30%），ROE 趋势持续上行。
+        </p>
+        <h3>2. 自由现金流门槛</h3>
+        <p class="small">
+          <strong>通过</strong>。2025 全年每股经营现金流 2.83 元、2024 年 1.45
+          元； 2026H1 0.70 元（收款季节性）。资本开支相对可控，FCF 良好。
+        </p>
+        <h3>3. 分红率门槛</h3>
+        <p class="small">
+          <strong>强通过</strong>。2025 年度每股 1.61 元、分红率约 77%，股息率约
+          3.16%，对高成长制造业属慷慨水平。
+        </p>
+        <h3>4. 资产负债率门槛</h3>
+        <p class="small">
+          <strong>通过</strong>。负债率 56.2%，制造业合理水平。
+        </p>
+        <div class="good-box">
+          <strong>硬阈值总判断：全部通过。</strong
+          >ROE、FCF、分红、负债率四项达标，且 ROE 持续上行（34%）——是少见的
+          "高质量成长 + 高股东回报"标的。主要矛盾在估值（PB 8.56
+          高）与油气/新能源 周期。
+        </div>
+      </div>
+
+      <!-- 5. 基本面研究 -->
+      <div class="card">
+        <h2>🔩 基本面研究</h2>
+        <h3>公司定位与主营</h3>
+        <table>
+          <tr>
+            <th>业务板块</th>
+            <th class="num">特征</th>
+          </tr>
+          <tr>
+            <td>工业阀门（核心）</td>
+            <td class="num">
+              十一大阀种、规格超 10 万种，覆盖油气/化工/核电/氢能等
+            </td>
+          </tr>
+          <tr>
+            <td>工业材料（特种合金/铸锻件）</td>
+            <td class="num">2026H1 高端工艺突破，服务油气/电力/海工/航空</td>
+          </tr>
+          <tr>
+            <td>石油设备</td>
+            <td class="num">页岩气撬装设备首发，API 6A 井口装置</td>
+          </tr>
+        </table>
+        <p class="small">
+          结构要点：工业阀门是核心（高温高压/深海/核电/超低温等严苛工况），全球化
+          营销服务（油气化工/长输管线/火电核电/海工船舶/LNG/氢能/核能/水处理）；
+          工业材料与石油设备提供新增长点。下游驱动：国内管网更新/核电新建 + 海外
+          油气资本开支高位 + LNG/氢能/CCUS/储能新赛道。
+        </p>
+        <h3>护城河（强度：强）</h3>
+        <ul class="small">
+          <li>国内工业阀门龙头，产品线齐全（十一大阀种、超 10 万种规格）；</li>
+          <li>
+            全球资质与认证（DNV/BV/ABS/CCS、核电等），高端市场准入壁垒高；
+          </li>
+          <li>200+ 国际化研发团队 + 世界级材料/工程实验室；</li>
+          <li>全球化营销网络，服务全球能源巨头。</li>
+        </ul>
+        <h3>管理层与治理</h3>
+        <ul class="small">
+          <li>管理层执行力强，高端化/全球化战略清晰；</li>
+          <li>高分红（分红率 77%），股东回报优秀；</li>
+          <li>需跟踪：油气资本开支、海外贸易壁垒、产能扩张回报。</li>
+        </ul>
+        <h3>费雪 / 林奇定位</h3>
+        <p class="small">
+          归类：<strong>Fast Grower</strong>。成长来自传统油气资本开支修复 +
+          新能源 （核电/氢能/LNG/储能）新赛道 +
+          高端化/全球化；盈利质量高（毛利率 38%、 ROE
+          34%）。当前处于成长加速期，估值用 PE（PB 8.56 太高不适用）。
+        </p>
+      </div>
+
+      <!-- 6. 财务质量分析 -->
+      <div class="card">
+        <h2>🔬 财务质量分析</h2>
+        <h3>2026H1：量价齐升，盈利质量优异</h3>
+        <div class="good-box">
+          <strong>✅ 扣非 +16.1%、毛利率 +2.3pct</strong>：高端产品占比提升 +
+          海外油气资本开支高位驱动；ROE 半年 15.86%（年化 超 30%），扣非 ≈
+          归母无注水。
+        </div>
+        <table>
+          <tr>
+            <th>项目</th>
+            <th class="num">2026H1</th>
+            <th class="num">2025H1</th>
+            <th class="num">变化</th>
+          </tr>
+          <tr>
+            <td>营收</td>
+            <td class="num">39.0 亿</td>
+            <td class="num">34.0 亿</td>
+            <td class="num up">+14.7%</td>
+          </tr>
+          <tr>
+            <td>归母净利</td>
+            <td class="num">7.3 亿</td>
+            <td class="num">6.4 亿</td>
+            <td class="num up">+14.1%</td>
+          </tr>
+          <tr>
+            <td>扣非归母</td>
+            <td class="num">7.2 亿</td>
+            <td class="num">6.2 亿</td>
+            <td class="num up">+16.1%</td>
+          </tr>
+          <tr>
+            <td>毛利率</td>
+            <td class="num up">38.1%</td>
+            <td class="num">35.8%</td>
+            <td class="num up">+2.3pct</td>
+          </tr>
+          <tr>
+            <td>ROE(累计)</td>
+            <td class="num up">15.86%</td>
+            <td class="num">13.66%</td>
+            <td class="num up">+2.2pct</td>
+          </tr>
+          <tr>
+            <td>每股经营现金流</td>
+            <td class="num">0.70 元</td>
+            <td class="num">1.19 元</td>
+            <td class="num down">季节性</td>
+          </tr>
+        </table>
+        <p class="small">
+          原因拆解：① 营收 +14.7%（海外油气资本开支高位 + 新赛道订单）；② 毛利率
+          +2.3pct 至 38.1%（高端产品/材料占比提升）；③ 扣非 +16.1% 高于营收（毛
+          利率驱动）；④ 经营现金流季节性波动（收款节奏），2025 全年 +2.83 元/股
+          为正；⑤ Q2 单季归母约 3.8 亿（环比 Q1 3.5 亿略增）。
+        </p>
+        <h3>盈利质量与资产负债表</h3>
+        <ul class="small">
+          <li><strong>利润含金量高</strong>：扣非 ≈ 归母，无一次性注水；</li>
+          <li>
+            <strong>高 ROE</strong>：2025 全年 34.45%、2026H1 年化超
+            30%，行业顶尖；
+          </li>
+          <li><strong>现金流</strong>：全年维度 FCF 良好，季节性波动；</li>
+          <li><strong>负债率 56.2%</strong>：制造业合理水平。</li>
+        </ul>
+      </div>
+
+      <!-- 7. 行业与竞争格局 -->
+      <div class="card">
+        <h2>🌐 行业与竞争格局</h2>
+        <ul class="small">
+          <li>
+            <strong>赛道</strong
+            >：全球工业阀门需求稳健，国内管网更新/核电新建/火电改造 +
+            海外油气资本开支高位；LNG/氢能/CCUS/海上风电/储能打开增量。
+          </li>
+          <li>
+            <strong>竞争地位</strong
+            >：国内工业阀门龙头，高端特种阀门（核电/深海/超低温）研发提速，对垒国际品牌（海外高端电站/海工订单突破）。
+          </li>
+          <li>
+            <strong>成长驱动</strong>：① 海外油气资本开支；② 核电/氢能/LNG
+            新赛道；③ 高端化（工业材料、特种阀门）；④
+            全球份额提升（性价比+品控）。
+          </li>
+          <li>
+            <strong>风险</strong
+            >：油气周期下行、海外贸易壁垒、地缘政治、产能扩张效益、原材料成本。
+          </li>
+        </ul>
+        <p class="small">
+          结论：行业格局稳定、公司龙头地位 +
+          高端化/全球化进展显著，成长逻辑清晰；
+          核心观察变量是油气资本开支周期与新能源新赛道放量节奏。
+        </p>
+      </div>
+
+      <!-- 8. 估值与安全边际 -->
+      <div class="card">
+        <h2>💰 估值与安全边际</h2>
+        <h3>当前估值（2026-08-31，现价 50.90 元，市值 395 亿）</h3>
+        <table>
+          <tr>
+            <th>口径</th>
+            <th class="num">数值</th>
+            <th class="num">对应估值</th>
+          </tr>
+          <tr>
+            <td>PE(TTM)（行情口径）</td>
+            <td class="num">23.24 倍</td>
+            <td class="num">合理</td>
+          </tr>
+          <tr>
+            <td>2025A 静态 PE（EPS 2.10）</td>
+            <td class="num">24.2 倍</td>
+            <td class="num">合理</td>
+          </tr>
+          <tr>
+            <td>2026E 前瞻 PE（EPS 约 2.45）</td>
+            <td class="num">约 20.8 倍</td>
+            <td class="num">合理（成长支撑）</td>
+          </tr>
+          <tr>
+            <td>PB（BPS 约 5.98 元）</td>
+            <td class="num">8.56 倍</td>
+            <td class="num down">很高（高 ROE 支撑）</td>
+          </tr>
+          <tr>
+            <td>TTM 股息率（每股 1.61 元）</td>
+            <td class="num">约 3.16%</td>
+            <td class="num">尚可</td>
+          </tr>
+        </table>
+        <h3>估值锚交叉验证（Fast Grower：PE 主锚 + 股息率辅锚）</h3>
+        <table>
+          <tr>
+            <th>估值锚</th>
+            <th class="num">价格（元）</th>
+          </tr>
+          <tr>
+            <td>2026E EPS 2.45 × 18 倍</td>
+            <td class="num">44.1</td>
+          </tr>
+          <tr>
+            <td>2026E EPS 2.45 × 20 倍</td>
+            <td class="num">49.0</td>
+          </tr>
+          <tr>
+            <td>2026E EPS 2.45 × 22 倍</td>
+            <td class="num">53.9</td>
+          </tr>
+          <tr>
+            <td>2026E EPS 2.45 × 24 倍（成长溢价）</td>
+            <td class="num">58.8</td>
+          </tr>
+          <tr>
+            <td>股息率 3.5% 反推（1.61÷0.035）</td>
+            <td class="num">46.0</td>
+          </tr>
+          <tr>
+            <td>股息率 3.0% 反推（1.61÷0.03）</td>
+            <td class="num">53.7</td>
+          </tr>
+        </table>
+        <p>
+          <strong
+            >合理价值区间：约 46 - 58 元（FV 约 52 元）；现价 50.90
+            元，处于合理区中部，安全边际中性。</strong
+          >
+        </p>
+        <div class="note">
+          判断：高成长制造业用 PE 主锚 + PEG。2026E 归母约 18-20 亿（H1 7.3 亿 +
+          H2 延续高增）、EPS 约 2.45；合理 PE 19-23 倍（成长溢价，PEG
+          &lt;1）对应 46.5-56.4 元；股息率 3.0%-3.5% 反推 46-53.7
+          元。综合合理价值 46-58 元、 FV 52 元。现价 50.90 对应 2026E PE 20.8
+          倍，处于合理区中部——成长与回报 兼备，但 PB 8.56
+          偏高，若成长不及预期估值弹性向下；PEG 校验（归母增速 15-20%，PEG 约
+          1.1-1.3）显示不算便宜但可接受。
+        </div>
+        <h3>安全边际判断</h3>
+        <p class="small">
+          中性。现价对应 2026E PE 20.8、股息率 3.16%，处于合理区中部；PB 8.56 高
+          但被 34% ROE 支撑。更厚安全边际需等 45 元以下（PE 18.4
+          倍）或业绩持续超 预期。
+        </p>
+      </div>
+
+      <!-- 9. 六维评分 -->
+      <div class="card">
+        <h2>📈 六维评分</h2>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="dim">1. 业务质量</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">工业阀门龙头，全场景产品+全球资质</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">2. 财务强度</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">ROE 34%、毛利率 38%、FCF 良好</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">3. 成长质量</div>
+            <div class="val">9/10</div>
+            <div class="bar"><div class="fill" style="width: 90%"></div></div>
+            <div class="small">营收 +14.7%、扣非 +16.1%、毛利率提升</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">4. 分类与故事</div>
+            <div class="val">8/10</div>
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="small">油气资本开支+核电/氢能/LNG 新赛道，故事清晰</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">5. 估值与安全边际</div>
+            <div class="val">4/10</div>
+            <div class="bar"><div class="fill" style="width: 40%"></div></div>
+            <div class="small">PE 20.8 合理，但 PB 8.56 很高、股息率 3.16%</div>
+          </div>
+          <div class="score-item">
+            <div class="dim">6. 风险（反向）</div>
+            <div class="val">6/10</div>
+            <div class="bar"><div class="fill" style="width: 60%"></div></div>
+            <div class="small">油气周期、贸易壁垒、PB 高、产能扩张</div>
+          </div>
+        </div>
+        <div class="total-score">总分 <span class="big">43</span> / 60</div>
+      </div>
+
+      <!-- 10. 风险清单 -->
+      <div class="card">
+        <h2>⚠️ 风险清单</h2>
+        <ul class="small">
+          <li>
+            <strong>油气资本开支周期（核心）</strong
+            >：若全球油气资本开支回落，海外订单承压；
+          </li>
+          <li>
+            <strong>海外贸易壁垒</strong>：关税/贸易保护主义影响出口与海外布局；
+          </li>
+          <li>
+            <strong>PB 8.56 偏高</strong
+            >：估值对成长依赖高，业绩不及预期则回落空间大；
+          </li>
+          <li><strong>地缘政治</strong>：地缘冲突影响海外市场与供应链；</li>
+          <li>
+            <strong>原材料与汇率</strong>：特种合金/钢材成本、人民币汇率波动；
+          </li>
+          <li>
+            <strong>产能扩张效益</strong>：新产能投放若需求不及预期拖累回报。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 11. 建仓参考（无持仓） -->
+      <div class="card">
+        <h2>💼 建仓参考（当前无持仓）</h2>
+        <p class="muted">
+          持仓事实源：stocks/my/holder.json（未包含纽威股份）。以下为观察清单而非操作指令。
+        </p>
+        <h3>建仓点位参考（2026E EPS 约 2.45 / 每股分红约 1.61 元）</h3>
+        <table>
+          <tr>
+            <th>区间</th>
+            <th class="num">价格</th>
+            <th>估值锚</th>
+          </tr>
+          <tr>
+            <td class="up">强买点 Strong Buy</td>
+            <td class="num">40 - 45 元</td>
+            <td>2026E PE 16.3-18.4 倍；股息率 3.6%-4.0%</td>
+          </tr>
+          <tr>
+            <td>买点 Buy Zone</td>
+            <td class="num">45 - 50 元</td>
+            <td>2026E PE 18.4-20.4 倍；股息率 3.2%-3.6%</td>
+          </tr>
+          <tr>
+            <td>合理价值 Fair Value</td>
+            <td class="num">46 - 58 元（FV 52）</td>
+            <td>2026E PE 18.8-23.7 倍 + 股息率 2.8%-3.5% 交叉验证</td>
+          </tr>
+          <tr>
+            <td>当前价格</td>
+            <td class="num hl">50.90 元</td>
+            <td>2026E PE 20.8 倍、股息率 3.16%，合理区中部</td>
+          </tr>
+          <tr>
+            <td class="down">估值卖点（减仓）</td>
+            <td class="num">58 - 62 元</td>
+            <td>2026E PE 23.7-25.3 倍；股息率跌破 2.6%（乐观透支）</td>
+          </tr>
+          <tr>
+            <td class="down">无条件卖点</td>
+            <td class="num">不限价格</td>
+            <td>海外订单崩塌 / 油气周期大幅下行 / 毛利率大幅下滑 / 分红削减</td>
+          </tr>
+        </table>
+        <div class="note">
+          建仓锚定 PE + PEG。2026E 归母约 18-20 亿、EPS 2.45；合理 PE 19-23
+          倍（高 成长 + 高 ROE 溢价，PEG 校验约 1.1-1.3 可接受）。PB 8.56 因 ROE
+          34% 尚可 支撑但不宜作主锚。股息率 3.16%（分红率
+          77%）提供回报下限。当前 50.90 处 合理区中部，可小步建仓；45 元以下（PE
+          18.4）留足安全边际后加大；若油气
+          资本开支或新赛道持续超预期可上修，反之需下修。
+        </div>
+        <h3>操作建议</h3>
+        <ul class="small">
+          <li>
+            <strong>当前（50.90 元）</strong>：合理区中部，可小步分批建仓；
+          </li>
+          <li>
+            <strong>50 元以下 Buy Zone</strong>：优先；<strong>45 元以下</strong
+            >：加大；
+          </li>
+          <li><strong>40-45 元强买区</strong>：深度折价，成长标的优质买点；</li>
+          <li>
+            <strong>58-62 元</strong>：分批兑现（PE 23.7 倍+、股息率跌破
+            2.6%）；
+          </li>
+          <li>
+            <strong>触发上修</strong>：油气资本开支超预期 + 核电/氢能订单放量 +
+            毛利率继续提升；
+          </li>
+          <li>
+            <strong>跟踪项</strong
+            >：海外订单、油气资本开支、核电/氢能新赛道订单、毛利率、产能投放、分红。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 12. 总结 -->
+      <div class="card">
+        <h2>🎯 总结</h2>
+        <p>
+          <strong>结论：HOLD · 高成长延续，估值合理，持有。总分 43/60。</strong>
+        </p>
+        <h3>3 个关注的理由</h3>
+        <ol class="small">
+          <li>
+            2026H1 营收 +14.7%、扣非 +16.1%、毛利率
+            38.1%（+2.3pct），量价齐升高成长；
+          </li>
+          <li>
+            ROE 2025 年 34.45%（5 年均值
+            22.38%），盈利质量行业顶尖，硬阈值全部通过；
+          </li>
+          <li>
+            油气资本开支 + 核电/氢能/LNG 新赛道 +
+            高端化/全球化，成长逻辑清晰；高分红（分红率 77%）。
+          </li>
+        </ol>
+        <h3>3 个不追高的理由</h3>
+        <ol class="small">
+          <li>PB 8.56 很高，估值对成长依赖大，业绩不及预期则回落空间大；</li>
+          <li>油气资本开支是核心驱动，若周期回落海外订单承压；</li>
+          <li>股息率 3.16% 一般，PE 20.8 处合理区中部而非低估。</li>
+        </ol>
+        <h3>关键问题</h3>
+        <p class="small">
+          全球油气资本开支能否维持高位？核电/氢能新赛道订单放量节奏？毛利率能否
+          继续提升？若成长延续（营收/利润双增 + 毛利率提升），估值可消化；若油气
+          周期回落或新赛道不及预期，高 PB 下估值面临下修。
+        </p>
+        <h3>致命缺陷检查</h3>
+        <p class="small">
+          油气资本开支大幅回落 + 海外贸易壁垒 +
+          新赛道放量不及预期叠加，将同时冲击 订单、毛利率与高估值——PB 8.56
+          下盈利证伪的回落空间大。这是持有纽威最需 监控的组合风险；当前 ROE 34%
+          与分红率 77% 提供质量与回报支撑，但需在 45 元以下留足安全边际。
+        </p>
+        <div class="note">
+          数据充分性说明：基于 2026 半年报（2026-08-22 披露）与东财
+          F10（核心数据可 交叉验证）；产品/下游/事业部进展取自中报正文（PyMuPDF
+          解析）；Q2 单季为 倒算口径；2026E 盈利为推算口径；不输出伪精确目标价。
+        </div>
+      </div>
+
+      <footer>
+        本报告基于 2026-08-31
+        公开数据整理，仅供个人投资研究参考，不构成投资建议。 ｜ 纽威股份 ·
+        603699
+      </footer>
+    </div>
+  </body>
+</html>
